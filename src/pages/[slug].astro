@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ScriptRunner from '../components/ScriptRunner.astro';
+import { getAllPages, type WPPage } from '../lib/api';
+import { ChevronRight, Home, Sparkles, MessageCircle } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const pages = await getAllPages();
+  const reservedSlugs = new Set([
+    '',
+    'shop',
+    'english',
+    'parents-whatsapp-community',
+    'edutarbiyah-institute',
+  ]);
+
+  return pages
+    .filter((p) => p.slug && !reservedSlugs.has(p.slug))
+    .map((page) => ({
+      params: { slug: decodeURIComponent(page.slug) },
+      props: { page },
+    }));
+}
+
+interface Props {
+  page: WPPage;
+}
+
+const { page } = Astro.props;
+
+// Decode title
+const title = page.title?.rendered
+  ? page.title.rendered.replace(/&#8211;/g, '–').replace(/&#038;/g, '&')
+  : 'EduTarbiyah';
+
+// Clean plain text description for meta
+const plainDescription = page.excerpt?.rendered
+  ? page.excerpt.rendered.replace(/<[^>]*>?/gm, '').trim().slice(0, 160)
+  : 'EduTarbiyah page resources and guides for mindful parenting.';
+
+const isInteractiveTool = 
+  page.slug.includes('audit') || 
+  page.slug.includes('vision') || 
+  page.slug.includes('tracker') || 
+  page.slug.includes('form') ||
+  page.slug.includes('routine') ||
+  page.slug.includes('personality');
+---
+
+<Layout title={`${title} | EduTarbiyah`} description={plainDescription}>
+  
+  <!-- Breadcrumb & Header Hero -->
+  <section class="bg-gradient-to-b from-[#F4F8F6] to-[#FFFDF9] border-b border-gray-100 py-10 lg:py-14">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-gray-500 font-medium mb-4" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#0F766E] transition-colors flex items-center gap-1">
+          <Home class="w-3.5 h-3.5" />
+          <span>Home</span>
+        </a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <span class="text-[#064E3B] font-semibold truncate max-w-xs">{title}</span>
+      </nav>
+
+      {isInteractiveTool && (
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0F766E]/10 border border-[#0F766E]/20 text-[#0F766E] text-xs font-semibold mb-3">
+          <Sparkles class="w-3.5 h-3.5 text-[#F59E0B]" />
+          <span>Interactive Tarbiyah Diagnostic Tool</span>
+        </div>
+      )}
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-[#064E3B] tracking-tight leading-tight">
+        {title}
+      </h1>
+
+      <p class="mt-3 text-sm sm:text-base text-gray-600">
+        Authentic Islamic parenting and personal development resources from EduTarbiyah.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Main Content Container with Interactive Script Runner -->
+  <section class="py-12 lg:py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <!-- Content Container -->
+      <article
+        id="wp-dynamic-content"
+        class="wp-content bg-white rounded-3xl p-6 sm:p-10 md:p-12 border border-gray-100 shadow-sm"
+        set:html={page.content?.rendered || '<p>Content is being updated.</p>'}
+      />
+
+      <!-- Client-side runner ensures embedded quiz calculators and scripts execute seamlessly -->
+      <ScriptRunner containerId="wp-dynamic-content" />
+
+      <!-- Help / Inquiry Box at Bottom of Every Page -->
+      <div class="mt-12 bg-[#F4F8F6] rounded-2xl p-6 border border-[#0F766E]/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h4 class="font-bold text-gray-900 text-sm">Have questions about this topic or assessment?</h4>
+          <p class="text-xs text-gray-600 mt-0.5">Connect directly with our parenting counselors on WhatsApp.</p>
+        </div>
+        <a
+          href="https://wa.me/923122370720"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-xs font-bold shadow transition-all shrink-0"
+        >
+          <MessageCircle class="w-4 h-4 text-[#F59E0B]" />
+          <span>Ask EduTarbiyah Support</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

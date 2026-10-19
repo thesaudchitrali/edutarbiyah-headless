@@ -1,0 +1,196 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductFreshness from '../../components/ProductFreshness.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getAllProducts, type Product } from '../../lib/api';
+import { ChevronRight, Home, BookOpen, ShieldCheck, Truck, RotateCcw, Share2 } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const products = await getAllProducts();
+
+  return products.map((product) => ({
+    params: { slug: decodeURIComponent(product.slug) },
+    props: { product, allProducts: products },
+  }));
+}
+
+interface Props {
+  product: Product;
+  allProducts: Product[];
+}
+
+const { product, allProducts } = Astro.props;
+
+// Decode title
+const title = product.name
+  .replace(/&#8211;/g, '–')
+  .replace(/&#038;/g, '&')
+  .replace(/&amp;/g, '&');
+
+const category = product.categories?.[0];
+
+// Related products from same category or fallback to other products
+const relatedProducts = allProducts
+  .filter((p) => p.id !== product.id && (!category || p.categories?.some((c) => c.id === category.id)))
+  .slice(0, 4);
+
+const mainImage = product.images?.[0]?.src || '/images/book-placeholder.svg';
+const mainImageAlt = product.images?.[0]?.alt || product.name;
+
+const plainDescription = product.short_description
+  ? product.short_description.replace(/<[^>]*>?/gm, '').trim().slice(0, 160)
+  : `${title} - Authentic parenting resource from EduTarbiyah Publications.`;
+---
+
+<Layout
+  title={`${title} | EduTarbiyah Bookstore`}
+  description={plainDescription}
+  image={mainImage}
+>
+  <!-- Breadcrumb Section -->
+  <section class="bg-[#F4F8F6] py-4 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex items-center gap-2 text-xs text-gray-500 font-medium" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#0F766E] transition-colors flex items-center gap-1">
+          <Home class="w-3.5 h-3.5" />
+          <span>Home</span>
+        </a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <a href="/shop/" class="hover:text-[#0F766E] transition-colors">
+          Bookstore
+        </a>
+        {category && (
+          <>
+            <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+            <a href={`/product-category/${category.slug}/`} class="hover:text-[#0F766E] transition-colors">
+              {category.name}
+            </a>
+          </>
+        )}
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <span class="text-[#064E3B] font-semibold truncate max-w-xs">{title}</span>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Product Main Overview Section -->
+  <section class="py-12 lg:py-16 bg-[#FFFDF9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        
+        <!-- Left: Product Image Gallery -->
+        <div class="lg:col-span-5 space-y-4">
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-md flex items-center justify-center aspect-[4/5] relative overflow-hidden group">
+            <img
+              src={mainImage}
+              alt={mainImageAlt}
+              class="max-h-full max-w-full object-contain rounded-xl shadow-lg transition-transform duration-500 group-hover:scale-105"
+              onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80'"
+            />
+          </div>
+
+          <!-- Thumbnail carousel if multiple images exist -->
+          {product.images && product.images.length > 1 && (
+            <div class="flex items-center gap-3 overflow-x-auto pb-2">
+              {product.images.map((img) => (
+                <div class="w-20 h-20 rounded-xl bg-white border border-gray-200 p-1 flex-shrink-0 cursor-pointer hover:border-[#0F766E] transition-all">
+                  <img src={img.src} alt={img.alt || title} class="w-full h-full object-cover rounded-lg" />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <!-- Right: Product Details, Freshness Island & Actions -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <div class="space-y-2">
+            {category && (
+              <a
+                href={`/product-category/${category.slug}/`}
+                class="inline-block text-xs font-bold uppercase tracking-wider text-[#0F766E] hover:underline"
+              >
+                {category.name}
+              </a>
+            )}
+
+            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-extrabold text-[#064E3B] tracking-tight leading-snug">
+              {title}
+            </h1>
+
+            {product.sku && (
+              <p class="text-xs text-gray-400">
+                SKU: <span class="font-mono text-gray-600">{product.sku}</span>
+              </p>
+            )}
+          </div>
+
+          <!-- Short summary if provided -->
+          {product.short_description && (
+            <div
+              class="text-sm text-gray-600 leading-relaxed wp-content border-l-2 border-[#0F766E]/30 pl-4 py-1"
+              set:html={product.short_description}
+            />
+          )}
+
+          <!-- Dynamic Freshness Island with Live Price, Variation Selector, and Cart/WhatsApp Handoff -->
+          <ProductFreshness product={product} />
+
+          <!-- Shipping & Confidence Assurances -->
+          <div class="pt-6 border-t border-gray-100 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-gray-600">
+            <div class="flex items-center gap-2.5">
+              <Truck class="w-4 h-4 text-[#0F766E] shrink-0" />
+              <span>Cash on Delivery throughout Pakistan</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <RotateCcw class="w-4 h-4 text-[#0F766E] shrink-0" />
+              <span>Easy replacement for defective prints</span>
+            </div>
+            <div class="flex items-center gap-2.5">
+              <ShieldCheck class="w-4 h-4 text-[#0F766E] shrink-0" />
+              <span>Verified 100% authentic EduTarbiyah publication</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Extended Full Description -->
+      {product.description && (
+        <div class="mt-16 pt-12 border-t border-gray-200">
+          <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl font-serif font-bold text-[#064E3B] mb-6">
+              About this Publication
+            </h2>
+            <div
+              class="wp-content bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm"
+              set:html={product.description}
+            />
+          </div>
+        </div>
+      )}
+
+      <!-- Related Books Section -->
+      {relatedProducts.length > 0 && (
+        <div class="mt-20 pt-16 border-t border-gray-200">
+          <div class="flex items-center justify-between mb-8">
+            <h2 class="text-2xl font-serif font-bold text-[#064E3B]">
+              You May Also Be Interested In
+            </h2>
+            <a href="/shop/" class="text-xs font-bold text-[#0F766E] hover:underline">
+              View All Books →
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {relatedProducts.map((relProduct) => (
+              <ProductCard product={relProduct} />
+            ))}
+          </div>
+        </div>
+      )}
+
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,198 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-primary: #0f766e;
+    --color-primary-dark: #064e3b;
+    --color-primary-light: #14b8a6;
+    --color-accent: #f59e0b;
+    --color-accent-dark: #d97706;
+    --color-bg-paper: #fffdf9;
+    --color-bg-soft: #f4f8f6;
+    --color-text-main: #1f2937;
+    --color-text-muted: #4b5563;
+    --color-border: #e5e7eb;
+  }
+
+  html {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    color: var(--color-text-main);
+    background-color: var(--color-bg-paper);
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-serif {
+    font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
+  }
+
+  /* Urdu and Arabic typography support */
+  [lang="ur"], .font-urdu {
+    font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Urdu Typesetting', 'Noto Sans Arabic', Tahoma, serif;
+    direction: rtl;
+    text-align: right;
+    line-height: 2;
+  }
+}
+
+/* Custom styling for WordPress rendered content */
+.wp-content {
+  color: #374151;
+  line-height: 1.8;
+  font-size: 1.075rem;
+}
+
+.wp-content h1,
+.wp-content h2,
+.wp-content h3,
+.wp-content h4 {
+  color: #064e3b;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.wp-content h1 { font-size: 2.25rem; }
+.wp-content h2 { font-size: 1.75rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 0.5rem; }
+.wp-content h3 { font-size: 1.4rem; }
+.wp-content h4 { font-size: 1.15rem; }
+
+.wp-content p {
+  margin-bottom: 1.25rem;
+}
+
+.wp-content ul,
+.wp-content ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.75rem;
+}
+
+.wp-content ul { list-style-type: disc; }
+.wp-content ol { list-style-type: decimal; }
+
+.wp-content li {
+  margin-bottom: 0.5rem;
+}
+
+.wp-content a {
+  color: #0f766e;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.wp-content a:hover {
+  color: #064e3b;
+}
+
+.wp-content blockquote {
+  border-left: 4px solid #0f766e;
+  padding-left: 1.25rem;
+  font-style: italic;
+  margin: 1.5rem 0;
+  color: #4b5563;
+  background-color: #f4f8f6;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.wp-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.75rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.wp-content figure {
+  margin: 1.5rem 0;
+}
+
+.wp-content figcaption {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.wp-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+}
+
+.wp-content th,
+.wp-content td {
+  border: 1px solid #e5e7eb;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.wp-content th {
+  background-color: #f8fafc;
+  font-weight: 600;
+  color: #064e3b;
+}
+
+/* Custom interactive quiz / assessment styling */
+.wp-content form,
+.wp-content .quiz-container,
+.wp-content .assessment-tool {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  padding: 1.75rem;
+  box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.05);
+  margin: 2rem 0;
+}
+
+.wp-content input[type="text"],
+.wp-content input[type="email"],
+.wp-content input[type="number"],
+.wp-content input[type="tel"],
+.wp-content select,
+.wp-content textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  background-color: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 1rem;
+}
+
+.wp-content input:focus,
+.wp-content select:focus,
+.wp-content textarea:focus {
+  outline: none;
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+}
+
+.wp-content button,
+.wp-content input[type="submit"],
+.wp-content input[type="button"],
+.wp-content .button {
+  background-color: #0f766e;
+  color: #ffffff;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wp-content button:hover,
+.wp-content input[type="submit"]:hover,
+.wp-content input[type="button"]:hover {
+  background-color: #064e3b;
+  transform: translateY(-1px);
+}

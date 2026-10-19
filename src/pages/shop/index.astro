@@ -1,0 +1,118 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { getAllProducts, getAllProductCategories, WHATSAPP_NUMBER } from '../../lib/api';
+import { BookOpen, Sparkles, Filter, MessageCircle, Truck, ShieldCheck, HeartHandshake } from 'lucide-astro';
+
+const products = await getAllProducts();
+const categories = await getAllProductCategories();
+---
+
+<Layout
+  title="Bookstore & Publications | EduTarbiyah"
+  description="Explore authentic parenting books, habit trackers, and Islamic moral education toolkits from EduTarbiyah Publications. 1-click WhatsApp ordering with Cash on Delivery."
+>
+  <!-- Shop Hero Section -->
+  <section class="bg-gradient-to-b from-[#F4F8F6] via-[#FFFDF9] to-[#FFFDF9] py-12 lg:py-16 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0F766E]/10 border border-[#0F766E]/20 text-[#0F766E] text-xs font-semibold">
+        <BookOpen class="w-3.5 h-3.5 text-[#F59E0B]" />
+        <span>Authentic Tarbiyah Publications</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-[#064E3B] tracking-tight">
+        EduTarbiyah Bookstore & Toolkits
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        Equip your family with evidence-based Islamic parenting guides, routine charts, and original works written by seasoned educators.
+      </p>
+
+      <!-- Category Filter Pills -->
+      <div class="pt-6 flex flex-wrap items-center justify-center gap-2 max-w-3xl mx-auto">
+        <a
+          href="/shop/"
+          class="px-4 py-2 rounded-xl text-xs font-bold bg-[#0F766E] text-white shadow-sm transition-all"
+        >
+          All Items ({products.length})
+        </a>
+        {categories.map((cat) => (
+          <a
+            href={`/product-category/${cat.slug}/`}
+            class="px-4 py-2 rounded-xl text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:border-[#0F766E] hover:text-[#0F766E] transition-all"
+          >
+            {cat.name} ({cat.count})
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Catalog Section -->
+  <section class="py-16 bg-[#FFFDF9]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      {products.length > 0 ? (
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {products.map((product) => (
+            <ProductCard product={product} />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center py-20 bg-white rounded-3xl border border-gray-100 max-w-lg mx-auto p-8 space-y-4">
+          <BookOpen class="w-12 h-12 text-gray-300 mx-auto" />
+          <h3 class="text-lg font-bold text-gray-800">Catalog is updating</h3>
+          <p class="text-xs text-gray-500">
+            Our publications are being synchronized with the store. Please check back shortly or chat with us on WhatsApp.
+          </p>
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0F766E] text-white text-xs font-bold"
+          >
+            Inquire on WhatsApp
+          </a>
+        </div>
+      )}
+
+      <!-- Order Assurance Highlights -->
+      <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 border-t border-gray-100">
+        <div class="bg-white rounded-2xl p-6 border border-gray-100 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
+            <Truck class="w-5 h-5" />
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-gray-900">Cash on Delivery</h4>
+            <p class="text-xs text-gray-600 mt-1">
+              Reliable delivery across all cities and towns of Pakistan within 2–4 working days.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-gray-100 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center shrink-0">
+            <ShieldCheck class="w-5 h-5" />
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-gray-900">Original Publications</h4>
+            <p class="text-xs text-gray-600 mt-1">
+              Authored and curated by EduTarbiyah Institute. High quality printing and binding.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 border border-gray-100 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-700 flex items-center justify-center shrink-0">
+            <HeartHandshake class="w-5 h-5" />
+          </div>
+          <div>
+            <h4 class="text-sm font-bold text-gray-900">School & Bulk Orders</h4>
+            <p class="text-xs text-gray-600 mt-1">
+              Special concession rates for schools, madaris, and community parenting circles.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>

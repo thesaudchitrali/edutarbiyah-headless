@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none">
+  <rect width="400" height="500" rx="16" fill="#064E3B"/>
+  <rect x="20" y="20" width="360" height="460" rx="12" fill="#0F766E" stroke="#F59E0B" stroke-width="2" stroke-opacity="0.4"/>
+  <path d="M120 280C150 265 185 265 200 275C215 265 250 265 280 280V190C250 175 215 175 200 185C185 175 150 175 120 190V280Z" fill="#FFFDF9" stroke="#F59E0B" stroke-width="3"/>
+  <path d="M200 185V275" stroke="#F59E0B" stroke-width="3"/>
+  <text x="200" y="340" fill="#FFFDF9" font-family="serif" font-size="22" font-weight="bold" text-anchor="middle">EduTarbiyah</text>
+  <text x="200" y="370" fill="#F59E0B" font-family="sans-serif" font-size="14" text-anchor="middle">Publications</text>
+</svg>

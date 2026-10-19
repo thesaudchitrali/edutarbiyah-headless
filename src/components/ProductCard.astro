@@ -1,0 +1,109 @@
+---
+import type { Product } from '../lib/api';
+import { formatPrice, buildWhatsAppOrderLink } from '../lib/api';
+import { MessageCircle, ArrowRight, CheckCircle2 } from 'lucide-astro';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+
+// Decode HTML entities in title
+const title = product.name
+  .replace(/&#8211;/g, '–')
+  .replace(/&#038;/g, '&')
+  .replace(/&amp;/g, '&');
+
+const formattedPrice = formatPrice(product.prices);
+const regularPrice = product.prices?.regular_price ? `${product.prices.currency_prefix || '₨ '}${product.prices.regular_price}` : '';
+const isOnSale = product.on_sale && product.prices?.sale_price && product.prices.sale_price !== product.prices.regular_price;
+
+const imageSrc = product.images?.[0]?.src || '/images/book-placeholder.svg';
+const imageAlt = product.images?.[0]?.alt || product.name;
+
+const productUrl = `/product/${product.slug}/`;
+const waOrderLink = buildWhatsAppOrderLink(
+  title,
+  formattedPrice,
+  `https://edutarbiyah.com${productUrl}`
+);
+---
+
+<article class="group bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden">
+  <!-- Product Image Container -->
+  <a href={productUrl} class="relative block overflow-hidden bg-[#F4F8F6] aspect-[4/5]">
+    {isOnSale && (
+      <span class="absolute top-3 left-3 z-10 bg-[#F59E0B] text-white text-[11px] font-bold px-2.5 py-1 rounded-full shadow-sm tracking-wide uppercase">
+        Special Offer
+      </span>
+    )}
+    <img
+      src={imageSrc}
+      alt={imageAlt}
+      loading="lazy"
+      class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+      onerror="this.src='https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80'"
+    />
+  </a>
+
+  <!-- Content -->
+  <div class="p-5 flex flex-col flex-grow">
+    <!-- Category Tag -->
+    {product.categories?.[0] && (
+      <a
+        href={`/product-category/${product.categories[0].slug}/`}
+        class="text-xs font-semibold text-[#0F766E] uppercase tracking-wider mb-1.5 hover:underline"
+      >
+        {product.categories[0].name}
+      </a>
+    )}
+
+    <!-- Title -->
+    <h3 class="text-base font-bold text-gray-900 group-hover:text-[#0F766E] transition-colors line-clamp-2 mb-2 leading-snug">
+      <a href={productUrl}>
+        {title}
+      </a>
+    </h3>
+
+    <!-- Price Section -->
+    <div class="mt-auto pt-3 flex items-baseline gap-2">
+      <span class="text-xl font-bold text-[#064E3B]">
+        {formattedPrice}
+      </span>
+      {isOnSale && (
+        <span class="text-xs text-gray-400 line-through">
+          {regularPrice}
+        </span>
+      )}
+    </div>
+
+    <!-- Stock indicator -->
+    <div class="mt-2 flex items-center gap-1.5 text-xs text-emerald-700 font-medium">
+      <CheckCircle2 class="w-3.5 h-3.5 text-emerald-600" />
+      <span>{product.is_in_stock ? 'In Stock • Ready to dispatch' : 'Backorder Available'}</span>
+    </div>
+
+    <!-- Actions -->
+    <div class="mt-4 pt-3 border-t border-gray-100 grid grid-cols-2 gap-2">
+      <a
+        href={waOrderLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl transition-colors"
+        title="Order directly on WhatsApp"
+      >
+        <MessageCircle class="w-3.5 h-3.5 text-emerald-600 fill-emerald-600" />
+        <span>WhatsApp</span>
+      </a>
+
+      <a
+        href={productUrl}
+        class="inline-flex items-center justify-center gap-1 py-2 px-3 text-xs font-bold text-white bg-[#0F766E] hover:bg-[#064E3B] rounded-xl shadow-sm hover:shadow transition-all"
+      >
+        <span>Details</span>
+        <ArrowRight class="w-3.5 h-3.5" />
+      </a>
+    </div>
+  </div>
+</article>

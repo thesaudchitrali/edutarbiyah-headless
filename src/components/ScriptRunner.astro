@@ -1,0 +1,58 @@
+---
+interface Props {
+  containerId?: string;
+}
+
+const { containerId = 'wp-dynamic-content' } = Astro.props;
+---
+
+<script define:vars={{ containerId }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    executeEmbeddedScripts();
+  });
+
+  // Also execute immediately in case DOM is already ready
+  if (document.readyState === 'interactive' || document.readyState === 'complete') {
+    executeEmbeddedScripts();
+  }
+
+  function executeEmbeddedScripts() {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    // Check if we've already executed scripts for this container to prevent duplicates
+    if (container.dataset.scriptsExecuted === 'true') return;
+    container.dataset.scriptsExecuted = 'true';
+
+    const scripts = container.querySelectorAll('script');
+    if (!scripts || scripts.length === 0) return;
+
+    scripts.forEach((oldScript) => {
+      const newScript = document.createElement('script');
+      
+      // Copy all attributes (src, type, id, etc.)
+      Array.from(oldScript.attributes).forEach((attr) => {
+        newScript.setAttribute(attr.name, attr.value);
+      });
+
+      // Wrap inline code so that functions declared with function name() or var name =
+      // are explicitly promoted to window scope if needed for HTML onclick attributes
+      if (oldScript.innerHTML) {
+        newScript.text = `
+          try {
+            ${oldScript.innerHTML}
+          } catch (scriptErr) {
+            console.error('[EduTarbiyah Script Runner Error]:', scriptErr);
+          }
+        `;
+      }
+
+      // Replace old non-executing script with the active executable script node
+      if (oldScript.parentNode) {
+        oldScript.parentNode.replaceChild(newScript, oldScript);
+      }
+    });
+
+    console.log(`[EduTarbiyah] Successfully initialized ${scripts.length} interactive scripts in #${containerId}`);
+  }
+</script>

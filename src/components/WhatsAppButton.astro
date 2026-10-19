@@ -1,0 +1,23 @@
+---
+import { MessageCircle } from 'lucide-astro';
+import { WHATSAPP_NUMBER } from '../lib/api';
+
+const defaultMessage = encodeURIComponent("السلام علیکم EduTarbiyah, I would like to inquire about your courses and parenting resources.");
+const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${defaultMessage}`;
+---
+
+<aside class="fixed bottom-6 right-6 z-40 flex items-center gap-3">
+  <div class="hidden sm:flex bg-white text-[#1F2937] text-xs font-semibold py-1.5 px-3 rounded-full shadow-lg border border-gray-100 items-center gap-1.5 animate-bounce">
+    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+    <span>Ask a Tarbiyah Question</span>
+  </div>
+  <a
+    href={whatsappUrl}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Chat with EduTarbiyah on WhatsApp"
+    class="w-14 h-14 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full flex items-center justify-center shadow-xl hover:shadow-2xl hover:scale-110 active:scale-95 transition-all duration-200"
+  >
+    <MessageCircle class="w-7 h-7 fill-current" />
+  </a>
+</aside>

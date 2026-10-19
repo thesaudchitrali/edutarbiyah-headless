@@ -1,0 +1,85 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  isUrdu?: boolean;
+}
+
+const {
+  title = 'EduTarbiyah | Authentic Parenting & Moral Education for Modern Families',
+  description = 'Empowering parents, educators, and lifelong learners with authentic Islamic parenting frameworks, habit trackers, and holistic personal growth resources.',
+  image = 'https://edutarbiyah.com/wp-content/uploads/2026/08/f2bb8d3f-aa2b-4c55-8846-eff467475bb3.png',
+  canonical,
+  isUrdu = false,
+} = Astro.props;
+
+const canonicalURL = canonical || new URL(Astro.url.pathname, Astro.site || 'https://edutarbiyah.com').href;
+---
+
+<!doctype html>
+<html lang={isUrdu ? 'ur' : 'en'} dir={isUrdu ? 'rtl' : 'ltr'} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#0F766E" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Google Web Fonts: Playfair Display + Plus Jakarta Sans + Noto Nastaliq Urdu -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-[#FFFDF9] text-[#1F2937] min-h-screen flex flex-col antialiased selection:bg-[#0F766E] selection:text-white">
+    <!-- Skip to content for accessibility -->
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 z-50 bg-[#0F766E] text-white px-4 py-2 rounded shadow-lg text-sm font-semibold"
+    >
+      Skip to main content
+    </a>
+
+    <!-- Global Header -->
+    <Header />
+
+    <!-- Page Content -->
+    <main id="main-content" class="flex-grow">
+      <slot />
+    </main>
+
+    <!-- Global Footer -->
+    <Footer />
+
+    <!-- Floating WhatsApp Assistance Button -->
+    <WhatsAppButton />
+  </body>
+</html>

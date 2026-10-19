@@ -1,0 +1,173 @@
+---
+import { BookOpen, MessageCircle, Mail, Phone, Heart, Sparkles, ArrowUpRight } from 'lucide-astro';
+import { WHATSAPP_NUMBER } from '../lib/api';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="bg-[#064E3B] text-[#F8FFFC] pt-16 pb-12 border-t border-[#0F766E]/30">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[#0F766E]/40">
+      
+      <!-- Brand & Mission Column -->
+      <div class="lg:col-span-2 space-y-4">
+        <a href="/" class="flex items-center gap-3 group">
+          <div class="w-10 h-10 rounded-xl bg-[#0F766E] flex items-center justify-center text-white shadow-md">
+            <BookOpen class="w-5 h-5 text-[#F59E0B]" />
+          </div>
+          <span class="text-2xl font-serif font-bold text-white tracking-tight">
+            EduTarbiyah
+          </span>
+        </a>
+        <p class="text-[#D1FAE5]/80 text-sm leading-relaxed max-w-sm">
+          A dedicated platform for mature parents, educators, and mentors. We bridge authentic Islamic moral tarbiyah with contemporary developmental psychology for thriving modern families.
+        </p>
+        <div class="pt-2 flex flex-col gap-2 text-sm text-[#D1FAE5]/90">
+          <a
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 hover:text-[#F59E0B] transition-colors"
+          >
+            <Phone class="w-4 h-4 text-[#F59E0B]" />
+            <span>+92 312 2370720</span>
+          </a>
+          <a
+            href="mailto:edutarbiyah@gmail.com"
+            class="inline-flex items-center gap-2 hover:text-[#F59E0B] transition-colors"
+          >
+            <Mail class="w-4 h-4 text-[#F59E0B]" />
+            <span>edutarbiyah@gmail.com</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Programs & Courses -->
+      <div class="space-y-4">
+        <h3 class="text-sm font-semibold tracking-wider uppercase text-[#F59E0B]">
+          Programs & Courses
+        </h3>
+        <ul class="space-y-2.5 text-sm text-[#D1FAE5]/80">
+          <li>
+            <a href="/tppc-self-paced-recorded-course/" class="hover:text-white transition-colors">
+              TPPC Recorded Course
+            </a>
+          </li>
+          <li>
+            <a href="/tarbiyah-parenting-mastery-program/" class="hover:text-white transition-colors">
+              Parenting Mastery Program
+            </a>
+          </li>
+          <li>
+            <a href="/edutarbiyah-parent-coaching-program/" class="hover:text-white transition-colors">
+              1-on-1 Parent Coaching
+            </a>
+          </li>
+          <li>
+            <a href="/parent-coaching-readiness-form/" class="hover:text-white transition-colors">
+              Coaching Readiness Form
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Self-Assessments & Audits -->
+      <div class="space-y-4">
+        <h3 class="text-sm font-semibold tracking-wider uppercase text-[#F59E0B]">
+          Self-Assessments
+        </h3>
+        <ul class="space-y-2.5 text-sm text-[#D1FAE5]/80">
+          <li>
+            <a href="/audit-your-parenting/" class="hover:text-white transition-colors flex items-center gap-1.5">
+              <span>Parenting Audit</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-[#F59E0B]/20 text-[#F59E0B] font-bold">FREE</span>
+            </a>
+          </li>
+          <li>
+            <a href="/family-vision-maker/" class="hover:text-white transition-colors">
+              Family Vision Maker
+            </a>
+          </li>
+          <li>
+            <a href="/know-your-personality-type/" class="hover:text-white transition-colors">
+              Know Your Personality Type
+            </a>
+          </li>
+          <li>
+            <a href="/childs-behavior-improvement-tracker/" class="hover:text-white transition-colors">
+              Behavior Tracker
+            </a>
+          </li>
+          <li>
+            <a href="/islamic-tarbiyah-home-routine-chart/" class="hover:text-white transition-colors">
+              Routine Maker Chart
+            </a>
+          </li>
+          <li>
+            <a href="/audit-your-marriage-relationships/" class="hover:text-white transition-colors">
+              Marriage Audit
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Bookstore & Publications -->
+      <div class="space-y-4">
+        <h3 class="text-sm font-semibold tracking-wider uppercase text-[#F59E0B]">
+          Bookstore & Reads
+        </h3>
+        <ul class="space-y-2.5 text-sm text-[#D1FAE5]/80">
+          <li>
+            <a href="/shop/" class="hover:text-white transition-colors">
+              All Books & Toolkits
+            </a>
+          </li>
+          <li>
+            <a href="/product-category/edutarbiyah-publications/" class="hover:text-white transition-colors">
+              EduTarbiyah Publications
+            </a>
+          </li>
+          <li>
+            <a href="/product-category/parenting-books/" class="hover:text-white transition-colors">
+              Parenting Books
+            </a>
+          </li>
+          <li>
+            <a href="/english/" class="hover:text-white transition-colors">
+              English Articles
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://blog.edutarbiyah.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-[#F59E0B] transition-colors flex items-center gap-1 font-urdu"
+            >
+              <span>اردو بلاگ اور مقالات</span>
+              <ArrowUpRight class="w-3.5 h-3.5" />
+            </a>
+          </li>
+          <li>
+            <a href="/parents-whatsapp-community/" class="text-[#F59E0B] hover:underline font-medium">
+              Join WhatsApp Community →
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright & Disclaimer -->
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-[#D1FAE5]/60">
+      <p>
+        © {currentYear} EduTarbiyah Institute. All rights reserved. Built with Astro SSG for ultra-fast, sustainable performance.
+      </p>
+      <div class="flex items-center gap-6">
+        <a href="/privacy-policy/" class="hover:text-white transition-colors">Privacy Policy</a>
+        <a href="/terms-and-conditions/" class="hover:text-white transition-colors">Terms of Service</a>
+        <a href="/contact/" class="hover:text-white transition-colors">Contact</a>
+      </div>
+    </div>
+  </div>
+</footer>
