@@ -1,0 +1,342 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { WHATSAPP_NUMBER } from '../lib/api';
+import { 
+  Sparkles, 
+  ChevronRight, 
+  Home, 
+  Brain, 
+  CheckCircle2, 
+  MessageCircle, 
+  RotateCcw,
+  Compass,
+  ArrowRight
+} from 'lucide-astro';
+
+const questions = [
+  // E vs I (1-5)
+  { id: 1, textEn: 'After a demanding day with the kids, how do you recharge best?', textUr: 'بچوں کے ساتھ مصروف دن کے بعد آپ کو کس طرح سکون ملتا ہے؟', optA: { val: 'E', label: 'Talking with spouse, friends, or family' }, optB: { val: 'I', label: 'Quiet, solitary time with books or reflection' } },
+  { id: 2, textEn: 'In social gatherings or community circles, you usually:', textUr: 'سماجی محافل میں آپ کا عمومی رویہ کیا ہوتا ہے؟', optA: { val: 'E', label: 'Feel energized meeting and conversing with people' }, optB: { val: 'I', label: 'Prefer deep conversations with one or two close people' } },
+  { id: 3, textEn: 'When processing parenting challenges, you tend to:', textUr: 'جب کوئی مسئلہ درپیش ہو تو آپ:', optA: { val: 'E', label: 'Talk it out aloud to clarify your thoughts' }, optB: { val: 'I', label: 'Reflect privately first before speaking' } },
+  { id: 4, textEn: 'Your home atmosphere preference leans toward:', textUr: 'آپ کے گھر کا ماحول:', optA: { val: 'E', label: 'Lively, interactive, welcoming guests frequently' }, optB: { val: 'I', label: 'Calm, quiet, and predictable retreat' } },
+  { id: 5, textEn: 'When leading group activities for children, you:', textUr: 'بچوں کے ساتھ اجتماعی سرگرمیوں میں آپ:', optA: { val: 'E', label: 'Naturally take the lead and engage enthusiastically' }, optB: { val: 'I', label: 'Prefer supporting behind the scenes or 1-on-1' } },
+
+  // S vs N (6-10)
+  { id: 6, textEn: 'When giving instructions to children, you focus on:', textUr: 'بچوں کو ہدایات دیتے وقت آپ کی توجہ ہوتی ہے:', optA: { val: 'S', label: 'Concrete step-by-step facts and practical details' }, optB: { val: 'N', label: 'The big picture purpose and moral meaning' } },
+  { id: 7, textEn: 'You trust parenting advice most when it is based on:', textUr: 'آپ کس قسم کی رہنمائی پر زیادہ اعتماد کرتے ہیں؟', optA: { val: 'S', label: 'Proven past experience and practical real-life examples' }, optB: { val: 'N', label: 'Inspiring future vision and overarching principles' } },
+  { id: 8, textEn: 'When playing or teaching, you are more drawn to:', textUr: 'سکھاتے وقت آپ کی ترجیح کیا ہوتی ہے؟', optA: { val: 'S', label: 'Hands-on practical crafts, chores, and tangible skills' }, optB: { val: 'N', label: 'Imaginative storytelling, metaphors, and concepts' } },
+  { id: 9, textEn: 'When looking at your child’s development, you focus on:', textUr: 'بچے کی نشوونما میں آپ زیادہ دیکھتے ہیں:', optA: { val: 'S', label: 'Current habits, routines, and observable actions today' }, optB: { val: 'N', label: 'Future potential and who they will become tomorrow' } },
+  { id: 10, textEn: 'You prefer solutions that are:', textUr: 'آپ کے نزدیک بہترین حل وہ ہے جو:', optA: { val: 'S', label: 'Tested, realistic, and directly workable' }, optB: { val: 'N', label: 'Creative, novel, and inspiring' } },
+
+  // T vs F (11-15)
+  { id: 11, textEn: 'When resolving sibling disputes, your primary guide is:', textUr: 'بچوں کے جھگڑے حل کرتے وقت آپ کی ترجیح کیا ہوتی ہے؟', optA: { val: 'T', label: 'Fairness, justice, and consistent rules for everyone' }, optB: { val: 'F', label: 'Individual feelings, compassion, and emotional peace' } },
+  { id: 12, textEn: 'When correcting poor behavior, your priority is:', textUr: 'اصلاح کرتے وقت آپ کا رویہ کیا ہوتا ہے؟', optA: { val: 'T', label: 'Being objective, clear, and logical about mistakes' }, optB: { val: 'F', label: 'Preserving their self-esteem and heart-to-heart trust' } },
+  { id: 13, textEn: 'Others describe your communication tone as:', textUr: 'دوسرے آپ کے اندازِ بیان کو کیا سمجھتے ہیں؟', optA: { val: 'T', label: 'Direct, clear-headed, and matter-of-fact' }, optB: { val: 'F', label: 'Warm, empathetic, and encouraging' } },
+  { id: 14, textEn: 'When praise is deserved, you emphasize:', textUr: 'تعریف کرتے وقت آپ کا فوکس ہوتا ہے:', optA: { val: 'T', label: 'Excellence of work, competence, and effort' }, optB: { val: 'F', label: 'How proud you feel and their noble character' } },
+  { id: 15, textEn: 'In critical household decisions, you weigh:', textUr: 'گھریلو فیصلوں میں آپ کو کس چیز کا زیادہ خیال ہوتا ہے؟', optA: { val: 'T', label: 'Logical pros and cons objectively' }, optB: { val: 'F', label: 'How each family member will feel emotionally' } },
+
+  // J vs P (16-20)
+  { id: 16, textEn: 'Your family routines and schedules are typically:', textUr: 'آپ کے گھر کا ٹائم ٹیبل اور روٹین:', optA: { val: 'J', label: 'Planned ahead with designated hours and clear structure' }, optB: { val: 'P', label: 'Flexible, adaptable, and going with the flow' } },
+  { id: 17, textEn: 'When preparing for family outings or trips, you:', textUr: 'خاندانی سفر یا سیر کی تیاری میں آپ:', optA: { val: 'J', label: 'Pack in advance with checklists and timed itinerary' }, optB: { val: 'P', label: 'Pack at the last minute and embrace spontaneity' } },
+  { id: 18, textEn: 'Unexpected sudden changes in plans make you feel:', textUr: 'اچانک پلان بدل جانے پر آپ کیسا محسوس کرتے ہیں؟', optA: { val: 'J', label: 'Uncomfortable until a new organized plan is formed' }, optB: { val: 'P', label: 'Excited and curious to explore the unexpected' } },
+  { id: 19, textEn: 'You feel most peaceful when household tasks are:', textUr: 'آپ کو زیادہ سکون کب ملتا ہے؟', optA: { val: 'J', label: 'Completed and checked off early' }, optB: { val: 'P', label: 'Done whenever the natural inspiration arrives' } },
+  { id: 20, textEn: 'Your parenting approach to rules is:', textUr: 'قوانین کے بارے میں آپ کا عمومی رویہ:', optA: { val: 'J', label: 'Firm structure creates safety and discipline' }, optB: { val: 'P', label: 'Flexibility and open room for children to discover' } },
+];
+---
+
+<Layout
+  title="Know Your Parenting Personality Type (MBTI) | EduTarbiyah"
+  description="Discover your 16-personality MBTI parenting type. Understand your natural parenting superpowers, stress triggers, and tailored Tarbiyah advice."
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-[#F4F8F6] via-[#FFFDF9] to-[#FFFDF9] py-12 lg:py-16 border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-4">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center justify-center gap-2 text-xs text-gray-500 font-medium mb-2" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#0F766E] transition-colors flex items-center gap-1">
+          <Home class="w-3.5 h-3.5" />
+          <span>Home</span>
+        </a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <span class="text-[#064E3B] font-semibold">Personality Type Test</span>
+      </nav>
+
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0F766E]/10 border border-[#0F766E]/20 text-[#0F766E] text-xs font-semibold">
+        <Brain class="w-3.5 h-3.5 text-[#F59E0B]" />
+        <span>Parent Temperament Diagnostic</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-serif font-extrabold text-[#064E3B] tracking-tight">
+        Discover Your Parenting Personality Type
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        Understand how your innate personality affects your patience, anger triggers, discipline style, and daily connection with your children.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Assessment Container -->
+  <section class="py-12 lg:py-16 bg-[#FFFDF9]">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      
+      <!-- Progress Bar -->
+      <div class="sticky top-20 z-30 bg-[#FFFDF9]/95 backdrop-blur-md py-3 mb-8 border-b border-gray-100">
+        <div class="flex items-center justify-between text-xs font-semibold text-gray-700 mb-1.5">
+          <span>Question Progress</span>
+          <span id="mbti-progress-text" class="text-[#0F766E]">0 / 20 Completed</span>
+        </div>
+        <div class="w-full h-2.5 bg-gray-200 rounded-full overflow-hidden">
+          <div id="mbti-progress-fill" class="h-full bg-[#0F766E] rounded-full transition-all duration-300 w-0"></div>
+        </div>
+      </div>
+
+      <!-- Questionnaire Form -->
+      <form id="mbti-form" class="space-y-6">
+        {questions.map((q) => (
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm space-y-4">
+            <div>
+              <span class="text-xs font-bold text-[#0F766E] uppercase tracking-wider block mb-1">
+                Question {q.id} of 20
+              </span>
+              <h3 class="text-base font-bold text-gray-900 leading-snug">
+                {q.textEn}
+              </h3>
+              <p class="font-urdu text-sm text-gray-500 mt-1">
+                {q.textUr}
+              </p>
+            </div>
+
+            <!-- 2 Mutually Exclusive Options -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <label class="mbti-option cursor-pointer p-4 rounded-2xl border border-gray-200 hover:border-[#0F766E] text-xs font-semibold text-gray-700 transition-all flex items-start gap-3">
+                <input type="radio" name={`mq${q.id}`} value={q.optA.val} class="sr-only" required />
+                <span class="w-4 h-4 rounded-full border border-gray-300 flex items-center justify-center shrink-0 mt-0.5 mbti-dot"></span>
+                <span>{q.optA.label}</span>
+              </label>
+
+              <label class="mbti-option cursor-pointer p-4 rounded-2xl border border-gray-200 hover:border-[#0F766E] text-xs font-semibold text-gray-700 transition-all flex items-start gap-3">
+                <input type="radio" name={`mq${q.id}`} value={q.optB.val} class="sr-only" />
+                <span class="w-4 h-4 rounded-full border border-gray-300 flex items-center justify-center shrink-0 mt-0.5 mbti-dot"></span>
+                <span>{q.optB.label}</span>
+              </label>
+            </div>
+          </div>
+        ))}
+
+        <div class="pt-4">
+          <button
+            type="submit"
+            class="w-full py-4 px-8 rounded-2xl bg-[#0F766E] hover:bg-[#064E3B] text-white font-bold text-base shadow-lg shadow-[#0F766E]/20 hover:shadow-xl transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <Sparkles class="w-5 h-5 text-[#F59E0B]" />
+            <span>Discover My Parenting Personality Type</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Personality Results Presentation Card -->
+      <div id="mbti-results" class="hidden mt-12 bg-white rounded-3xl p-8 sm:p-12 border border-[#0F766E]/30 shadow-2xl space-y-8 animate-fadeIn">
+        
+        <div class="text-center space-y-3 pb-6 border-b border-gray-100">
+          <span class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider">
+            Your Personality Profile
+          </span>
+          
+          <div class="flex items-center justify-center gap-3">
+            <h2 id="mbti-code" class="text-5xl sm:text-6xl font-serif font-black text-[#064E3B] tracking-wider">
+              INFJ
+            </h2>
+          </div>
+
+          <h3 id="mbti-title" class="text-xl sm:text-2xl font-serif font-bold text-[#0F766E]">
+            The Insightful Nurturer
+          </h3>
+
+          <p id="mbti-summary" class="text-sm text-gray-600 max-w-lg mx-auto leading-relaxed">
+            Deeply empathetic, principled, and attuned to your child’s emotional undercurrents.
+          </p>
+        </div>
+
+        <!-- 4 Spectrum Gauges -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" id="spectrum-container">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Superpowers & Blindspots -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+          <div class="bg-[#F8FFFC] rounded-2xl p-6 border border-[#0F766E]/20 space-y-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-[#064E3B] flex items-center gap-1.5">
+              <span>🌟 Your Parenting Superpowers</span>
+            </h4>
+            <p id="mbti-superpowers" class="text-xs text-gray-700 leading-relaxed">
+              Exceptional ability to listen beneath words, cultivating emotional safety and moral character naturally.
+            </p>
+          </div>
+
+          <div class="bg-[#FFFDF9] rounded-2xl p-6 border border-[#F59E0B]/30 space-y-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-[#92400E] flex items-center gap-1.5">
+              <span>⚠️ Watch out for Burnout</span>
+            </h4>
+            <p id="mbti-blindspots" class="text-xs text-gray-700 leading-relaxed">
+              Can absorb children’s stress too deeply; tendency toward parental perfectionism and guilt.
+            </p>
+          </div>
+        </div>
+
+        <!-- WhatsApp Community Invitation -->
+        <div class="bg-[#064E3B] text-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div class="space-y-1 text-center sm:text-left">
+            <h4 class="font-serif font-bold text-lg text-white">Join Other Conscious Parents</h4>
+            <p class="text-xs text-[#D1FAE5]">
+              Get personalized daily tips calibrated to your personality temperament.
+            </p>
+          </div>
+          <a
+            id="mbti-wa-btn"
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-bold shadow-lg transition-all shrink-0"
+          >
+            <MessageCircle class="w-4 h-4 fill-current" />
+            <span>Join WhatsApp Community</span>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('mbti-form') as HTMLFormElement;
+  const resultsBox = document.getElementById('mbti-results');
+  const progressFill = document.getElementById('mbti-progress-fill');
+  const progressText = document.getElementById('mbti-progress-text');
+
+  const personalityData: Record<string, { title: string; summary: string; superpowers: string; blindspots: string }> = {
+    ISTJ: { title: 'The Dependable Anchor', summary: 'Responsible, highly organized, and reliable. You teach your children the immense beauty of routine, discipline, and duty.', superpowers: 'Consistent Salah routines, clean home boundaries, and steadfast reliability.', blindspots: 'May struggle when kids are chaotic or resist rigid schedules; remember warmth precedes instruction.' },
+    ISFJ: { title: 'The Dedicated Protector', summary: 'Deeply devoted, patient, and warm. You create a nurturing home environment filled with loving service and care.', superpowers: 'Exceptional emotional attunement, comforting presence, and patient encouragement.', blindspots: 'Can neglect own self-care and carry excessive parental worry.' },
+    INFJ: { title: 'The Insightful Mentor', summary: 'Visionary, deeply empathetic, and spiritually attuned. You see each child as an individual trust (Amanah).', superpowers: 'Instills noble Akhlaq, deep heart-to-heart conversations, and inspiring moral vision.', blindspots: 'Perfectionist standards can cause parenting guilt; celebrate small messy progress.' },
+    INTJ: { title: 'The Strategic Architect', summary: 'Independent, logical, and forward-thinking. You encourage your children to be independent critical thinkers.', superpowers: 'Teaching self-reliance, intellectual curiosity, and long-term problem-solving.', blindspots: 'May be perceived as emotionally detached; remember to validate feelings before offering logic.' },
+    ISTP: { title: 'The Practical Guide', summary: 'Calm, adaptable, and observant. You excel at teaching children through real-world hands-on problem solving.', superpowers: 'Grace under crisis, teaching practical independence, and low emotional reactivity.', blindspots: 'May be reluctant to enforce long-term routine structures.' },
+    ISFP: { title: 'The Gentle Companion', summary: 'Warm, compassionate, and observant. You allow children to express their authentic nature freely.', superpowers: 'Unconditional acceptance, creative exploration, and peaceful presence.', blindspots: 'Can avoid necessary confrontations or hesitate to enforce firm consequences.' },
+    INFP: { title: 'The Gentle Idealist', summary: 'Deeply empathetic, principled, and imaginative. You nurture your child’s unique emotional and spiritual inner world.', superpowers: 'Fostering deep compassion, sincerity (Ikhlas), and accepting child’s individuality.', blindspots: 'May struggle with daily administrative discipline and consistent household rules.' },
+    INTP: { title: 'The Thoughtful Analyst', summary: 'Curious, philosophical, and calm. You encourage deep questions and independent learning in your household.', superpowers: 'Teaching intellectual honesty, patience with questions, and lack of ego in discipline.', blindspots: 'May find routine household chores and emotional melodrama exhausting.' },
+    ESTP: { title: 'The Energetic Coach', summary: 'Vibrant, action-oriented, and playful. You fill your children’s lives with adventure and physical engagement.', superpowers: 'Teaching physical resilience, real-world bravery, and fun family memories.', blindspots: 'May become impatient with quiet emotional introspection or slow routines.' },
+    ESFP: { title: 'The Joyful Enthusiast', summary: 'Warm, fun-loving, and affectionate. You bring laughter, joy, and warmth into everyday family moments.', superpowers: 'Making Islamic celebrations memorable, high affection, and social warmth.', blindspots: 'May find consistency in firm rules challenging.' },
+    ENFP: { title: 'The Inspiring Champion', summary: 'Enthusiastic, visionary, and creative. You ignite your children’s love for learning and big dreams.', superpowers: 'Inspiring love for Allah’s creation, high encouragement, and boundless creativity.', blindspots: 'Consistency with repetitive daily habits like bedtime or homework.' },
+    ENTP: { title: 'The Creative Challenger', summary: 'Clever, curious, and engaging. You foster lively family discussions and teach kids to examine assumptions.', superpowers: 'Raising confident debaters, critical thinkers, and adaptable problem-solvers.', blindspots: 'May turn routine parental instructions into endless debates.' },
+    ESTJ: { title: 'The Structured Leader', summary: 'Organized, decisive, and loyal. You run a structured, orderly home with clear rules and accountability.', superpowers: 'Unmatched household order, clear rules, and preparation for real-world responsibilities.', blindspots: 'Risk of coming across as overly authoritarian; pair firmness with abundant verbal warmth.' },
+    ESFJ: { title: 'The Caring Facilitator', summary: 'Warm-hearted, reliable, and family-centered. You create a close-knit, hospitable home full of family traditions.', superpowers: 'Teaching beautiful social Akhlaq, hospitality, and strong family ties (Silah ar-Rahim).', blindspots: 'May care too much about external opinions or sibling rivalry.' },
+    ENFJ: { title: 'The Inspiring Guide', summary: 'Charismatic, empathetic, and organized. You are natural leaders who inspire moral greatness in your children.', superpowers: 'Balancing structure with deep emotional warmth; natural family leadership.', blindspots: 'Can over-invest in managing children’s feelings, risking burnout.' },
+    ENTJ: { title: 'The Visionary Builder', summary: 'Decisive, ambitious, and strategic. You set high standards and empower your children to achieve excellence.', superpowers: 'Cultivating leadership, emotional toughness, and systematic goal setting.', blindspots: 'Can be overly demanding; ensure your children feel loved for who they are, not just their achievements.' },
+  };
+
+  const radios = form?.querySelectorAll('input[type="radio"]');
+  radios?.forEach((r) => {
+    r.addEventListener('change', (e) => {
+      const target = e.target as HTMLInputElement;
+      const groupName = target.name;
+      form.querySelectorAll(`input[name="${groupName}"]`).forEach((input) => {
+        const label = input.closest('.mbti-option');
+        const dot = label?.querySelector('.mbti-dot');
+        label?.classList.remove('border-[#0F766E]', 'bg-[#0F766E]/10', 'text-[#0F766E]', 'shadow-sm');
+        label?.classList.add('border-gray-200', 'text-gray-700');
+        if (dot) {
+          dot.classList.remove('bg-[#0F766E]', 'border-[#0F766E]');
+          dot.classList.add('border-gray-300');
+        }
+      });
+
+      const checkedLabel = target.closest('.mbti-option');
+      const checkedDot = checkedLabel?.querySelector('.mbti-dot');
+      checkedLabel?.classList.remove('border-gray-200', 'text-gray-700');
+      checkedLabel?.classList.add('border-[#0F766E]', 'bg-[#0F766E]/10', 'text-[#0F766E]', 'shadow-sm');
+      if (checkedDot) {
+        checkedDot.classList.remove('border-gray-300');
+        checkedDot.classList.add('bg-[#0F766E]', 'border-[#0F766E]');
+      }
+
+      updateProgress();
+    });
+  });
+
+  function updateProgress() {
+    let answered = 0;
+    for (let i = 1; i <= 20; i++) {
+      if (form?.querySelector(`input[name="mq${i}"]:checked`)) answered++;
+    }
+    const pct = Math.round((answered / 20) * 100);
+    if (progressFill) progressFill.style.width = `${pct}%`;
+    if (progressText) progressText.textContent = `${answered} / 20 Completed`;
+  }
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const counts: Record<string, number> = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+    for (let i = 1; i <= 20; i++) {
+      const checked = form.querySelector(`input[name="mq${i}"]:checked`) as HTMLInputElement;
+      if (checked) {
+        counts[checked.value] = (counts[checked.value] || 0) + 1;
+      }
+    }
+
+    const type = [
+      counts.E >= counts.I ? 'E' : 'I',
+      counts.S >= counts.N ? 'S' : 'N',
+      counts.T >= counts.F ? 'T' : 'F',
+      counts.J >= counts.P ? 'J' : 'P',
+    ].join('');
+
+    const info = personalityData[type] || personalityData['INFJ'];
+
+    // Update DOM
+    const codeEl = document.getElementById('mbti-code');
+    if (codeEl) codeEl.textContent = type;
+
+    const titleEl = document.getElementById('mbti-title');
+    if (titleEl) titleEl.textContent = info.title;
+
+    const summaryEl = document.getElementById('mbti-summary');
+    if (summaryEl) summaryEl.textContent = info.summary;
+
+    const spEl = document.getElementById('mbti-superpowers');
+    if (spEl) spEl.textContent = info.superpowers;
+
+    const bsEl = document.getElementById('mbti-blindspots');
+    if (bsEl) bsEl.textContent = info.blindspots;
+
+    const specContainer = document.getElementById('spectrum-container');
+    if (specContainer) {
+      specContainer.innerHTML = `
+        <div class="bg-gray-50 rounded-xl p-3 text-center border border-gray-100">
+          <div class="text-[10px] text-gray-500 font-bold uppercase">Energy</div>
+          <div class="font-bold text-sm text-[#064E3B]">${type[0] === 'E' ? 'Extravert (E)' : 'Introvert (I)'}</div>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center border border-gray-100">
+          <div class="text-[10px] text-gray-500 font-bold uppercase">Perception</div>
+          <div class="font-bold text-sm text-[#064E3B]">${type[1] === 'S' ? 'Sensing (S)' : 'Intuitive (N)'}</div>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center border border-gray-100">
+          <div class="text-[10px] text-gray-500 font-bold uppercase">Decisions</div>
+          <div class="font-bold text-sm text-[#064E3B]">${type[2] === 'T' ? 'Thinking (T)' : 'Feeling (F)'}</div>
+        </div>
+        <div class="bg-gray-50 rounded-xl p-3 text-center border border-gray-100">
+          <div class="text-[10px] text-gray-500 font-bold uppercase">Lifestyle</div>
+          <div class="font-bold text-sm text-[#064E3B]">${type[3] === 'J' ? 'Judging (J)' : 'Perceiving (P)'}</div>
+        </div>
+      `;
+    }
+
+    if (resultsBox) {
+      resultsBox.classList.remove('hidden');
+      resultsBox.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+</script>

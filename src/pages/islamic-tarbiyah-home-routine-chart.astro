@@ -1,0 +1,247 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { 
+  Sparkles, 
+  ChevronRight, 
+  Home, 
+  Clock, 
+  Printer, 
+  Plus, 
+  Trash2, 
+  RotateCcw,
+  Sun,
+  Moon,
+  BookOpen
+} from 'lucide-astro';
+
+const defaultBlocks = [
+  { id: 'b1', time: 'Fajr — 6:30 AM', title: 'Fajr & Morning Adhkar', role: 'Begin the day with gratitude. Recite morning Duas and encourage children to pray Fajr with warmth.', icon: 'sun' },
+  { id: 'b2', time: '8:00 AM — 2:00 PM', title: 'School & Purposeful Learning', role: 'Active engagement, good manners with teachers and peers, and focused study.', icon: 'book' },
+  { id: 'b3', time: '2:30 PM — 4:00 PM', title: 'Dhuhr, Lunch & Sunnah Rest', role: 'Mindful family lunch, Dhuhr prayer, and brief rest/Qaylulah to recharge emotional bandwidth.', icon: 'clock' },
+  { id: 'b4', time: '4:30 PM — 6:00 PM', title: 'Asr & Active Outdoor Play', role: 'No screens. Physical play, playground, cycling, or energetic outdoor games.', icon: 'sun' },
+  { id: 'b5', time: 'Maghrib — 7:30 PM', title: 'Maghrib & Family Dinner', role: 'Maghrib Salah together, followed by phone-free family dinner and Seerah storytelling.', icon: 'moon' },
+  { id: 'b6', time: '8:30 PM — 9:30 PM', title: 'Isha & Bedtime Bonding', role: 'Isha prayer, bedtime Adhkar, forgiving each other for any mistakes, and loving bedtime hugs.', icon: 'moon' },
+];
+---
+
+<Layout
+  title="Islamic Tarbiyah Home Routine Chart | EduTarbiyah"
+  description="Build a peaceful, predictable Islamic daily home routine. Aligns Salah times, screen-free blocks, family meals, and bedtime bonding."
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-[#F4F8F6] via-[#FFFDF9] to-[#FFFDF9] py-12 lg:py-16 border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-4">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center justify-center gap-2 text-xs text-gray-500 font-medium mb-2" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#0F766E] transition-colors flex items-center gap-1">
+          <Home class="w-3.5 h-3.5" />
+          <span>Home</span>
+        </a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <span class="text-[#064E3B] font-semibold">Routine Maker Chart</span>
+      </nav>
+
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0F766E]/10 border border-[#0F766E]/20 text-[#0F766E] text-xs font-semibold">
+        <Clock class="w-3.5 h-3.5 text-[#F59E0B]" />
+        <span>Family Rhythm Maker</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-serif font-extrabold text-[#064E3B] tracking-tight">
+        Islamic Tarbiyah Home Routine Chart
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        Children flourish when days are calm and predictable. Customize your daily household rhythm, align Salah times with family connection, and print for your home.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Interactive Routine Timeline -->
+  <section class="py-12 lg:py-16 bg-[#FFFDF9]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <!-- Action Toolbar -->
+      <div class="bg-white rounded-3xl p-6 border border-gray-100 shadow-sm mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider">Routine Title:</label>
+          <input
+            type="text"
+            id="routine-title-input"
+            value="Our Household Daily Tarbiyah Rhythm"
+            class="font-serif font-bold text-lg text-[#064E3B] border-b border-gray-300 focus:outline-none focus:border-[#0F766E] bg-transparent w-full sm:w-80"
+          />
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button
+            type="button"
+            id="btn-print-routine"
+            class="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-[#064E3B] hover:bg-[#0F766E] text-white text-xs font-bold shadow transition-all cursor-pointer"
+          >
+            <Printer class="w-4 h-4 text-[#F59E0B]" />
+            <span>Print Chart</span>
+          </button>
+          <button
+            type="button"
+            id="btn-reset-routine"
+            class="text-xs text-gray-400 hover:text-rose-600 transition-colors flex items-center gap-1 cursor-pointer"
+          >
+            <RotateCcw class="w-3.5 h-3.5" />
+            <span>Reset</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Timeline Blocks List -->
+      <div class="space-y-4" id="routine-blocks-list">
+        <!-- Rendered via JS from localStorage or default -->
+      </div>
+
+      <!-- Add New Custom Routine Block -->
+      <div class="mt-6 bg-white rounded-2xl p-6 border border-dashed border-gray-300 text-center space-y-3">
+        <h4 class="text-sm font-bold text-gray-700">Add a Custom Daily Activity Block</h4>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <input
+            type="text"
+            id="new-block-time"
+            placeholder="Time (e.g. 5:30 PM)"
+            class="px-3.5 py-2 text-xs rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+          />
+          <input
+            type="text"
+            id="new-block-title"
+            placeholder="Activity Title (e.g. Quran Memorization)"
+            class="px-3.5 py-2 text-xs rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+          />
+          <input
+            type="text"
+            id="new-block-role"
+            placeholder="Description or Guidance"
+            class="px-3.5 py-2 text-xs rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+          />
+        </div>
+        <button
+          type="button"
+          id="btn-add-block"
+          class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-xs font-bold shadow transition-all cursor-pointer"
+        >
+          <Plus class="w-4 h-4" />
+          <span>Add Block to Routine</span>
+        </button>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<script define:vars={{ defaultBlocksJson: JSON.stringify(defaultBlocks) }}>
+  const defaults = JSON.parse(defaultBlocksJson);
+  const STORAGE_KEY = 'edutarbiyah_routine_chart';
+  const TITLE_KEY = 'edutarbiyah_routine_title';
+
+  const container = document.getElementById('routine-blocks-list');
+  const titleInput = document.getElementById('routine-title-input');
+
+  let blocks = [...defaults];
+
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) blocks = JSON.parse(saved);
+    const savedTitle = localStorage.getItem(TITLE_KEY);
+    if (savedTitle && titleInput) titleInput.value = savedTitle;
+  } catch {}
+
+  function renderBlocks() {
+    if (!container) return;
+    container.innerHTML = '';
+
+    blocks.forEach((b, idx) => {
+      container.innerHTML += `
+        <div class="bg-white rounded-2xl p-5 sm:p-6 border border-gray-100 shadow-sm flex items-start justify-between gap-4 group">
+          <div class="flex items-start gap-4">
+            <span class="w-8 h-8 rounded-xl bg-[#0F766E]/10 text-[#0F766E] font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+              ${idx + 1}
+            </span>
+            <div class="space-y-1">
+              <span class="text-xs font-bold text-[#F59E0B] uppercase tracking-wider block">
+                ${b.time}
+              </span>
+              <h3 class="text-base font-serif font-bold text-[#064E3B]">
+                ${b.title}
+              </h3>
+              <p class="text-xs text-gray-600 leading-relaxed max-w-xl">
+                ${b.role}
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="text-gray-300 hover:text-rose-500 p-2 rounded-lg transition-colors cursor-pointer"
+            onclick="removeBlock(${idx})"
+            title="Remove block"
+          >
+            ✕
+          </button>
+        </div>
+      `;
+    });
+  }
+
+  window.removeBlock = function(idx) {
+    blocks.splice(idx, 1);
+    save();
+    renderBlocks();
+  };
+
+  function save() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(blocks));
+    } catch {}
+  }
+
+  titleInput?.addEventListener('input', () => {
+    localStorage.setItem(TITLE_KEY, titleInput.value);
+  });
+
+  document.getElementById('btn-add-block')?.addEventListener('click', () => {
+    const timeEl = document.getElementById('new-block-time');
+    const titleEl = document.getElementById('new-block-title');
+    const roleEl = document.getElementById('new-block-role');
+
+    if (!timeEl.value || !titleEl.value) {
+      alert('Please provide both a time and activity title.');
+      return;
+    }
+
+    blocks.push({
+      id: 'b' + Date.now(),
+      time: timeEl.value,
+      title: titleEl.value,
+      role: roleEl.value || '',
+      icon: 'clock',
+    });
+
+    timeEl.value = '';
+    titleEl.value = '';
+    roleEl.value = '';
+
+    save();
+    renderBlocks();
+  });
+
+  document.getElementById('btn-reset-routine')?.addEventListener('click', () => {
+    if (confirm('Reset to default Tarbiyah routine blocks?')) {
+      blocks = [...defaults];
+      save();
+      renderBlocks();
+    }
+  });
+
+  document.getElementById('btn-print-routine')?.addEventListener('click', () => {
+    window.print();
+  });
+
+  renderBlocks();
+</script>

@@ -1,0 +1,368 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { WHATSAPP_NUMBER } from '../lib/api';
+import { 
+  Sparkles, 
+  ChevronRight, 
+  Home, 
+  BookOpen, 
+  Heart, 
+  Printer, 
+  Share2, 
+  Copy, 
+  Check, 
+  RotateCcw,
+  Compass,
+  Award
+} from 'lucide-astro';
+---
+
+<Layout
+  title="Family Vision Maker | EduTarbiyah"
+  description="Create an inspiring, printable Islamic Family Vision Charter and Mission Statement for your home. Clarify core values, family culture, and spiritual aspirations."
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-[#F4F8F6] via-[#FFFDF9] to-[#FFFDF9] py-12 lg:py-16 border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-4">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center justify-center gap-2 text-xs text-gray-500 font-medium mb-2" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#0F766E] transition-colors flex items-center gap-1">
+          <Home class="w-3.5 h-3.5" />
+          <span>Home</span>
+        </a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <span class="text-[#064E3B] font-semibold">Family Vision Maker</span>
+      </nav>
+
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0F766E]/10 border border-[#0F766E]/20 text-[#0F766E] text-xs font-semibold">
+        <Compass class="w-3.5 h-3.5 text-[#F59E0B]" />
+        <span>Family Architecture Tool</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-serif font-extrabold text-[#064E3B] tracking-tight">
+        Islamic Family Vision Maker
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        Great families are not built by chance; they are built by conscious intention. Craft a beautiful, written family mission charter that anchors your home in Taqwa and mutual love.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Form & Generator Section -->
+  <section class="py-12 lg:py-16 bg-[#FFFDF9]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+        
+        <!-- Left: Form inputs -->
+        <div class="lg:col-span-6 bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm space-y-5">
+          <h2 class="text-lg font-serif font-bold text-[#064E3B] pb-2 border-b border-gray-100">
+            Define Your Family Identity
+          </h2>
+
+          <!-- 1. Family Name -->
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+              1. Family Name
+            </label>
+            <input
+              type="text"
+              id="input-family-name"
+              placeholder="e.g. The Usmani Family"
+              class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+            />
+          </div>
+
+          <!-- 2. Core Identity -->
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+              2. Core Identity Statement
+            </label>
+            <input
+              type="text"
+              id="input-identity"
+              placeholder="e.g. We are a sanctuary of peace, Taqwa, and mutual compassion."
+              class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+            />
+          </div>
+
+          <!-- 3. Core Values -->
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+              3. Core Values (Select or Type)
+            </label>
+            <div class="flex flex-wrap gap-1.5 mb-2" id="values-presets">
+              <button type="button" class="preset-pill px-2.5 py-1 text-xs rounded-lg border border-gray-200 hover:border-[#0F766E] transition-colors">Taqwa & Salah</button>
+              <button type="button" class="preset-pill px-2.5 py-1 text-xs rounded-lg border border-gray-200 hover:border-[#0F766E] transition-colors">Truthfulness (Sidq)</button>
+              <button type="button" class="preset-pill px-2.5 py-1 text-xs rounded-lg border border-gray-200 hover:border-[#0F766E] transition-colors">Empathy & Respect</button>
+              <button type="button" class="preset-pill px-2.5 py-1 text-xs rounded-lg border border-gray-200 hover:border-[#0F766E] transition-colors">Curiosity & Books</button>
+              <button type="button" class="preset-pill px-2.5 py-1 text-xs rounded-lg border border-gray-200 hover:border-[#0F766E] transition-colors">Generosity & Sadaqah</button>
+            </div>
+            <input
+              type="text"
+              id="input-values"
+              placeholder="e.g. Taqwa, Honesty, Emotional Safety, Gratitude"
+              class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+            />
+          </div>
+
+          <!-- 4. Family Mission -->
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+              4. Family Mission Statement
+            </label>
+            <textarea
+              id="input-mission"
+              rows="2"
+              placeholder="e.g. To please Allah by serving the community, developing righteous character, and supporting each other through every life season."
+              class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+            ></textarea>
+          </div>
+
+          <!-- 5. Home Culture -->
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+              5. Home Culture & Non-Negotiables
+            </label>
+            <input
+              type="text"
+              id="input-culture"
+              placeholder="e.g. In our home: we listen before shouting, we forgive quickly, and we pray together."
+              class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+            />
+          </div>
+
+          <!-- 6. Daily Tarbiyah Habits -->
+          <div>
+            <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider mb-1.5">
+              6. Daily Tarbiyah Habits
+            </label>
+            <input
+              type="text"
+              id="input-habits"
+              placeholder="e.g. Daily morning Adhkar, family dinner without screens, bedtime gratitude."
+              class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+            />
+          </div>
+
+          <div class="pt-2">
+            <button
+              type="button"
+              id="btn-generate-vision"
+              class="w-full py-4 px-6 rounded-2xl bg-[#0F766E] hover:bg-[#064E3B] text-white font-bold text-sm shadow-lg shadow-[#0F766E]/25 transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <Sparkles class="w-4 h-4 text-[#F59E0B]" />
+              <span>Generate Printable Family Charter</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Live Interactive Charter Preview -->
+        <div class="lg:col-span-6 space-y-4">
+          <div class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-gray-500">
+            <span>Charter Preview</span>
+            <span class="text-[#0F766E]">Print-Ready</span>
+          </div>
+
+          <!-- Printable Charter Frame -->
+          <div
+            id="charter-frame"
+            class="bg-[#FFFDF9] rounded-3xl p-8 sm:p-10 border-4 border-[#0F766E]/30 shadow-xl relative overflow-hidden text-center space-y-6"
+          >
+            <!-- Decorative Arch Motif -->
+            <div class="w-16 h-16 rounded-full bg-[#0F766E]/10 border border-[#F59E0B]/40 mx-auto flex items-center justify-center text-[#064E3B]">
+              <Award class="w-8 h-8 text-[#0F766E]" />
+            </div>
+
+            <div class="space-y-1">
+              <span class="text-[11px] font-bold text-[#F59E0B] tracking-widest uppercase">
+                بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+              </span>
+              <h2 id="preview-family-name" class="text-2xl sm:text-3xl font-serif font-extrabold text-[#064E3B]">
+                The Family Charter
+              </h2>
+              <p id="preview-identity" class="text-xs sm:text-sm text-gray-600 italic">
+                “A sanctuary of peace, Taqwa, and mutual compassion.”
+              </p>
+            </div>
+
+            <div class="h-px bg-gradient-to-r from-transparent via-[#F59E0B]/60 to-transparent"></div>
+
+            <!-- Core Values -->
+            <div class="space-y-2">
+              <h4 class="text-xs font-bold uppercase tracking-widest text-[#064E3B]">
+                Our Core Values
+              </h4>
+              <div id="preview-values-list" class="flex flex-wrap justify-center gap-2">
+                <span class="px-3 py-1 bg-white border border-[#0F766E]/20 text-xs font-semibold text-[#064E3B] rounded-full">
+                  Taqwa & Salah
+                </span>
+                <span class="px-3 py-1 bg-white border border-[#0F766E]/20 text-xs font-semibold text-[#064E3B] rounded-full">
+                  Honesty (Sidq)
+                </span>
+                <span class="px-3 py-1 bg-white border border-[#0F766E]/20 text-xs font-semibold text-[#064E3B] rounded-full">
+                  Emotional Safety
+                </span>
+              </div>
+            </div>
+
+            <!-- Mission -->
+            <div class="bg-white/80 rounded-2xl p-5 border border-gray-100 space-y-1 text-left">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-[#0F766E]">
+                Our Mission:
+              </h4>
+              <p id="preview-mission" class="text-xs sm:text-sm text-gray-700 leading-relaxed font-serif">
+                To please Allah by serving the community, developing righteous character, and supporting each other through every life season.
+              </p>
+            </div>
+
+            <!-- Home Culture -->
+            <div class="bg-white/80 rounded-2xl p-5 border border-gray-100 space-y-1 text-left">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-[#0F766E]">
+                Home Culture:
+              </h4>
+              <p id="preview-culture" class="text-xs text-gray-600 leading-relaxed">
+                We speak with gentleness, forgive mistakes quickly, protect each other’s dignity, and pray our daily Salah together.
+              </p>
+            </div>
+
+            <!-- Daily Habits -->
+            <div class="bg-white/80 rounded-2xl p-5 border border-gray-100 space-y-1 text-left">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-[#0F766E]">
+                Daily Tarbiyah Anchor:
+              </h4>
+              <p id="preview-habits" class="text-xs text-gray-600 leading-relaxed">
+                Daily morning Adhkar, family dinner without screens, and bedtime gratitude du’as.
+              </p>
+            </div>
+
+            <div class="pt-4 text-[10px] text-gray-400 border-t border-gray-100">
+              Generated via EduTarbiyah Institute • Authentic Islamic Parenting & Moral Education
+            </div>
+
+          </div>
+
+          <!-- Actions -->
+          <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+            <button
+              type="button"
+              id="btn-print-charter"
+              class="flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#064E3B] hover:bg-[#0F766E] text-white text-xs font-bold shadow transition-all cursor-pointer"
+            >
+              <Printer class="w-4 h-4 text-[#F59E0B]" />
+              <span>Print Charter for Home</span>
+            </button>
+
+            <button
+              type="button"
+              id="btn-copy-charter"
+              class="inline-flex items-center justify-center gap-1.5 py-3 px-4 rounded-xl bg-white border border-gray-200 hover:border-gray-400 text-xs font-semibold text-gray-700 transition-all cursor-pointer"
+            >
+              <Copy class="w-4 h-4 text-gray-500" />
+              <span id="copy-btn-text">Copy Text</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Value Preset Buttons
+  const presetButtons = document.querySelectorAll('.preset-pill');
+  const valuesInput = document.getElementById('input-values') as HTMLInputElement;
+
+  presetButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const val = btn.textContent?.trim() || '';
+      if (valuesInput) {
+        if (!valuesInput.value) {
+          valuesInput.value = val;
+        } else if (!valuesInput.value.includes(val)) {
+          valuesInput.value += `, ${val}`;
+        }
+      }
+      updatePreview();
+    });
+  });
+
+  const familyNameInput = document.getElementById('input-family-name') as HTMLInputElement;
+  const identityInput = document.getElementById('input-identity') as HTMLInputElement;
+  const missionInput = document.getElementById('input-mission') as HTMLTextAreaElement;
+  const cultureInput = document.getElementById('input-culture') as HTMLInputElement;
+  const habitsInput = document.getElementById('input-habits') as HTMLInputElement;
+
+  [familyNameInput, identityInput, valuesInput, missionInput, cultureInput, habitsInput].forEach((el) => {
+    el?.addEventListener('input', updatePreview);
+  });
+
+  function updatePreview() {
+    const fName = familyNameInput?.value.trim() || 'The Family';
+    const identity = identityInput?.value.trim() || 'A sanctuary of peace, Taqwa, and mutual compassion.';
+    const values = valuesInput?.value.trim() || 'Taqwa & Salah, Honesty (Sidq), Emotional Safety';
+    const mission = missionInput?.value.trim() || 'To please Allah by serving the community, developing righteous character, and supporting each other through every life season.';
+    const culture = cultureInput?.value.trim() || 'We speak with gentleness, forgive mistakes quickly, protect each other’s dignity, and pray our daily Salah together.';
+    const habits = habitsInput?.value.trim() || 'Daily morning Adhkar, family dinner without screens, and bedtime gratitude du’as.';
+
+    const previewFName = document.getElementById('preview-family-name');
+    if (previewFName) previewFName.textContent = `${fName} Charter`;
+
+    const previewIdentity = document.getElementById('preview-identity');
+    if (previewIdentity) previewIdentity.textContent = `“${identity}”`;
+
+    const previewValues = document.getElementById('preview-values-list');
+    if (previewValues) {
+      previewValues.innerHTML = '';
+      values.split(',').map((v) => v.trim()).filter(Boolean).forEach((v) => {
+        previewValues.innerHTML += `
+          <span class="px-3 py-1 bg-white border border-[#0F766E]/20 text-xs font-semibold text-[#064E3B] rounded-full">
+            ${v}
+          </span>
+        `;
+      });
+    }
+
+    const previewMission = document.getElementById('preview-mission');
+    if (previewMission) previewMission.textContent = mission;
+
+    const previewCulture = document.getElementById('preview-culture');
+    if (previewCulture) previewCulture.textContent = culture;
+
+    const previewHabits = document.getElementById('preview-habits');
+    if (previewHabits) previewHabits.textContent = habits;
+  }
+
+  document.getElementById('btn-generate-vision')?.addEventListener('click', () => {
+    updatePreview();
+    document.getElementById('charter-frame')?.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  document.getElementById('btn-print-charter')?.addEventListener('click', () => {
+    window.print();
+  });
+
+  document.getElementById('btn-copy-charter')?.addEventListener('click', () => {
+    const text = `=== ${familyNameInput?.value || 'Family'} Vision Charter ===\n\n` +
+      `Identity: ${identityInput?.value || ''}\n` +
+      `Core Values: ${valuesInput?.value || ''}\n` +
+      `Mission: ${missionInput?.value || ''}\n` +
+      `Culture: ${cultureInput?.value || ''}\n` +
+      `Daily Habits: ${habitsInput?.value || ''}\n\n` +
+      `Created on EduTarbiyah (https://edutarbiyah.com/family-vision-maker/)`;
+
+    navigator.clipboard.writeText(text).then(() => {
+      const copyTextEl = document.getElementById('copy-btn-text');
+      if (copyTextEl) {
+        copyTextEl.textContent = 'Copied! ✓';
+        setTimeout(() => { copyTextEl.textContent = 'Copy Text'; }, 2000);
+      }
+    });
+  });
+</script>

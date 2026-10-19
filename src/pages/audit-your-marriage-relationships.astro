@@ -1,0 +1,223 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { WHATSAPP_NUMBER } from '../lib/api';
+import { 
+  Sparkles, 
+  ChevronRight, 
+  Home, 
+  Heart, 
+  CheckCircle2, 
+  MessageCircle, 
+  RotateCcw,
+  ShieldCheck,
+  Printer
+} from 'lucide-astro';
+
+const dimensions = [
+  { id: 1, title: 'Open & Gentle Communication', desc: 'Expressing thoughts, frustrations, and needs calmly without sarcasm, mockery, or emotional withdrawal.' },
+  { id: 2, title: 'Mutual Respect & Regard', desc: 'Speaking honorably to each other, especially in front of children and extended family.' },
+  { id: 3, title: 'Deep Trust & Transparency', desc: 'Full reliability, loyalty, and feeling emotionally safe with each other’s vulnerabilities.' },
+  { id: 4, title: 'Emotional Connection & Friendship', desc: 'Enjoying each other’s companionship beyond just discussing logistics, bills, and chores.' },
+  { id: 5, title: 'Parenting Teamwork', desc: 'Backing each other up on discipline rules and never undermining spouse in front of kids.' },
+  { id: 6, title: 'Dedicated Quality Time', desc: 'Protecting intentional couple time, walks, or dates away from kids and work distractions.' },
+  { id: 7, title: 'Spiritual Alignment & Growth', desc: 'Encouraging each other toward Salah, Quran, Islamic learning, and mutual Du’a.' },
+  { id: 8, title: 'Sharing Emotional & Domestic Load', desc: 'Proactive partnership in household duties and childcare without feeling like one carries everything alone.' },
+  { id: 9, title: 'Conflict Management & Fast Forgiveness', desc: 'Resolving disputes with empathy, apologizing sincerely, and not letting grudges fester.' },
+  { id: 10, title: 'Affection, Appreciation & Joy', desc: 'Regular verbal gratitude, warmth, smiles, and genuine celebration of each other.' },
+];
+---
+
+<Layout
+  title="Audit Your Marriage & Co-Parenting Relationship | EduTarbiyah"
+  description="Evaluate your marital harmony and parenting teamwork across 10 vital dimensions. A peaceful marital foundation is the best environment for Tarbiyah."
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-[#F4F8F6] via-[#FFFDF9] to-[#FFFDF9] py-12 lg:py-16 border-b border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-4">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center justify-center gap-2 text-xs text-gray-500 font-medium mb-2" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#0F766E] transition-colors flex items-center gap-1">
+          <Home class="w-3.5 h-3.5" />
+          <span>Home</span>
+        </a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <span class="text-[#064E3B] font-semibold">Marriage Audit</span>
+      </nav>
+
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0F766E]/10 border border-[#0F766E]/20 text-[#0F766E] text-xs font-semibold">
+        <Heart class="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
+        <span>Marital & Parenting Alignment Audit</span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-serif font-extrabold text-[#064E3B] tracking-tight">
+        Audit Your Marriage & Co-Parenting
+      </h1>
+
+      <p class="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+        The single greatest gift parents can give their children is a home filled with mutual respect and marital peace. Rate your partnership across 10 core areas.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Interactive Sliders Section -->
+  <section class="py-12 lg:py-16 bg-[#FFFDF9]">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      
+      <!-- Live Score Floating Header -->
+      <div class="sticky top-20 z-30 bg-[#FFFDF9]/95 backdrop-blur-md py-4 mb-8 border-b border-gray-100 flex items-center justify-between">
+        <div>
+          <span class="text-xs font-bold text-gray-500 uppercase tracking-wider block">Real-time Relationship Score</span>
+          <span id="live-marriage-score" class="text-3xl font-serif font-black text-[#0F766E]">70</span>
+          <span class="text-xs text-gray-400">/ 100</span>
+        </div>
+        <div id="live-marriage-tier" class="px-3.5 py-1 rounded-full text-xs font-bold bg-teal-100 text-teal-800">
+          Strong Foundation
+        </div>
+      </div>
+
+      <!-- Sliders List -->
+      <div class="space-y-6" id="marriage-sliders-list">
+        {dimensions.map((dim, idx) => (
+          <div class="bg-white rounded-3xl p-6 sm:p-8 border border-gray-100 shadow-sm space-y-3">
+            <div class="flex items-start justify-between gap-4">
+              <div class="space-y-1">
+                <span class="text-xs font-bold text-[#0F766E]">Area {idx + 1}</span>
+                <h3 class="text-base font-serif font-bold text-gray-900 leading-snug">
+                  {dim.title}
+                </h3>
+                <p class="text-xs text-gray-500 leading-relaxed max-w-xl">
+                  {dim.desc}
+                </p>
+              </div>
+              <span class="slider-badge text-xl font-serif font-black text-[#064E3B] bg-[#F4F8F6] px-3.5 py-1 rounded-xl border border-gray-200" id={`score-badge-${dim.id}`}>
+                7
+              </span>
+            </div>
+
+            <!-- Slider Range -->
+            <div class="pt-2">
+              <input
+                type="range"
+                min="1"
+                max="10"
+                value="7"
+                class="marriage-slider w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#0F766E]"
+                data-dim-id={dim.id}
+              />
+              <div class="flex justify-between text-[10px] text-gray-400 font-medium px-1 mt-1">
+                <span>1 — Struggling</span>
+                <span>5 — Average</span>
+                <span>10 — Thriving</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Summary & Recommendations Card -->
+      <div class="mt-12 bg-white rounded-3xl p-8 sm:p-10 border border-[#0F766E]/30 shadow-xl space-y-6 text-center">
+        <h3 class="text-2xl font-serif font-bold text-[#064E3B]" id="final-summary-title">
+          Strong Co-Parenting Team
+        </h3>
+        <p class="text-sm text-gray-600 max-w-lg mx-auto leading-relaxed" id="final-summary-desc">
+          You share genuine affection and commitment. Continuing to invest in intentional 1-on-1 couple conversations and unified discipline will make your home an unshakable refuge for your children.
+        </p>
+
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            id="marriage-wa-btn"
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-xs font-bold shadow-lg transition-all"
+          >
+            <MessageCircle class="w-4 h-4 text-[#F59E0B]" />
+            <span>Consult EduTarbiyah Marriage Counselor</span>
+          </a>
+          <button
+            type="button"
+            id="btn-print-marriage"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-white border border-gray-200 hover:border-gray-400 text-gray-700 text-xs font-semibold transition-all cursor-pointer"
+          >
+            <Printer class="w-4 h-4 text-gray-400" />
+            <span>Print Assessment</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>
+
+<script define:vars={{ waNumber: WHATSAPP_NUMBER }}>
+  const sliders = document.querySelectorAll('.marriage-slider');
+  const liveScoreEl = document.getElementById('live-marriage-score');
+  const liveTierEl = document.getElementById('live-marriage-tier');
+  const summaryTitleEl = document.getElementById('final-summary-title');
+  const summaryDescEl = document.getElementById('final-summary-desc');
+  const waBtn = document.getElementById('marriage-wa-btn');
+
+  function calculateScore() {
+    let sum = 0;
+    sliders.forEach((slider) => {
+      const val = parseInt(slider.value, 10);
+      sum += val;
+      const dimId = slider.getAttribute('data-dim-id');
+      const badge = document.getElementById(`score-badge-${dimId}`);
+      if (badge) badge.textContent = val.toString();
+    });
+
+    if (liveScoreEl) liveScoreEl.textContent = sum.toString();
+
+    let title = '';
+    let desc = '';
+    let tierText = '';
+    let tierClass = '';
+
+    if (sum >= 85) {
+      title = 'Harmonious Co-Parenting Sanctuary';
+      desc = 'Alhamdulillah! Your marriage is a vibrant source of security, emotional warmth, and mutual respect. Your children are blessed with a peaceful emotional climate.';
+      tierText = 'Harmonious Sanctuary';
+      tierClass = 'bg-emerald-100 text-emerald-800';
+    } else if (sum >= 70) {
+      title = 'Strong Foundation with Room to Flourish';
+      desc = 'You share genuine affection and commitment. Continuing to invest in intentional 1-on-1 couple conversations and unified discipline will make your home an unshakable refuge for your children.';
+      tierText = 'Strong Foundation';
+      tierClass = 'bg-teal-100 text-teal-800';
+    } else if (sum >= 50) {
+      title = 'Communication Strain & Inconsistent Alignment';
+      desc = 'You are experiencing everyday friction, unspoken expectations, or differing parenting philosophies. Prioritize daily 15-minute connection without discussing tasks or stress.';
+      tierText = 'Needs Care & Alignment';
+      tierClass = 'bg-amber-100 text-amber-800';
+    } else {
+      title = 'Marital Distress & High Household Tension';
+      desc = 'Tension between parents directly impacts children’s emotional well-being and Salah motivation. We strongly encourage private couples counseling to restore emotional safety and peace.';
+      tierText = 'Urgent Counseling Recommended';
+      tierClass = 'bg-rose-100 text-rose-800';
+    }
+
+    if (liveTierEl) {
+      liveTierEl.textContent = tierText;
+      liveTierEl.className = `px-3.5 py-1 rounded-full text-xs font-bold ${tierClass}`;
+    }
+    if (summaryTitleEl) summaryTitleEl.textContent = title;
+    if (summaryDescEl) summaryDescEl.textContent = desc;
+
+    if (waBtn) {
+      const msg = `السلام علیکم EduTarbiyah!\n\nI completed the Marriage & Co-Parenting Audit on your platform.\n📊 Score: ${sum}/100 (${tierText})\n\nI would like more information on marital counseling and parenting alignment sessions.`;
+      waBtn.setAttribute('href', `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`);
+    }
+  }
+
+  sliders.forEach((s) => {
+    s.addEventListener('input', calculateScore);
+  });
+
+  document.getElementById('btn-print-marriage')?.addEventListener('click', () => {
+    window.print();
+  });
+
+  calculateScore();
+</script>
