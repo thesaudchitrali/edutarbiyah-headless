@@ -263,15 +263,15 @@ export async function getPrimaryMenu(): Promise<MenuItem[]> {
     },
     {
       id: 3,
-      title: 'Diagnostic Audits',
+      title: 'Self-Assessments',
       url: '/audit-your-parenting/',
       children: [
-        { id: 31, title: 'Parenting Style Audit', url: '/audit-your-parenting/' },
+        { id: 31, title: 'Audit Your Parenting', url: '/audit-your-parenting/' },
         { id: 32, title: 'Family Vision Maker', url: '/family-vision-maker/' },
-        { id: 33, title: 'Personality Type Test (MBTI)', url: '/know-your-personality-type/' },
+        { id: 33, title: 'Know Your Personality Type', url: '/know-your-personality-type/' },
         { id: 34, title: 'Child Behavior Tracker', url: '/childs-behavior-improvement-tracker/' },
-        { id: 35, title: 'Routine Maker Chart', url: '/islamic-tarbiyah-home-routine-chart/' },
-        { id: 36, title: 'Marriage & Co-Parenting Audit', url: '/audit-your-marriage-relationships/' },
+        { id: 35, title: 'Islamic Tarbiyah Routine Maker', url: '/islamic-tarbiyah-home-routine-chart/' },
+        { id: 36, title: 'Marriage Audit', url: '/audit-your-marriage-relationships/' },
       ],
     },
     {
