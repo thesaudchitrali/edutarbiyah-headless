@@ -40,18 +40,14 @@ const menuItems = await getPrimaryMenu();
     <div class="flex items-center justify-between h-20">
       
       <!-- Logo / Brand -->
-      <a href="/" class="flex items-center gap-3 group">
-        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[#0F766E] to-[#064E3B] flex items-center justify-center text-white shadow-md shadow-[#0F766E]/20 group-hover:scale-105 transition-transform duration-200">
-          <BookOpen class="w-6 h-6 text-[#F59E0B]" />
-        </div>
-        <div class="flex flex-col">
-          <span class="text-2xl font-serif font-bold tracking-tight text-[#064E3B] group-hover:text-[#0F766E] transition-colors">
-            EduTarbiyah
-          </span>
-          <span class="text-[11px] font-medium tracking-wide uppercase text-[#6B7280]">
-            Parenting & Moral Education
-          </span>
-        </div>
+      <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="EduTarbiyah Institute Home">
+        <img
+          src="/images/logo.webp"
+          alt="EduTarbiyah Institute - ایجو تربیت انسٹیٹیوٹ"
+          class="h-12 w-auto object-contain group-hover:scale-105 transition-transform duration-200"
+          width="130"
+          height="48"
+        />
       </a>
 
       <!-- Desktop Navigation Menu -->
