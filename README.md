@@ -137,9 +137,31 @@ Copy the files from `wordpress/mu-plugins/` directly into your WordPress server'
 
 ---
 
-## 🚢 Shared Hosting & CI/CD Deployment
+## 🚢 Deployment Methods
 
-### Option A: Automated GitHub Actions (Recommended)
+### Option A: 1-Command Local Automated Deploy (`npm run deploy`)
+Never copy/paste files manually again! You can deploy directly from your local terminal with one command:
+
+1. Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+2. Enter your hosting FTP credentials inside `.env`:
+   ```env
+   FTP_HOST=ftp.edutarbiyah.com
+   FTP_USER=your_cpanel_username
+   FTP_PASSWORD=your_ftp_password
+   FTP_REMOTE_DIR=public_html/
+   ```
+3. Run:
+   ```bash
+   npm run deploy
+   ```
+   This automatically builds the static site and syncs all files from `dist/` directly to your hosting folder!
+
+---
+
+### Option B: Automated GitHub Actions CI/CD
 Add the following secrets to your GitHub repository (**Settings → Secrets and variables → Actions**):
 - `FTP_SERVER`: Your shared hosting FTP host (e.g., `ftp.edutarbiyah.com`)
 - `FTP_USERNAME`: Your cPanel FTP username

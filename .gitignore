@@ -4,6 +4,7 @@ dist/
 .astro/
 # local api cache
 .cache/
+*.zip
 
 # dependencies
 node_modules/
