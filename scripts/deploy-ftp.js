@@ -57,10 +57,27 @@ FTP_REMOTE_DIR=public_html/
     });
 
     console.log(`✅ Connected successfully!`);
-    console.log(`📁 Navigating to target remote directory: ${remoteDir}`);
-    await client.ensureDir(remoteDir);
 
-    console.log(`📦 Uploading all static files from "dist/" to "${remoteDir}"...`);
+    let targetDir = remoteDir.trim();
+    const initialPwd = await client.pwd();
+
+    // If the cPanel FTP user was created specifically for this domain, its root is already chrooted at '/'
+    if ((targetDir.startsWith('/home') || targetDir.startsWith('home/')) && initialPwd === '/') {
+      console.log(`ℹ️ [Auto-Detect] FTP account is chrooted to domain root.`);
+      console.log(`ℹ️ Target directory set to root '/' (preventing nested subfolder '${targetDir}')`);
+      targetDir = '/';
+    }
+
+    if (targetDir && targetDir !== '/' && targetDir !== '.') {
+      console.log(`📁 Navigating to target remote directory: ${targetDir}`);
+      await client.ensureDir(targetDir);
+      console.log(`📦 Uploading all static files from "dist/" to "${targetDir}"...`);
+    } else {
+      console.log(`📁 Navigating to domain root directory: /`);
+      await client.cd('/');
+      console.log(`📦 Uploading all static files from "dist/" to root "/"...`);
+    }
+
     const startTime = Date.now();
 
     // Track upload progress
@@ -73,7 +90,11 @@ FTP_REMOTE_DIR=public_html/
       }
     });
 
-    await client.uploadFromDir(distDir, remoteDir);
+    if (targetDir && targetDir !== '/' && targetDir !== '.') {
+      await client.uploadFromDir(distDir, targetDir);
+    } else {
+      await client.uploadFromDir(distDir);
+    }
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
     console.log(`\n\n🎉 Deployment Complete in ${elapsed}s!`);
