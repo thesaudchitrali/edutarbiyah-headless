@@ -1,0 +1,1125 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { WHATSAPP_NUMBER } from '../lib/api';
+import { 
+  Sparkles, 
+  CheckCircle2, 
+  Target, 
+  Heart, 
+  Shield, 
+  ShieldCheck, 
+  Flame, 
+  Compass, 
+  Clock, 
+  BookOpen, 
+  User, 
+  Users, 
+  MessageCircle, 
+  AlertCircle, 
+  ArrowRight, 
+  ArrowLeft, 
+  RotateCcw, 
+  Printer, 
+  Share2, 
+  HelpCircle, 
+  Download, 
+  Copy, 
+  ChevronRight, 
+  Check, 
+  Star, 
+  Lightbulb, 
+  Zap, 
+  Award, 
+  ExternalLink, 
+  Globe,
+  Activity,
+  Brain,
+  Home,
+  FileText
+} from 'lucide-astro';
+---
+
+<Layout
+  title="Parent Coaching Readiness Form | Diagnostic Self-Assessment | EduTarbiyah"
+  description="Evaluate your child's behavior, parenting challenges, and emotional connection to determine if 1-on-1 personalized parenting coaching is right for your family."
+  canonical="https://edutarbiyah.com/parent-coaching-readiness-form/"
+>
+
+  <!-- Print Specific CSS -->
+  <style is:global>
+    @media print {
+      header, footer, nav, #top-breadcrumbs, #hero-section, #actions-toolbar, #framework-section, #faq-section, #cta-section, #floating-whatsapp, #lang-toggle-btn, .no-print {
+        display: none !important;
+      }
+      body {
+        background: white !important;
+        color: black !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      #printable-assessment-report {
+        display: block !important;
+        border: 2px solid #064E3B !important;
+        box-shadow: none !important;
+        page-break-inside: avoid !important;
+        margin: 15px auto !important;
+        max-width: 100% !important;
+        padding: 20px !important;
+        background: white !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+    }
+  </style>
+
+  <!-- Top Breadcrumbs & Bilingual Toggle -->
+  <div id="top-breadcrumbs" class="bg-[#F8FFFC] border-b border-[#0F766E]/10 py-3 px-4 sm:px-6 text-xs text-gray-500">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <a href="/" class="hover:text-[#0F766E] transition-colors">Home</a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <a href="/edutarbiyah-parent-coaching-program/" class="hover:text-[#0F766E] transition-colors">Coaching</a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <span class="text-[#064E3B] font-semibold" data-en="Readiness Form" data-ur="ریڈینس فارم">Readiness Form</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <!-- Language Switcher -->
+        <button
+          type="button"
+          id="lang-toggle-btn"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#0F766E]/20 text-[#064E3B] font-bold text-xs shadow-sm hover:bg-[#F4F8F6] transition-colors cursor-pointer"
+          aria-label="Switch Language / زبان تبدیل کریں"
+        >
+          <Globe class="w-3.5 h-3.5 text-[#0F766E]" />
+          <span id="lang-toggle-text">اردو میں دیکھیں</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Header Section -->
+  <section id="hero-section" class="relative bg-gradient-to-b from-[#064E3B] via-[#095944] to-[#064E3B] text-white py-12 lg:py-16 overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F59E0B_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      
+      <!-- Top Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-[#F59E0B] text-xs font-bold tracking-wide uppercase backdrop-blur-md border border-white/15">
+        <ShieldCheck class="w-4 h-4 text-[#F59E0B]" />
+        <span data-en="Confidential Parenting Assessment" data-ur="محفوظ اور خود تشخیصی جائزہ">
+          Confidential Parenting Assessment
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-3xl sm:text-5xl font-serif font-extrabold text-white tracking-tight leading-tight">
+        <span data-en="Parent Coaching Readiness Form" data-ur="پیرنٹ کوچنگ ریڈینس فارم">
+          Parent Coaching Readiness Form
+        </span>
+      </h1>
+
+      <!-- Subtitle Question -->
+      <div class="inline-block bg-white/10 border border-emerald-300/30 rounded-full px-5 py-2 text-sm sm:text-base font-semibold text-emerald-100">
+        <span data-en="Do You Need 1-on-1 Parent Coaching? Self-Diagnostic Assessment" data-ur="کیا آپ کو پیرنٹ کوچنگ کی ضرورت ہے؟ خود جائزہ فارم">
+          Do You Need 1-on-1 Parent Coaching? Self-Diagnostic Assessment
+        </span>
+      </div>
+
+      <!-- Hero Subtitle -->
+      <p class="text-base sm:text-lg text-[#D1FAE5] max-w-2xl mx-auto leading-relaxed font-normal">
+        <span data-en="Use this self-assessment to reflect on your child's behavior, family stress points, and routine hurdles to determine whether personalized one-on-one coaching will transform your parenting journey." data-ur="اس فارم کی مدد سے اپنے بچے کے رویّے، اپنی والدینی چیلنجز، اور اس بات پر غور کریں کہ آیا ون ٹو ون پیرنٹ کوچنگ آپ کے خاندان کے لیے مفید ہوسکتی ہے۔">
+          Use this self-assessment to reflect on your child's behavior, family stress points, and routine hurdles to determine whether personalized one-on-one coaching will transform your parenting journey.
+        </span>
+      </p>
+
+      <!-- How to Use Banner -->
+      <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 max-w-2xl mx-auto text-xs sm:text-sm text-emerald-100 space-y-1">
+        <p class="font-bold text-amber-300" data-en="📋 How to Complete:" data-ur="📋 طریقہ استعمال:">
+          📋 How to Complete:
+        </p>
+        <p data-en="Answer each of the 18 questions by selecting 'Often' (3 pts), 'Sometimes' (2 pts), or 'Rarely' (1 pt). If you find multiple 'Often' responses, 1-on-1 coaching can provide crucial clarity and structured relief." data-ur="ہر سوال کے جواب میں ”اکثر“، ”کبھی کبھار“ یا ”شاذونادر“ منتخب کریں۔ آخر میں نتیجہ دیکھیں۔ اگر کئی جگہ ”اکثر“ آتا ہے تو Parent Coaching آپ کے لیے انتہائی مفید ہوسکتی ہے۔">
+          Answer each of the 18 questions by selecting 'Often' (3 pts), 'Sometimes' (2 pts), or 'Rarely' (1 pt). If you find multiple 'Often' responses, 1-on-1 coaching can provide crucial clarity and structured relief.
+        </p>
+      </div>
+
+      <!-- Key Pillars Badges -->
+      <div class="pt-2 flex flex-wrap justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium text-emerald-100">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
+          <Activity class="w-4 h-4 text-[#F59E0B]" />
+          <span data-en="6 Tarbiyah Dimensions" data-ur="6 تربیتی جہات">6 Tarbiyah Dimensions</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
+          <Brain class="w-4 h-4 text-[#F59E0B]" />
+          <span data-en="18 Diagnostic Questions" data-ur="18 تشخیصی سوالات">18 Diagnostic Questions</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
+          <Flame class="w-4 h-4 text-[#F59E0B]" />
+          <span data-en="Instant Score & Need Meter" data-ur="لائیو نتیجہ اور ضرورت کا انڈیکس">Instant Score & Need Meter</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
+          <Printer class="w-4 h-4 text-[#F59E0B]" />
+          <span data-en="Printable Diagnostic Report" data-ur="پرنٹ ایبل تشخیصی رپورٹ">Printable Diagnostic Report</span>
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 space-y-12">
+
+    <!-- FLOATING LIVE STATS BAR -->
+    <div class="sticky top-4 z-30 bg-white/95 backdrop-blur-md rounded-2xl border border-[#0F766E]/20 shadow-lg p-4 sm:p-5 transition-all">
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-center">
+        <!-- Metric 1: Total Score -->
+        <div class="p-2 sm:p-3 rounded-xl bg-[#F8FFFC] border border-[#0F766E]/15">
+          <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider block" data-en="Total Score" data-ur="کل اسکور">
+            Total Score
+          </span>
+          <div class="text-xl sm:text-2xl font-serif font-extrabold text-[#064E3B] mt-0.5">
+            <span id="etpcTotalScore">0</span> <span class="text-xs font-sans font-normal text-gray-400">/ 54</span>
+          </div>
+        </div>
+
+        <!-- Metric 2: Often Count -->
+        <div class="p-2 sm:p-3 rounded-xl bg-amber-50/70 border border-amber-200/60">
+          <span class="text-[11px] font-bold text-amber-800 uppercase tracking-wider block" data-en="'Often' Selected" data-ur="اکثر منتخب">
+            'Often' Selected
+          </span>
+          <div class="text-xl sm:text-2xl font-serif font-extrabold text-amber-700 mt-0.5" id="etpcOftenCount">
+            0
+          </div>
+        </div>
+
+        <!-- Metric 3: Answered -->
+        <div class="p-2 sm:p-3 rounded-xl bg-[#F8FFFC] border border-[#0F766E]/15">
+          <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider block" data-en="Answered" data-ur="جوابات مکمل">
+            Answered
+          </span>
+          <div class="text-xl sm:text-2xl font-serif font-extrabold text-[#0F766E] mt-0.5" id="etpcAnswered">
+            0/18
+          </div>
+        </div>
+
+        <!-- Metric 4: Coaching Need % -->
+        <div class="p-2 sm:p-3 rounded-xl bg-teal-50/70 border border-teal-200/60">
+          <span class="text-[11px] font-bold text-teal-800 uppercase tracking-wider block" data-en="Coaching Need" data-ur="کوچنگ کی ضرورت">
+            Coaching Need
+          </span>
+          <div class="text-xl sm:text-2xl font-serif font-extrabold text-teal-700 mt-0.5" id="etpcPercent">
+            0%
+          </div>
+        </div>
+      </div>
+
+      <!-- Real-time Progress Bar Track -->
+      <div class="w-full bg-gray-100 h-2 rounded-full overflow-hidden mt-3">
+        <div
+          id="etpcProgressFill"
+          class="bg-gradient-to-r from-[#0F766E] to-[#10B981] h-full rounded-full transition-all duration-300"
+          style="width: 0%;"
+        ></div>
+      </div>
+    </div>
+
+    <!-- PARENT & FAMILY BASIC DETAILS CARD -->
+    <section class="bg-white rounded-3xl border border-gray-200/80 shadow-md p-6 sm:p-8 space-y-6">
+      <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F766E] uppercase tracking-wider mb-1">
+            <User class="w-4 h-4" />
+            <span data-en="Part 1: Family Context" data-ur="حصہ اول: بنیادی معلومات">Part 1: Family Context</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-serif font-extrabold text-[#064E3B]">
+            <span data-en="Family & Child Information" data-ur="بنیادی معلومات">Family & Child Information</span>
+          </h2>
+        </div>
+        <button
+          type="button"
+          id="clear-form-btn"
+          class="text-xs text-gray-400 hover:text-red-600 transition-colors inline-flex items-center gap-1 cursor-pointer"
+        >
+          <RotateCcw class="w-3.5 h-3.5" />
+          <span data-en="Reset Form" data-ur="فارم صاف کریں">Reset Form</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <!-- Parent Name -->
+        <div class="space-y-1.5">
+          <label for="etpcParentName" class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
+            <span data-en="Parent Name" data-ur="والد / والدہ کا نام">Parent Name</span>
+            <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="etpcParentName"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 placeholder-gray-400 text-sm shadow-sm"
+            placeholder="e.g. Ayesha / Farooq"
+          />
+        </div>
+
+        <!-- Child Name -->
+        <div class="space-y-1.5">
+          <label for="etpcChildName" class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
+            <span data-en="Child's Name" data-ur="بچے کا نام">Child's Name</span>
+            <span class="text-red-500">*</span>
+          </label>
+          <input
+            type="text"
+            id="etpcChildName"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 placeholder-gray-400 text-sm shadow-sm"
+            placeholder="e.g. Ibrahim"
+          />
+        </div>
+
+        <!-- Child Age -->
+        <div class="space-y-1.5">
+          <label for="etpcChildAge" class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
+            <span data-en="Child's Age" data-ur="بچے کی عمر">Child's Age</span>
+          </label>
+          <input
+            type="text"
+            id="etpcChildAge"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 placeholder-gray-400 text-sm shadow-sm"
+            placeholder="e.g. 7 years"
+          />
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="space-y-1.5">
+          <label for="etpcWhatsapp" class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
+            <span data-en="WhatsApp Number" data-ur="WhatsApp نمبر">WhatsApp Number</span>
+          </label>
+          <input
+            type="text"
+            id="etpcWhatsapp"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 placeholder-gray-400 text-sm shadow-sm"
+            placeholder="e.g. +92 300 1234567"
+          />
+        </div>
+
+        <!-- Email -->
+        <div class="space-y-1.5">
+          <label for="etpcEmail" class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
+            <span data-en="Email Address" data-ur="ای میل">Email Address</span>
+          </label>
+          <input
+            type="email"
+            id="etpcEmail"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 placeholder-gray-400 text-sm shadow-sm"
+            placeholder="e.g. name@example.com"
+          />
+        </div>
+
+        <!-- Date -->
+        <div class="space-y-1.5">
+          <label for="etpcDate" class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
+            <span data-en="Assessment Date" data-ur="تاریخ">Assessment Date</span>
+          </label>
+          <input
+            type="date"
+            id="etpcDate"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 text-sm shadow-sm"
+          />
+        </div>
+      </div>
+
+      <!-- Challenge Reflection -->
+      <div class="space-y-2 pt-2">
+        <label for="etpcChallenge" class="block text-sm font-bold text-gray-700">
+          <span data-en="My biggest parenting challenge right now is:" data-ur="اس وقت میری سب سے بڑی پیرنٹنگ چیلنج یہ ہے:">
+            My biggest parenting challenge right now is:
+          </span>
+        </label>
+        <textarea
+          id="etpcChallenge"
+          rows="3"
+          class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 placeholder-gray-400 text-sm shadow-sm"
+          placeholder="Describe your current struggle (e.g. bedtime resistance, intense shouting matches, phone addiction, disrespectful tone, lack of prayer routine)..."
+        ></textarea>
+      </div>
+    </section>
+
+    <!-- 18 DIAGNOSTIC QUESTIONS SECTION (6 PILLARS) -->
+    <section class="space-y-8" id="et-parent-coaching-form">
+      <div>
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F766E] uppercase tracking-wider mb-1">
+          <Activity class="w-4 h-4" />
+          <span data-en="Part 2: Diagnostic Evaluation" data-ur="حصہ دوم: 18 تشخیصی سوالات">Part 2: Diagnostic Evaluation</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-serif font-extrabold text-[#064E3B]">
+          <span data-en="The 6 Core Tarbiyah Pillars" data-ur="6 بنیادی تربیتی جہات">The 6 Core Tarbiyah Pillars</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-500 mt-1">
+          <span data-en="Rate how frequently each scenario occurs in your home. Be completely honest with yourself; there are no right or wrong answers." data-ur="ہر سوال پر غور کریں کہ یہ صورتحال آپ کے گھر میں کتنی بار پیش آتی ہے۔ ایمانداری سے جواب دیں تاکہ درست تشخیصی نتیجہ سامنے آئے۔">
+            Rate how frequently each scenario occurs in your home. Be completely honest with yourself; there are no right or wrong answers.
+          </span>
+        </p>
+      </div>
+
+      <!-- Dynamic Question Boxes injected via JS -->
+      <div id="etpcQuestions" class="space-y-8">
+        <!-- JS will render the 6 boxes and 18 questions here -->
+      </div>
+    </section>
+
+    <!-- DIAGNOSTIC RESULT & ACTION DASHBOARD -->
+    <section id="printable-assessment-report" class="bg-gradient-to-b from-white to-[#F8FFFC] rounded-3xl border-2 border-[#0F766E]/30 p-6 sm:p-10 shadow-xl space-y-8">
+      
+      <!-- Top Result Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#0F766E]/20">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-bold text-[#F59E0B] uppercase tracking-wider mb-1">
+            <Sparkles class="w-4 h-4" />
+            <span data-en="Diagnostic Evaluation Outcome" data-ur="تشخیصی نتیجہ و تجاویز">Diagnostic Evaluation Outcome</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-serif font-black text-[#064E3B]" id="etpcResultTitle">
+            Parent Coaching Readiness Result
+          </h2>
+          <p class="text-xs text-gray-500 mt-1">
+            <span data-en="Based on your 18 answers, here is your customized guidance recommendation." data-ur="آپ کے 18 جوابات کی بنیاد پر آپ کے خاندان کے لیے مخصوص لائحہ عمل۔">
+              Based on your 18 answers, here is your customized guidance recommendation.
+            </span>
+          </p>
+        </div>
+
+        <!-- Action Toolbar -->
+        <div class="no-print flex flex-wrap items-center gap-2" id="actions-toolbar">
+          <button
+            type="button"
+            id="btn-print"
+            class="px-4 py-2 rounded-xl bg-[#064E3B] text-white font-bold text-xs sm:text-sm hover:bg-[#043327] transition-all shadow inline-flex items-center gap-1.5 cursor-pointer"
+          >
+            <Printer class="w-4 h-4 text-amber-300" />
+            <span data-en="Print / PDF" data-ur="پرنٹ / PDF">Print / PDF</span>
+          </button>
+          
+          <button
+            type="button"
+            id="btn-whatsapp"
+            class="px-4 py-2 rounded-xl bg-[#25D366] text-white font-bold text-xs sm:text-sm hover:bg-[#1EBE5D] transition-all shadow inline-flex items-center gap-1.5 cursor-pointer"
+          >
+            <MessageCircle class="w-4 h-4" />
+            <span data-en="Consult on WhatsApp" data-ur="واٹس ایپ پر بھیجیں">Consult on WhatsApp</span>
+          </button>
+
+          <button
+            type="button"
+            id="btn-save"
+            class="px-3.5 py-2 rounded-xl border border-[#0F766E]/20 text-[#0F766E] font-semibold text-xs hover:bg-[#F4F8F6] transition-colors inline-flex items-center gap-1 cursor-pointer"
+            title="Save Form"
+          >
+            <Download class="w-3.5 h-3.5" />
+            <span id="save-btn-text" data-en="Save" data-ur="محفوظ کریں">Save</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Result Content Box -->
+      <div id="etpcResultBox" class="p-6 rounded-2xl bg-[#F8FFFC] border border-[#0F766E]/20 space-y-4">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-4 border-b border-[#0F766E]/15">
+          <div class="space-y-1 text-center sm:text-left">
+            <span class="text-xs font-bold text-gray-500 uppercase tracking-wider block" data-en="Readiness Category" data-ur="کوچنگ کی ضرورت کا درجہ">
+              Readiness Category
+            </span>
+            <div id="etpcBadgeCategory" class="text-lg sm:text-xl font-serif font-extrabold text-[#064E3B]">
+              Complete all questions to see result
+            </div>
+          </div>
+          <div class="text-center sm:text-right shrink-0">
+            <span class="text-xs font-bold text-[#0F766E] uppercase tracking-wider block" data-en="Readiness Index" data-ur="ریڈینس انڈیکس">
+              Readiness Index
+            </span>
+            <div class="text-2xl font-serif font-black text-[#064E3B]" id="etpcResultScoreDisplay">
+              0%
+            </div>
+          </div>
+        </div>
+
+        <p id="etpcResultText" class="text-sm sm:text-base text-gray-700 leading-relaxed font-medium">
+          Please select your answers for all 18 questions above to view your personalized assessment and parenting guidance.
+        </p>
+
+        <!-- Dynamic Category Highlights -->
+        <div id="pillar-breakdown" class="pt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          <!-- Pillar stats injected via JS -->
+        </div>
+      </div>
+
+      <!-- Printable Family Signatures -->
+      <div class="pt-6 border-t border-gray-200 grid grid-cols-2 gap-8 text-xs text-gray-500">
+        <div>
+          <p class="font-semibold text-gray-700" data-en="Evaluated By (Parent Signature):" data-ur="والد / والدہ کے دستخط:">Evaluated By (Parent Signature):</p>
+          <div class="border-b border-gray-400 mt-6 w-3/4"></div>
+        </div>
+        <div class="text-right">
+          <p class="font-semibold text-gray-700" data-en="EduTarbiyah Institute" data-ur="ادارہ ایجو تربیہ">EduTarbiyah Institute</p>
+          <p class="text-[11px] text-gray-400 mt-1">Parenting | Tarbiyah | Personal Development</p>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- EDUCATIONAL SECTION: WHEN IS PARENT COACHING NEEDED? -->
+    <section id="framework-section" class="space-y-6 pt-4">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 text-[#064E3B] text-xs font-bold uppercase tracking-wider">
+          <BookOpen class="w-3.5 h-3.5" />
+          <span data-en="Parenting Psychology" data-ur="پیرنٹنگ رہنمائی">Parenting Psychology</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-serif font-extrabold text-[#064E3B]">
+          <span data-en="When Does a Parent Truly Need Coaching?" data-ur="پیرنٹ کوچنگ کب مددگار ہوسکتی ہے؟">When Does a Parent Truly Need Coaching?</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-600">
+          <span data-en="Parenting is the most consequential role of your life, yet most parents receive zero formal training. Here is why personalized coaching works." data-ur="اگر آپ خود کو الجھا ہوا، پریشان یا غیر مستقل محسوس کرتے ہیں تو ون ٹو ون رہنمائی آپ کو واضح سمت دے سکتی ہے۔">
+            Parenting is the most consequential role of your life, yet most parents receive zero formal training. Here is why personalized coaching works.
+          </span>
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- Benefit 1 -->
+        <div class="p-6 rounded-2xl bg-white border border-gray-200/80 shadow-sm hover:border-[#0F766E]/40 transition-all space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-[#064E3B] flex items-center justify-center font-bold text-lg font-serif">
+            1
+          </div>
+          <h3 class="font-serif font-bold text-base text-[#064E3B]">
+            <span data-en="Breaking Toxic Cycles" data-ur="منفی رویوں کے دائرے کو توڑنا">Breaking Toxic Cycles</span>
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            <span data-en="If you find yourself constantly yelling, threatening, or repeating instructions 10 times, you are stuck in an ineffective loop. A coach identifies root triggers and replaces them with calm authority." data-ur="اگر آپ بار بار چیختے ہیں، دھمکیاں دیتے ہیں اور پچھتاوے کا شکار ہوتے ہیں، تو کوچنگ آپ کو اس منفی چکر سے نکال کر پرسکون کنٹرول دیتی ہے۔">
+              If you find yourself constantly yelling, threatening, or repeating instructions 10 times, you are stuck in an ineffective loop. A coach identifies root triggers and replaces them with calm authority.
+            </span>
+          </p>
+        </div>
+
+        <!-- Benefit 2 -->
+        <div class="p-6 rounded-2xl bg-white border border-gray-200/80 shadow-sm hover:border-[#0F766E]/40 transition-all space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-900 flex items-center justify-center font-bold text-lg font-serif">
+            2
+          </div>
+          <h3 class="font-serif font-bold text-base text-[#064E3B]">
+            <span data-en="Personalized Family Blueprint" data-ur="خاندان کے لیے مخصوص لائحہ عمل">Personalized Family Blueprint</span>
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            <span data-en="General advice from books or social media reels often fails because every child has a unique temperament. Coaching creates custom strategies tailored specifically to your home." data-ur="کتابوں یا ویڈیوز کے عام مشورے ہر بچے پر فٹ نہیں آتے کیونکہ ہر بچے کا مزاج منفرد ہوتا ہے۔ کوچنگ آپ کے گھر کے مطابق مخصوص حکمت عملی بناتی ہے۔">
+              General advice from books or social media reels often fails because every child has a unique temperament. Coaching creates custom strategies tailored specifically to your home.
+            </span>
+          </p>
+        </div>
+
+        <!-- Benefit 3 -->
+        <div class="p-6 rounded-2xl bg-white border border-gray-200/80 shadow-sm hover:border-[#0F766E]/40 transition-all space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-900 flex items-center justify-center font-bold text-lg font-serif">
+            3
+          </div>
+          <h3 class="font-serif font-bold text-base text-[#064E3B]">
+            <span data-en="Prophetic Rahmah & Modern Science" data-ur="نبوی اسلوب اور جدید نفسیات">Prophetic Rahmah & Modern Science</span>
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            <span data-en="Merge the gentleness, honor, and moral grounding of the Sunnah with cutting-edge developmental psychology, screen management, and emotional intelligence." data-ur="بچے کی دینی تربیت، نماز، اخلاق اور ادب کو جدید اسکرین دور میں نبوی نرمی اور سائنسی طریقوں سے پروان چڑھائیں۔">
+              Merge the gentleness, honor, and moral grounding of the Sunnah with cutting-edge developmental psychology, screen management, and emotional intelligence.
+            </span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS -->
+    <section id="faq-section" class="bg-[#F8FFFC] rounded-3xl border border-[#0F766E]/20 p-6 sm:p-10 space-y-6">
+      <div class="text-center max-w-xl mx-auto space-y-1">
+        <h2 class="text-xl sm:text-2xl font-serif font-extrabold text-[#064E3B]">
+          <span data-en="Frequently Asked Questions" data-ur="اکثر پوچھے گئے سوالات">Frequently Asked Questions</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-500">
+          <span data-en="Common questions about Parent Coaching at EduTarbiyah." data-ur="ایجو تربیہ پیرنٹ کوچنگ پروگرام کے بارے میں اہم سوالات۔">
+            Common questions about Parent Coaching at EduTarbiyah.
+          </span>
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-3">
+        <!-- FAQ 1 -->
+        <details class="group bg-white rounded-xl border border-gray-200/80 p-4 transition-all [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+          <summary class="flex items-center justify-between font-bold text-sm text-[#064E3B] select-none">
+            <span data-en="How are coaching sessions conducted?" data-ur="کوچنگ سیشنز کیسے منعقد ہوتے ہیں؟">How are coaching sessions conducted?</span>
+            <ChevronRight class="w-4 h-4 text-gray-400 group-open:rotate-90 transition-transform" />
+          </summary>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed pt-2 border-t border-gray-100">
+            <span data-en="Sessions are held 1-on-1 via private Zoom / Google Meet or phone call. Parents receive diagnostic evaluations, customized routines, and ongoing WhatsApp voice-note accountability between sessions." data-ur="سیشنز آن لائن زوم یا گوگل میٹ پر پرائیویٹ ون آن ون منعقد ہوتے ہیں۔ والدین کو تشخیصی چارٹس، روٹین پلانز اور سیشنز کے درمیان واٹس ایپ پر مسلسل رہنمائی فراہم کی جاتی ہے۔">
+              Sessions are held 1-on-1 via private Zoom / Google Meet or phone call. Parents receive diagnostic evaluations, customized routines, and ongoing WhatsApp voice-note accountability between sessions.
+            </span>
+          </p>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="group bg-white rounded-xl border border-gray-200/80 p-4 transition-all [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+          <summary class="flex items-center justify-between font-bold text-sm text-[#064E3B] select-none">
+            <span data-en="Should both mother and father attend?" data-ur="کیا والد اور والدہ دونوں کا شرکت کرنا ضروری ہے؟">Should both mother and father attend?</span>
+            <ChevronRight class="w-4 h-4 text-gray-400 group-open:rotate-90 transition-transform" />
+          </summary>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed pt-2 border-t border-gray-100">
+            <span data-en="Ideally, both parents participating creates tremendous unity and prevents conflicting discipline styles. However, if one spouse is unable to attend, one dedicated parent is fully sufficient to catalyze massive transformation in the home." data-ur="بہتر یہ ہے کہ دونوں شریک ہوں تاکہ گھر میں ایک مشترکہ نظام بنے۔ تاہم اگر ایک شریک نہ ہو سکے تو ایک والد یا والدہ بھی اکیلے پورے گھر کے ماحول میں مثبت تبدیلی لا سکتے ہیں۔">
+              Ideally, both parents participating creates tremendous unity and prevents conflicting discipline styles. However, if one spouse is unable to attend, one dedicated parent is fully sufficient to catalyze massive transformation in the home.
+            </span>
+          </p>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="group bg-white rounded-xl border border-gray-200/80 p-4 transition-all [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+          <summary class="flex items-center justify-between font-bold text-sm text-[#064E3B] select-none">
+            <span data-en="What is the difference between this Readiness Form and the Intake Form?" data-ur="اس ریڈینس فارم اور انٹیک فارم میں کیا فرق ہے؟">What is the difference between this Readiness Form and the Intake Form?</span>
+            <ChevronRight class="w-4 h-4 text-gray-400 group-open:rotate-90 transition-transform" />
+          </summary>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed pt-2 border-t border-gray-100">
+            <span data-en="This Readiness Form is a self-assessment tool to discover your coaching need index. The Intake Form is the comprehensive diagnostic onboarding form filled out right before your first coaching session." data-ur="یہ ریڈینس فارم آپ کا ذاتی خود جائزہ ہے تاکہ ضرورت معلوم ہو سکے۔ جبکہ انٹیک فارم کوچنگ سیشن سے قبل تفصیلی تشخیصی فارم ہے جو کوچ کو تمام خاندانی معلومات فراہم کرتا ہے۔">
+              This Readiness Form is a self-assessment tool to discover your coaching need index. The Intake Form is the comprehensive diagnostic onboarding form filled out right before your first coaching session.
+            </span>
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- NEXT STEPS / TARBIYAH ECOSYSTEM BRIDGE -->
+    <section id="cta-section" class="bg-gradient-to-br from-[#064E3B] to-[#0A4D3C] text-white rounded-3xl p-8 sm:p-12 text-center space-y-6 relative overflow-hidden shadow-xl">
+      <div class="relative max-w-2xl mx-auto space-y-3">
+        <h2 class="text-2xl sm:text-4xl font-serif font-black tracking-tight">
+          <span data-en="Ready for Practical Parenting Guidance?" data-ur="کیا آپ کو اپنی Parenting Journey میں رہنمائی چاہیے؟">
+            Ready for Practical Parenting Guidance?
+          </span>
+        </h2>
+        <p class="text-emerald-100 text-sm sm:text-base leading-relaxed">
+          <span data-en="If you struggle with tantrums, screen addiction, prayer routine, defiance, or emotional friction, EduTarbiyah Parent Coaching will provide clarity and transformation." data-ur="اگر آپ بچے کے غصے، ضد، اسکرین ٹائم، نماز، روٹین، پڑھائی، یا جذباتی مسائل میں practical guidance چاہتے ہیں تو EduTarbiyah Parent Coaching آپ کے لیے مددگار ہوسکتی ہے۔">
+            If you struggle with tantrums, screen addiction, prayer routine, defiance, or emotional friction, EduTarbiyah Parent Coaching will provide clarity and transformation.
+          </span>
+        </p>
+
+        <div class="pt-4 flex flex-wrap justify-center gap-3">
+          <a
+            href="/intake-form/"
+            class="px-6 py-3 rounded-xl bg-[#F59E0B] text-gray-950 font-extrabold text-sm hover:bg-amber-400 transition-all shadow-md inline-flex items-center gap-2"
+          >
+            <ShieldCheck class="w-4 h-4 text-gray-950" />
+            <span data-en="Parent Coaching Intake Form" data-ur="کوچنگ انٹیک فارم">Parent Coaching Intake Form</span>
+          </a>
+
+          <a
+            href="/tppc-live-interactive-parenting-course/"
+            class="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm transition-all inline-flex items-center gap-2 backdrop-blur-sm"
+          >
+            <Sparkles class="w-4 h-4 text-emerald-300" />
+            <span data-en="TPPC Live Course (10 Pillars)" data-ur="ٹی پی پی سی لائیو کورس">TPPC Live Course (10 Pillars)</span>
+          </a>
+
+          <a
+            href="/shop/"
+            class="px-6 py-3 rounded-xl bg-emerald-800/80 hover:bg-emerald-700 border border-emerald-500/30 text-white font-bold text-sm transition-all inline-flex items-center gap-2"
+          >
+            <BookOpen class="w-4 h-4 text-emerald-300" />
+            <span data-en="Books & Publications" data-ur="کتب اور پبلیکیشنز">Books & Publications</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom Disclaimer Banner -->
+    <div class="text-center text-xs text-gray-400 pt-2">
+      <span data-en="Disclaimer: This diagnostic form is designed for developmental self-reflection and guidance, not for clinical diagnosis, labeling, or judging you or your child." data-ur="تنبیہ: یہ فارم خود احتسابی اور رہنمائی کے لیے ہے، خود کو یا اپنے بچے کو لیبل کرنے یا جج کرنے کے لیے نہیں۔">
+        Disclaimer: This diagnostic form is designed for developmental self-reflection and guidance, not for clinical diagnosis, labeling, or judging you or your child.
+      </span>
+    </div>
+
+  </main>
+
+  <!-- Interactive Client-side Script -->
+  <script is:inline define:vars={{ WHATSAPP_NUMBER }}>
+    (function() {
+      let currentLang = 'en';
+      const STORAGE_KEY = 'EduTarbiyahParentCoachingReadinessForm_v2';
+
+      const etpcData = [
+        {
+          titleEn: "1. Child's Behavior & Compliance",
+          titleUr: "1۔ بچے کا رویہ",
+          icon: "👦",
+          questionsEn: [
+            "My child frequently displays intense anger, stubbornness, or defiance.",
+            "My child struggles significantly to follow household rules or daily schedules.",
+            "My child has severe difficulty managing screen time, mobile gaming, or transitions."
+          ],
+          questionsUr: [
+            "میرا بچہ اکثر غصہ، ضد یا جارحانہ رویہ دکھاتا ہے۔",
+            "میرے بچے کو قواعد یا روزمرہ روٹین پر عمل کرنے میں مشکل ہوتی ہے۔",
+            "میرے بچے کو اسکرین ٹائم یا موبائل کے استعمال کے حوالے سے مشکل درپیش ہے۔"
+          ]
+        },
+        {
+          titleEn: "2. Parent-Child Emotional Connection",
+          titleUr: "2۔ والدین اور بچے کا تعلق",
+          icon: "❤️",
+          questionsEn: [
+            "I feel emotionally distant or disconnected from my child at times.",
+            "My child does not listen easily and ignores my requests without repeated nagging.",
+            "Tension and friction arise between us far more frequently than warmth and closeness."
+          ],
+          questionsUr: [
+            "میں اپنے بچے سے جذباتی طور پر دوری محسوس کرتا / کرتی ہوں۔",
+            "میرا بچہ میری بات آسانی سے نہیں سنتا۔",
+            "ہمارے درمیان محبت اور قربت کے بجائے اکثر تناؤ پیدا ہوجاتا ہے۔"
+          ]
+        },
+        {
+          titleEn: "3. Anger & Emotional Regulation",
+          titleUr: "3۔ غصہ اور جذباتی کنٹرول",
+          icon: "😟",
+          questionsEn: [
+            "I frequently experience frustration, irritation, or explosive anger while parenting.",
+            "Minor disagreements quickly escalate into intense household shouting matches.",
+            "My child struggles to regulate their emotions during stressful or disappointing moments."
+          ],
+          questionsUr: [
+            "میں پیرنٹنگ کے دوران اکثر جھنجھلاہٹ یا غصہ محسوس کرتا / کرتی ہوں۔",
+            "چھوٹی چھوٹی باتیں گھر میں جلد تنازعے میں بدل جاتی ہیں۔",
+            "میرا بچہ مشکل حالات میں اپنے جذبات پر قابو رکھنے میں مشکل محسوس کرتا ہے۔"
+          ]
+        },
+        {
+          titleEn: "4. Communication & Active Dialogue",
+          titleUr: "4۔ رابطہ و گفتگو",
+          icon: "💬",
+          questionsEn: [
+            "Conversations between my child and me feel strained, awkward, or tense.",
+            "My child avoids opening up or sharing their genuine feelings with me.",
+            "I want to improve how I guide, listen, and respond without reacting impulsively."
+          ],
+          questionsUr: [
+            "میرے اور میرے بچے کے درمیان گفتگو اکثر مشکل ہوجاتی ہے۔",
+            "میرا بچہ مجھ سے کھل کر بات کرنے سے گریز کرتا ہے۔",
+            "میں یہ بہتر بنانا چاہتا / چاہتی ہوں کہ میں کیسے رہنمائی کروں، سنوں اور ردِّعمل دوں۔"
+          ]
+        },
+        {
+          titleEn: "5. Discipline & Daily Routine Consistency",
+          titleUr: "5۔ نظم و ضبط اور روٹین",
+          icon: "📋",
+          questionsEn: [
+            "I struggle to maintain consistency with discipline and positive boundary enforcement.",
+            "Salah, study routines, sleep schedules, or meal times are disorganized.",
+            "I need practical, non-punitive strategies to replace yelling or empty threats."
+          ],
+          questionsUr: [
+            "مجھے نظم و ضبط میں مستقل مزاجی برقرار رکھنے میں مشکل ہوتی ہے۔",
+            "نماز، پڑھائی، نیند یا روزمرہ کی روٹین اچھی طرح قائم نہیں۔",
+            "مجھے مثبت نظم و ضبط کے لیے عملی حکمتِ عملی کی ضرورت ہے۔"
+          ]
+        },
+        {
+          titleEn: "6. Home Atmosphere & Tarbiyah Culture",
+          titleUr: "6۔ خاندانی ماحول",
+          icon: "🏡",
+          questionsEn: [
+            "The home environment frequently feels stressful, chaotic, or reactive.",
+            "Quality family time, spiritual Tarbiyah, and wholesome character habits need strengthening.",
+            "I want professional support to build a more peaceful, barakah-filled Islamic home."
+          ],
+          questionsUr: [
+            "گھر کا ماحول اکثر دباؤ والا یا ردِّعملی ہوجاتا ہے۔",
+            "فیملی ٹائم، تربیت اور مثبت عادات میں بہتری کی ضرورت ہے۔",
+            "میں زیادہ پُرسکون اور تربیت ساز گھر بنانے میں مدد چاہتا / چاہتی ہوں۔"
+          ]
+        }
+      ];
+
+      // Build Questions DOM
+      function etpcBuildQuestions() {
+        const wrap = document.getElementById("etpcQuestions");
+        if (!wrap) return;
+        wrap.innerHTML = "";
+
+        const isUr = currentLang === 'ur';
+
+        etpcData.forEach((section, sIndex) => {
+          const box = document.createElement("div");
+          box.className = "bg-white rounded-3xl border border-gray-200/80 shadow-md p-6 sm:p-8 space-y-6";
+
+          const title = isUr ? section.titleUr : section.titleEn;
+          const questions = isUr ? section.questionsUr : section.questionsEn;
+
+          let html = `
+            <div class="flex items-center gap-3 pb-4 border-b border-gray-100">
+              <span class="text-2xl p-2.5 rounded-2xl bg-emerald-50 border border-emerald-100">${section.icon}</span>
+              <div>
+                <span class="text-[11px] font-bold text-[#0F766E] uppercase tracking-wider block">Pillar ${sIndex + 1} of 6</span>
+                <h3 class="text-lg sm:text-xl font-serif font-extrabold text-[#064E3B]">${title}</h3>
+              </div>
+            </div>
+            <div class="space-y-5">
+          `;
+
+          questions.forEach((q, qIndex) => {
+            const name = `etpc_q_${sIndex}_${qIndex}`;
+            const qNum = sIndex * 3 + qIndex + 1;
+
+            html += `
+              <div class="p-4 rounded-2xl bg-[#FBFDFC] border border-gray-200/80 hover:border-[#0F766E]/30 transition-all space-y-3">
+                <div class="text-sm sm:text-base font-bold text-gray-800 leading-snug">
+                  <span class="text-[#0F766E]">${qNum}.</span> ${q}
+                </div>
+                <div class="grid grid-cols-3 gap-2 sm:gap-3 text-xs sm:text-sm font-semibold">
+                  <label class="etpc-radio-label flex items-center justify-center gap-2 p-2.5 sm:p-3 rounded-xl border border-gray-200 bg-white hover:bg-rose-50 hover:border-rose-300 text-gray-700 cursor-pointer transition-all text-center">
+                    <input type="radio" name="${name}" value="3" class="w-4 h-4 text-rose-600 focus:ring-rose-500 cursor-pointer" />
+                    <span>${isUr ? 'اکثر' : 'Often (3)'}</span>
+                  </label>
+                  <label class="etpc-radio-label flex items-center justify-center gap-2 p-2.5 sm:p-3 rounded-xl border border-gray-200 bg-white hover:bg-amber-50 hover:border-amber-300 text-gray-700 cursor-pointer transition-all text-center">
+                    <input type="radio" name="${name}" value="2" class="w-4 h-4 text-amber-600 focus:ring-amber-500 cursor-pointer" />
+                    <span>${isUr ? 'کبھی کبھار' : 'Sometimes (2)'}</span>
+                  </label>
+                  <label class="etpc-radio-label flex items-center justify-center gap-2 p-2.5 sm:p-3 rounded-xl border border-gray-200 bg-white hover:bg-emerald-50 hover:border-emerald-300 text-gray-700 cursor-pointer transition-all text-center">
+                    <input type="radio" name="${name}" value="1" class="w-4 h-4 text-emerald-600 focus:ring-emerald-500 cursor-pointer" />
+                    <span>${isUr ? 'شاذونادر' : 'Rarely (1)'}</span>
+                  </label>
+                </div>
+              </div>
+            `;
+          });
+
+          html += `</div>`;
+          box.innerHTML = html;
+          wrap.appendChild(box);
+        });
+
+        // Add change listeners
+        wrap.querySelectorAll('input[type="radio"]').forEach((radio) => {
+          radio.addEventListener('change', () => {
+            etpcCalculate(false);
+            etpcSaveSilent();
+          });
+        });
+      }
+
+      function etpcGetAnswers() {
+        let total = 0;
+        let answered = 0;
+        let often = 0;
+        let sometimes = 0;
+        let rarely = 0;
+        const sectionScores = [0, 0, 0, 0, 0, 0];
+
+        etpcData.forEach((section, sIndex) => {
+          section.questionsEn.forEach((q, qIndex) => {
+            const selected = document.querySelector(`input[name="etpc_q_${sIndex}_${qIndex}"]:checked`);
+            if (selected) {
+              const val = parseInt(selected.value, 10);
+              total += val;
+              answered++;
+              sectionScores[sIndex] += val;
+              if (val === 3) often++;
+              if (val === 2) sometimes++;
+              if (val === 1) rarely++;
+            }
+          });
+        });
+
+        return { total, answered, often, sometimes, rarely, sectionScores };
+      }
+
+      function etpcCalculate(forceFull = false) {
+        const ans = etpcGetAnswers();
+        const maxScore = 54;
+        const percent = Math.round((ans.total / maxScore) * 100);
+
+        const scoreEl = document.getElementById("etpcTotalScore");
+        const oftenEl = document.getElementById("etpcOftenCount");
+        const answeredEl = document.getElementById("etpcAnswered");
+        const percentEl = document.getElementById("etpcPercent");
+        const fillEl = document.getElementById("etpcProgressFill");
+        const resultTitle = document.getElementById("etpcResultTitle");
+        const resultText = document.getElementById("etpcResultText");
+        const badgeCategory = document.getElementById("etpcBadgeCategory");
+        const scoreDisplay = document.getElementById("etpcResultScoreDisplay");
+        const breakdownWrap = document.getElementById("pillar-breakdown");
+
+        if (scoreEl) scoreEl.textContent = ans.total;
+        if (oftenEl) oftenEl.textContent = ans.often;
+        if (answeredEl) answeredEl.textContent = ans.answered + "/18";
+        if (percentEl) percentEl.textContent = percent + "%";
+        if (fillEl) fillEl.style.width = Math.round((ans.answered / 18) * 100) + "%";
+        if (scoreDisplay) scoreDisplay.textContent = percent + "%";
+
+        const isUr = currentLang === 'ur';
+
+        if (ans.answered < 18 && !forceFull) {
+          if (badgeCategory) {
+            badgeCategory.textContent = isUr ? `${ans.answered}/18 سوالات مکمل` : `${ans.answered}/18 Questions Answered`;
+          }
+          if (resultText) {
+            resultText.textContent = isUr 
+              ? "درست نتیجہ اور سفارشات حاصل کرنے کے لیے تمام 18 سوالات کے جواب منتخب کریں۔"
+              : "Please complete all 18 questions to generate your full diagnostic recommendation.";
+          }
+          return;
+        }
+
+        // Assessment threshold
+        if (ans.total >= 42 || ans.often >= 8) {
+          if (resultTitle) {
+            resultTitle.textContent = isUr ? "Parent Coaching آپ کے لیے انتہائی مفید اور ضروری ہے" : "1-on-1 Parent Coaching is Highly Recommended";
+          }
+          if (badgeCategory) {
+            badgeCategory.textContent = isUr ? "🔴 شدید ضرورت (High Coaching Need)" : "🔴 High Priority Coaching Need";
+          }
+          if (resultText) {
+            resultText.textContent = isUr
+              ? "آپ کے جوابات واضح کرتے ہیں کہ بچے کے رویّے، باہمی تعلق، غصے یا روٹین میں کئی جگہ فوری رہنمائی کی ضرورت ہے۔ پرانے طریقے بار بار دہرانے کے بجائے ون آن ون کوچنگ سے مخصوص روڈ میپ بنائیں۔"
+              : "Your responses indicate urgent friction in child compliance, emotional regulation, and routine consistency. A customized 1-on-1 coaching protocol will bring immediate de-escalation and structured relief to your home.";
+          }
+        } else if (ans.total >= 30 || ans.often >= 4) {
+          if (resultTitle) {
+            resultTitle.textContent = isUr ? "Parent Coaching آپ کے خاندان کے لیے بہت مددگار ثابت ہوگی" : "Parent Coaching Can Provide Crucial Support";
+          }
+          if (badgeCategory) {
+            badgeCategory.textContent = isUr ? "🟡 درمیانی ضرورت (Moderate Support Needed)" : "🟡 Moderate Structured Support Needed";
+          }
+          if (resultText) {
+            resultText.textContent = isUr
+              ? "آپ کے جوابات کے مطابق کچھ اہم شعبوں میں رہنمائی، مستقل مزاجی اور مثبت حکمتِ عملی کی ضرورت ہے۔ آپ ون ٹو ون کوچنگ، TPPC کورس یا انٹیک فارم کے ذریعے رہنمائی لے سکتے ہیں۔"
+              : "Your parenting foundation is intact, but specific friction areas require consistent tools and non-punitive strategies. You will benefit immensely from structured coaching sessions or our TPPC Practitioner Course.";
+          }
+        } else {
+          if (resultTitle) {
+            resultTitle.textContent = isUr ? "آپ کی تربیتی بنیاد مضبوط ہے، مزید تسلسل برقرار رکھیں" : "Strong Parenting Foundation; Deepen Consistency";
+          }
+          if (badgeCategory) {
+            badgeCategory.textContent = isUr ? "🟢 تسلسل و دیکھ بھال (Foundational Maintenance)" : "🟢 Strong Foundation (Maintenance)";
+          }
+          if (resultText) {
+            resultText.textContent = isUr
+              ? "ماشاءاللہ آپ کے گھر کا ماحول نسبتاً متوازن ہے۔ باقاعدہ روٹین، صبر اور مثبت گفتگو کو برقرار رکھنے کے لیے ایجو تربیہ کی کتب، فری گائیڈز اور بلاگز سے فائدہ اٹھاتے رہیں۔"
+              : "Alhamdulillah, your responses indicate a generally balanced home atmosphere. Continue nurturing communication and daily spiritual habits using EduTarbiyah publications, articles, and habit builders.";
+          }
+        }
+
+        // Render breakdown cards
+        if (breakdownWrap) {
+          breakdownWrap.innerHTML = "";
+          etpcData.forEach((sec, i) => {
+            const sc = ans.sectionScores[i];
+            const pTitle = isUr ? sec.titleUr : sec.titleEn;
+            const card = document.createElement("div");
+            card.className = "p-3 rounded-xl bg-white border border-gray-200 text-xs space-y-1 shadow-sm";
+            card.innerHTML = `
+              <div class="flex items-center justify-between font-bold text-gray-800">
+                <span class="truncate">${sec.icon} ${pTitle}</span>
+                <span class="${sc >= 7 ? 'text-rose-600' : sc >= 5 ? 'text-amber-600' : 'text-emerald-700'}">${sc}/9</span>
+              </div>
+              <div class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                <div class="${sc >= 7 ? 'bg-rose-500' : sc >= 5 ? 'bg-amber-500' : 'bg-emerald-500'} h-full" style="width: ${Math.round((sc/9)*100)}%;"></div>
+              </div>
+            `;
+            breakdownWrap.appendChild(card);
+          });
+        }
+      }
+
+      function etpcSaveSilent() {
+        try {
+          const data = {
+            parentName: document.getElementById("etpcParentName")?.value || "",
+            childName: document.getElementById("etpcChildName")?.value || "",
+            childAge: document.getElementById("etpcChildAge")?.value || "",
+            date: document.getElementById("etpcDate")?.value || "",
+            whatsapp: document.getElementById("etpcWhatsapp")?.value || "",
+            email: document.getElementById("etpcEmail")?.value || "",
+            challenge: document.getElementById("etpcChallenge")?.value || "",
+            currentLang,
+            answers: {}
+          };
+
+          etpcData.forEach((section, sIndex) => {
+            section.questionsEn.forEach((q, qIndex) => {
+              const name = `etpc_q_${sIndex}_${qIndex}`;
+              const selected = document.querySelector(`input[name="${name}"]:checked`);
+              data.answers[name] = selected ? selected.value : "";
+            });
+          });
+
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        } catch (e) {}
+      }
+
+      function etpcLoad() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) return;
+
+        try {
+          const data = JSON.parse(saved);
+
+          if (document.getElementById("etpcParentName") && data.parentName) document.getElementById("etpcParentName").value = data.parentName;
+          if (document.getElementById("etpcChildName") && data.childName) document.getElementById("etpcChildName").value = data.childName;
+          if (document.getElementById("etpcChildAge") && data.childAge) document.getElementById("etpcChildAge").value = data.childAge;
+          if (document.getElementById("etpcDate") && data.date) document.getElementById("etpcDate").value = data.date;
+          if (document.getElementById("etpcWhatsapp") && data.whatsapp) document.getElementById("etpcWhatsapp").value = data.whatsapp;
+          if (document.getElementById("etpcEmail") && data.email) document.getElementById("etpcEmail").value = data.email;
+          if (document.getElementById("etpcChallenge") && data.challenge) document.getElementById("etpcChallenge").value = data.challenge;
+
+          if (data.currentLang) {
+            setLanguage(data.currentLang);
+          }
+
+          if (data.answers) {
+            Object.keys(data.answers).forEach((name) => {
+              const val = data.answers[name];
+              if (val) {
+                const radio = document.querySelector(`input[name="${name}"][value="${val}"]`);
+                if (radio) radio.checked = true;
+              }
+            });
+          }
+
+          etpcCalculate(false);
+        } catch (e) {}
+      }
+
+      // Manual Save Button
+      const saveBtn = document.getElementById("btn-save");
+      const saveText = document.getElementById("save-btn-text");
+      if (saveBtn) {
+        saveBtn.addEventListener("click", () => {
+          etpcSaveSilent();
+          if (saveText) saveText.textContent = currentLang === 'ur' ? 'محفوظ ہو گیا!' : 'Saved!';
+          setTimeout(() => {
+            if (saveText) saveText.textContent = currentLang === 'ur' ? 'محفوظ کریں' : 'Save';
+          }, 2000);
+        });
+      }
+
+      // Print Button
+      const printBtn = document.getElementById("btn-print");
+      if (printBtn) {
+        printBtn.addEventListener("click", () => {
+          etpcCalculate(true);
+          window.print();
+        });
+      }
+
+      // Clear / Reset Button
+      const clearBtn = document.getElementById("clear-form-btn");
+      if (clearBtn) {
+        clearBtn.addEventListener("click", () => {
+          if (confirm(currentLang === 'ur' ? "کیا آپ فارم صاف کرنا چاہتے ہیں؟" : "Are you sure you want to reset this readiness assessment?")) {
+            localStorage.removeItem(STORAGE_KEY);
+            location.reload();
+          }
+        });
+      }
+
+      // WhatsApp Button
+      const waBtn = document.getElementById("btn-whatsapp");
+      if (waBtn) {
+        waBtn.addEventListener("click", () => {
+          etpcCalculate(true);
+          const ans = etpcGetAnswers();
+
+          const parentName = document.getElementById("etpcParentName")?.value || "Parent";
+          const childName = document.getElementById("etpcChildName")?.value || "Child";
+          const childAge = document.getElementById("etpcChildAge")?.value || "Not provided";
+          const whatsapp = document.getElementById("etpcWhatsapp")?.value || "Not provided";
+          const challenge = document.getElementById("etpcChallenge")?.value || "Not provided";
+          const resultTitle = document.getElementById("etpcResultTitle")?.textContent || "";
+          const resultCategory = document.getElementById("etpcBadgeCategory")?.textContent || "";
+          const percent = document.getElementById("etpcPercent")?.textContent || "0%";
+
+          const message = 
+`Assalam u Alaikum EduTarbiyah Coaching Team! 🌿
+Here is my *Parent Coaching Readiness Self-Assessment*:
+
+👤 *Parent:* ${parentName}
+👦/👧 *Child:* ${childName} (${childAge})
+📱 *Contact:* ${whatsapp}
+
+📊 *Diagnostic Score:* ${ans.total}/54 (${percent})
+📌 *Status:* ${resultCategory}
+⚠️ *Frequent ('Often') Issues:* ${ans.often} / 18
+
+💡 *Biggest Parenting Challenge:*
+"${challenge}"
+
+I am seeking guidance regarding 1-on-1 Parent Coaching with an EduTarbiyah specialist. JazakAllah Khair!`;
+
+          const cleanPhone = (WHATSAPP_NUMBER || '923122370720').replace(/[^0-9]/g, '');
+          const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
+          window.open(waUrl, "_blank");
+        });
+      }
+
+      // Input changes save
+      document.querySelectorAll('#etpcParentName, #etpcChildName, #etpcChildAge, #etpcDate, #etpcWhatsapp, #etpcEmail, #etpcChallenge').forEach((el) => {
+        el.addEventListener('input', () => {
+          etpcSaveSilent();
+        });
+      });
+
+      // Language Switcher Logic
+      function setLanguage(lang) {
+        currentLang = lang;
+        const isUr = lang === 'ur';
+
+        const langToggleText = document.getElementById("lang-toggle-text");
+        if (langToggleText) {
+          langToggleText.textContent = isUr ? 'View in English' : 'اردو میں دیکھیں';
+        }
+
+        document.documentElement.dir = isUr ? 'rtl' : 'ltr';
+        document.documentElement.lang = isUr ? 'ur' : 'en';
+
+        // Translate data-en and data-ur text nodes
+        document.querySelectorAll('[data-en][data-ur]').forEach((el) => {
+          const txt = isUr ? el.getAttribute('data-ur') : el.getAttribute('data-en');
+          if (txt) el.textContent = txt;
+        });
+
+        // Translate Placeholders
+        const pName = document.getElementById("etpcParentName");
+        const cName = document.getElementById("etpcChildName");
+        const cAge = document.getElementById("etpcChildAge");
+        const cChallenge = document.getElementById("etpcChallenge");
+
+        if (pName) pName.placeholder = isUr ? 'مثلاً عائشہ / فاروق' : 'e.g. Ayesha / Farooq';
+        if (cName) cName.placeholder = isUr ? 'مثلاً ابراہیم' : 'e.g. Ibrahim';
+        if (cAge) cAge.placeholder = isUr ? 'مثلاً 7 سال' : 'e.g. 7 years';
+        if (cChallenge) cChallenge.placeholder = isUr ? 'اپنا سب سے بڑا چیلنج بیان کریں (مثلاً ضد، غصہ، اسکرین کی عادت، نماز میں سستی)...' : 'Describe your current struggle (e.g. bedtime resistance, intense shouting matches, phone addiction)...';
+
+        // Rebuild questions with current language while preserving answers
+        const oldAnswers = {};
+        document.querySelectorAll('input[type="radio"]:checked').forEach((r) => {
+          oldAnswers[r.name] = r.value;
+        });
+
+        etpcBuildQuestions();
+
+        Object.keys(oldAnswers).forEach((name) => {
+          const radio = document.querySelector(`input[name="${name}"][value="${oldAnswers[name]}"]`);
+          if (radio) radio.checked = true;
+        });
+
+        etpcCalculate(false);
+        etpcSaveSilent();
+      }
+
+      const langToggleBtn = document.getElementById("lang-toggle-btn");
+      if (langToggleBtn) {
+        langToggleBtn.addEventListener("click", () => {
+          const next = currentLang === 'en' ? 'ur' : 'en';
+          setLanguage(next);
+        });
+      }
+
+      // Initial Setup
+      etpcBuildQuestions();
+      etpcLoad();
+    })();
+  </script>
+
+</Layout>
