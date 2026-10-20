@@ -15,9 +15,20 @@ import {
   Clock, 
   GraduationCap, 
   Award,
-  ArrowUpRight 
+  ArrowUpRight,
+  Shield,
+  Activity,
+  Brain,
+  Home,
+  Check,
+  Flame,
+  Zap,
+  Target,
+  FileText,
+  AlertCircle
 } from 'lucide-astro';
 
+// Fetch products and posts for dynamic showcase
 const allProducts = await getAllProducts();
 const featuredProducts = allProducts.slice(0, 4);
 
@@ -25,148 +36,130 @@ const englishPosts = await getEnglishPosts(3);
 ---
 
 <Layout
-  title="EduTarbiyah | Authentic Parenting & Moral Education for Modern Families"
-  description="Empowering mature parents and educators with authentic Islamic parenting frameworks, diagnostic self-audits, and practical habit toolkits."
+  title="EduTarbiyah | Raise Faithful, Confident & Emotionally Healthy Children in the Digital Age"
+  description="EduTarbiyah helps Muslim parents build strong character, reduce screen addiction, improve behavior, create salah routines, and build a peaceful Islamic home."
+  canonical="https://edutarbiyah.com/"
 >
-  <!-- Hero Section -->
-  <section class="relative overflow-hidden bg-gradient-to-b from-[#F4F8F6] via-[#FFFDF9] to-[#FFFDF9] pt-12 pb-20 lg:pt-20 lg:pb-28">
-    <div class="absolute inset-0 opacity-30 bg-[radial-gradient(#0F766E_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+
+  <!-- 1. HERO SECTION (Exact Copy & Messaging from edutarbiyah.com) -->
+  <section class="relative overflow-hidden bg-gradient-to-b from-[#F4F8F6] via-[#FFFDF9] to-[#FFFDF9] pt-12 pb-20 lg:pt-16 lg:pb-24 border-b border-gray-100">
+    <div class="absolute inset-0 opacity-25 bg-[radial-gradient(#0F766E_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
         
         <!-- Left Hero Copy -->
-        <div class="lg:col-span-7 space-y-8 text-center lg:text-left">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0F766E]/10 border border-[#0F766E]/20 text-[#0F766E] text-xs font-semibold tracking-wide">
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0F766E]/10 border border-[#0F766E]/20 text-[#0F766E] text-xs font-bold tracking-wide uppercase">
             <Sparkles class="w-3.5 h-3.5 text-[#F59E0B]" />
-            <span>Islamic Parenting for the Modern Era</span>
+            <span>🌱 Complete Parenting & Tarbiyah Solutions</span>
           </div>
 
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-[#064E3B] tracking-tight leading-[1.15]">
-            Nurture Hearts. <br />
-            <span class="text-[#0F766E] italic font-normal">Shape Characters.</span> <br />
-            Build Lasting Legacy.
+          <h1 class="text-3xl sm:text-5xl lg:text-5xl xl:text-6xl font-serif font-extrabold text-[#064E3B] tracking-tight leading-[1.15]">
+            Raise Faithful, Confident & Emotionally Healthy Children in the <span class="text-[#0F766E] italic font-normal">Digital Age</span>
           </h1>
 
-          <p class="text-lg sm:text-xl text-[#4B5563] leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
-            A serene, evidence-based platform for mature parents and educators. We bridge authentic prophetic Tarbiyah with modern developmental insights to help your children thrive emotionally, intellectually, and spiritually.
+          <p class="text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-normal">
+            EduTarbiyah helps Muslim parents build strong character, reduce screen addiction, improve behavior, create salah and Quran routines, and develop a peaceful Islamic home through coaching, courses, books, blogs, free resources and practical tools.
           </p>
 
-          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
             <a
               href="/audit-your-parenting/"
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-base font-bold shadow-lg shadow-[#0F766E]/25 hover:shadow-xl hover:shadow-[#0F766E]/35 hover:-translate-y-0.5 transition-all duration-200"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-sm sm:text-base font-bold shadow-lg shadow-[#0F766E]/25 hover:shadow-xl hover:shadow-[#0F766E]/35 hover:-translate-y-0.5 transition-all duration-200"
             >
-              <Sparkles class="w-5 h-5 text-[#F59E0B]" />
-              <span>Take Free Parenting Audit</span>
+              <CheckCircle class="w-5 h-5 text-[#F59E0B]" />
+              <span>Audit Your Parenting Free</span>
             </a>
 
             <a
-              href="/shop/"
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white hover:bg-gray-50 text-[#1F2937] text-base font-bold border border-gray-200 shadow-sm hover:shadow transition-all duration-200"
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Assalamualaikum EduTarbiyah, I want to join your WhatsApp Parenting Community.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#25D366] hover:bg-[#1EBE5D] text-white text-sm sm:text-base font-bold shadow-md hover:shadow-lg transition-all duration-200"
             >
-              <BookOpen class="w-5 h-5 text-[#0F766E]" />
-              <span>Explore Bookstore</span>
+              <MessageCircle class="w-5 h-5 fill-current" />
+              <span>Join WhatsApp Community</span>
+            </a>
+
+            <a
+              href="/tppc-live-interactive-parenting-course/"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-white hover:bg-gray-50 text-[#064E3B] text-sm sm:text-base font-bold border border-gray-200 shadow-sm hover:shadow transition-all duration-200"
+            >
+              <GraduationCap class="w-5 h-5 text-[#0F766E]" />
+              <span>View TPPC Course</span>
             </a>
           </div>
 
-          <!-- Trust Badges -->
-          <div class="pt-6 border-t border-gray-200/60 grid grid-cols-3 gap-4 text-center lg:text-left">
-            <div>
-              <div class="text-2xl font-serif font-bold text-[#064E3B]">5,000+</div>
-              <div class="text-xs text-gray-500 font-medium">Families Guided</div>
+          <!-- Trust Badges Row -->
+          <div class="pt-6 border-t border-gray-200/60 flex flex-wrap items-center justify-center lg:justify-start gap-6 text-xs sm:text-sm font-semibold text-gray-700">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-[#0F766E]"></span>
+              <span>Islamic Tarbiyah</span>
             </div>
-            <div>
-              <div class="text-2xl font-serif font-bold text-[#064E3B]">100%</div>
-              <div class="text-xs text-gray-500 font-medium">Authentic Tarbiyah</div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
+              <span>Modern Parenting</span>
             </div>
-            <div>
-              <div class="text-2xl font-serif font-bold text-[#064E3B]">12+</div>
-              <div class="text-xs text-gray-500 font-medium">Published Works</div>
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+              <span>Practical Home Tools</span>
             </div>
           </div>
         </div>
 
-        <!-- Right Hero Visual Card -->
+        <!-- Right Hero: Founder & Head Mentor Card -->
         <div class="lg:col-span-5 relative">
           <div class="relative mx-auto max-w-md lg:max-w-none">
-            <!-- Background Decorative Glow -->
+            <!-- Background Glow -->
             <div class="absolute -inset-2 bg-gradient-to-r from-[#0F766E] to-[#F59E0B] rounded-3xl blur-xl opacity-20 transform -rotate-1"></div>
 
-            <div class="relative bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-gray-100 space-y-6">
-              <div class="flex items-center justify-between border-b border-gray-100 pb-4">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-xl bg-[#0F766E]/10 flex items-center justify-center text-[#0F766E]">
-                    <Compass class="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 class="font-bold text-gray-900 text-sm">Tarbiyah Diagnostic Suite</h3>
-                    <p class="text-xs text-gray-500">Interactive Self-Assessments</p>
-                  </div>
-                </div>
-                <span class="text-xs font-bold text-[#0F766E] bg-[#0F766E]/10 px-2.5 py-1 rounded-full">
-                  Instant Results
-                </span>
+            <div class="relative bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border border-gray-100 text-center space-y-5">
+              
+              <!-- Mentor Photo -->
+              <div class="relative w-36 h-36 mx-auto rounded-full overflow-hidden border-4 border-[#0F766E]/20 shadow-lg bg-emerald-50">
+                <img
+                  src="https://edutarbiyah.com/wp-content/uploads/2026/02/Younus-3.png"
+                  alt="Dr. Muhammad Younus Khalid"
+                  class="w-full h-full object-cover object-top"
+                  loading="eager"
+                />
               </div>
 
-              <!-- Diagnostic Item list -->
-              <div class="space-y-3">
-                <a
-                  href="/audit-your-parenting/"
-                  class="flex items-center justify-between p-3.5 rounded-xl bg-[#F8FFFC] border border-[#0F766E]/20 hover:border-[#0F766E] transition-all group"
-                >
-                  <div class="flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-[#0F766E]"></span>
-                    <div>
-                      <div class="text-sm font-bold text-gray-900 group-hover:text-[#0F766E] transition-colors">
-                        Parenting Style Audit
-                      </div>
-                      <div class="text-xs text-gray-500">Identify strengths & emotional connection gaps</div>
-                    </div>
-                  </div>
-                  <ArrowRight class="w-4 h-4 text-gray-400 group-hover:text-[#0F766E] group-hover:translate-x-1 transition-all" />
-                </a>
-
-                <a
-                  href="/family-vision-maker/"
-                  class="flex items-center justify-between p-3.5 rounded-xl bg-gray-50 border border-gray-200 hover:border-[#0F766E] transition-all group"
-                >
-                  <div class="flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-[#F59E0B]"></span>
-                    <div>
-                      <div class="text-sm font-bold text-gray-900 group-hover:text-[#0F766E] transition-colors">
-                        Family Vision Maker
-                      </div>
-                      <div class="text-xs text-gray-500">Create a unified home mission & core values</div>
-                    </div>
-                  </div>
-                  <ArrowRight class="w-4 h-4 text-gray-400 group-hover:text-[#0F766E] group-hover:translate-x-1 transition-all" />
-                </a>
-
-                <a
-                  href="/childs-behavior-improvement-tracker/"
-                  class="flex items-center justify-between p-3.5 rounded-xl bg-gray-50 border border-gray-200 hover:border-[#0F766E] transition-all group"
-                >
-                  <div class="flex items-center gap-3">
-                    <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-                    <div>
-                      <div class="text-sm font-bold text-gray-900 group-hover:text-[#0F766E] transition-colors">
-                        Child Behavior Tracker
-                      </div>
-                      <div class="text-xs text-gray-500">Structured habit tracking & positive reinforcement</div>
-                    </div>
-                  </div>
-                  <ArrowRight class="w-4 h-4 text-gray-400 group-hover:text-[#0F766E] group-hover:translate-x-1 transition-all" />
-                </a>
-              </div>
-
-              <!-- Highlight note -->
-              <div class="bg-[#FFF8EC] rounded-xl p-4 border border-[#F59E0B]/30 flex items-start gap-3">
-                <Sparkles class="w-5 h-5 text-[#F59E0B] shrink-0 mt-0.5" />
-                <p class="text-xs text-[#92400E] leading-relaxed">
-                  <strong>Did you know?</strong> 82% of parenting friction stems from inconsistent routines rather than defiance. Our diagnostics help pinpoint the exact root cause.
+              <!-- Mentor Credentials -->
+              <div class="space-y-1">
+                <h2 class="text-xl sm:text-2xl font-serif font-extrabold text-[#064E3B]">
+                  Dr. Muhammad Younus Khalid
+                </h2>
+                <p class="text-xs sm:text-sm text-gray-600 font-medium">
+                  Parenting & Tarbiyah Coach | Islamic Scholar | Trainer | Author
                 </p>
               </div>
+
+              <!-- Professional Badges -->
+              <div class="flex flex-wrap justify-center gap-1.5 text-[11px] font-semibold text-[#064E3B]">
+                <span class="px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200">Ph.D.</span>
+                <span class="px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200">Islamic Scholar</span>
+                <span class="px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200">Parenting Coach</span>
+                <span class="px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200">NLP & MBTI Practitioner</span>
+              </div>
+
+              <!-- CTA to Coaching -->
+              <div class="pt-2">
+                <a
+                  href="/edutarbiyah-parent-coaching-program/"
+                  class="w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-[#064E3B] hover:bg-[#043327] text-white text-sm font-bold shadow-md hover:shadow-lg transition-all"
+                >
+                  <Users class="w-4 h-4 text-amber-300" />
+                  <span>Get Parent Coaching</span>
+                </a>
+              </div>
+
+              <p class="text-[11px] text-gray-400">
+                Over 5,000+ parents and educators guided across Pakistan and globally.
+              </p>
 
             </div>
           </div>
@@ -176,246 +169,684 @@ const englishPosts = await getEnglishPosts(3);
     </div>
   </section>
 
-  <!-- Core Pillars of EduTarbiyah -->
-  <section class="py-16 bg-white border-y border-gray-100">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto space-y-3 mb-12">
-        <h2 class="text-xs font-bold uppercase tracking-widest text-[#0F766E]">
-          The EduTarbiyah Methodology
+  <!-- 2. PARENTING PROBLEMS WE SOLVE ("Are You Facing These Challenges at Home?") -->
+  <section class="py-16 lg:py-20 bg-[#F8FFFC] border-b border-[#0F766E]/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-xs font-bold uppercase tracking-wider">
+          <AlertCircle class="w-3.5 h-3.5" />
+          <span>Parenting Problems We Solve</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-[#064E3B]">
+          Are You Facing These Challenges at Home?
         </h2>
-        <h3 class="text-3xl sm:text-4xl font-serif font-bold text-[#064E3B]">
-          Three Pillars of Holistic Tarbiyah
-        </h3>
-        <p class="text-gray-600 text-base">
-          Rooted in classical wisdom and designed for modern household challenges.
+        <p class="text-gray-600 text-base leading-relaxed">
+          Many parents love their children deeply, but they struggle because they do not have a clear, practical and consistent parenting system.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- The 5 Pain Points List -->
+        <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border border-gray-200 shadow-sm space-y-4">
+          
+          <div class="flex items-start gap-3.5 p-3.5 rounded-xl bg-gray-50 border border-gray-100 text-sm font-medium text-gray-800">
+            <span class="w-6 h-6 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✕</span>
+            <span>Child’s anger, stubbornness, and back-answering are increasing.</span>
+          </div>
+
+          <div class="flex items-start gap-3.5 p-3.5 rounded-xl bg-gray-50 border border-gray-100 text-sm font-medium text-gray-800">
+            <span class="w-6 h-6 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✕</span>
+            <span>Mobile, games, YouTube, and screen addiction are disturbing daily routine.</span>
+          </div>
+
+          <div class="flex items-start gap-3.5 p-3.5 rounded-xl bg-gray-50 border border-gray-100 text-sm font-medium text-gray-800">
+            <span class="w-6 h-6 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✕</span>
+            <span>Salah, Quran, study, and sleep routines are constantly inconsistent.</span>
+          </div>
+
+          <div class="flex items-start gap-3.5 p-3.5 rounded-xl bg-gray-50 border border-gray-100 text-sm font-medium text-gray-800">
+            <span class="w-6 h-6 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✕</span>
+            <span>Parents often shout, feel immense guilt, and then lose consistency.</span>
+          </div>
+
+          <div class="flex items-start gap-3.5 p-3.5 rounded-xl bg-gray-50 border border-gray-100 text-sm font-medium text-gray-800">
+            <span class="w-6 h-6 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">✕</span>
+            <span>Children listen less, argue more, and the emotional connection becomes weak.</span>
+          </div>
+
+        </div>
+
+        <!-- The Solution Highlight Panel -->
+        <div class="lg:col-span-5 bg-gradient-to-br from-[#064E3B] to-[#0A4D3C] text-white rounded-3xl p-8 sm:p-10 shadow-xl space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-amber-300 text-xs font-bold uppercase tracking-wider">
+            <Compass class="w-3.5 h-3.5" />
+            <span>The EduTarbiyah Solution</span>
+          </div>
+
+          <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white leading-snug">
+            EduTarbiyah gives you a clear parenting roadmap.
+          </h3>
+
+          <p class="text-sm text-emerald-100 leading-relaxed">
+            Our approach combines Islamic Tarbiyah, child psychology, emotional connection, positive discipline, digital discipline and practical home routines.
+          </p>
+
+          <div class="pt-2 flex flex-col sm:flex-row gap-3">
+            <a
+              href="/audit-your-parenting/"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-[#F59E0B] hover:bg-amber-400 text-gray-950 font-extrabold text-sm shadow transition-all"
+            >
+              <span>Check Your Parenting Level</span>
+              <ArrowRight class="w-4 h-4" />
+            </a>
+
+            <a
+              href="/intake-form/"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm transition-all"
+            >
+              <span>Book Coaching</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. START WITH FREE PARENTING AUDIT SECTION -->
+  <section class="py-16 bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-[#F8FFFC] via-white to-[#F8FFFC] rounded-3xl border-2 border-[#0F766E]/20 p-8 sm:p-12 shadow-sm">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-7 space-y-4 text-center lg:text-left">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#064E3B] text-xs font-bold uppercase tracking-wider">
+              <CheckCircle class="w-3.5 h-3.5" />
+              <span>Zero-Cost Diagnostic Assessment</span>
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-serif font-extrabold text-[#064E3B]">
+              Start with Free Parenting Audit
+            </h2>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed max-w-xl">
+              Before buying any course or coaching, discover where your parenting needs improvement: connection, discipline, screen time, routine, salah, communication and emotional control.
+            </p>
+            <div class="pt-3 flex flex-wrap justify-center lg:justify-start gap-3">
+              <a
+                href="/audit-your-parenting/"
+                class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-sm font-bold shadow-md transition-all"
+              >
+                <span>Start Free Audit Now</span>
+                <ArrowRight class="w-4 h-4" />
+              </a>
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Assalamualaikum EduTarbiyah, I want guidance about my parenting audit.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-[#0F766E]/30 text-[#064E3B] hover:bg-[#F4F8F6] text-sm font-semibold transition-colors"
+              >
+                <MessageCircle class="w-4 h-4 text-[#0F766E]" />
+                <span>Ask on WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- 6 Pillars Mini Evaluation Badges -->
+          <div class="lg:col-span-5 grid grid-cols-2 gap-3 text-center">
+            <div class="p-3.5 rounded-2xl bg-white border border-gray-200 shadow-sm text-xs font-bold text-gray-800 flex items-center justify-center gap-2">
+              <Heart class="w-4 h-4 text-rose-500" />
+              <span>Relationship</span>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white border border-gray-200 shadow-sm text-xs font-bold text-gray-800 flex items-center justify-center gap-2">
+              <Shield class="w-4 h-4 text-amber-500" />
+              <span>Discipline</span>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white border border-gray-200 shadow-sm text-xs font-bold text-gray-800 flex items-center justify-center gap-2">
+              <Clock class="w-4 h-4 text-blue-500" />
+              <span>Screen Time</span>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white border border-gray-200 shadow-sm text-xs font-bold text-gray-800 flex items-center justify-center gap-2">
+              <Compass class="w-4 h-4 text-emerald-600" />
+              <span>Salah Routine</span>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white border border-gray-200 shadow-sm text-xs font-bold text-gray-800 flex items-center justify-center gap-2">
+              <Activity class="w-4 h-4 text-teal-600" />
+              <span>Behavior</span>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-white border border-gray-200 shadow-sm text-xs font-bold text-gray-800 flex items-center justify-center gap-2">
+              <Brain class="w-4 h-4 text-purple-600" />
+              <span>Emotions</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. JOIN EDUTARBIYAH WHATSAPP PARENTING COMMUNITY -->
+  <section class="py-16 bg-[#F8FFFC] border-b border-[#0F766E]/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white rounded-3xl border border-[#0F766E]/20 p-8 sm:p-12 shadow-md">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-7 space-y-4">
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-[#0F766E] text-xs font-bold uppercase tracking-wider">
+              <MessageCircle class="w-3.5 h-3.5 text-[#25D366]" />
+              <span>💬 Join Our Parenting Community</span>
+            </div>
+            <h2 class="text-2xl sm:text-4xl font-serif font-extrabold text-[#064E3B]">
+              Join EduTarbiyah WhatsApp Parenting Community
+            </h2>
+            <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+              Our WhatsApp community is created for parents who want regular parenting tips, Islamic Tarbiyah reminders, free resources, course updates, book offers and practical home routines.
+            </p>
+            <div class="pt-2 flex flex-wrap gap-3">
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Assalamualaikum EduTarbiyah, I want to join your WhatsApp Parenting Community.")}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5D] text-white text-sm font-bold shadow-md transition-all"
+              >
+                <MessageCircle class="w-4 h-4 fill-current" />
+                <span>Join WhatsApp Community</span>
+              </a>
+              <a
+                href="https://blog.edutarbiyah.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-[#F8FFFC] hover:bg-[#F4F8F6] border border-[#0F766E]/20 text-[#064E3B] text-sm font-bold transition-colors font-urdu"
+              >
+                <span>اردو بلاگ اور مضامین</span>
+                <ArrowUpRight class="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+
+          <!-- Feature Checklist -->
+          <div class="lg:col-span-5 bg-[#F8FFFC] rounded-2xl p-6 border border-[#0F766E]/15 space-y-3">
+            <div class="flex items-center gap-3 text-xs sm:text-sm font-medium text-gray-800">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#064E3B] flex items-center justify-center font-bold text-xs shrink-0">✓</span>
+              <span>Free parenting tips and daily Tarbiyah reminders</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs sm:text-sm font-medium text-gray-800">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#064E3B] flex items-center justify-center font-bold text-xs shrink-0">✓</span>
+              <span>Screen time contracts and behavioral guidance</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs sm:text-sm font-medium text-gray-800">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#064E3B] flex items-center justify-center font-bold text-xs shrink-0">✓</span>
+              <span>Islamic Tarbiyah home routine ideas & Salah charts</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs sm:text-sm font-medium text-gray-800">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#064E3B] flex items-center justify-center font-bold text-xs shrink-0">✓</span>
+              <span>Free downloadable checklists, trackers and PDF toolkits</span>
+            </div>
+            <div class="flex items-center gap-3 text-xs sm:text-sm font-medium text-gray-800">
+              <span class="w-5 h-5 rounded-full bg-emerald-100 text-[#064E3B] flex items-center justify-center font-bold text-xs shrink-0">✓</span>
+              <span>Exclusive course, coaching, and publication discounts</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. CHOOSE THE RIGHT PATH / OUR CORE OFFERS -->
+  <section class="py-20 bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#064E3B] text-xs font-bold uppercase tracking-wider">
+          <Target class="w-3.5 h-3.5 text-[#F59E0B]" />
+          <span>Our Core Offers</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-[#064E3B]">
+          Choose the Right Path for Your Parenting Journey
+        </h2>
+        <p class="text-gray-600 text-base leading-relaxed">
+          Whether you need personal guidance, a complete course, or self-learning resources, EduTarbiyah gives you practical solutions.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <!-- Pillar 1 -->
-        <div class="bg-[#FFFDF9] rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow space-y-4">
-          <div class="w-12 h-12 rounded-xl bg-[#0F766E]/10 flex items-center justify-center text-[#0F766E]">
-            <Heart class="w-6 h-6 text-[#0F766E]" />
+        
+        <!-- Offer 1: Parent Coaching -->
+        <div class="bg-[#FFFDF9] rounded-3xl p-8 border border-gray-200/80 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-2xl">
+              🌱
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-[#064E3B]">
+              Parent Coaching
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              For parents who need personal guidance for their child’s specific behavior, screen time, routine and emotional issues.
+            </p>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-gray-700 pt-2">
+              <li class="flex items-center gap-2">
+                <CheckCircle class="w-4 h-4 text-[#0F766E]" />
+                <span>One-to-one practical guidance</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle class="w-4 h-4 text-[#0F766E]" />
+                <span>Child behavior analysis</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle class="w-4 h-4 text-[#0F766E]" />
+                <span>Personalized action plan</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle class="w-4 h-4 text-[#0F766E]" />
+                <span>Online / WhatsApp / Zoom support</span>
+              </li>
+            </ul>
           </div>
-          <h4 class="text-xl font-serif font-bold text-[#064E3B]">
-            1. Emotional Attachment & Connection
-          </h4>
-          <p class="text-sm text-gray-600 leading-relaxed">
-            Tarbiyah precedes instruction. We guide parents to cultivate profound emotional safety, trust, and unconditional validation so children naturally absorb values.
-          </p>
+          <div class="pt-4 border-t border-gray-100 space-y-2">
+            <a
+              href="/edutarbiyah-parent-coaching-program/"
+              class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#064E3B] hover:bg-[#043327] text-white text-xs sm:text-sm font-bold shadow transition-all"
+            >
+              <span>Get Parent Coaching</span>
+              <ArrowRight class="w-4 h-4" />
+            </a>
+            <a
+              href="/parent-coaching-readiness-form/"
+              class="w-full inline-flex items-center justify-center text-xs text-[#0F766E] hover:underline font-semibold"
+            >
+              Check Coaching Readiness Form →
+            </a>
+          </div>
         </div>
 
-        <!-- Pillar 2 -->
-        <div class="bg-[#FFFDF9] rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow space-y-4">
-          <div class="w-12 h-12 rounded-xl bg-[#F59E0B]/10 flex items-center justify-center text-[#F59E0B]">
-            <GraduationCap class="w-6 h-6 text-[#F59E0B]" />
+        <!-- Offer 2: TPPC Course -->
+        <div class="bg-white rounded-3xl p-8 border-2 border-[#0F766E]/40 shadow-md hover:shadow-xl transition-all flex flex-col justify-between space-y-6 relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-[#0F766E] text-white text-[10px] font-bold uppercase tracking-wider py-1 px-3 rounded-bl-xl">
+            Flagship Course
           </div>
-          <h4 class="text-xl font-serif font-bold text-[#064E3B]">
-            2. Moral & Spiritual Formation
-          </h4>
-          <p class="text-sm text-gray-600 leading-relaxed">
-            Developing internal conscience (Taqwa) rather than mere compliance. Practical toolkits for Salah consistency, Quranic connection, and noble Akhlaq.
-          </p>
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-teal-50 border border-teal-100 flex items-center justify-center text-2xl">
+              🎓
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-[#064E3B]">
+              Tarbiyah Parenting Practitioner Course
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              A practical online course for parents, teachers and mentors who want a complete parenting and tarbiyah system.
+            </p>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-gray-700 pt-2">
+              <li class="flex items-center gap-2">
+                <CheckCircle class="w-4 h-4 text-[#F59E0B]" />
+                <span>Islamic Tarbiyah strategies</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle class="w-4 h-4 text-[#F59E0B]" />
+                <span>Child psychology and behavior</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle class="w-4 h-4 text-[#F59E0B]" />
+                <span>Screen time discipline</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle class="w-4 h-4 text-[#F59E0B]" />
+                <span>Confidence and character building</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-4 border-t border-gray-100 space-y-2">
+            <a
+              href="/tppc-live-interactive-parenting-course/"
+              class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-xs sm:text-sm font-bold shadow transition-all"
+            >
+              <span>Join Live Course (10 Pillars)</span>
+              <ArrowRight class="w-4 h-4" />
+            </a>
+            <a
+              href="/tppc-self-paced-course/"
+              class="w-full inline-flex items-center justify-center text-xs text-emerald-800 hover:underline font-semibold"
+            >
+              Self-Paced Recorded Option (PKR 3,000) →
+            </a>
+          </div>
         </div>
 
-        <!-- Pillar 3 -->
-        <div class="bg-[#FFFDF9] rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow space-y-4">
-          <div class="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-700">
-            <ShieldCheck class="w-6 h-6 text-emerald-700" />
+        <!-- Offer 3: Books & Resources -->
+        <div class="bg-[#FFFDF9] rounded-3xl p-8 border border-gray-200/80 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 border border-amber-100 flex items-center justify-center text-2xl">
+              📚
+            </div>
+            <h3 class="text-2xl font-serif font-bold text-[#064E3B]">
+              Books & Parenting Resources
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              For parents who want to learn at home through books, checklists, toolkits and practical parenting resources.
+            </p>
+            <ul class="space-y-2.5 text-xs sm:text-sm text-gray-700 pt-2">
+              <li class="flex items-center gap-2">
+                <CheckCircle class="w-4 h-4 text-[#0F766E]" />
+                <span>Digital age parenting guides</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle class="w-4 h-4 text-[#0F766E]" />
+                <span>Authentic Islamic Tarbiyah books</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle class="w-4 h-4 text-[#0F766E]" />
+                <span>Parenting toolkits & contracts</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <CheckCircle class="w-4 h-4 text-[#0F766E]" />
+                <span>Free and paid home trackers</span>
+              </li>
+            </ul>
           </div>
-          <h4 class="text-xl font-serif font-bold text-[#064E3B]">
-            3. Digital Age Resilience
-          </h4>
-          <p class="text-sm text-gray-600 leading-relaxed">
-            Empowering parents to navigate screen addiction, peer pressure, and modern cultural dilemmas with firmness, warmth, and proactive boundary contracts.
-          </p>
+          <div class="pt-4 border-t border-gray-100">
+            <a
+              href="/shop/"
+              class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#064E3B] hover:bg-[#043327] text-white text-xs sm:text-sm font-bold shadow transition-all"
+            >
+              <span>Shop Books & Resources</span>
+              <ArrowRight class="w-4 h-4" />
+            </a>
+          </div>
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- Interactive Diagnostic Suite Section -->
-  <section class="py-20 bg-[#F4F8F6]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col md:flex-row items-end justify-between gap-6 mb-12">
+  <!-- 6. HOW EDUTARBIYAH HELPS (A Complete Tarbiyah System) -->
+  <section class="py-16 lg:py-20 bg-[#F8FFFC] border-b border-[#0F766E]/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#064E3B] text-xs font-bold uppercase tracking-wider">
+          <ShieldCheck class="w-3.5 h-3.5 text-[#0F766E]" />
+          <span>How EduTarbiyah Helps</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-[#064E3B]">
+          A Complete Tarbiyah System for Muslim Families
+        </h2>
+        <p class="text-gray-600 text-base leading-relaxed">
+          We help parents move from confusion to clarity through practical steps, Islamic values and consistent home routines.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Pillar 1 -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-shadow space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-2xl">
+            🤲
+          </div>
+          <h3 class="text-lg font-serif font-bold text-[#064E3B]">
+            Faith & Salah
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+            Build salah, dua, Quran and gratitude habits with love, routine and parental example.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-shadow space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center text-2xl">
+            🧠
+          </div>
+          <h3 class="text-lg font-serif font-bold text-[#064E3B]">
+            Behavior Improvement
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+            Handle anger, stubbornness, misbehavior and emotional challenges with wisdom and consistency.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-shadow space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-2xl">
+            📱
+          </div>
+          <h3 class="text-lg font-serif font-bold text-[#064E3B]">
+            Screen Discipline
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+            Create screen time rules, agreements and healthy digital habits without daily fights.
+          </p>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-md transition-shadow space-y-3">
+          <div class="w-12 h-12 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-center text-2xl">
+            ❤️
+          </div>
+          <h3 class="text-lg font-serif font-bold text-[#064E3B]">
+            Emotional Connection
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+            Strengthen parent-child relationship through listening, empathy, communication and appreciation.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. INTERACTIVE TARBIYAH DIAGNOSTIC & HABIT TOOLKITS SUITE -->
+  <section class="py-20 bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="flex flex-col md:flex-row items-end justify-between gap-6">
         <div class="space-y-3 max-w-2xl">
           <div class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0F766E]">
             <Sparkles class="w-3.5 h-3.5 text-[#F59E0B]" />
-            <span>Self-Assessment Suite</span>
+            <span>Interactive Self-Assessment Suite</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#064E3B]">
-            Interactive Diagnostic Audits for Parents
+            Practical Interactive Toolkits for Muslim Families
           </h2>
           <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
-            Get instant clarity on your parenting strengths, child behavioral bottlenecks, and family routines with our scientifically calibrated assessments.
+            Calibrate your home routines, track streaks, and generate customized recovery plans with our dedicated web tools.
           </p>
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        <!-- Audit 1: Parenting Style -->
-        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold text-[#0F766E] bg-[#0F766E]/10 px-2.5 py-1 rounded-full">
-              Most Popular
-            </span>
-            <span class="text-xs text-gray-400 font-medium">3 min assessment</span>
+        <!-- Tool 1: 7-Day Habit Builder -->
+        <div class="bg-[#F8FFFC] rounded-2xl p-6 border border-[#0F766E]/20 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-[#0F766E] bg-[#0F766E]/10 px-2.5 py-1 rounded-full">
+                🌱 Atomic Tarbiyah
+              </span>
+              <span class="text-xs text-gray-400 font-semibold">Printable Fridge Chart</span>
+            </div>
+            <h3 class="text-lg font-serif font-bold text-[#064E3B] group-hover:text-[#0F766E] transition-colors">
+              7-Day Tarbiyah Habit Builder
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Shrink habits into 2-minute micro-actions, anchor them to daily cues, and mark your 7-day streak with interactive scoring.
+            </p>
           </div>
-          <h3 class="text-lg font-serif font-bold text-[#064E3B] mb-2">
-            Audit Your Parenting
-          </h3>
-          <p class="text-xs text-gray-600 leading-relaxed mb-6 flex-grow">
-            Evaluate your daily communication habits, emotional responsiveness, and Islamic Tarbiyah implementation at home.
-          </p>
-          <a
-            href="/audit-your-parenting/"
-            class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-xs font-bold shadow-sm transition-colors"
-          >
-            <span>Start Free Audit</span>
-            <ArrowRight class="w-3.5 h-3.5" />
-          </a>
+          <div class="pt-5 border-t border-gray-100 mt-4 flex items-center justify-between">
+            <a
+              href="/habit-making-english/"
+              class="text-xs font-bold text-[#0F766E] hover:underline inline-flex items-center gap-1"
+            >
+              <span>Build English Habit</span>
+              <ArrowRight class="w-3.5 h-3.5" />
+            </a>
+            <a
+              href="/set-your-habits-step-by-step/"
+              class="text-xs font-bold text-[#064E3B] hover:underline font-urdu"
+            >
+              اردو ہیبٹ فارم →
+            </a>
+          </div>
         </div>
 
-        <!-- Audit 2: Family Vision Maker -->
-        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold text-[#F59E0B] bg-[#F59E0B]/10 px-2.5 py-1 rounded-full">
-              Family Blueprint
-            </span>
-            <span class="text-xs text-gray-400 font-medium">Interactive Tool</span>
+        <!-- Tool 2: Reconnect & Guide Teen -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-rose-700 bg-rose-50 px-2.5 py-1 rounded-full border border-rose-200">
+                ❤️ Teen Healing
+              </span>
+              <span class="text-xs text-gray-400 font-semibold">5-Step Plan</span>
+            </div>
+            <h3 class="text-lg font-serif font-bold text-[#064E3B] group-hover:text-[#0F766E] transition-colors">
+              Reconnect & Guide Your Teen
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              A 5-step recovery blueprint to de-escalate shouting matches, rebuild trust, establish boundaries, and inspire responsibility.
+            </p>
           </div>
-          <h3 class="text-lg font-serif font-bold text-[#064E3B] mb-2">
-            Family Vision Maker
-          </h3>
-          <p class="text-xs text-gray-600 leading-relaxed mb-6 flex-grow">
-            Formulate a clear, written Islamic mission statement and set core values that guide your household decisions.
-          </p>
-          <a
-            href="/family-vision-maker/"
-            class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-xs font-bold shadow-sm transition-colors"
-          >
-            <span>Build Family Vision</span>
-            <ArrowRight class="w-3.5 h-3.5" />
-          </a>
+          <div class="pt-5 border-t border-gray-100 mt-4">
+            <a
+              href="/reconnect-guide/"
+              class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#064E3B] hover:bg-[#043327] text-white text-xs font-bold transition-all"
+            >
+              <span>Create Teen Recovery Plan</span>
+              <ArrowRight class="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
 
-        <!-- Audit 3: Behavior Tracker -->
-        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
-              Behavioral Tool
-            </span>
-            <span class="text-xs text-gray-400 font-medium">Daily Tracker</span>
+        <!-- Tool 3: Parent Coaching Readiness Form -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-full border border-teal-200">
+                📋 Self-Assessment
+              </span>
+              <span class="text-xs text-gray-400 font-semibold">18 Questions</span>
+            </div>
+            <h3 class="text-lg font-serif font-bold text-[#064E3B] group-hover:text-[#0F766E] transition-colors">
+              Parent Coaching Readiness Form
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Evaluate your child's compliance, connection, emotional control, and routines across 6 pillars to discover your coaching index.
+            </p>
           </div>
-          <h3 class="text-lg font-serif font-bold text-[#064E3B] mb-2">
-            Child Behavior Tracker
-          </h3>
-          <p class="text-xs text-gray-600 leading-relaxed mb-6 flex-grow">
-            Identify behavioral triggers, record gradual positive shifts, and eliminate power struggles with structured feedback.
-          </p>
-          <a
-            href="/childs-behavior-improvement-tracker/"
-            class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-xs font-bold shadow-sm transition-colors"
-          >
-            <span>Launch Tracker</span>
-            <ArrowRight class="w-3.5 h-3.5" />
-          </a>
+          <div class="pt-5 border-t border-gray-100 mt-4">
+            <a
+              href="/parent-coaching-readiness-form/"
+              class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-xs font-bold transition-all"
+            >
+              <span>Evaluate Coaching Need</span>
+              <ArrowRight class="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
 
-        <!-- Audit 4: Routine Maker Chart -->
-        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-1 rounded-full">
-              Daily Planner
-            </span>
-            <span class="text-xs text-gray-400 font-medium">Habit Chart</span>
+        <!-- Tool 4: Parenting Coaching Intake Form -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
+                🛡️ Detailed Intake
+              </span>
+              <span class="text-xs text-gray-400 font-semibold">Diagnostic Intake</span>
+            </div>
+            <h3 class="text-lg font-serif font-bold text-[#064E3B] group-hover:text-[#0F766E] transition-colors">
+              Parent Coaching Intake Form
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Confidentially submit your family dynamics, temperament details, and challenges directly to Dr. Younus Khalid for 1-on-1 coaching.
+            </p>
           </div>
-          <h3 class="text-lg font-serif font-bold text-[#064E3B] mb-2">
-            Islamic Tarbiyah Routine Maker
-          </h3>
-          <p class="text-xs text-gray-600 leading-relaxed mb-6 flex-grow">
-            Align morning routines, Salah times, study hours, and screen schedules for a calm, predictable home atmosphere.
-          </p>
-          <a
-            href="/islamic-tarbiyah-home-routine-chart/"
-            class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white border border-[#0F766E] text-[#0F766E] hover:bg-[#0F766E] hover:text-white text-xs font-bold transition-colors"
-          >
-            <span>Create Home Routine</span>
-            <ArrowRight class="w-3.5 h-3.5" />
-          </a>
+          <div class="pt-5 border-t border-gray-100 mt-4">
+            <a
+              href="/intake-form/"
+              class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-gray-950 text-xs font-bold transition-all"
+            >
+              <span>Open Intake Form</span>
+              <ArrowRight class="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
 
-        <!-- Audit 5: Personality Type -->
-        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full">
-              Self Discovery
-            </span>
-            <span class="text-xs text-gray-400 font-medium">Personality Test</span>
+        <!-- Tool 5: Child Behavior Improvement Tracker -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                📈 Behavior Tracker
+              </span>
+              <span class="text-xs text-gray-400 font-semibold">Weekly Matrix</span>
+            </div>
+            <h3 class="text-lg font-serif font-bold text-[#064E3B] group-hover:text-[#0F766E] transition-colors">
+              Child's Behavior Tracker
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Log daily shifts, track triggers, replace shouting with structured reinforcement, and visualize improvement.
+            </p>
           </div>
-          <h3 class="text-lg font-serif font-bold text-[#064E3B] mb-2">
-            Know Your Personality Type
-          </h3>
-          <p class="text-xs text-gray-600 leading-relaxed mb-6 flex-grow">
-            Understand how your innate personality tendencies influence your parenting triggers, discipline style, and stress response.
-          </p>
-          <a
-            href="/know-your-personality-type/"
-            class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white border border-[#0F766E] text-[#0F766E] hover:bg-[#0F766E] hover:text-white text-xs font-bold transition-colors"
-          >
-            <span>Discover Your Type</span>
-            <ArrowRight class="w-3.5 h-3.5" />
-          </a>
+          <div class="pt-5 border-t border-gray-100 mt-4">
+            <a
+              href="/childs-behavior-improvement-tracker/"
+              class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-[#0F766E] text-[#0F766E] hover:bg-[#0F766E] hover:text-white text-xs font-bold transition-all"
+            >
+              <span>Launch Tracker</span>
+              <ArrowRight class="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
 
-        <!-- Audit 6: Marriage Relationships -->
-        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-bold text-rose-700 bg-rose-50 px-2.5 py-1 rounded-full">
-              Couples Alignment
-            </span>
-            <span class="text-xs text-gray-400 font-medium">Relationship Audit</span>
+        <!-- Tool 6: Islamic Tarbiyah Home Routine Chart -->
+        <div class="bg-white rounded-2xl p-6 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2.5 py-1 rounded-full border border-purple-200">
+                ⏰ Routine Chart
+              </span>
+              <span class="text-xs text-gray-400 font-semibold">Family Routine</span>
+            </div>
+            <h3 class="text-lg font-serif font-bold text-[#064E3B] group-hover:text-[#0F766E] transition-colors">
+              Islamic Home Routine Maker
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Design a calm morning, Salah, study, and bedtime routine that eliminates daily nagging and creates barakah in time.
+            </p>
           </div>
-          <h3 class="text-lg font-serif font-bold text-[#064E3B] mb-2">
-            Audit Marriage Relationships
-          </h3>
-          <p class="text-xs text-gray-600 leading-relaxed mb-6 flex-grow">
-            Harmonize parenting teamwork between spouses. A peaceful, united marital foundation is the best Tarbiyah environment.
-          </p>
-          <a
-            href="/audit-your-marriage-relationships/"
-            class="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white border border-[#0F766E] text-[#0F766E] hover:bg-[#0F766E] hover:text-white text-xs font-bold transition-colors"
-          >
-            <span>Audit Relationship</span>
-            <ArrowRight class="w-3.5 h-3.5" />
-          </a>
+          <div class="pt-5 border-t border-gray-100 mt-4">
+            <a
+              href="/islamic-tarbiyah-home-routine-chart/"
+              class="w-full inline-flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl border border-[#0F766E] text-[#0F766E] hover:bg-[#0F766E] hover:text-white text-xs font-bold transition-all"
+            >
+              <span>Create Routine Chart</span>
+              <ArrowRight class="w-3.5 h-3.5" />
+            </a>
+          </div>
         </div>
 
       </div>
     </div>
   </section>
 
-  <!-- Featured Books & Toolkits Section (Direct WooCommerce Catalog) -->
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
+  <!-- 8. BOOKS YOU SHOULD READ (Curated WooCommerce Catalog) -->
+  <section class="py-20 bg-[#F8FFFC] border-b border-[#0F766E]/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
         <div class="space-y-2 max-w-2xl">
-          <span class="text-xs font-bold uppercase tracking-wider text-[#0F766E]">
-            Authentic Publications & Toolkits
-          </span>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#064E3B] text-xs font-bold uppercase tracking-wider">
+            <BookOpen class="w-3.5 h-3.5" />
+            <span>EduTarbiyah Publications</span>
+          </div>
           <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#064E3B]">
-            From the EduTarbiyah Bookstore
+            Books You Should Read
           </h2>
-          <p class="text-gray-600 text-sm sm:text-base">
-            Carefully curated, original publications on Tarbiyat ka Safar, positive parenting, and holistic personal growth.
+          <p class="text-gray-600 text-sm sm:text-base leading-relaxed">
+            Authentic, original publications on Tarbiyat ka Safar, screen discipline, and prophetic family guidance.
           </p>
         </div>
         <a
           href="/shop/"
-          class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-[#0F766E] bg-[#F4F8F6] hover:bg-[#0F766E] hover:text-white rounded-xl transition-all"
+          class="inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-bold text-white bg-[#064E3B] hover:bg-[#043327] rounded-xl shadow transition-all"
         >
-          <span>View All Publications</span>
+          <span>Visit Bookstore</span>
           <ArrowRight class="w-4 h-4" />
         </a>
       </div>
@@ -429,118 +860,201 @@ const englishPosts = await getEnglishPosts(3);
     </div>
   </section>
 
-  <!-- Flagship Programs Section -->
-  <section class="py-20 bg-gradient-to-b from-[#FFFDF9] to-[#F4F8F6]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
-        <span class="text-xs font-bold uppercase tracking-widest text-[#0F766E]">
-          Mentorship & Training
-        </span>
-        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#064E3B]">
-          Flagship Parenting Programs
+  <!-- 9. EXPLORE EDUTARBIYAH RESOURCES (4 Core Hubs) -->
+  <section class="py-20 bg-white border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#064E3B] text-xs font-bold uppercase tracking-wider">
+          <FileText class="w-3.5 h-3.5" />
+          <span>Helpful Resources</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-[#064E3B]">
+          Explore EduTarbiyah Resources
         </h2>
-        <p class="text-gray-600 text-base">
-          Systematic courses and 1-on-1 mentorship designed to transform theoretical knowledge into calm, confident daily parenting.
+        <p class="text-gray-600 text-base leading-relaxed">
+          Use these resources to learn, practice, and improve your parenting and tarbiyah journey step by step.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         
-        <!-- TPPC Course Card -->
-        <div class="bg-white rounded-3xl p-8 sm:p-10 border border-gray-200/80 shadow-md hover:shadow-xl transition-all flex flex-col justify-between space-y-6">
-          <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-                Self-Paced Recorded Course
-              </span>
-              <span class="text-xs font-semibold text-gray-500">TPPC Certification</span>
+        <!-- Hub 1: Parenting Books -->
+        <a
+          href="/shop/"
+          class="p-6 rounded-2xl bg-[#FFFDF9] border border-gray-200/80 hover:border-[#0F766E] shadow-sm hover:shadow-lg transition-all group space-y-3 flex flex-col justify-between"
+        >
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-xl bg-amber-50 border border-amber-100 flex items-center justify-center text-2xl">
+              📚
             </div>
-            <h3 class="text-2xl font-serif font-bold text-[#064E3B]">
-              TTPC – Tarbiyah Parenting Practitioner Course
+            <h3 class="text-lg font-serif font-bold text-[#064E3B] group-hover:text-[#0F766E] transition-colors">
+              Parenting Books
             </h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Our comprehensive recorded training curriculum covering child psychology, temperament identification, de-escalating defiance, habit formation, and spiritual grounding.
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Buy practical parenting and tarbiyah books for Muslim families.
             </p>
-            <ul class="space-y-2 text-sm text-gray-700 pt-2">
-              <li class="flex items-center gap-2">
-                <CheckCircle class="w-4 h-4 text-[#0F766E]" />
-                <span>Lifetime access to comprehensive recorded video lectures</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <CheckCircle class="w-4 h-4 text-[#0F766E]" />
-                <span>Downloadable habit workbooks & Tarbiyah checklists</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <CheckCircle class="w-4 h-4 text-[#0F766E]" />
-                <span>Certificate of Completion from EduTarbiyah Institute</span>
-              </li>
-            </ul>
           </div>
+          <span class="text-xs font-bold text-[#0F766E] group-hover:underline flex items-center gap-1 pt-2">
+            Visit Shop →
+          </span>
+        </a>
 
-          <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <!-- Hub 2: Urdu Blog -->
+        <a
+          href="https://blog.edutarbiyah.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="p-6 rounded-2xl bg-[#FFFDF9] border border-gray-200/80 hover:border-[#0F766E] shadow-sm hover:shadow-lg transition-all group space-y-3 flex flex-col justify-between"
+        >
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center text-2xl">
+              ✍️
+            </div>
+            <h3 class="text-lg font-serif font-bold text-[#064E3B] group-hover:text-[#0F766E] transition-colors">
+              Urdu Blog (اردو بلاگ)
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Read Urdu articles on parenting, tarbiyah, family life and personal development.
+            </p>
+          </div>
+          <span class="text-xs font-bold text-[#0F766E] group-hover:underline flex items-center gap-1 pt-2 font-urdu">
+            Read Urdu Blog →
+          </span>
+        </a>
+
+        <!-- Hub 3: English Blog -->
+        <a
+          href="/english/"
+          class="p-6 rounded-2xl bg-[#FFFDF9] border border-gray-200/80 hover:border-[#0F766E] shadow-sm hover:shadow-lg transition-all group space-y-3 flex flex-col justify-between"
+        >
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-2xl">
+              🌍
+            </div>
+            <h3 class="text-lg font-serif font-bold text-[#064E3B] group-hover:text-[#0F766E] transition-colors">
+              English Blog
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Explore English articles on mindful parenting and Islamic tarbiyah.
+            </p>
+          </div>
+          <span class="text-xs font-bold text-[#0F766E] group-hover:underline flex items-center gap-1 pt-2">
+            Read English Blog →
+          </span>
+        </a>
+
+        <!-- Hub 4: Parenting Audit -->
+        <a
+          href="/audit-your-parenting/"
+          class="p-6 rounded-2xl bg-[#FFFDF9] border border-gray-200/80 hover:border-[#0F766E] shadow-sm hover:shadow-lg transition-all group space-y-3 flex flex-col justify-between"
+        >
+          <div class="space-y-3">
+            <div class="w-12 h-12 rounded-xl bg-rose-50 border border-rose-100 flex items-center justify-center text-2xl">
+              ✅
+            </div>
+            <h3 class="text-lg font-serif font-bold text-[#064E3B] group-hover:text-[#0F766E] transition-colors">
+              Parenting Audit
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Check your parenting level and discover your next improvement step.
+            </p>
+          </div>
+          <span class="text-xs font-bold text-[#0F766E] group-hover:underline flex items-center gap-1 pt-2">
+            Start Audit →
+          </span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. START YOUR PARENTING IMPROVEMENT IN 3 STEPS -->
+  <section class="py-16 lg:py-20 bg-[#F8FFFC] border-b border-[#0F766E]/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#064E3B] text-xs font-bold uppercase tracking-wider">
+          <Compass class="w-3.5 h-3.5" />
+          <span>Simple Process</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-[#064E3B]">
+          Start Your Parenting Improvement in 3 Steps
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Step 1 -->
+        <div class="bg-white rounded-3xl p-8 border border-gray-200/80 shadow-sm hover:shadow-md transition-all space-y-4 text-center sm:text-left flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-[#064E3B] flex items-center justify-center font-bold text-xl font-serif">
+              1
+            </div>
+            <h3 class="text-xl font-serif font-bold text-[#064E3B]">
+              Audit Your Parenting
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              Understand your current parenting strengths and weak areas through the free parenting audit.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100">
             <a
-              href="/tppc-self-paced-course/"
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-sm font-bold shadow transition-all"
+              href="/audit-your-parenting/"
+              class="text-xs font-bold text-[#0F766E] hover:underline inline-flex items-center gap-1"
             >
-              <span>Explore TPPC Syllabus</span>
-              <ArrowRight class="w-4 h-4" />
-            </a>
-            <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("السلام علیکم EduTarbiyah, I would like more information on the TPPC course.")}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-xs font-semibold text-[#0F766E] hover:underline flex items-center gap-1"
-            >
-              <MessageCircle class="w-4 h-4" />
-              <span>Inquire on WhatsApp</span>
+              <span>Start Audit</span>
+              <ArrowRight class="w-3.5 h-3.5" />
             </a>
           </div>
         </div>
 
-        <!-- 1-on-1 Coaching Card -->
-        <div class="bg-white rounded-3xl p-8 sm:p-10 border border-gray-200/80 shadow-md hover:shadow-xl transition-all flex flex-col justify-between space-y-6">
+        <!-- Step 2 -->
+        <div class="bg-white rounded-3xl p-8 border border-gray-200/80 shadow-sm hover:shadow-md transition-all space-y-4 text-center sm:text-left flex flex-col justify-between">
           <div class="space-y-4">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-amber-800 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">
-                Personalized Mentorship
-              </span>
-              <span class="text-xs font-semibold text-gray-500">1-on-1 Consultations</span>
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-900 flex items-center justify-center font-bold text-xl font-serif">
+              2
             </div>
-            <h3 class="text-2xl font-serif font-bold text-[#064E3B]">
-              Tarbiyah Parent Mentorship & Coaching
+            <h3 class="text-xl font-serif font-bold text-[#064E3B]">
+              Join Community or Course
             </h3>
-            <p class="text-sm text-gray-600 leading-relaxed">
-              Tailored, confidential one-on-one sessions addressing your specific family dynamics, behavioral friction, teen transitions, or marital co-parenting synchronization.
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              Become part of the WhatsApp community or join the TPPC course for structured guidance.
             </p>
-            <ul class="space-y-2 text-sm text-gray-700 pt-2">
-              <li class="flex items-center gap-2">
-                <CheckCircle class="w-4 h-4 text-[#F59E0B]" />
-                <span>Deep diagnostic intake of your child's temperament & home routine</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <CheckCircle class="w-4 h-4 text-[#F59E0B]" />
-                <span>Customized step-by-step parenting action plan</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <CheckCircle class="w-4 h-4 text-[#F59E0B]" />
-                <span>Ongoing WhatsApp accountability & feedback loop</span>
-              </li>
-            </ul>
           </div>
-
-          <div class="pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="pt-4 border-t border-gray-100">
             <a
-              href="/parent-coaching-readiness-form/"
-              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#064E3B] hover:bg-[#0F766E] text-white text-sm font-bold shadow transition-all"
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Assalamualaikum EduTarbiyah, I want to join your WhatsApp Parenting Community.")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs font-bold text-[#0F766E] hover:underline inline-flex items-center gap-1"
             >
-              <span>Check Readiness Form</span>
-              <ArrowRight class="w-4 h-4" />
+              <span>Join Community</span>
+              <ArrowRight class="w-3.5 h-3.5" />
             </a>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-white rounded-3xl p-8 border border-gray-200/80 shadow-sm hover:shadow-md transition-all space-y-4 text-center sm:text-left flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="w-12 h-12 rounded-2xl bg-teal-100 text-teal-900 flex items-center justify-center font-bold text-xl font-serif">
+              3
+            </div>
+            <h3 class="text-xl font-serif font-bold text-[#064E3B]">
+              Apply at Home
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed">
+              Use practical routines, checklists and tools to build a peaceful Islamic home environment.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-gray-100">
             <a
               href="/edutarbiyah-parent-coaching-program/"
-              class="text-xs font-semibold text-[#064E3B] hover:underline"
+              class="text-xs font-bold text-[#0F766E] hover:underline inline-flex items-center gap-1"
             >
-              <span>Learn More About Coaching →</span>
+              <span>Get Guidance</span>
+              <ArrowRight class="w-3.5 h-3.5" />
             </a>
           </div>
         </div>
@@ -549,15 +1063,16 @@ const englishPosts = await getEnglishPosts(3);
     </div>
   </section>
 
-  <!-- Latest Insights from the English Blog -->
+  <!-- 11. RECENT INSIGHTS FROM THE ENGLISH BLOG -->
   {englishPosts.length > 0 && (
-    <section class="py-20 bg-white border-t border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
+    <section class="py-20 bg-white border-b border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
           <div class="space-y-2 max-w-2xl">
-            <span class="text-xs font-bold uppercase tracking-wider text-[#0F766E]">
-              Articles & Guides
-            </span>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#064E3B] text-xs font-bold uppercase tracking-wider">
+              <BookOpen class="w-3.5 h-3.5" />
+              <span>Articles & Guides</span>
+            </div>
             <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#064E3B]">
               Latest from the English Blog
             </h2>
@@ -567,7 +1082,7 @@ const englishPosts = await getEnglishPosts(3);
           </div>
           <a
             href="/english/"
-            class="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-[#0F766E] bg-[#F4F8F6] hover:bg-[#0F766E] hover:text-white rounded-xl transition-all"
+            class="inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-bold text-[#0F766E] bg-[#F4F8F6] hover:bg-[#0F766E] hover:text-white rounded-xl transition-all"
           >
             <span>View All Articles</span>
             <ArrowRight class="w-4 h-4" />
@@ -616,43 +1131,51 @@ const englishPosts = await getEnglishPosts(3);
     </section>
   )}
 
-  <!-- WhatsApp Parents Community Banner -->
-  <section class="py-16 bg-[#064E3B] text-white relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F59E0B_1px,transparent_1px)] [background-size:20px_20px] pointer-events-none"></div>
+  <!-- 12. FINAL CALL TO ACTION BANNER (Exact Copy from edutarbiyah.com) -->
+  <section class="py-20 bg-gradient-to-br from-[#064E3B] to-[#0A4D3C] text-white relative overflow-hidden shadow-2xl">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F59E0B_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
 
     <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-white/10 text-[#F59E0B] text-xs font-semibold backdrop-blur-sm">
-        <Users class="w-4 h-4" />
-        <span>Join 5,000+ Engaged Parents</span>
+      
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-amber-300 text-xs font-bold tracking-wide uppercase backdrop-blur-sm border border-white/15">
+        <Sparkles class="w-4 h-4 text-[#F59E0B]" />
+        <span>Your Tarbiyah Partner</span>
       </div>
 
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-white tracking-tight">
-        EduTarbiyah WhatsApp Community
+      <h2 class="text-3xl sm:text-5xl font-serif font-black tracking-tight text-white leading-tight">
+        Start Your Parenting & Tarbiyah Journey Today
       </h2>
 
-      <p class="text-base sm:text-lg text-[#D1FAE5]/90 max-w-2xl mx-auto leading-relaxed">
-        Receive daily parenting reminders, Tarbiyah power-ups, habit charts, and exclusive invites to live Q&A sessions with certified parenting counselors.
+      <p class="text-base sm:text-lg text-emerald-100 max-w-2xl mx-auto leading-relaxed">
+        Take the first step now. Audit your parenting, join our WhatsApp community, join the course, book coaching, or explore books and blogs for practical guidance.
       </p>
 
-      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div class="pt-4 flex flex-wrap justify-center gap-3.5">
         <a
-          href="/parents-whatsapp-community/"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-base font-bold shadow-xl transition-all duration-200"
+          href="/audit-your-parenting/"
+          class="px-8 py-4 rounded-2xl bg-[#F59E0B] hover:bg-amber-400 text-gray-950 font-extrabold text-sm sm:text-base shadow-xl transition-all"
         >
-          <MessageCircle class="w-5 h-5 fill-current" />
-          <span>Join WhatsApp Community Now</span>
+          <span>Start Free Parenting Audit</span>
         </a>
 
         <a
-          href="https://blog.edutarbiyah.com"
+          href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Assalamualaikum EduTarbiyah, I want to join your WhatsApp Parenting Community.")}`}
           target="_blank"
           rel="noopener noreferrer"
-          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/20 text-white text-base font-bold border border-white/20 transition-all font-urdu"
+          class="px-8 py-4 rounded-2xl bg-[#25D366] hover:bg-[#1EBE5D] text-white font-bold text-sm sm:text-base shadow-xl transition-all inline-flex items-center gap-2"
         >
-          <span>اردو بلاگ اور مقالات</span>
-          <ArrowUpRight class="w-4 h-4" />
+          <MessageCircle class="w-5 h-5 fill-current" />
+          <span>Join WhatsApp Community</span>
+        </a>
+
+        <a
+          href="/tppc-live-interactive-parenting-course/"
+          class="px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm sm:text-base transition-all"
+        >
+          <span>Join TPPC Course</span>
         </a>
       </div>
+
     </div>
   </section>
 
