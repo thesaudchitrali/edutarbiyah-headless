@@ -552,7 +552,7 @@ export async function getPrimaryMenu(): Promise<MenuItem[]> {
   try {
     const data = await cachedFetch<{ success: boolean; items: MenuItem[] }>(
       '/wp-json/edutarbiyah/v1/menu/primary-menu',
-      { retries: 1, fallbackData: { success: false, items: [] } }
+      { retries: 1, ttlSeconds: 60, fallbackData: { success: false, items: [] } }
     );
     if (data?.success && Array.isArray(data?.items) && data.items.length > 0) {
       memoryMenuCache = data.items;
@@ -564,7 +564,7 @@ export async function getPrimaryMenu(): Promise<MenuItem[]> {
 
   // Strategy 2: Fetch and dynamically parse live WordPress navigation from homepage HTML
   try {
-    const html = await cachedFetchText('/', { retries: 2, ttlSeconds: 3600 });
+    const html = await cachedFetchText('/', { retries: 2, ttlSeconds: 60 });
     const parsedItems = parseWordPressNavHtml(html, WP_BASE_URL);
     if (parsedItems && parsedItems.length > 0) {
       memoryMenuCache = parsedItems;
