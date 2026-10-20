@@ -1,0 +1,1239 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { WHATSAPP_NUMBER } from '../lib/api';
+import { 
+  ShieldCheck, 
+  Clock, 
+  Globe, 
+  CheckCircle2, 
+  Sparkles, 
+  MessageCircle, 
+  Send, 
+  Printer, 
+  RotateCcw, 
+  ChevronRight, 
+  AlertCircle, 
+  Check, 
+  Heart, 
+  User, 
+  Baby, 
+  Target, 
+  Brain, 
+  Home, 
+  Activity,
+  Copy
+} from 'lucide-astro';
+---
+
+<Layout
+  title="Parenting Coaching Intake Form | EduTarbiyah Institute"
+  description="Comprehensive diagnostic intake form for parents seeking one-on-one Tarbiyah coaching. Confidentially evaluate your child's needs and set personalized coaching goals."
+>
+
+  <!-- Breadcrumbs & Utility -->
+  <div class="bg-[#F8FFFC] border-b border-[#0F766E]/10 py-3 px-4 sm:px-6 text-xs text-gray-500">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <a href="/" class="hover:text-[#0F766E] transition-colors">Home</a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <a href="/edutarbiyah-parent-coaching-program/" class="hover:text-[#0F766E] transition-colors">Coaching</a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <span class="text-[#064E3B] font-semibold">Intake Form</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <!-- Bilingual Switcher Toggle -->
+        <button
+          type="button"
+          id="lang-toggle-btn"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#0F766E]/20 text-[#064E3B] font-bold text-xs shadow-sm hover:bg-[#F4F8F6] transition-colors"
+          aria-label="Switch Language / زبان تبدیل کریں"
+        >
+          <Globe class="w-3.5 h-3.5 text-[#0F766E]" />
+          <span id="lang-toggle-text">اردو میں دیکھیں</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Header Section -->
+  <section class="relative bg-gradient-to-b from-[#064E3B] via-[#095944] to-[#064E3B] text-white py-12 lg:py-16 overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F59E0B_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+
+    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-5">
+      
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-[#F59E0B] text-xs font-bold tracking-wide uppercase backdrop-blur-md border border-white/15">
+        <Sparkles class="w-4 h-4 text-[#F59E0B]" />
+        <span data-en="Confidential Diagnostic Assessment" data-ur="محفوظ اور خفیہ تشخیصی فارم">
+          Confidential Diagnostic Assessment
+        </span>
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl font-serif font-extrabold text-white tracking-tight leading-tight">
+        <span data-en="Parenting Coaching Intake Form" data-ur="پیرنٹنگ کوچنگ انٹیک فارم">
+          Parenting Coaching Intake Form
+        </span>
+      </h1>
+
+      <p class="text-base sm:text-lg text-[#D1FAE5] max-w-2xl mx-auto leading-relaxed font-normal">
+        <span data-en="A few important questions to help us understand your family dynamics, your child's needs, and structure your personalized coaching sessions." data-ur="چند اہم سوالات جو ہمیں آپ کے خاندانی ماحول، بچے کی ضروریات کو سمجھنے اور سیشنز کو نتیجہ خیز بنانے میں مدد دیں گے۔">
+          A few important questions to help us understand your family dynamics, your child's needs, and structure your personalized coaching sessions.
+        </span>
+      </p>
+
+      <!-- Trust Badges -->
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-white/90">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/10">
+          <ShieldCheck class="w-4 h-4 text-[#F59E0B]" />
+          <span data-en="100% Private & Confidential" data-ur="100% نجی اور خفیہ معلومات">100% Private & Confidential</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/10">
+          <Clock class="w-4 h-4 text-[#F59E0B]" />
+          <span data-en="Takes 5–7 Minutes" data-ur="صرف 5 سے 7 منٹ درکار">Takes 5–7 Minutes</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/10">
+          <Globe class="w-4 h-4 text-[#F59E0B]" />
+          <span data-en="Bilingual: English & Urdu" data-ur="دو لسانی: انگلش اور اردو">Bilingual: English & Urdu</span>
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Sticky Progress & Section Jump Bar -->
+  <div class="sticky top-20 z-30 bg-[#FFFDF9]/95 backdrop-blur-md border-b border-gray-200 py-3 px-4 shadow-sm">
+    <div class="max-w-5xl mx-auto space-y-2">
+      <div class="flex items-center justify-between text-xs font-semibold text-gray-700">
+        <span class="flex items-center gap-1.5 text-[#064E3B]">
+          <Activity class="w-4 h-4 text-[#0F766E]" />
+          <span data-en="Form Completion Progress" data-ur="فارم کی تکمیل کا تناسب">Form Completion Progress</span>
+        </span>
+        <span id="progress-percentage-text" class="font-mono text-[#0F766E] font-bold">0%</span>
+      </div>
+      <!-- Progress Bar Track -->
+      <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+        <div id="progress-bar-fill" class="h-full bg-gradient-to-r from-[#0F766E] to-[#10B981] transition-all duration-300 w-0"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Form Content -->
+  <main class="py-12 bg-[#FFFDF9]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <form id="intake-form" class="space-y-10" novalidate>
+        
+        <!-- ========================================== -->
+        <!-- SECTION 1: PARENT INFORMATION -->
+        <!-- ========================================== -->
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-200/80 space-y-6" id="section-1">
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
+            <span class="w-9 h-9 rounded-2xl bg-emerald-50 text-[#064E3B] font-bold text-sm flex items-center justify-center shrink-0">
+              01
+            </span>
+            <div>
+              <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#064E3B]" data-en="1. Parent Information" data-ur="1۔ والدین کی بنیادی معلومات">
+                1. Parent Information
+              </h2>
+              <p class="text-xs sm:text-sm text-gray-500" data-en="Basic details to connect and prepare your session" data-ur="رابطے اور سیشن کی تیاری کے لیے بنیادی تفصیلات">
+                Basic details to connect and prepare your session
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            
+            <!-- Full Name -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Full Name *" data-ur="پورا نام *">
+                Full Name *
+              </label>
+              <input
+                type="text"
+                name="parent_name"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="e.g. Ahmad Khan"
+                data-placeholder-en="e.g. Ahmad Khan"
+                data-placeholder-ur="مثلاً احمد خان"
+              />
+            </div>
+
+            <!-- Parent Age -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Age *" data-ur="عمر *">
+                Age *
+              </label>
+              <input
+                type="number"
+                name="parent_age"
+                min="18"
+                max="85"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="e.g. 36"
+                data-placeholder-en="e.g. 36"
+                data-placeholder-ur="مثلاً 36"
+              />
+            </div>
+
+            <!-- Relationship with Child -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Relationship with Child *" data-ur="بچے سے رشتہ *">
+                Relationship with Child *
+              </label>
+              <select
+                name="relationship"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm bg-white focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+              >
+                <option value="" data-en="Select Relationship" data-ur="رشتہ منتخب کریں">Select Relationship</option>
+                <option value="Father" data-en="Father" data-ur="والد (Father)">Father</option>
+                <option value="Mother" data-en="Mother" data-ur="والدہ (Mother)">Mother</option>
+                <option value="Guardian" data-en="Guardian" data-ur="سرپرست (Guardian)">Guardian</option>
+                <option value="Other" data-en="Other" data-ur="دیگر">Other</option>
+              </select>
+            </div>
+
+            <!-- Contact Method -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Preferred Contact Method *" data-ur="رابطے کا ترجیحی ذریعہ *">
+                Preferred Contact Method *
+              </label>
+              <select
+                name="contact_method"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm bg-white focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+              >
+                <option value="WhatsApp" data-en="WhatsApp (Recommended)" data-ur="واٹس ایپ (تجویز کردہ)">WhatsApp (Recommended)</option>
+                <option value="Phone Call" data-en="Direct Phone Call" data-ur="فون کال">Direct Phone Call</option>
+                <option value="Email" data-en="Email" data-ur="ای میل">Email</option>
+              </select>
+            </div>
+
+            <!-- Contact Value -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Contact Number / Email *" data-ur="فون / واٹس ایپ نمبر یا ای میل *">
+                Contact Number / Email *
+              </label>
+              <input
+                type="text"
+                name="contact_value"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="e.g. +92 300 1234567 or email@domain.com"
+                data-placeholder-en="e.g. +92 300 1234567 or email@domain.com"
+                data-placeholder-ur="مثلاً +92 300 1234567 یا ای میل"
+              />
+            </div>
+
+            <!-- Total Children -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Total Number of Children *" data-ur="کل کتنے بچے ہیں؟ *">
+                Total Number of Children *
+              </label>
+              <input
+                type="number"
+                name="total_children"
+                min="1"
+                max="15"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="e.g. 3"
+                data-placeholder-en="e.g. 3"
+                data-placeholder-ur="مثلاً 3"
+              />
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 2: CHILD INFORMATION -->
+        <!-- ========================================== -->
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-200/80 space-y-6" id="section-2">
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
+            <span class="w-9 h-9 rounded-2xl bg-emerald-50 text-[#064E3B] font-bold text-sm flex items-center justify-center shrink-0">
+              02
+            </span>
+            <div>
+              <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#064E3B]" data-en="2. Child Information" data-ur="2۔ بچے کی بنیادی معلومات">
+                2. Child Information
+              </h2>
+              <p class="text-xs sm:text-sm text-gray-500" data-en="Provide details about the specific child this coaching session focuses on" data-ur="جس بچے کے بارے میں آپ کوچنگ لینا چاہتے ہیں اس کی تفصیلات">
+                Provide details about the specific child this coaching session focuses on
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            
+            <!-- Child Name -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Child's Name / Nickname *" data-ur="بچے کا نام یا عرفیت *">
+                Child's Name / Nickname *
+              </label>
+              <input
+                type="text"
+                name="child_name"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="e.g. Hamza"
+                data-placeholder-en="e.g. Hamza"
+                data-placeholder-ur="مثلاً حمزہ"
+              />
+            </div>
+
+            <!-- Child Age -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Child's Age *" data-ur="بچے کی عمر *">
+                Child's Age *
+              </label>
+              <input
+                type="number"
+                name="child_age"
+                min="1"
+                max="25"
+                required
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="e.g. 10"
+                data-placeholder-en="e.g. 10"
+                data-placeholder-ur="مثلاً 10"
+              />
+            </div>
+
+            <!-- Gender -->
+            <div class="space-y-1.5 sm:col-span-2">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Gender *" data-ur="جنس *">
+                Gender *
+              </label>
+              <div class="flex items-center gap-4">
+                <label class="flex-1 flex items-center justify-center gap-2 p-3.5 rounded-xl border border-gray-200 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-emerald-50 has-[:checked]:border-[#0F766E] has-[:checked]:text-[#064E3B] font-semibold text-sm">
+                  <input type="radio" name="gender" value="Boy" required class="accent-[#0F766E]" />
+                  <span data-en="Boy / لڑکا" data-ur="لڑکا (Boy)">Boy / لڑکا</span>
+                </label>
+                <label class="flex-1 flex items-center justify-center gap-2 p-3.5 rounded-xl border border-gray-200 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-emerald-50 has-[:checked]:border-[#0F766E] has-[:checked]:text-[#064E3B] font-semibold text-sm">
+                  <input type="radio" name="gender" value="Girl" class="accent-[#0F766E]" />
+                  <span data-en="Girl / لڑکی" data-ur="لڑکی (Girl)">Girl / لڑکی</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Education Level -->
+            <div class="space-y-1.5 sm:col-span-2">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Education Level" data-ur="تعلیمی جماعت / سطح">
+                Education Level
+              </label>
+              <input
+                type="text"
+                name="education_level"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="e.g. Grade 5 / Hifz / O-Levels"
+                data-placeholder-en="e.g. Grade 5 / Hifz / O-Levels"
+                data-placeholder-ur="مثلاً پانچویں جماعت / حفظ / او لیول"
+              />
+            </div>
+
+            <!-- Three Good Qualities -->
+            <div class="space-y-1.5 sm:col-span-2">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Three Good Qualities of Your Child" data-ur="اپنے بچے کی تین اچھی خوبیاں">
+                Three Good Qualities of Your Child
+              </label>
+              <textarea
+                name="child_strengths"
+                rows="2"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="e.g. Kind-hearted, creative, helpful, honest..."
+                data-placeholder-en="e.g. Kind-hearted, creative, helpful, honest..."
+                data-placeholder-ur="مثلاً مددگار، تخلیقی، سچا، نرم دل..."
+              ></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 3: MAIN PARENTING CHALLENGE -->
+        <!-- ========================================== -->
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-200/80 space-y-6" id="section-3">
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
+            <span class="w-9 h-9 rounded-2xl bg-emerald-50 text-[#064E3B] font-bold text-sm flex items-center justify-center shrink-0">
+              03
+            </span>
+            <div>
+              <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#064E3B]" data-en="3. Main Parenting Challenge" data-ur="3۔ بنیادی Parenting مسئلہ">
+                3. Main Parenting Challenge
+              </h2>
+              <p class="text-xs sm:text-sm text-gray-500" data-en="Identify what is causing frustration and friction at home" data-ur="گھر میں پریشانی کا باعث بننے والے مسائل کی نشاندہی کریں">
+                Identify what is causing frustration and friction at home
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            
+            <!-- Main Reason -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Why are you seeking parenting coaching? *" data-ur="آپ پیرنٹ کوچنگ کیوں لینا چاہتے ہیں؟ *">
+                Why are you seeking parenting coaching? *
+              </label>
+              <textarea
+                name="main_reason"
+                required
+                rows="3"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="Please describe the core situation, challenges, and what you hope to resolve..."
+                data-placeholder-en="Please describe the core situation, challenges, and what you hope to resolve..."
+                data-placeholder-ur="براہِ کرم بنیادی مسئلہ اور چیلنجز تفصیل سے بیان کریں..."
+              ></textarea>
+            </div>
+
+            <!-- Difficult Behaviors Checkboxes -->
+            <div class="space-y-2.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Which behaviors are most difficult to handle? (Select all that apply)" data-ur="بچے کے کون سے رویے آپ کے لیے سب سے زیادہ مشکل ہیں؟ (تمام متعلقہ منتخب کریں)">
+                Which behaviors are most difficult to handle? (Select all that apply)
+              </label>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                {[
+                  { id: "Disobedience", en: "Disobedience", ur: "نافرمانی (Disobedience)" },
+                  { id: "Anger", en: "Anger & Tantrums", ur: "غصہ اور بد مزاجی" },
+                  { id: "Rudeness", en: "Rudeness / Backtalk", ur: "بدتمیزی یا تلخ کلامی" },
+                  { id: "Lying", en: "Lying / Dishonesty", ur: "جھوٹ بولنا" },
+                  { id: "Screen Time", en: "Excessive Screen Time", ur: "زیادہ اسکرین ٹائم" },
+                  { id: "Studies", en: "Lack of Study Focus", ur: "پڑھائی میں عدم دلچسپی" },
+                  { id: "Religious", en: "Religious Neglect / Salah", ur: "دینی امور و نماز سے غفلت" },
+                  { id: "Sibling Conflict", en: "Sibling Rivalry", ur: "بہن بھائیوں سے جھگڑا" },
+                  { id: "Arguing", en: "Arguing with Parents", ur: "والدین سے بحث کرنا" },
+                  { id: "School", en: "School / External Issues", ur: "اسکول یا باہر کے مسائل" },
+                  { id: "Other", en: "Other Specific Issues", ur: "دیگر مسائل" }
+                ].map((item) => (
+                  <label class="flex items-center gap-2.5 p-3 rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-emerald-50 has-[:checked]:border-[#0F766E] has-[:checked]:text-[#064E3B]">
+                    <input type="checkbox" name="behaviors[]" value={item.id} class="rounded text-[#0F766E] accent-[#0F766E]" />
+                    <span data-en={item.en} data-ur={item.ur}>{item.en}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Duration & Frequency -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
+              <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="How long has this been going on?" data-ur="یہ مسئلہ کب سے چل رہا ہے؟">
+                  How long has this been going on?
+                </label>
+                <select name="duration" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm bg-white focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all">
+                  <option value="">Select Duration</option>
+                  <option value="Less than 1 month" data-en="Less than 1 month" data-ur="1 ماہ سے کم">Less than 1 month</option>
+                  <option value="1–6 months" data-en="1–6 months" data-ur="1 سے 6 ماہ">1–6 months</option>
+                  <option value="6–12 months" data-en="6–12 months" data-ur="6 سے 12 ماہ">6–12 months</option>
+                  <option value="More than 1 year" data-en="More than 1 year" data-ur="1 سال سے زیادہ">More than 1 year</option>
+                </select>
+              </div>
+
+              <div class="space-y-1.5">
+                <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="How often does it happen?" data-ur="یہ مسئلہ کتنی بار ہوتا ہے؟">
+                  How often does it happen?
+                </label>
+                <select name="frequency" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm bg-white focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all">
+                  <option value="">Select Frequency</option>
+                  <option value="Rarely" data-en="Rarely (few times a month)" data-ur="شاذ و نادر (مہینے میں چند بار)">Rarely</option>
+                  <option value="Sometimes" data-en="Sometimes (weekly)" data-ur="کبھی کبھار (ہفتے میں ایک بار)">Sometimes</option>
+                  <option value="Several times a week" data-en="Several times a week" data-ur="ہفتے میں کئی بار">Several times a week</option>
+                  <option value="Almost daily" data-en="Almost daily / multiple times a day" data-ur="تقریباً روزانہ">Almost daily</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Intensity Scale (1-10) -->
+            <div class="space-y-2 pt-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-gray-700 uppercase tracking-wider" data-en="How intense is this challenge? (1 = Mild, 10 = Severe Crisis)" data-ur="اس مسئلے کی شدت کتنی ہے؟ (1 = ہلکا، 10 = شدید بحران)">
+                  How intense is this challenge? (1 = Mild, 10 = Severe Crisis)
+                </span>
+                <span id="intensity-val-badge" class="font-bold text-[#0F766E] font-mono">Not selected</span>
+              </div>
+              <div class="grid grid-cols-10 gap-1.5 sm:gap-2">
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                  <label class="flex flex-col items-center justify-center py-2.5 sm:py-3 rounded-xl border border-gray-200 text-xs sm:text-sm font-bold text-gray-700 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-[#0F766E] has-[:checked]:text-white has-[:checked]:border-[#0F766E] text-center">
+                    <input type="radio" name="intensity" value={num} class="sr-only" />
+                    <span>{num}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 4: YOUR RESPONSE AS A PARENT -->
+        <!-- ========================================== -->
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-200/80 space-y-6" id="section-4">
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
+            <span class="w-9 h-9 rounded-2xl bg-emerald-50 text-[#064E3B] font-bold text-sm flex items-center justify-center shrink-0">
+              04
+            </span>
+            <div>
+              <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#064E3B]" data-en="4. Your Response as a Parent" data-ur="4۔ والدین کا ردِعمل">
+                4. Your Response as a Parent
+              </h2>
+              <p class="text-xs sm:text-sm text-gray-500" data-en="Understanding how you naturally react during stressful moments" data-ur="جب مسئلہ پیدا ہو تو آپ عام طور پر کیا ردِعمل دیتے ہیں">
+                Understanding how you naturally react during stressful moments
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            
+            <div class="space-y-2.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="What do you usually do when this happens? (Select all that apply)" data-ur="جب یہ صورتحال پیش آئے تو آپ عموماً کیا کرتے ہیں؟">
+                What do you usually do when this happens? (Select all that apply)
+              </label>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                {[
+                  { id: "Explain", en: "Explain calmly", ur: "پیار سے سمجھاتا ہوں" },
+                  { id: "Advice", en: "Give repeated advice", ur: "بار بار نصیحت کرتا ہوں" },
+                  { id: "Anger", en: "Get angry / lose temper", ur: "غصہ آ جاتا ہے" },
+                  { id: "Raise Voice", en: "Raise voice / shout", ur: "آواز بلند کرتا ہوں" },
+                  { id: "Punish", en: "Punish / physical beat", ur: "سزا دیتا ہوں" },
+                  { id: "Remove Privileges", en: "Take away phone/perks", ur: "سہولیات واپس لیتا ہوں" },
+                  { id: "Ignore", en: "Ignore / walk away", ur: "نظرانداز کرتا ہوں" },
+                  { id: "Argue", en: "Argue & lecture", ur: "بحث میں الجھ جاتا ہوں" }
+                ].map((item) => (
+                  <label class="flex items-center gap-2 p-3 rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-emerald-50 has-[:checked]:border-[#0F766E] has-[:checked]:text-[#064E3B]">
+                    <input type="checkbox" name="parent_response[]" value={item.id} class="rounded text-[#0F766E] accent-[#0F766E]" />
+                    <span data-en={item.en} data-ur={item.ur}>{item.en}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Parenting Difficulty -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="What is the biggest difficulty in your own parenting response?" data-ur="آپ کے اپنے ردِعمل میں سب سے بڑی مشکل کیا پیش آتی ہے؟">
+                What is the biggest difficulty in your own parenting response?
+              </label>
+              <textarea
+                name="parenting_difficulty"
+                rows="2"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="e.g. Losing patience quickly, inconsistency, feeling helpless..."
+                data-placeholder-en="e.g. Losing patience quickly, inconsistency, feeling helpless..."
+                data-placeholder-ur="مثلاً صبر کا پیمانہ لبریز ہونا، تسلسل نہ رہنا..."
+              ></textarea>
+            </div>
+
+            <!-- Regret After Anger -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Do you feel regret or guilt after reacting in anger?" data-ur="کیا غصہ ٹھنڈا ہونے کے بعد آپ کو اپنے ردِعمل پر پچھتاوا یا افسوس ہوتا ہے؟">
+                Do you feel regret or guilt after reacting in anger?
+              </label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {[
+                  { val: "Often", en: "Often", ur: "اکثر (Often)" },
+                  { val: "Sometimes", en: "Sometimes", ur: "کبھی کبھار" },
+                  { val: "Rarely", en: "Rarely", ur: "بہت کم" },
+                  { val: "Never", en: "Never", ur: "کبھی نہیں" }
+                ].map((item) => (
+                  <label class="flex items-center justify-center p-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-700 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-emerald-50 has-[:checked]:border-[#0F766E] has-[:checked]:text-[#064E3B]">
+                    <input type="radio" name="regret" value={item.val} class="sr-only" />
+                    <span data-en={item.en} data-ur={item.ur}>{item.en}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 5: PARENT-CHILD RELATIONSHIP -->
+        <!-- ========================================== -->
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-200/80 space-y-6" id="section-5">
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
+            <span class="w-9 h-9 rounded-2xl bg-emerald-50 text-[#064E3B] font-bold text-sm flex items-center justify-center shrink-0">
+              05
+            </span>
+            <div>
+              <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#064E3B]" data-en="5. Parent–Child Relationship" data-ur="5۔ والدین اور بچے کا تعلق">
+                5. Parent–Child Relationship
+              </h2>
+              <p class="text-xs sm:text-sm text-gray-500" data-en="Evaluating connection, communication, and emotional openness" data-ur="بچے اور والدین کے درمیان قربت اور گفتگو کا جائزہ">
+                Evaluating connection, communication, and emotional openness
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            
+            <!-- Relationship Rating 1-10 -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-gray-700 uppercase tracking-wider" data-en="How would you rate your relationship with your child? (1 = Distant/Strained, 10 = Very Close & Loving)" data-ur="بچے سے اپنے مجموعی تعلق کو 1 سے 10 تک کتنے نمبر دیں گے؟">
+                  How would you rate your relationship with your child? (1 = Distant, 10 = Very Close)
+                </span>
+                <span id="rel-val-badge" class="font-bold text-[#0F766E] font-mono">Not selected</span>
+              </div>
+              <div class="grid grid-cols-10 gap-1.5 sm:gap-2">
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                  <label class="flex flex-col items-center justify-center py-2.5 sm:py-3 rounded-xl border border-gray-200 text-xs sm:text-sm font-bold text-gray-700 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-[#0F766E] has-[:checked]:text-white has-[:checked]:border-[#0F766E] text-center">
+                    <input type="radio" name="relationship_rating" value={num} class="sr-only" />
+                    <span>{num}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Communication Ease 1-10 -->
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-bold text-gray-700 uppercase tracking-wider" data-en="How easily does your child share feelings & problems with you? (1 = Completely Closed, 10 = Completely Open)" data-ur="آپ کا بچہ اپنے مسائل و احساسات آپ سے کتنی آسانی سے شیئر کرتا ہے؟">
+                  How easily does your child share feelings & problems with you?
+                </span>
+                <span id="comm-val-badge" class="font-bold text-[#0F766E] font-mono">Not selected</span>
+              </div>
+              <div class="grid grid-cols-10 gap-1.5 sm:gap-2">
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                  <label class="flex flex-col items-center justify-center py-2.5 sm:py-3 rounded-xl border border-gray-200 text-xs sm:text-sm font-bold text-gray-700 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-[#0F766E] has-[:checked]:text-white has-[:checked]:border-[#0F766E] text-center">
+                    <input type="radio" name="communication_rating" value={num} class="sr-only" />
+                    <span>{num}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Quality Time Daily -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="How much dedicated quality time do you spend with your child daily?" data-ur="آپ روزانہ بچے کے ساتھ کتنا بامقصد وقت (Quality Time) گزارتے ہیں؟">
+                How much dedicated quality time do you spend with your child daily?
+              </label>
+              <select name="quality_time" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm bg-white focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all">
+                <option value="">Select Option</option>
+                <option value="Less than 15 minutes" data-en="Less than 15 minutes" data-ur="15 منٹ سے کم">Less than 15 minutes</option>
+                <option value="15–30 minutes" data-en="15–30 minutes" data-ur="15 سے 30 منٹ">15–30 minutes</option>
+                <option value="30–60 minutes" data-en="30–60 minutes" data-ur="30 سے 60 منٹ">30–60 minutes</option>
+                <option value="More than 1 hour" data-en="More than 1 hour" data-ur="1 گھنٹے سے زیادہ">More than 1 hour</option>
+              </select>
+            </div>
+
+            <!-- What child needs most -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="What does your child need most from you right now?" data-ur="آپ کے خیال میں اس وقت آپ کے بچے کو آپ سے سب سے زیادہ کس چیز کی ضرورت ہے؟">
+                What does your child need most from you right now?
+              </label>
+              <textarea
+                name="child_need"
+                rows="2"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="e.g. More undivided attention, patient listening, encouragement, less pressure..."
+                data-placeholder-en="e.g. More undivided attention, patient listening, encouragement, less pressure..."
+                data-placeholder-ur="مثلاً زیادہ توجہ، حوصلہ افزائی، صبر سے سننا..."
+              ></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 6: FAMILY & HOME ENVIRONMENT -->
+        <!-- ========================================== -->
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-200/80 space-y-6" id="section-6">
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
+            <span class="w-9 h-9 rounded-2xl bg-emerald-50 text-[#064E3B] font-bold text-sm flex items-center justify-center shrink-0">
+              06
+            </span>
+            <div>
+              <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#064E3B]" data-en="6. Family & Home Environment" data-ur="6۔ خاندان اور گھر کا ماحول">
+                6. Family & Home Environment
+              </h2>
+              <p class="text-xs sm:text-sm text-gray-500" data-en="Household synchronization, co-parenting harmony, and external stressors" data-ur="گھر کا ماحول، میاں بیوی کی ہم آہنگی اور دیگر اثرات">
+                Household synchronization, co-parenting harmony, and external stressors
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            
+            <!-- Partner Agreement -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Do you and your partner generally agree on parenting rules & discipline?" data-ur="کیا آپ اور آپ کے شریکِ حیات عموماً بچوں کی تربیت اور اصولوں پر متفق ہوتے ہیں؟">
+                Do you and your partner generally agree on parenting rules & discipline?
+              </label>
+              <div class="grid grid-cols-3 gap-3">
+                {[
+                  { val: "Yes", en: "Yes, mostly", ur: "جی ہاں، عموماً" },
+                  { val: "Sometimes", en: "Sometimes", ur: "کبھی کبھار" },
+                  { val: "No", en: "No, frequent conflict", ur: "نہیں، اکثر اختلاف رہتا ہے" }
+                ].map((item) => (
+                  <label class="flex items-center justify-center p-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-700 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-emerald-50 has-[:checked]:border-[#0F766E] has-[:checked]:text-[#064E3B]">
+                    <input type="radio" name="parenting_agreement" value={item.val} class="sr-only" />
+                    <span data-en={item.en} data-ur={item.ur}>{item.en}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <!-- Family Situation -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Is there any specific family situation affecting the child?" data-ur="کیا گھر یا خاندان کی کوئی خاص صورتحال بچے پر اثر انداز ہو رہی ہے؟">
+                Is there any specific family situation affecting the child?
+              </label>
+              <textarea
+                name="family_situation"
+                rows="2"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="e.g. Joint family friction, recent relocation, new baby, loss of a loved one..."
+                data-placeholder-en="e.g. Joint family friction, recent relocation, new baby, loss of a loved one..."
+                data-placeholder-ur="مثلاً مشترکہ خاندانی نظام، نقل مکانی، نئے بچے کی آمد..."
+              ></textarea>
+            </div>
+
+            <!-- Specific Child Issues -->
+            <div class="space-y-2">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Does the child currently face any specific external issues? (Select all that apply)" data-ur="کیا بچے کو اس وقت کوئی خاص مسئلہ درپیش ہے؟">
+                Does the child currently face any specific external issues? (Select all that apply)
+              </label>
+              <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+                {[
+                  { id: "School", en: "School / Bullying", ur: "اسکول یا غنڈہ گردی" },
+                  { id: "Sleep", en: "Sleep / Insomnia", ur: "نیند کے مسائل" },
+                  { id: "Friends", en: "Friendship Friction", ur: "دوستوں کے مسائل" },
+                  { id: "Study", en: "Academic Pressure", ur: "امتحانی دباؤ" },
+                  { id: "Health", en: "Health / Physical", ur: "صحت کے مسائل" },
+                  { id: "Other", en: "Other", ur: "دیگر مسائل" }
+                ].map((item) => (
+                  <label class="flex items-center justify-center p-2.5 rounded-xl border border-gray-200 text-xs font-semibold text-gray-700 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-emerald-50 has-[:checked]:border-[#0F766E] has-[:checked]:text-[#064E3B] text-center">
+                    <input type="checkbox" name="child_issues[]" value={item.id} class="sr-only" />
+                    <span data-en={item.en} data-ur={item.ur}>{item.en}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 7: YOUR GOALS -->
+        <!-- ========================================== -->
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-200/80 space-y-6" id="section-7">
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
+            <span class="w-9 h-9 rounded-2xl bg-emerald-50 text-[#064E3B] font-bold text-sm flex items-center justify-center shrink-0">
+              07
+            </span>
+            <div>
+              <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#064E3B]" data-en="7. Desired Transformation & Goals" data-ur="7۔ مطلوبہ تبدیلی اور اہداف">
+                7. Desired Transformation & Goals
+              </h2>
+              <p class="text-xs sm:text-sm text-gray-500" data-en="Concrete positive outcomes you want to achieve through coaching" data-ur="کوچنگ کے ذریعے آپ کن واضح نتائج کا حصول چاہتے ہیں">
+                Concrete positive outcomes you want to achieve through coaching
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            
+            <div class="space-y-3">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="What are the top 3 changes you want to see in your child/home?" data-ur="وہ کون سی 3 اہم تبدیلیاں ہیں جو آپ بچے اور گھر میں دیکھنا چاہتے ہیں؟">
+                What are the top 3 changes you want to see in your child/home?
+              </label>
+
+              <div class="space-y-2">
+                <input
+                  type="text"
+                  name="goal_1"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                  placeholder="1. e.g. Independent study routine without constant nagging"
+                  data-placeholder-en="1. e.g. Independent study routine without constant nagging"
+                  data-placeholder-ur="1۔ مثلاً پڑھائی میں خود کفالت اور بغیر جھگڑے کے ہوم ورک"
+                />
+                <input
+                  type="text"
+                  name="goal_2"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                  placeholder="2. e.g. Calm communication and stopping disrespectful backtalk"
+                  data-placeholder-en="2. e.g. Calm communication and stopping disrespectful backtalk"
+                  data-placeholder-ur="2۔ مثلاً بدتمیزی اور غصے کا خاتمہ، باوقار گفتگو"
+                />
+                <input
+                  type="text"
+                  name="goal_3"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                  placeholder="3. e.g. Voluntary regular Salah habits and reduced phone addiction"
+                  data-placeholder-en="3. e.g. Voluntary regular Salah habits and reduced phone addiction"
+                  data-placeholder-ur="3۔ مثلاً نماز کی پابندی اور اسکرین ٹائم میں توازن"
+                />
+              </div>
+            </div>
+
+            <!-- Biggest Parenting Goal -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="What is your single biggest parenting goal right now?" data-ur="اس وقت آپ کا سب سے بڑا parenting goal کیا ہے؟">
+                What is your single biggest parenting goal right now?
+              </label>
+              <textarea
+                name="main_goal"
+                rows="2"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="Share your primary vision for your child's moral, spiritual, and emotional future..."
+                data-placeholder-en="Share your primary vision for your child's moral, spiritual, and emotional future..."
+                data-placeholder-ur="اپنے بچے کے مستقبل اور کردار سے متعلق اپنا بنیادی خواب بیان کریں..."
+              ></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 8: YOUR OWN GROWTH -->
+        <!-- ========================================== -->
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-200/80 space-y-6" id="section-8">
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
+            <span class="w-9 h-9 rounded-2xl bg-emerald-50 text-[#064E3B] font-bold text-sm flex items-center justify-center shrink-0">
+              08
+            </span>
+            <div>
+              <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#064E3B]" data-en="8. Parental Self-Development" data-ur="8۔ والدین کی اپنی ذاتی تبدیلی">
+                8. Parental Self-Development
+              </h2>
+              <p class="text-xs sm:text-sm text-gray-500" data-en="Children mirror who we are—committing to personal growth" data-ur="بچے ہماری شخصیت کا عکس ہوتے ہیں—ذاتی ارتقاء کا عزم">
+                Children mirror who we are—committing to personal growth
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="What change do you want to bring in your own parenting habits?" data-ur="آپ اپنی parenting اور عادات میں کون سی تبدیلی لانا چاہتے ہیں؟">
+                What change do you want to bring in your own parenting habits?
+              </label>
+              <textarea
+                name="parent_growth"
+                rows="2"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="e.g. Stop shouting, become more patient, regulate my stress..."
+                data-placeholder-en="e.g. Stop shouting, become more patient, regulate my stress..."
+                data-placeholder-ur="مثلاً چیخنا بند کرنا، زیادہ صابر بننا، اپنے غصے پر قابو پانا..."
+              ></textarea>
+            </div>
+
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="What do you expect from this coaching program?" data-ur="آپ اس کوچنگ پروگرام سے کیا توقع رکھتے ہیں؟">
+                What do you expect from this coaching program?
+              </label>
+              <textarea
+                name="coaching_expectations"
+                rows="2"
+                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+                placeholder="e.g. Practical actionable frameworks, clear diagnosis, accountability..."
+                data-placeholder-en="e.g. Practical actionable frameworks, clear diagnosis, accountability..."
+                data-placeholder-ur="مثلاً عملی رہنمائی، واضح لائحہ عمل، رہنمائی اور رہنمائی..."
+              ></textarea>
+            </div>
+
+            <!-- Ready for assignments -->
+            <div class="space-y-1.5">
+              <label class="block text-xs font-bold text-gray-700 uppercase tracking-wider" data-en="Are you ready to practice home exercises & daily action assignments?" data-ur="کیا آپ دی گئی مشقیں اور روزمرہ اسائنمنٹس مکمل کرنے کے لیے تیار ہیں؟">
+                Are you ready to practice home exercises & daily action assignments?
+              </label>
+              <div class="grid grid-cols-3 gap-3">
+                {[
+                  { val: "Yes", en: "Yes, fully committed", ur: "جی ہاں، مکمل تیار ہوں" },
+                  { val: "Sometimes", en: "Will try my best", ur: "پوری کوشش کروں گا/گی" },
+                  { val: "Not sure", en: "Not sure yet", ur: "ابھی یقین نہیں" }
+                ].map((item) => (
+                  <label class="flex items-center justify-center p-3 rounded-xl border border-gray-200 text-xs font-bold text-gray-700 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-emerald-50 has-[:checked]:border-[#0F766E] has-[:checked]:text-[#064E3B]">
+                    <input type="radio" name="assignments" value={item.val} class="sr-only" />
+                    <span data-en={item.en} data-ur={item.ur}>{item.en}</span>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- SECTION 9: ADDITIONAL NOTES -->
+        <!-- ========================================== -->
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-gray-200/80 space-y-6" id="section-9">
+          <div class="flex items-center gap-3 border-b border-gray-100 pb-4">
+            <span class="w-9 h-9 rounded-2xl bg-emerald-50 text-[#064E3B] font-bold text-sm flex items-center justify-center shrink-0">
+              09
+            </span>
+            <div>
+              <h2 class="text-xl sm:text-2xl font-serif font-bold text-[#064E3B]" data-en="9. Additional Information" data-ur="9۔ کوئی اور اہم بات؟">
+                9. Additional Information
+              </h2>
+              <p class="text-xs sm:text-sm text-gray-500" data-en="Anything else you want Dr. Younus Khalid to know before your session starts" data-ur="کوئی اور اہم بات جو آپ سیشن شروع ہونے سے پہلے شیئر کرنا چاہتے ہوں">
+                Anything else you want Dr. Younus Khalid to know before your session starts
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-1.5">
+            <textarea
+              name="additional_information"
+              rows="3"
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:ring-2 focus:ring-[#0F766E] focus:border-transparent outline-none transition-all"
+              placeholder="Any medical, psychological, or historical context you wish to share confidentially..."
+              data-placeholder-en="Any medical, psychological, or historical context you wish to share confidentially..."
+              data-placeholder-ur="کوئی بھی طبی، نفسیاتی یا ماضی کا پس منظر جو آپ شیئر کرنا چاہتے ہوں..."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Submission Actions Area -->
+        <div class="bg-gradient-to-r from-[#064E3B] to-[#0F766E] rounded-3xl p-8 sm:p-10 text-white shadow-xl space-y-6 text-center">
+          
+          <div class="space-y-2 max-w-xl mx-auto">
+            <h3 class="text-2xl font-serif font-bold" data-en="Ready to Begin Your Coaching?" data-ur="کیا آپ کوچنگ شروع کرنے کے لیے تیار ہیں؟">
+              Ready to Begin Your Coaching?
+            </h3>
+            <p class="text-xs sm:text-sm text-[#D1FAE5]" data-en="When you submit, your diagnostic responses are instantly formatted and delivered directly to the EduTarbiyah counselor team on WhatsApp for session scheduling." data-ur="فارم سبمٹ کرنے پر آپ کے تمام جوابات ایک باقاعدہ تشخیصی رپورٹ کی شکل میں واٹس ایپ پر EduTarbiyah کونسلر کو موصول ہو جائیں گے۔">
+              When you submit, your diagnostic responses are instantly formatted and delivered directly to the EduTarbiyah counselor team on WhatsApp for session scheduling.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            
+            <!-- Submit Button via WhatsApp -->
+            <button
+              type="submit"
+              id="submit-btn"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-base font-extrabold shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+            >
+              <MessageCircle class="w-6 h-6 fill-current" />
+              <span data-en="Submit via WhatsApp →" data-ur="واٹس ایپ پر سبمٹ کریں ←">
+                Submit via WhatsApp →
+              </span>
+            </button>
+
+            <!-- Copy Summary Button -->
+            <button
+              type="button"
+              id="copy-summary-btn"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/20 text-white text-sm font-bold border border-white/20 backdrop-blur-sm transition-all cursor-pointer"
+            >
+              <Copy class="w-4 h-4" />
+              <span data-en="Copy Diagnostic Summary" data-ur="رپورٹ کاپی کریں">Copy Diagnostic Summary</span>
+            </button>
+
+            <!-- Print Button -->
+            <button
+              type="button"
+              id="print-btn"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/20 text-white text-sm font-bold border border-white/20 backdrop-blur-sm transition-all cursor-pointer"
+            >
+              <Printer class="w-4 h-4" />
+              <span data-en="Print Form" data-ur="پرنٹ کریں">Print Form</span>
+            </button>
+
+          </div>
+
+          <!-- Reset Button -->
+          <div class="pt-2">
+            <button
+              type="button"
+              id="reset-form-btn"
+              class="text-xs text-white/60 hover:text-white underline inline-flex items-center gap-1 cursor-pointer"
+            >
+              <RotateCcw class="w-3 h-3" />
+              <span data-en="Clear & Reset Form" data-ur="فارم صاف کریں اور دوبارہ شروع کریں">Clear & Reset Form</span>
+            </button>
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+
+  <!-- Client-Side Form Logic Island -->
+  <script is:inline define:vars={{ WHATSAPP_NUMBER }}>
+    (function() {
+      let currentLang = 'en';
+      const form = document.getElementById('intake-form');
+      const langToggleBtn = document.getElementById('lang-toggle-btn');
+      const langToggleText = document.getElementById('lang-toggle-text');
+      const progressBar = document.getElementById('progress-bar-fill');
+      const progressText = document.getElementById('progress-percentage-text');
+      const copyBtn = document.getElementById('copy-summary-btn');
+      const printBtn = document.getElementById('print-btn');
+      const resetBtn = document.getElementById('reset-form-btn');
+      
+      const STORAGE_KEY = 'edutarbiyah_intake_form_data';
+
+      // 1. Language Toggle Logic
+      function setLanguage(lang) {
+        currentLang = lang;
+        const isUr = lang === 'ur';
+
+        // Toggle button text
+        if (langToggleText) {
+          langToggleText.textContent = isUr ? 'View in English' : 'اردو میں دیکھیں';
+        }
+
+        // Toggle all data-en / data-ur texts
+        document.querySelectorAll('[data-en]').forEach((el) => {
+          const text = el.getAttribute(`data-${lang}`);
+          if (text) {
+            el.textContent = text;
+          }
+        });
+
+        // Toggle placeholders
+        document.querySelectorAll('[data-placeholder-en]').forEach((el) => {
+          const ph = el.getAttribute(`data-placeholder-${lang}`);
+          if (ph) {
+            el.setAttribute('placeholder', ph);
+          }
+        });
+
+        // Toggle direction if desired
+        if (isUr) {
+          document.body.classList.add('font-urdu');
+        } else {
+          document.body.classList.remove('font-urdu');
+        }
+      }
+
+      if (langToggleBtn) {
+        langToggleBtn.addEventListener('click', () => {
+          setLanguage(currentLang === 'en' ? 'ur' : 'en');
+        });
+      }
+
+      // 2. Progress Calculation
+      const requiredInputs = form.querySelectorAll('[required]');
+      function updateProgress() {
+        let filledCount = 0;
+        const total = requiredInputs.length;
+
+        // Group radios by name
+        const radioGroups = new Set();
+        requiredInputs.forEach((input) => {
+          if (input.type === 'radio') {
+            radioGroups.add(input.name);
+          } else if (input.value && input.value.trim() !== '') {
+            filledCount++;
+          }
+        });
+
+        radioGroups.forEach((name) => {
+          const checked = form.querySelector(`input[name="${name}"]:checked`);
+          if (checked) filledCount++;
+        });
+
+        // Adjust total accounting for radio groups
+        const effectiveTotal = (total - Array.from(form.querySelectorAll('input[type="radio"][required]')).length) + radioGroups.size;
+        const percent = Math.min(100, Math.round((filledCount / (effectiveTotal || 1)) * 100));
+
+        if (progressBar) progressBar.style.width = `${percent}%`;
+        if (progressText) progressText.textContent = `${percent}%`;
+      }
+
+      // 3. LocalStorage Persistence
+      function saveFormData() {
+        const formData = new FormData(form);
+        const data = {};
+        for (let [key, val] of formData.entries()) {
+          if (key.endsWith('[]')) {
+            const cleanKey = key.slice(0, -2);
+            if (!data[cleanKey]) data[cleanKey] = [];
+            data[cleanKey].push(val);
+          } else {
+            data[key] = val;
+          }
+        }
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        } catch (e) {}
+      }
+
+      function loadFormData() {
+        try {
+          const saved = localStorage.getItem(STORAGE_KEY);
+          if (!saved) return;
+          const data = JSON.parse(saved);
+
+          for (let key in data) {
+            const val = data[key];
+            if (Array.isArray(val)) {
+              val.forEach((item) => {
+                const cb = form.querySelector(`input[name="${key}[]"][value="${item}"]`);
+                if (cb) cb.checked = true;
+              });
+            } else {
+              const input = form.querySelector(`[name="${key}"]`);
+              if (input) {
+                if (input.type === 'radio') {
+                  const r = form.querySelector(`input[name="${key}"][value="${val}"]`);
+                  if (r) r.checked = true;
+                } else {
+                  input.value = val;
+                }
+              }
+            }
+          }
+        } catch (e) {}
+      }
+
+      // Live badges for 1-10 scales
+      function updateScaleBadges() {
+        const intensity = form.querySelector('input[name="intensity"]:checked');
+        const intensityBadge = document.getElementById('intensity-val-badge');
+        if (intensityBadge) intensityBadge.textContent = intensity ? `${intensity.value} / 10` : 'Not selected';
+
+        const rel = form.querySelector('input[name="relationship_rating"]:checked');
+        const relBadge = document.getElementById('rel-val-badge');
+        if (relBadge) relBadge.textContent = rel ? `${rel.value} / 10` : 'Not selected';
+
+        const comm = form.querySelector('input[name="communication_rating"]:checked');
+        const commBadge = document.getElementById('comm-val-badge');
+        if (commBadge) commBadge.textContent = comm ? `${comm.value} / 10` : 'Not selected';
+      }
+
+      form.addEventListener('input', () => {
+        updateProgress();
+        saveFormData();
+        updateScaleBadges();
+      });
+
+      form.addEventListener('change', () => {
+        updateProgress();
+        saveFormData();
+        updateScaleBadges();
+      });
+
+      // 4. Generate Formatted WhatsApp Message
+      function generateSummaryText() {
+        const d = new FormData(form);
+        const getVal = (name) => (d.get(name) || 'Not specified').toString().trim();
+        const getAll = (name) => d.getAll(name);
+
+        const behaviors = getAll('behaviors[]').join(', ') || 'None specified';
+        const responses = getAll('parent_response[]').join(', ') || 'None specified';
+        const issues = getAll('child_issues[]').join(', ') || 'None';
+
+        return `📋 *EDUTARBIYAH PARENTING COACHING INTAKE REPORT*
+----------------------------------------
+👤 *1. Parent Information*
+• Parent Name: ${getVal('parent_name')}
+• Age: ${getVal('parent_age')}
+• Relationship: ${getVal('relationship')}
+• Contact (${getVal('contact_method')}): ${getVal('contact_value')}
+• Total Children: ${getVal('total_children')}
+
+👶 *2. Child Profile*
+• Child Name: ${getVal('child_name')}
+• Age: ${getVal('child_age')} | Gender: ${getVal('gender')}
+• Grade / Level: ${getVal('education_level')}
+• Strengths: ${getVal('child_strengths')}
+
+⚠️ *3. Core Challenge*
+• Main Reason: ${getVal('main_reason')}
+• Behaviors: ${behaviors}
+• Duration: ${getVal('duration')} | Frequency: ${getVal('frequency')}
+• Problem Intensity: ${getVal('intensity')}/10
+
+🗣️ *4. Parental Reaction*
+• Usual Reaction: ${responses}
+• Reaction Difficulty: ${getVal('parenting_difficulty')}
+• Post-Anger Regret: ${getVal('regret')}
+
+❤️ *5. Relationship & Communication*
+• Relationship Rating: ${getVal('relationship_rating')}/10
+• Communication Ease: ${getVal('communication_rating')}/10
+• Daily Quality Time: ${getVal('quality_time')}
+• Child's Core Need: ${getVal('child_need')}
+
+🏡 *6. Family & Home*
+• Spousal Agreement: ${getVal('parenting_agreement')}
+• Family Context: ${getVal('family_situation')}
+• External Issues: ${issues}
+
+🎯 *7. Transformation Goals*
+• Goal 1: ${getVal('goal_1')}
+• Goal 2: ${getVal('goal_2')}
+• Goal 3: ${getVal('goal_3')}
+• Major Vision: ${getVal('main_goal')}
+
+🌱 *8. Personal Growth*
+• Desired Habit Change: ${getVal('parent_growth')}
+• Coaching Expectation: ${getVal('coaching_expectations')}
+• Ready for Assignments: ${getVal('assignments')}
+
+📝 *9. Notes:* ${getVal('additional_information')}`;
+      }
+
+      // Handle Submit -> WhatsApp
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Check required fields
+        let firstInvalid = null;
+        requiredInputs.forEach((input) => {
+          if (input.type === 'radio') {
+            const hasChecked = form.querySelector(`input[name="${input.name}"]:checked`);
+            if (!hasChecked && !firstInvalid) firstInvalid = input;
+          } else if (!input.value || !input.value.trim()) {
+            if (!firstInvalid) firstInvalid = input;
+          }
+        });
+
+        if (firstInvalid) {
+          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          firstInvalid.focus();
+          alert(currentLang === 'ur' ? 'براہِ کرم تمام لازمی فیلڈز مکمل کریں۔' : 'Please fill in all required fields marked with * before submitting.');
+          return;
+        }
+
+        const summary = generateSummaryText();
+        const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(summary)}`;
+        window.open(waUrl, '_blank');
+      });
+
+      // Handle Copy
+      if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+          const summary = generateSummaryText();
+          navigator.clipboard.writeText(summary).then(() => {
+            alert(currentLang === 'ur' ? 'تشخیصی رپورٹ کلپ بورڈ پر کاپی ہو گئی!' : 'Diagnostic summary successfully copied to clipboard!');
+          });
+        });
+      }
+
+      // Handle Print
+      if (printBtn) {
+        printBtn.addEventListener('click', () => {
+          window.print();
+        });
+      }
+
+      // Handle Reset
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          if (confirm(currentLang === 'ur' ? 'کیا آپ فارم صاف کرنا چاہتے ہیں؟' : 'Are you sure you want to reset all responses?')) {
+            form.reset();
+            try {
+              localStorage.removeItem(STORAGE_KEY);
+            } catch(e) {}
+            updateProgress();
+            updateScaleBadges();
+          }
+        });
+      }
+
+      // Init on load
+      loadFormData();
+      updateProgress();
+      updateScaleBadges();
+
+    })();
+  </script>
+
+</Layout>
