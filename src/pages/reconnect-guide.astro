@@ -1,0 +1,1528 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { WHATSAPP_NUMBER } from '../lib/api';
+import { 
+  Sparkles, 
+  CheckCircle2, 
+  Target, 
+  Heart, 
+  Shield, 
+  ShieldCheck, 
+  Flame, 
+  Compass, 
+  Clock, 
+  BookOpen, 
+  User, 
+  Users, 
+  MessageCircle, 
+  AlertCircle, 
+  ArrowRight, 
+  ArrowLeft, 
+  RotateCcw, 
+  Printer, 
+  Share2, 
+  HelpCircle, 
+  Download, 
+  Copy, 
+  ChevronRight, 
+  Check, 
+  Star, 
+  Lightbulb, 
+  Zap, 
+  Award, 
+  ExternalLink, 
+  Globe 
+} from 'lucide-astro';
+---
+
+<Layout
+  title="Reconnect & Guide Your Teen | 5-Step Action Plan | EduTarbiyah"
+  description="A practical 5-step prophetic action plan for Muslim parents to reconnect, establish firm boundaries, build responsibility, and guide teenagers with love and wisdom."
+  canonical="https://edutarbiyah.com/reconnect-guide/"
+>
+
+  <!-- Print Specific CSS -->
+  <style is:global>
+    @media print {
+      header, footer, nav, #top-breadcrumbs, #hero-section, #presets-section, #wizard-stepper, #wizard-controls, #framework-section, #faq-section, #cta-section, #floating-whatsapp, #lang-toggle-btn, .no-print {
+        display: none !important;
+      }
+      body {
+        background: white !important;
+        color: black !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+      #printable-teen-plan {
+        display: block !important;
+        border: 2px solid #064E3B !important;
+        box-shadow: none !important;
+        page-break-inside: avoid !important;
+        margin: 20px auto !important;
+        max-width: 100% !important;
+        padding: 24px !important;
+        background: white !important;
+      }
+      .print-only {
+        display: block !important;
+      }
+    }
+  </style>
+
+  <!-- Top Breadcrumbs & Bilingual Toggle -->
+  <div id="top-breadcrumbs" class="bg-[#F8FFFC] border-b border-[#0F766E]/10 py-3 px-4 sm:px-6 text-xs text-gray-500">
+    <div class="max-w-5xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <a href="/" class="hover:text-[#0F766E] transition-colors">Home</a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <span class="text-gray-400">Parenting Tools</span>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <span class="text-[#064E3B] font-semibold" data-en="Reconnect & Guide Your Teen" data-ur="نوجوان اولاد سے تعلق کی بحالی">Reconnect & Guide Your Teen</span>
+      </div>
+      <div class="flex items-center gap-3">
+        <!-- Language Switcher -->
+        <button
+          type="button"
+          id="lang-toggle-btn"
+          class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white border border-[#0F766E]/20 text-[#064E3B] font-bold text-xs shadow-sm hover:bg-[#F4F8F6] transition-colors cursor-pointer"
+          aria-label="Switch Language / زبان تبدیل کریں"
+        >
+          <Globe class="w-3.5 h-3.5 text-[#0F766E]" />
+          <span id="lang-toggle-text">اردو میں دیکھیں</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Header Section -->
+  <section id="hero-section" class="relative bg-gradient-to-b from-[#064E3B] via-[#095944] to-[#064E3B] text-white py-12 lg:py-16 overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F59E0B_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+
+    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      
+      <!-- Top Badge -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-[#F59E0B] text-xs font-bold tracking-wide uppercase backdrop-blur-md border border-white/15">
+        <Heart class="w-4 h-4 text-rose-400" />
+        <span data-en="🌱 Adolescent Tarbiyah & Relationship Healing" data-ur="🌱 نوجوانوں کی اسلامی تربیت اور باہمی تعلق کی بحالی">
+          🌱 Adolescent Tarbiyah & Relationship Healing
+        </span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="text-3xl sm:text-5xl font-serif font-extrabold text-white tracking-tight leading-tight">
+        <span data-en="Reconnect & Guide Your Teen" data-ur="نوجوان اولاد کے ساتھ تعلق کی بحالی اور درست رہنمائی">
+          Reconnect & Guide Your Teen
+        </span>
+      </h1>
+
+      <!-- The Core Transformation Formula Callout -->
+      <div class="bg-white/10 backdrop-blur-md border border-amber-300/30 rounded-2xl p-4 sm:p-5 max-w-3xl mx-auto shadow-inner text-center">
+        <p class="text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-300 mb-1" data-en="The Proven 5-Step Transformation Formula:" data-ur="تربیت اور اصلاح کا 5 نکاتی بنیادی فارمولا:">
+          The Proven 5-Step Transformation Formula:
+        </p>
+        <p class="font-serif text-white text-sm sm:text-lg font-bold tracking-wide">
+          <span class="text-amber-200" data-en="Reconnection" data-ur="تعلق">Reconnection</span> → 
+          <span class="text-emerald-200" data-en="Boundaries" data-ur="حدود">Boundaries</span> → 
+          <span class="text-teal-200" data-en="Responsibility" data-ur="ذمہ داری">Responsibility</span> → 
+          <span class="text-amber-200" data-en="Positive Engagement" data-ur="مثبت مصروفیات">Positive Engagement</span> → 
+          <span class="text-emerald-200" data-en="Accountability" data-ur="احتساب">Accountability</span> = 
+          <span class="text-[#F59E0B] underline underline-offset-4 decoration-amber-400" data-en="Transformation" data-ur="کامیاب تربیت">Transformation</span>
+        </p>
+      </div>
+
+      <!-- Hero Subtitle -->
+      <p class="text-base sm:text-lg text-[#D1FAE5] max-w-2xl mx-auto leading-relaxed font-normal">
+        <span data-en="A practical action plan for parents navigating teen mood swings, screen overuse, defiance, or distance. Rules without relationship lead to rebellion — rebuild trust first, then guide with firm love." data-ur="ایک عملی لائحہ عمل ان والدین کے لیے جو نوجوان اولاد کی دوری، ضد، اسکرین کی عادت یا غصے سے پریشان ہیں۔ بغیر تعلق کے قانون سازی بغاوت پیدا کرتی ہے — پہلے دل جیتیں، پھر باوقار رہنمائی کریں۔">
+          A practical action plan for parents navigating teen mood swings, screen overuse, defiance, or distance. Rules without relationship lead to rebellion — rebuild trust first, then guide with firm love.
+        </span>
+      </p>
+
+      <!-- Key Pillars Badges -->
+      <div class="pt-2 flex flex-wrap justify-center gap-2 sm:gap-3 text-xs sm:text-sm font-medium text-emerald-100">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
+          <Users class="w-4 h-4 text-[#F59E0B]" />
+          <span data-en="5 Diagnostic Stages" data-ur="5 تشخیصی مراحل">5 Diagnostic Stages</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
+          <Shield class="w-4 h-4 text-[#F59E0B]" />
+          <span data-en="Firm Family Boundaries" data-ur="واضح خاندانی حدود">Firm Family Boundaries</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
+          <Printer class="w-4 h-4 text-[#F59E0B]" />
+          <span data-en="Printable Action Plan" data-ur="پرنٹ ایبل معاہدہ">Printable Action Plan</span>
+        </span>
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/10">
+          <MessageCircle class="w-4 h-4 text-[#F59E0B]" />
+          <span data-en="Coach Feedback" data-ur="کوچ فیڈبیک">Coach Feedback</span>
+        </span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14 space-y-12">
+
+    <!-- PRESETS SCENARIOS BAR -->
+    <section id="presets-section" class="bg-gradient-to-br from-[#F8FFFC] to-[#FFFDF9] rounded-2xl border border-[#0F766E]/20 p-6 shadow-sm">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+        <div>
+          <h2 class="text-lg font-serif font-bold text-[#064E3B] flex items-center gap-2">
+            <Lightbulb class="w-5 h-5 text-[#F59E0B]" />
+            <span data-en="Common Teen Scenarios (Click to Pre-fill):" data-ur="نوجوانوں کے عام مسائل (حل کے لیے کلک کریں):">
+              Common Teen Scenarios (Click to Pre-fill):
+            </span>
+          </h2>
+          <p class="text-xs text-gray-500 mt-0.5">
+            <span data-en="Select your teen's most pressing challenge to see a tailored recovery blueprint." data-ur="اپنے نوجوان بچے کے سب سے بڑے مسئلے پر کلک کریں تاکہ آزمودہ لائحہ عمل خودبخود مرتب ہو سکے۔">
+              Select your teen's most pressing challenge to see a tailored recovery blueprint.
+            </span>
+          </p>
+        </div>
+        <button
+          type="button"
+          id="clear-form-btn"
+          class="text-xs text-gray-400 hover:text-red-600 transition-colors inline-flex items-center gap-1 self-start sm:self-auto cursor-pointer"
+        >
+          <RotateCcw class="w-3.5 h-3.5" />
+          <span data-en="Reset Form" data-ur="فارم صاف کریں">Reset Form</span>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+        <!-- Preset 1: Screen & Gaming Addiction -->
+        <button
+          type="button"
+          class="preset-card text-left p-3.5 rounded-xl border border-emerald-100 bg-white hover:border-[#0F766E] hover:shadow-md transition-all group cursor-pointer"
+          data-connection="2"
+          data-boundaries="2"
+          data-responsibility="2"
+          data-habits="1"
+          data-accountability="3"
+          data-rule-en="Mobile & gaming allowed for 60 minutes only after homework & Maghrib prayer."
+          data-rule-ur="موبائل اور گیمز صرف مغرب کی نماز اور ہوم ورک کے بعد زیادہ سے زیادہ 60 منٹ کے لیے۔"
+          data-resp-en="Keep study desk clean and manage personal laundry / shoes."
+          data-resp-ur="اپنا اسٹڈی ٹیبل صاف رکھنا اور کپڑے و جوتے ترتیب سے رکھنا۔"
+          data-act-en="Join martial arts / football academy, 15 min daily evening family walk."
+          data-act-ur="مارشل آرٹس یا فٹ بال اکیڈمی جوائن کرنا اور شام کو 15 منٹ چہل قدمی۔"
+        >
+          <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
+            <span class="text-lg">📱</span>
+            <span data-en="Screen & Gaming" data-ur="اسکرین اور گیمنگ">Screen & Gaming</span>
+          </div>
+          <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+            <span data-en="Addiction to reels & gaming, isolating in bedroom." data-ur="کمرے میں بند رہنا اور موبائل کا بے تحاشا استعمال۔">Addiction to reels & gaming, isolating in bedroom.</span>
+          </p>
+        </button>
+
+        <!-- Preset 2: Anger & Disrespect -->
+        <button
+          type="button"
+          class="preset-card text-left p-3.5 rounded-xl border border-emerald-100 bg-white hover:border-[#0F766E] hover:shadow-md transition-all group cursor-pointer"
+          data-connection="1"
+          data-boundaries="3"
+          data-responsibility="1"
+          data-habits="4"
+          data-accountability="4"
+          data-rule-en="We pause when upset; shouting or disrespectful language results in an immediate calm timeout."
+          data-rule-ur="غصے میں بات نہیں ہوگی؛ بدتمیزی یا اونچی آواز پر فوراً خاموش بریک لیا جائے گا۔"
+          data-resp-en="Help serve dinner table and clear plates without arguments."
+          data-resp-ur="کھانے کی میز لگانے اور برتن سمیٹنے میں روزانہ حصہ لینا۔"
+          data-act-en="1-on-1 parent coffee / drive once a week, listening without lectures."
+          data-act-ur="ہفتے میں ایک بار والدین کے ساتھ اکیلے ڈرائیو یا چائے، بنا کسی نصیحت کے سننا۔"
+        >
+          <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
+            <span class="text-lg">😠</span>
+            <span data-en="Anger & Backtalk" data-ur="غصہ اور بدتمیزی">Anger & Backtalk</span>
+          </div>
+          <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+            <span data-en="Frequent shouting, eye-rolling, arguing over small things." data-ur="چھوٹی بات پر چیخنا، بحث اور الٹے جوابات دینا۔">Frequent shouting, eye-rolling, arguing over small things.</span>
+          </p>
+        </button>
+
+        <!-- Preset 3: Prayer & Values Drift -->
+        <button
+          type="button"
+          class="preset-card text-left p-3.5 rounded-xl border border-emerald-100 bg-white hover:border-[#0F766E] hover:shadow-md transition-all group cursor-pointer"
+          data-connection="3"
+          data-boundaries="5"
+          data-responsibility="3"
+          data-habits="2"
+          data-accountability="3"
+          data-rule-en="Salah is prayed together as a family at home whenever we are present."
+          data-rule-ur="گھر میں موجود ہونے پر نماز باجماعت سب مل کر ادا کریں گے۔"
+          data-resp-en="Call the family Adhan and place prayer mats neatly."
+          data-resp-ur="نماز کے وقت اذان دینا اور جائے نمازیں بچھانا۔"
+          data-act-en="Listen to youth-friendly Seerah podcast together, open Q&A on faith."
+          data-act-ur="نوجوانوں کے لیے سیرت پوڈکاسٹ سننا اور دوستانہ سوال و جواب۔"
+        >
+          <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
+            <span class="text-lg">📿</span>
+            <span data-en="Prayer Resistance" data-ur="نماز میں سستی">Prayer Resistance</span>
+          </div>
+          <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+            <span data-en="Skipping Salah, spiritual indifference, skeptical questions." data-ur="نماز چھوڑنا، دینی معاملات میں بیزاری اور شکوک۔">Skipping Salah, spiritual indifference, skeptical questions.</span>
+          </p>
+        </button>
+
+        <!-- Preset 4: Laziness & Study Avoidance -->
+        <button
+          type="button"
+          class="preset-card text-left p-3.5 rounded-xl border border-emerald-100 bg-white hover:border-[#0F766E] hover:shadow-md transition-all group cursor-pointer"
+          data-connection="2"
+          data-boundaries="4"
+          data-responsibility="1"
+          data-habits="5"
+          data-accountability="4"
+          data-rule-en="Dedicated 90-minute study block in the living room before any leisure or entertainment."
+          data-rule-ur="تفریح یا موبائل سے پہلے لاؤنج میں 90 منٹ پڑھائی کا لازمی وقت۔"
+          data-resp-en="Prepare own school bag and organize books before 9:00 PM."
+          data-resp-ur="رات 9 بجے سے پہلے اسکول بیگ اور کتابیں خود تیار کرنا۔"
+          data-act-en="Hands-on weekend coding / graphic skill learning, father-son gym routine."
+          data-act-ur="ویک اینڈ پر کوئی ہنر یا اسکل سیکھنا، والد کے ساتھ واک یا ورزش۔"
+        >
+          <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
+            <span class="text-lg">🛋️</span>
+            <span data-en="Study Avoidance" data-ur="پڑھائی سے فرار">Study Avoidance</span>
+          </div>
+          <p class="text-xs text-gray-500 mt-1 line-clamp-2">
+            <span data-en="Procrastination, poor grades, lying about homework." data-ur="ہوم ورک سے جھوٹ بولنا اور پڑھائی میں لاپرواہی۔">Procrastination, poor grades, lying about homework.</span>
+          </p>
+        </button>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE 5-STEP TEEN PLANNER WIZARD -->
+    <section class="bg-white rounded-3xl border border-gray-200/80 shadow-xl overflow-hidden">
+
+      <!-- Wizard Progress Header -->
+      <div id="wizard-stepper" class="bg-[#F8FFFC] border-b border-[#0F766E]/15 p-5 sm:p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-full bg-[#064E3B] text-white font-bold text-xs" id="step-number-badge">
+              1
+            </span>
+            <span class="font-serif font-bold text-sm sm:text-base text-[#064E3B]" id="step-title-display">
+              Step 1: Reconnect Before You Correct
+            </span>
+          </div>
+          <div class="text-xs font-semibold text-[#0F766E] flex items-center gap-1.5 self-end sm:self-auto">
+            <span data-en="Progress:" data-ur="پیش رفت:">Progress:</span>
+            <span id="progress-percent" class="font-bold text-sm">20%</span>
+          </div>
+        </div>
+
+        <!-- Progress Bar Track -->
+        <div class="w-full bg-gray-200 h-2.5 rounded-full overflow-hidden">
+          <div
+            id="wizard-progress-bar"
+            class="bg-gradient-to-r from-[#0F766E] to-[#10B981] h-full rounded-full transition-all duration-400 ease-out"
+            style="width: 20%;"
+          ></div>
+        </div>
+
+        <!-- Step Indicator Dots -->
+        <div class="flex justify-between items-center mt-3 text-[11px] font-medium text-gray-500 px-1">
+          <button type="button" class="step-dot font-bold text-[#064E3B] cursor-pointer" data-step="1">1. Reconnect</button>
+          <span class="text-gray-300">•</span>
+          <button type="button" class="step-dot cursor-pointer" data-step="2">2. Boundaries</button>
+          <span class="text-gray-300">•</span>
+          <button type="button" class="step-dot cursor-pointer" data-step="3">3. Responsibility</button>
+          <span class="text-gray-300">•</span>
+          <button type="button" class="step-dot cursor-pointer" data-step="4">4. Replace Habits</button>
+          <span class="text-gray-300">•</span>
+          <button type="button" class="step-dot cursor-pointer" data-step="5">5. Accountability</button>
+        </div>
+      </div>
+
+      <!-- Names & Context Header (Step 0) -->
+      <div class="px-6 pt-6 sm:px-8 sm:pt-8 bg-gray-50/70 border-b border-gray-100">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-6">
+          <div class="space-y-1.5">
+            <label for="parentName" class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
+              <span data-en="Parent Name" data-ur="والدین کا نام">Parent Name</span>
+              <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="parentName"
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 placeholder-gray-400 text-sm bg-white shadow-sm"
+              placeholder="e.g. Ayesha / Farooq"
+            />
+          </div>
+          <div class="space-y-1.5">
+            <label for="teenName" class="block text-xs font-bold text-gray-700 uppercase tracking-wider">
+              <span data-en="Teen Name & Age" data-ur="نوجوان بچے کا نام اور عمر">Teen Name & Age</span>
+              <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="teenName"
+              class="w-full px-4 py-2.5 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 placeholder-gray-400 text-sm bg-white shadow-sm"
+              placeholder="e.g. Zayd (15 years)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Wizard Form Container -->
+      <form id="teen-form" class="p-6 sm:p-8 lg:p-10 space-y-8" onsubmit="return false;">
+
+        <!-- STEP 1: Reconnect Before You Correct -->
+        <div id="step-panel-1" class="wizard-step-panel space-y-6">
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F766E] uppercase tracking-wider mb-1">
+              <Heart class="w-4 h-4 text-rose-500" />
+              <span data-en="Step 1 of 5: Connection First" data-ur="مرحلہ 1 از 5: اصلاح سے پہلے تعلق">Step 1 of 5: Connection First</span>
+            </div>
+            <h3 class="text-2xl font-serif font-extrabold text-[#064E3B]">
+              <span data-en="Reconnect Before You Correct" data-ur="اصلاح اور قانون سازی سے پہلے دلی تعلق بنائیں">Reconnect Before You Correct</span>
+            </h3>
+            <p class="text-sm text-gray-500 mt-1">
+              <span data-en="Adolescents shut down when spoken to only through commands and lectures. Rate your current connection and choose your healing rituals." data-ur="جب نوجوانوں سے صرف احکامات اور نصیحتوں کے ذریعے بات کی جائے تو وہ دیوار کھڑی کر لیتے ہیں۔ تعلق کی موجودہ سطح کا جائزہ لیں اور بحالی کا راستہ چنیں۔">
+                Adolescents shut down when spoken to only through commands and lectures. Rate your current connection and choose your healing rituals.
+              </span>
+            </p>
+          </div>
+
+          <!-- Connection Level -->
+          <div class="space-y-2">
+            <label for="connection" class="block text-sm font-bold text-gray-700">
+              <span data-en="How strong is your current emotional connection with your teen?" data-ur="آپ کا اپنے نوجوان بچے کے ساتھ موجودہ جذباتی تعلق کیسا ہے؟">How strong is your current emotional connection with your teen?</span>
+            </label>
+            <select
+              id="connection"
+              class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 text-sm bg-white shadow-sm"
+            >
+              <option value="1">1 - Very Weak (Frequent shouting, silent treatment, emotional distance)</option>
+              <option value="2">2 - Weak (Only formal talk about school/food, low trust)</option>
+              <option value="3" selected>3 - Average (Cordial but distant, superficial communication)</option>
+              <option value="4">4 - Good (Generally warm, open to advice when calm)</option>
+              <option value="5">5 - Strong (High mutual trust, confides personal feelings)</option>
+            </select>
+          </div>
+
+          <!-- Reconnection Strategies Checklist -->
+          <div class="space-y-3 pt-2">
+            <label class="block text-sm font-bold text-gray-700">
+              <span data-en="This week I will actively rebuild connection through:" data-ur="اس ہفتے میں ان طریقوں سے تعلق مضبوط کروں گا/گی:">This week I will actively rebuild connection through:</span>
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5" id="reconnect-checks">
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-gray-200 bg-[#FBFDFC] hover:border-[#0F766E]/40 cursor-pointer text-xs sm:text-sm font-medium text-gray-700 transition-colors">
+                <input type="checkbox" class="recon-check w-4 h-4 rounded text-[#0F766E] focus:ring-[#0F766E]" checked />
+                <span data-en="15 minutes daily non-judgmental talk" data-ur="روزانہ 15 منٹ بنا کسی تنقید یا نصیحت کے بات چیت">15 minutes daily non-judgmental talk</span>
+              </label>
+
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-gray-200 bg-[#FBFDFC] hover:border-[#0F766E]/40 cursor-pointer text-xs sm:text-sm font-medium text-gray-700 transition-colors">
+                <input type="checkbox" class="recon-check w-4 h-4 rounded text-[#0F766E] focus:ring-[#0F766E]" checked />
+                <span data-en="Eating at least 1 meal together without screens" data-ur="موبائل کے بغیر کم از کم ایک وقت کا کھانا اکٹھے کھانا">Eating at least 1 meal together without screens</span>
+              </label>
+
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-gray-200 bg-[#FBFDFC] hover:border-[#0F766E]/40 cursor-pointer text-xs sm:text-sm font-medium text-gray-700 transition-colors">
+                <input type="checkbox" class="recon-check w-4 h-4 rounded text-[#0F766E] focus:ring-[#0F766E]" />
+                <span data-en="Walking, driving, or sitting together outdoors" data-ur="ساتھ واک کرنا، باہر بیٹھنا یا ڈرائیو پر جانا">Walking, driving, or sitting together outdoors</span>
+              </label>
+
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-gray-200 bg-[#FBFDFC] hover:border-[#0F766E]/40 cursor-pointer text-xs sm:text-sm font-medium text-gray-700 transition-colors">
+                <input type="checkbox" class="recon-check w-4 h-4 rounded text-[#0F766E] focus:ring-[#0F766E]" checked />
+                <span data-en="Listening actively without lecturing or moralizing" data-ur="بغیر ٹوکے اور فتوے دیے ہمدردی سے سننا">Listening actively without lecturing or moralizing</span>
+              </label>
+
+              <label class="flex items-center gap-3 p-3 rounded-xl border border-gray-200 bg-[#FBFDFC] hover:border-[#0F766E]/40 cursor-pointer text-xs sm:text-sm font-medium text-gray-700 transition-colors sm:col-span-2">
+                <input type="checkbox" class="recon-check w-4 h-4 rounded text-[#0F766E] focus:ring-[#0F766E]" checked />
+                <span data-en="Appreciating one positive character trait or effort daily" data-ur="روزانہ کم از کم ایک خوبی یا کوشش کی دل سے تعریف کرنا">Appreciating one positive character trait or effort daily</span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: Clear Expectations & Boundaries -->
+        <div id="step-panel-2" class="wizard-step-panel hidden space-y-6">
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F766E] uppercase tracking-wider mb-1">
+              <Shield class="w-4 h-4 text-[#F59E0B]" />
+              <span data-en="Step 2 of 5: Firm Boundaries" data-ur="مرحلہ 2 از 5: واضح اور باوقار حدود">Step 2 of 5: Firm Boundaries</span>
+            </div>
+            <h3 class="text-2xl font-serif font-extrabold text-[#064E3B]">
+              <span data-en="Set Clear Expectations & Boundaries" data-ur="واضح حدود اور خاندانی اصول طے کریں">Set Clear Expectations & Boundaries</span>
+            </h3>
+            <p class="text-sm text-gray-500 mt-1">
+              <span data-en="Teens need boundaries for emotional safety, but fuzzy rules cause endless fights. Pick the ONE boundary that needs urgent restructuring." data-ur="نوجوانوں کو حدود کی ضرورت ہوتی ہے لیکن غیر واضح قوانین جھگڑوں کو جنم دیتے ہیں۔ کسی ایک اہم ترین مسئلے کا انتخاب کریں۔">
+                Teens need boundaries for emotional safety, but fuzzy rules cause endless fights. Pick the ONE boundary that needs urgent restructuring.
+              </span>
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <label for="boundaries" class="block text-sm font-bold text-gray-700">
+                <span data-en="Which boundary needs urgent attention right now?" data-ur="اس وقت کس معاملے میں حد بندی کی فوری ضرورت ہے؟">Which boundary needs urgent attention right now?</span>
+              </label>
+              <select
+                id="boundaries"
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 text-sm bg-white shadow-sm"
+              >
+                <option value="1">1 - No clear boundary (Total chaos, unpredictable enforcement)</option>
+                <option value="2">2 - Screen & Gaming Time (Excessive phone, late-night screens)</option>
+                <option value="3">3 - Respectful Language & Tone (No shouting, slamming doors, backtalk)</option>
+                <option value="4">4 - Study Routine & Homework (Procrastination, exam neglect)</option>
+                <option value="5">5 - Prayer, Discipline & Family Rules (Salah on time, curfew, manners)</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label for="familyRule" class="block text-sm font-bold text-gray-700">
+                <span data-en="Write ONE simple, crystal-clear family rule:" data-ur="ایک سادہ اور دوٹوک خاندانی اصول لکھیں:">Write ONE simple, crystal-clear family rule:</span>
+                <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="familyRule"
+                class="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 placeholder-gray-400 text-sm sm:text-base shadow-sm"
+                placeholder="Example: Mobile will be used for 1 hour after homework and Maghrib only."
+                required
+              />
+              <p class="text-xs text-gray-400">
+                <span data-en="Tip: State what WILL happen calmly and predictably, not what you will scream about." data-ur="رہنمائی: اصول کو پرسکون اور واضح رکھیں، جس میں چیخنے کی گنجائش نہ ہو۔">
+                  Tip: State what WILL happen calmly and predictably, not what you will scream about.
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: Increase Responsibility Gradually -->
+        <div id="step-panel-3" class="wizard-step-panel hidden space-y-6">
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F766E] uppercase tracking-wider mb-1">
+              <Target class="w-4 h-4 text-emerald-600" />
+              <span data-en="Step 3 of 5: Practical Responsibility" data-ur="مرحلہ 3 از 5: ذمہ داری اور خود انحصاری">Step 3 of 5: Practical Responsibility</span>
+            </div>
+            <h3 class="text-2xl font-serif font-extrabold text-[#064E3B]">
+              <span data-en="Increase Responsibility Gradually" data-ur="بتدریج ذمہ داری اور خود اعتمادی بڑھائیں">Increase Responsibility Gradually</span>
+            </h3>
+            <p class="text-sm text-gray-500 mt-1">
+              <span data-en="Spoiled behavior develops when privileges are given without responsibilities. Build their self-respect through real household ownership." data-ur="جب سہولیات اور مراعات بغیر کسی ذمہ داری کے دی جائیں تو نخرے اور سستی جنم لیتی ہے۔ بچے کی خودداری کو عملی ذمہ داری سے جگائیں۔">
+                Spoiled behavior develops when privileges are given without responsibilities. Build their self-respect through real household ownership.
+              </span>
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <label for="responsibility" class="block text-sm font-bold text-gray-700">
+                <span data-en="Current responsibility level of your teen:" data-ur="آپ کے نوجوان بچے کی ذمہ داری کی موجودہ حالت:">Current responsibility level of your teen:</span>
+              </label>
+              <select
+                id="responsibility"
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 text-sm bg-white shadow-sm"
+              >
+                <option value="1">1 - Avoids all responsibility (Expects everything served)</option>
+                <option value="2">2 - Rarely responsible (Needs constant nagging and threats)</option>
+                <option value="3" selected>3 - Sometimes responsible (Does tasks occasionally when reminded)</option>
+                <option value="4">4 - Mostly responsible (Handles own school & personal chores)</option>
+                <option value="5">5 - Very responsible (Takes proactive initiative in family duties)</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label for="weeklyResponsibility" class="block text-sm font-bold text-gray-700">
+                <span data-en="Assign ONE tangible responsibility for this week:" data-ur="اس ہفتے کے لیے ایک واضح اور متعین ذمہ داری سونپیں:">Assign ONE tangible responsibility for this week:</span>
+                <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="weeklyResponsibility"
+                class="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 placeholder-gray-400 text-sm sm:text-base shadow-sm"
+                placeholder="Example: Keep room clean / help in grocery & kitchen / manage personal laundry"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4: Replace Bad Habits with Positive Engagement -->
+        <div id="step-panel-4" class="wizard-step-panel hidden space-y-6">
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F766E] uppercase tracking-wider mb-1">
+              <Zap class="w-4 h-4 text-amber-500" />
+              <span data-en="Step 4 of 5: Habit Replacement" data-ur="مرحلہ 4 از 5: بری عادت کا مثبت متبادل">Step 4 of 5: Habit Replacement</span>
+            </div>
+            <h3 class="text-2xl font-serif font-extrabold text-[#064E3B]">
+              <span data-en="Replace Bad Habits with Positive Engagement" data-ur="بری عادات کو ختم کرنے کے بجائے مثبت مصروفیات سے بدلیں">Replace Bad Habits with Positive Engagement</span>
+            </h3>
+            <p class="text-sm text-gray-500 mt-1">
+              <span data-en="You cannot merely forbid a habit without providing an inspiring alternative. Energy cannot be destroyed; it must be constructively channeled." data-ur="محض کسی چیز سے روکنا کافی نہیں ہوتا جب تک متبادل نہ دیا جائے۔ نوجوان کی صلاحیتوں اور توانائی کو درست سمت دینا ضروری ہے۔">
+                You cannot merely forbid a habit without providing an inspiring alternative. Energy cannot be destroyed; it must be constructively channeled.
+              </span>
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <label for="habits" class="block text-sm font-bold text-gray-700">
+                <span data-en="Major negative habit to replace:" data-ur="وہ سب سے بڑی منفی عادت جسے بدلنا ہے:">Major negative habit to replace:</span>
+              </label>
+              <select
+                id="habits"
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 text-sm bg-white shadow-sm"
+              >
+                <option value="1">1 - Mobile & Social Media Addiction</option>
+                <option value="2">2 - Extreme Laziness & Lying in Bed</option>
+                <option value="3">3 - Negative Peer Company / Unwholesome Influences</option>
+                <option value="4">4 - Explosive Anger & Disrespectful Demeanor</option>
+                <option value="5">5 - Study Avoidance & Lack of Ambition</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label for="positiveActivity" class="block text-sm font-bold text-gray-700">
+                <span data-en="Positive replacement activity / healthy outlet:" data-ur="ایک صحت مند، تعمیری متبادل سرگرمی یا ہنر:">Positive replacement activity / healthy outlet:</span>
+                <span class="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                id="positiveActivity"
+                class="w-full px-4 py-3.5 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 placeholder-gray-400 text-sm sm:text-base shadow-sm"
+                placeholder="Example: Sports / gym, skill learning (video/coding), Quran Halaqah, family hobby"
+                required
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5: Create Growth & Accountability Plan -->
+        <div id="step-panel-5" class="wizard-step-panel hidden space-y-6">
+          <div>
+            <div class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F766E] uppercase tracking-wider mb-1">
+              <Clock class="w-4 h-4 text-[#0F766E]" />
+              <span data-en="Step 5 of 5: Review & Accountability" data-ur="مرحلہ 5 از 5: باہمی جائزہ اور احتساب">Step 5 of 5: Review & Accountability</span>
+            </div>
+            <h3 class="text-2xl font-serif font-extrabold text-[#064E3B]">
+              <span data-en="Create Growth & Accountability Plan" data-ur="ہفتہ وار جائزہ اور احتساب کا نظام بنائیں">Create Growth & Accountability Plan</span>
+            </h3>
+            <p class="text-sm text-gray-500 mt-1">
+              <span data-en="A plan without review dies in 3 days. Decide how and when you will calmly evaluate progress together without emotional blowups." data-ur="جس منصوبے کا جائزہ نہ لیا جائے وہ تین دن میں ختم ہو جاتا ہے۔ طے کریں کہ آپ کس وقت پرسکون انداز میں پیش رفت دیکھیں گے۔">
+                A plan without review dies in 3 days. Decide how and when you will calmly evaluate progress together without emotional blowups.
+              </span>
+            </p>
+          </div>
+
+          <div class="space-y-4">
+            <div class="space-y-2">
+              <label for="accountability" class="block text-sm font-bold text-gray-700">
+                <span data-en="How often will you review progress together?" data-ur="آپ دونوں مل کر کتنی بار پیش رفت کا جائزہ لیں گے؟">How often will you review progress together?</span>
+              </label>
+              <select
+                id="accountability"
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 text-sm bg-white shadow-sm"
+              >
+                <option value="1">1 - No review plan (Only react when something breaks)</option>
+                <option value="2">2 - Occasional review (When time permits)</option>
+                <option value="3" selected>3 - Weekly calm Sunday review (Recommended)</option>
+                <option value="4">4 - Daily short 2-minute evening check-in</option>
+                <option value="5">5 - Daily short check-in + weekly comprehensive review</option>
+              </select>
+            </div>
+
+            <div class="space-y-2">
+              <label for="notes" class="block text-sm font-bold text-gray-700">
+                <span data-en="Weekly progress observations & notes:" data-ur="ہفتہ وار مشاہدات اور نوٹس:">Weekly progress observations & notes:</span>
+              </label>
+              <textarea
+                id="notes"
+                rows="3"
+                class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-[#0F766E] focus:ring-2 focus:ring-[#0F766E]/20 text-gray-900 placeholder-gray-400 text-sm shadow-sm"
+                placeholder="What improved this week? What caused friction? What will we refine next week?"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wizard Navigation Controls -->
+        <div id="wizard-controls" class="flex items-center justify-between gap-4 pt-6 border-t border-gray-100">
+          <button
+            type="button"
+            id="prev-step-btn"
+            class="hidden px-5 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-bold text-sm hover:bg-gray-50 transition-colors inline-flex items-center gap-2 cursor-pointer"
+          >
+            <ArrowLeft class="w-4 h-4" />
+            <span data-en="Back" data-ur="واپس">Back</span>
+          </button>
+
+          <div class="flex items-center gap-3 ml-auto">
+            <button
+              type="button"
+              id="save-local-btn"
+              class="px-4 py-2.5 rounded-xl border border-[#0F766E]/20 text-[#0F766E] font-semibold text-xs sm:text-sm hover:bg-[#F4F8F6] transition-colors inline-flex items-center gap-1.5 cursor-pointer"
+              title="Save current progress"
+            >
+              <Download class="w-3.5 h-3.5" />
+              <span data-en="Save Progress" data-ur="محفوظ کریں">Save Progress</span>
+            </button>
+
+            <button
+              type="button"
+              id="next-step-btn"
+              class="px-7 py-3 rounded-xl bg-gradient-to-r from-[#064E3B] to-[#0F766E] text-white font-bold text-sm sm:text-base hover:from-[#043327] hover:to-[#0B5C55] transition-all shadow-md hover:shadow-lg inline-flex items-center gap-2 cursor-pointer"
+            >
+              <span id="next-btn-text" data-en="Next Step" data-ur="اگلا مرحلہ">Next Step</span>
+              <ArrowRight class="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </section>
+
+    <!-- LIVE TEEN RECOVERY PLAN & ACTION PROTOCOL (PRINTABLE) -->
+    <section id="printable-teen-plan" class="bg-gradient-to-b from-white to-[#F8FFFC] rounded-3xl border-2 border-[#0F766E]/30 p-6 sm:p-10 shadow-lg relative overflow-hidden">
+      
+      <!-- Top Decorative Accent -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-[#0F766E]/20">
+        <div>
+          <div class="inline-flex items-center gap-2 text-xs font-bold text-[#F59E0B] uppercase tracking-wider mb-1">
+            <Sparkles class="w-4 h-4" />
+            <span data-en="Customized Tarbiyah Blueprint" data-ur="تربیتی ایکشن پلان">Customized Tarbiyah Blueprint</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-serif font-black text-[#064E3B]">
+            <span data-en="Teen Reconnect & Growth Protocol" data-ur="نوجوان اولاد کا ریکوری پلان و خاندانی معاہدہ">Teen Reconnect & Growth Protocol</span>
+          </h2>
+          <p class="text-xs text-gray-500 mt-1">
+            <span data-en="A structured roadmap to replace conflict with connection, boundaries, and responsibility." data-ur="جھگڑوں اور فاصلوں کو ختم کر کے محبت اور نظم و ضبط کا باوقار راستہ۔">
+              A structured roadmap to replace conflict with connection, boundaries, and responsibility.
+            </span>
+          </p>
+        </div>
+
+        <!-- Action Toolbar -->
+        <div class="no-print flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            id="print-plan-btn"
+            class="px-4 py-2 rounded-xl bg-[#064E3B] text-white font-bold text-xs sm:text-sm hover:bg-[#043327] transition-all shadow inline-flex items-center gap-1.5 cursor-pointer"
+          >
+            <Printer class="w-4 h-4 text-amber-300" />
+            <span data-en="Print Agreement" data-ur="معاہدہ پرنٹ کریں">Print Agreement</span>
+          </button>
+          
+          <button
+            type="button"
+            id="whatsapp-plan-btn"
+            class="px-4 py-2 rounded-xl bg-[#25D366] text-white font-bold text-xs sm:text-sm hover:bg-[#1EBE5D] transition-all shadow inline-flex items-center gap-1.5 cursor-pointer"
+          >
+            <MessageCircle class="w-4 h-4" />
+            <span data-en="Consult Coach on WhatsApp" data-ur="واٹس ایپ پر مشاورت لیں">Consult Coach on WhatsApp</span>
+          </button>
+
+          <button
+            type="button"
+            id="copy-plan-btn"
+            class="px-3 py-2 rounded-xl border border-gray-300 text-gray-700 font-semibold text-xs hover:bg-gray-50 transition-colors inline-flex items-center gap-1 cursor-pointer"
+            title="Copy Plan Text"
+          >
+            <Copy class="w-3.5 h-3.5" />
+            <span id="copy-btn-text" data-en="Copy" data-ur="کاپی">Copy</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Plan Body -->
+      <div class="py-8 space-y-6">
+
+        <!-- Diagnostic Score Banner -->
+        <div class="p-6 rounded-2xl bg-white border border-[#0F766E]/20 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div class="space-y-1 text-center sm:text-left">
+            <div class="flex items-center justify-center sm:justify-start gap-2">
+              <span class="text-xs font-bold text-[#0F766E] uppercase tracking-wider" data-en="Diagnostic Readiness Score:" data-ur="تشخیصی اسکور:">
+                Diagnostic Readiness Score:
+              </span>
+              <span id="plan-score-badge" class="font-extrabold text-base px-3 py-0.5 rounded-full bg-[#064E3B] text-white">
+                56%
+              </span>
+            </div>
+            <div id="plan-level-display" class="text-lg font-serif font-bold text-[#064E3B]">
+              Needs Structured Support (درمیانی مرحلہ)
+            </div>
+            <p id="plan-summary-advice" class="text-xs sm:text-sm text-gray-600 max-w-xl leading-relaxed">
+              Connection is improving. Now introduce clear boundaries and assign one small tangible responsibility.
+            </p>
+          </div>
+
+          <div class="text-center sm:text-right shrink-0 bg-[#F8FFFC] p-4 rounded-xl border border-[#0F766E]/15">
+            <span class="text-[11px] font-bold text-gray-500 uppercase tracking-wider block" data-en="Focus Subject:" data-ur="تربیتی ہدف:">
+              Focus Subject:
+            </span>
+            <div class="text-base font-bold text-[#064E3B] mt-0.5">
+              <span id="display-parent-name">Parent</span> & <span id="display-teen-name">Teen</span>
+            </div>
+            <span class="text-[11px] text-emerald-700 font-semibold block mt-0.5" data-en="Prophetic Rahmah & Structure" data-ur="نبوی رحمت اور باوقار نظم">
+              Prophetic Rahmah & Structure
+            </span>
+          </div>
+        </div>
+
+        <!-- 5-Point Action Protocol Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          
+          <!-- Protocol 1 -->
+          <div class="p-4 rounded-xl bg-white border border-[#0F766E]/15 shadow-sm space-y-1">
+            <span class="text-[11px] font-bold text-[#0F766E] uppercase tracking-wider flex items-center gap-1.5">
+              <Heart class="w-3.5 h-3.5 text-rose-500" />
+              <span data-en="1. Daily Reconnection Ritual" data-ur="1. روزانہ تعلق کی بحالی">1. Daily Reconnection Ritual</span>
+            </span>
+            <p id="display-reconnect-protocol" class="text-xs sm:text-sm text-gray-800 font-medium">
+              15 minutes daily non-judgmental talk + Eating meals together without screens.
+            </p>
+          </div>
+
+          <!-- Protocol 2 -->
+          <div class="p-4 rounded-xl bg-white border border-[#0F766E]/15 shadow-sm space-y-1">
+            <span class="text-[11px] font-bold text-[#F59E0B] uppercase tracking-wider flex items-center gap-1.5">
+              <Shield class="w-3.5 h-3.5 text-amber-600" />
+              <span data-en="2. Non-Negotiable Family Boundary" data-ur="2. بنیادی خاندانی حد / اصول">2. Non-Negotiable Family Boundary</span>
+            </span>
+            <p id="display-rule-protocol" class="text-xs sm:text-sm text-gray-800 font-bold">
+              [Set one simple and clear family rule above]
+            </p>
+          </div>
+
+          <!-- Protocol 3 -->
+          <div class="p-4 rounded-xl bg-white border border-[#0F766E]/15 shadow-sm space-y-1">
+            <span class="text-[11px] font-bold text-emerald-700 uppercase tracking-wider flex items-center gap-1.5">
+              <Target class="w-3.5 h-3.5 text-emerald-600" />
+              <span data-en="3. Weekly Responsibility Task" data-ur="3. ہفتہ وار عملی ذمہ داری">3. Weekly Responsibility Task</span>
+            </span>
+            <p id="display-resp-protocol" class="text-xs sm:text-sm text-gray-800 font-bold">
+              [Assign one small tangible responsibility above]
+            </p>
+          </div>
+
+          <!-- Protocol 4 -->
+          <div class="p-4 rounded-xl bg-white border border-[#0F766E]/15 shadow-sm space-y-1">
+            <span class="text-[11px] font-bold text-teal-700 uppercase tracking-wider flex items-center gap-1.5">
+              <Zap class="w-3.5 h-3.5 text-teal-600" />
+              <span data-en="4. Healthy Replacement Activity" data-ur="4. تعمیری متبادل سرگرمی">4. Healthy Replacement Activity</span>
+            </span>
+            <p id="display-act-protocol" class="text-xs sm:text-sm text-gray-800 font-bold">
+              [Choose one positive replacement activity above]
+            </p>
+          </div>
+        </div>
+
+        <!-- Accountability Cadence & Golden Parent Reminder -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-amber-50/70 border border-amber-200/80 space-y-1">
+            <span class="text-[11px] font-bold text-amber-900 uppercase tracking-wider flex items-center gap-1.5">
+              <Clock class="w-3.5 h-3.5 text-amber-700" />
+              <span data-en="5. Review Cadence & Progress Check" data-ur="5. جائزہ اور احتساب کا وقت">5. Review Cadence & Progress Check</span>
+            </span>
+            <p id="display-cadence-protocol" class="text-xs text-amber-950 font-medium">
+              Calm weekly review session. Celebrate wins before addressing setbacks.
+            </p>
+          </div>
+
+          <div class="p-4 rounded-xl bg-emerald-50/70 border border-emerald-200/80 space-y-1">
+            <span class="text-[11px] font-bold text-[#064E3B] uppercase tracking-wider flex items-center gap-1.5">
+              <Sparkles class="w-3.5 h-3.5 text-[#F59E0B]" />
+              <span data-en="Golden Parent Mindset" data-ur="والدین کے لیے سنہری یاد دہانی">Golden Parent Mindset</span>
+            </span>
+            <p class="text-xs text-emerald-950 italic leading-relaxed" data-en="“First reconnect, then correct. Avoid shouting, daily nagging and comparison. Small consistent steps can rebuild trust and responsibility.”" data-ur="”پہلے دلی تعلق بنائیں، پھر اصلاح کریں۔ چیخنے، طنز کرنے اور دوسروں سے موازنے سے مکمل پرہیز کریں۔ چھوٹے اور مستقل اقدامات سے اعتماد بحال ہوتا ہے۔“">
+              “First reconnect, then correct. Avoid shouting, daily nagging and comparison. Small consistent steps can rebuild trust and responsibility.”
+            </p>
+          </div>
+        </div>
+
+        <!-- Signatures for Family Agreement -->
+        <div class="pt-6 border-t border-gray-200 grid grid-cols-2 gap-8 text-xs text-gray-500">
+          <div>
+            <p class="font-semibold text-gray-700" data-en="Parent Commitment Signature:" data-ur="والدین کے دستخط:">Parent Commitment Signature:</p>
+            <div class="border-b border-gray-400 mt-6 w-3/4"></div>
+          </div>
+          <div class="text-right">
+            <p class="font-semibold text-gray-700" data-en="Teen Commitment Signature:" data-ur="نوجوان بچے کے دستخط:">Teen Commitment Signature:</p>
+            <div class="border-b border-gray-400 mt-6 w-3/4 ml-auto"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EDUCATIONAL SECTION: 4 LAWS OF ADOLESCENT TARBIYAH -->
+    <section id="framework-section" class="space-y-6 pt-4">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100/80 text-[#064E3B] text-xs font-bold uppercase tracking-wider">
+          <BookOpen class="w-3.5 h-3.5" />
+          <span data-en="Adolescent Psychology & Prophetic Wisdom" data-ur="نوجوانوں کی نفسیات اور نبوی اسلوب">Adolescent Psychology & Prophetic Wisdom</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-serif font-extrabold text-[#064E3B]">
+          <span data-en="The 4 Laws of Adolescent Tarbiyah" data-ur="نوجوان اولاد کی تربیت کے 4 بنیادی اصول">The 4 Laws of Adolescent Tarbiyah</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-600">
+          <span data-en="Why traditional parenting stops working when children hit puberty, and how the Sunnah navigated this pivotal phase." data-ur="بلوغت کے بعد پرانے طریقے کیوں ناکام ہو جاتے ہیں، اور رسول اللہ ﷺ نے نوجوان صحابہ کی رہنمائی کیسے فرمائی۔">
+            Why traditional parenting stops working when children hit puberty, and how the Sunnah navigated this pivotal phase.
+          </span>
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- Pillar 1 -->
+        <div class="p-6 rounded-2xl bg-white border border-gray-200/80 shadow-sm hover:border-[#0F766E]/40 transition-all space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-rose-100 text-rose-800 flex items-center justify-center font-bold text-lg font-serif">
+            1
+          </div>
+          <h3 class="font-serif font-bold text-base text-[#064E3B]">
+            <span data-en="Relationship Before Rules" data-ur="اصول سے پہلے دلی تعلق">Relationship Before Rules</span>
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            <span data-en="A child obeys out of fear or dependence; a teenager cooperates out of respect and love. If your emotional bank account is empty, every demand causes rebellion." data-ur="چھوٹا بچہ خوف یا مجبوری میں مانتا ہے، مگر نوجوان محبت اور عزت سے مانتا ہے۔ اگر تعلق کا کھاتہ خالی ہو تو ہر حکم پر بغاوت جنم لیتی ہے۔">
+              A child obeys out of fear or dependence; a teenager cooperates out of respect and love. If your emotional bank account is empty, every demand causes rebellion.
+            </span>
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="p-6 rounded-2xl bg-white border border-gray-200/80 shadow-sm hover:border-[#0F766E]/40 transition-all space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-900 flex items-center justify-center font-bold text-lg font-serif">
+            2
+          </div>
+          <h3 class="font-serif font-bold text-base text-[#064E3B]">
+            <span data-en="Stop Lecturing, Start Consulting" data-ur="تقریر کے بجائے مشاورت">Stop Lecturing, Start Consulting</span>
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            <span data-en="The Prophet ﷺ consulted young companions (like Usamah ibn Zayd). Ask your teen: 'What do you think is fair?' When they help set the rule, they respect it." data-ur="رسول اللہ ﷺ نے نوجوان صحابہ سے مشورہ فرمایا۔ بچے سے پوچھیں: 'آپ کے خیال میں کیا انصاف ہے؟' جب وہ خود اصول طے کرتے ہیں تو اس کی پابندی کرتے ہیں۔">
+              The Prophet ﷺ consulted young companions (like Usamah ibn Zayd). Ask your teen: 'What do you think is fair?' When they help set the rule, they respect it.
+            </span>
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="p-6 rounded-2xl bg-white border border-gray-200/80 shadow-sm hover:border-[#0F766E]/40 transition-all space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-900 flex items-center justify-center font-bold text-lg font-serif">
+            3
+          </div>
+          <h3 class="font-serif font-bold text-base text-[#064E3B]">
+            <span data-en="Calm Consistency Over Fury" data-ur="غصے کے بجائے مستقل مزاجی">Calm Consistency Over Fury</span>
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            <span data-en="Exploding in anger shifts the focus from the teen's mistake to your harshness. Enforce pre-agreed consequences quietly without shouting or lecturing." data-ur="غصے میں چیخنے سے توجہ بچے کی غلطی سے ہٹ کر آپ کے رویے پر چلی جاتی ہے۔ طے شدہ نتائج کو بغیر چیخے اور پرسکون انداز میں نافذ کریں۔">
+              Exploding in anger shifts the focus from the teen's mistake to your harshness. Enforce pre-agreed consequences quietly without shouting or lecturing.
+            </span>
+          </p>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="p-6 rounded-2xl bg-white border border-gray-200/80 shadow-sm hover:border-[#0F766E]/40 transition-all space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-900 flex items-center justify-center font-bold text-lg font-serif">
+            4
+          </div>
+          <h3 class="font-serif font-bold text-base text-[#064E3B]">
+            <span data-en="Channel Energy with Meaning" data-ur="توانائی کو بامقصد راستہ دیں">Channel Energy with Meaning</span>
+          </h3>
+          <p class="text-xs text-gray-600 leading-relaxed">
+            <span data-en="Teens possess intense energy and search for identity. If not channeled into sports, skills, and faith, it naturally defaults to screens, rebellion, and peer pressure." data-ur="نوجوانوں میں بے پناہ توانائی ہوتی ہے۔ اگر اسے کھیل، ہنر اور دین کے راستے نہ دیے جائیں تو وہ خودبخود اسکرین اور غلط صحبت کی طرف چلی جاتی ہے۔">
+              Teens possess intense energy and search for identity. If not channeled into sports, skills, and faith, it naturally defaults to screens, rebellion, and peer pressure.
+            </span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FREQUENTLY ASKED QUESTIONS -->
+    <section id="faq-section" class="bg-[#F8FFFC] rounded-3xl border border-[#0F766E]/20 p-6 sm:p-10 space-y-6">
+      <div class="text-center max-w-xl mx-auto space-y-1">
+        <h2 class="text-xl sm:text-2xl font-serif font-extrabold text-[#064E3B]">
+          <span data-en="Frequently Asked Questions" data-ur="اکثر پوچھے گئے سوالات">Frequently Asked Questions</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-500">
+          <span data-en="Honest guidance for challenging teen situations." data-ur="نوجوانوں کی تربیت کے مشکل معاملات میں رہنما سوال و جواب۔">
+            Honest guidance for challenging teen situations.
+          </span>
+        </p>
+      </div>
+
+      <div class="max-w-3xl mx-auto space-y-3">
+        <!-- FAQ 1 -->
+        <details class="group bg-white rounded-xl border border-gray-200/80 p-4 transition-all [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+          <summary class="flex items-center justify-between font-bold text-sm text-[#064E3B] select-none">
+            <span data-en="What if my teen gives one-word answers and shuts their room door?" data-ur="اگر بچہ ایک لفظی جواب دے اور کمرے کا دروازہ بند کر لے تو کیا کریں؟">What if my teen gives one-word answers and shuts their room door?</span>
+            <ChevronRight class="w-4 h-4 text-gray-400 group-open:rotate-90 transition-transform" />
+          </summary>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed pt-2 border-t border-gray-100">
+            <span data-en="Do not take it personally or bang on their door demanding a lecture. Start with small, non-demanding touchpoints: bring a fruit plate, sit quietly in the same room without interrogating, or invite them for a car drive where eye contact is not forced. Connection takes patience." data-ur="اسے ذاتی انا کا مسئلہ نہ بنائیں اور دروازہ پیٹ کر نصیحت نہ کریں۔ بغیر مطالبے کے چھوٹے قدم اٹھائیں: پھل یا چائے لا کر دیں، بنا سوالات پوچھے پاس بیٹھیں، یا گاڑی میں لے جائیں جہاں مسلسل نظریں ملانا ضروری نہ ہو۔ صبر سے برف پگھلتی ہے۔">
+              Do not take it personally or bang on their door demanding a lecture. Start with small, non-demanding touchpoints: bring a fruit plate, sit quietly in the same room without interrogating, or invite them for a car drive where eye contact is not forced. Connection takes patience.
+            </span>
+          </p>
+        </details>
+
+        <!-- FAQ 2 -->
+        <details class="group bg-white rounded-xl border border-gray-200/80 p-4 transition-all [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+          <summary class="flex items-center justify-between font-bold text-sm text-[#064E3B] select-none">
+            <span data-en="How do we enforce boundaries without starting screaming matches?" data-ur="چیخ و پکار کے بغیر حدود کیسے نافذ کی جائیں؟">How do we enforce boundaries without starting screaming matches?</span>
+            <ChevronRight class="w-4 h-4 text-gray-400 group-open:rotate-90 transition-transform" />
+          </summary>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed pt-2 border-t border-gray-100">
+            <span data-en="Agree on the boundary and the specific consequence ahead of time when both of you are calm. When the boundary is violated, do not shout or argue. Simply say: 'I love you too much to argue, but our agreement was no screens until homework is done. We can try again tomorrow.' Follow through calmly." data-ur="حد اور اس کا نتیجہ پہلے سے طے کریں جب دونوں پرسکون ہوں۔ جب حد پار ہو تو بحث یا چیخنے کے بجائے تحمل سے کہیں: 'مجھے آپ سے بہت محبت ہے اس لیے میں بحث نہیں کروں گا، مگر ہمارا معاہدہ تھا کہ ہوم ورک کے بعد اسکرین ہوگی۔ کل دوبارہ کوشش کریں گے۔' تحمل سے عمل کریں۔">
+              Agree on the boundary and the specific consequence ahead of time when both of you are calm. When the boundary is violated, do not shout or argue. Simply say: 'I love you too much to argue, but our agreement was no screens until homework is done. We can try again tomorrow.' Follow through calmly.
+            </span>
+          </p>
+        </details>
+
+        <!-- FAQ 3 -->
+        <details class="group bg-white rounded-xl border border-gray-200/80 p-4 transition-all [&_summary::-webkit-details-marker]:hidden cursor-pointer">
+          <summary class="flex items-center justify-between font-bold text-sm text-[#064E3B] select-none">
+            <span data-en="When is it necessary to seek 1-on-1 parenting coaching?" data-ur="ایک پر ایک کوچنگ سیشن کب ضروری ہو جاتا ہے؟">When is it necessary to seek 1-on-1 parenting coaching?</span>
+            <ChevronRight class="w-4 h-4 text-gray-400 group-open:rotate-90 transition-transform" />
+          </summary>
+          <p class="text-xs text-gray-600 mt-2 leading-relaxed pt-2 border-t border-gray-100">
+            <span data-en="If there is chronic defiance, complete breakdown of communication for months, dangerous peer influence, or parental burnout, personalized coaching provides an objective third-party bridge. Fill out our Intake Form or message us on WhatsApp for a confidential consultation." data-ur="اگر مہینوں سے گفتگو مکمل بند ہو، مسلسل شدید بدتمیزی ہو، خطرناک صحبت ہو یا والدین ذہنی طور پر تھک چکے ہوں تو ماہر کوچ کی رہنمائی ضروری ہوتی ہے۔ فوری رہنمائی کے لیے ہمارا انٹیک فارم پر کریں یا واٹس ایپ پر رابطہ کریں۔">
+              If there is chronic defiance, complete breakdown of communication for months, dangerous peer influence, or parental burnout, personalized coaching provides an objective third-party bridge. Fill out our Intake Form or message us on WhatsApp for a confidential consultation.
+            </span>
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- NEXT STEPS / TARBIYAH ECOSYSTEM BRIDGE -->
+    <section id="cta-section" class="bg-gradient-to-br from-[#064E3B] to-[#0A4D3C] text-white rounded-3xl p-8 sm:p-12 text-center space-y-6 relative overflow-hidden shadow-xl">
+      <div class="relative max-w-2xl mx-auto space-y-3">
+        <h2 class="text-2xl sm:text-4xl font-serif font-black tracking-tight">
+          <span data-en="Need Dedicated Teen Mentorship & Coaching?" data-ur="کیا آپ کو نوجوانوں کی تربیت کے لیے خصوصی رہنمائی چاہیے؟">
+            Need Dedicated Teen Mentorship & Coaching?
+          </span>
+        </h2>
+        <p class="text-emerald-100 text-sm sm:text-base leading-relaxed">
+          <span data-en="Adolescence is the bridge to adulthood. Discover our Tarbiyah Parenting Practitioner Course (TPPC) or schedule a direct diagnostic consultation with our certified parent coaches." data-ur="نوجوانی بلوغت اور مستقبل کی بنیاد ہے۔ ہمارے تربیہ کورسز سے جڑیں یا ہمارے مصدقہ کوچز سے ون آن ون مشاورتی سیشن حاصل کریں۔">
+            Adolescence is the bridge to adulthood. Discover our Tarbiyah Parenting Practitioner Course (TPPC) or schedule a direct diagnostic consultation with our certified parent coaches.
+          </span>
+        </p>
+
+        <div class="pt-4 flex flex-wrap justify-center gap-3">
+          <a
+            href="/tppc-live-interactive-parenting-course/"
+            class="px-6 py-3 rounded-xl bg-[#F59E0B] text-gray-950 font-extrabold text-sm hover:bg-amber-400 transition-all shadow-md inline-flex items-center gap-2"
+          >
+            <Sparkles class="w-4 h-4 text-gray-950" />
+            <span data-en="TPPC Live Course (10 Pillars)" data-ur="ٹی پی پی سی لائیو کورس">TPPC Live Course (10 Pillars)</span>
+          </a>
+
+          <a
+            href="/intake-form/"
+            class="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-sm transition-all inline-flex items-center gap-2 backdrop-blur-sm"
+          >
+            <ShieldCheck class="w-4 h-4 text-emerald-300" />
+            <span data-en="Parent Coaching Intake Form" data-ur="کوچنگ انٹیک فارم">Parent Coaching Intake Form</span>
+          </a>
+
+          <a
+            href="/habit-making-english/"
+            class="px-6 py-3 rounded-xl bg-emerald-800/80 hover:bg-emerald-700 border border-emerald-500/30 text-white font-bold text-sm transition-all inline-flex items-center gap-2"
+          >
+            <Clock class="w-4 h-4 text-emerald-300" />
+            <span data-en="7-Day Habit Builder" data-ur="7 دن کا ہیبٹ بلڈر">7-Day Habit Builder</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Interactive Client-side Script -->
+  <script is:inline define:vars={{ WHATSAPP_NUMBER }}>
+    (function() {
+      let currentStep = 1;
+      const totalSteps = 5;
+      let currentLang = 'en';
+
+      const STORAGE_KEY = 'edutarbiyah_teen_reconnect_v1';
+
+      // Elements
+      const stepBadge = document.getElementById('step-number-badge');
+      const stepTitleDisplay = document.getElementById('step-title-display');
+      const progressBar = document.getElementById('wizard-progress-bar');
+      const progressPercent = document.getElementById('progress-percent');
+      const prevBtn = document.getElementById('prev-step-btn');
+      const nextBtn = document.getElementById('next-step-btn');
+      const nextBtnText = document.getElementById('next-btn-text');
+      const langToggleBtn = document.getElementById('lang-toggle-btn');
+      const langToggleText = document.getElementById('lang-toggle-text');
+
+      // Inputs
+      const parentNameInput = document.getElementById('parentName');
+      const teenNameInput = document.getElementById('teenName');
+      const connectionSelect = document.getElementById('connection');
+      const boundariesSelect = document.getElementById('boundaries');
+      const familyRuleInput = document.getElementById('familyRule');
+      const responsibilitySelect = document.getElementById('responsibility');
+      const weeklyRespInput = document.getElementById('weeklyResponsibility');
+      const habitsSelect = document.getElementById('habits');
+      const positiveActivityInput = document.getElementById('positiveActivity');
+      const accountabilitySelect = document.getElementById('accountability');
+      const notesTextarea = document.getElementById('notes');
+
+      // Displays on Plan Card
+      const displayParentName = document.getElementById('display-parent-name');
+      const displayTeenName = document.getElementById('display-teen-name');
+      const planScoreBadge = document.getElementById('plan-score-badge');
+      const planLevelDisplay = document.getElementById('plan-level-display');
+      const planSummaryAdvice = document.getElementById('plan-summary-advice');
+      const displayReconnect = document.getElementById('display-reconnect-protocol');
+      const displayRule = document.getElementById('display-rule-protocol');
+      const displayResp = document.getElementById('display-resp-protocol');
+      const displayAct = document.getElementById('display-act-protocol');
+      const displayCadence = document.getElementById('display-cadence-protocol');
+
+      // Step Titles
+      const stepTitlesEn = [
+        'Step 1: Reconnect Before You Correct',
+        'Step 2: Set Clear Expectations & Boundaries',
+        'Step 3: Increase Responsibility Gradually',
+        'Step 4: Replace Bad Habits with Positive Engagement',
+        'Step 5: Create Growth & Accountability Plan'
+      ];
+
+      const stepTitlesUr = [
+        'مرحلہ 1: اصلاح اور قانون سازی سے پہلے دلی تعلق بنائیں',
+        'مرحلہ 2: واضح خاندانی حدود اور اصول طے کریں',
+        'مرحلہ 3: بتدریج ذمہ داری اور خود اعتمادی بڑھائیں',
+        'مرحلہ 4: بری عادت کو تعمیری متبادل سے بدلیں',
+        'مرحلہ 5: ہفتہ وار جائزہ اور احتساب کا نظام بنائیں'
+      ];
+
+      function updateStepView() {
+        for (let i = 1; i <= totalSteps; i++) {
+          const panel = document.getElementById('step-panel-' + i);
+          if (panel) {
+            if (i === currentStep) {
+              panel.classList.remove('hidden');
+            } else {
+              panel.classList.add('hidden');
+            }
+          }
+        }
+
+        // Stepper dots
+        document.querySelectorAll('.step-dot').forEach((dot) => {
+          const s = parseInt(dot.getAttribute('data-step') || '1');
+          if (s === currentStep) {
+            dot.classList.add('font-bold', 'text-[#064E3B]');
+            dot.classList.remove('text-gray-400');
+          } else if (s < currentStep) {
+            dot.classList.add('text-[#0F766E]');
+            dot.classList.remove('text-gray-400', 'font-bold');
+          } else {
+            dot.classList.remove('font-bold', 'text-[#064E3B]', 'text-[#0F766E]');
+            dot.classList.add('text-gray-400');
+          }
+        });
+
+        // Badge & Title
+        if (stepBadge) stepBadge.textContent = currentStep;
+        if (stepTitleDisplay) {
+          stepTitleDisplay.textContent = currentLang === 'ur'
+            ? stepTitlesUr[currentStep - 1]
+            : stepTitlesEn[currentStep - 1];
+        }
+
+        // Progress Percent
+        const percent = Math.round((currentStep / totalSteps) * 100);
+        if (progressBar) progressBar.style.width = percent + '%';
+        if (progressPercent) progressPercent.textContent = percent + '%';
+
+        // Prev / Next Buttons
+        if (currentStep === 1) {
+          if (prevBtn) prevBtn.classList.add('hidden');
+        } else {
+          if (prevBtn) prevBtn.classList.remove('hidden');
+        }
+
+        if (currentStep === totalSteps) {
+          if (nextBtnText) {
+            nextBtnText.textContent = currentLang === 'ur' ? 'مکمل معاہدہ دیکھیں' : 'View Full Protocol';
+          }
+        } else {
+          if (nextBtnText) {
+            nextBtnText.textContent = currentLang === 'ur' ? 'اگلا مرحلہ' : 'Next Step';
+          }
+        }
+
+        updatePlanCalculations();
+      }
+
+      function updatePlanCalculations() {
+        const pName = parentNameInput?.value.trim() || (currentLang === 'ur' ? 'والدین' : 'Parent');
+        const tName = teenNameInput?.value.trim() || (currentLang === 'ur' ? 'نوجوان بچہ' : 'Teen');
+        
+        if (displayParentName) displayParentName.textContent = pName;
+        if (displayTeenName) displayTeenName.textContent = tName;
+
+        const conn = Number(connectionSelect?.value || 3);
+        const bound = Number(boundariesSelect?.value || 3);
+        const resp = Number(responsibilitySelect?.value || 3);
+        const hab = Number(habitsSelect?.value || 3);
+        const acc = Number(accountabilitySelect?.value || 3);
+
+        const total = conn + bound + resp + hab + acc;
+        const percent = Math.round((total / 25) * 100);
+
+        if (planScoreBadge) planScoreBadge.textContent = percent + '%';
+
+        let levelEn = '';
+        let levelUr = '';
+        let adviceEn = '';
+        let adviceUr = '';
+
+        if (percent <= 40) {
+          levelEn = 'Critical Stage (Reconnection Priority)';
+          levelUr = 'نازک مرحلہ (صرف دلی تعلق کی بحالی پر توجہ)';
+          adviceEn = 'Start with connection ONLY. Avoid strict control or punitive lectures. Spend the next 7 days purely rebuilding emotional safety.';
+          adviceUr = 'سختی یا سزاؤں سے بالکل پرہیز کریں۔ اگلے 7 دن صرف اور صرف دلی قربت، محبت اور غیر مشروط توجہ کے لیے وقف کریں۔';
+        } else if (percent <= 65) {
+          levelEn = 'Needs Structured Support';
+          levelUr = 'درمیانی مرحلہ (منظم اور پرسکون رہنمائی کی ضرورت)';
+          adviceEn = 'Connection is steadying. Now introduce ONE clear, predictable boundary and assign one small tangible household responsibility.';
+          adviceUr = 'تعلق بہتر ہو رہا ہے۔ اب ایک دوٹوک خاندانی اصول طے کریں اور ایک چھوٹی ذمہ داری سونپیں۔';
+        } else if (percent <= 85) {
+          levelEn = 'Positive Recovery Stage';
+          levelUr = 'مثبت بحالی کا مرحلہ (کامیاب تسلسل)';
+          adviceEn = 'Consistency is winning. Maintain daily warm connection, deepen positive activity outlets, and keep a calm weekly accountability check.';
+          adviceUr = 'تسلسل کے شاندار نتائج آ رہے ہیں۔ روزمرہ محبت، مثبت کھیل/ہنر اور ہفتہ وار جائزے کا معمول برقرار رکھیں۔';
+        } else {
+          levelEn = 'Strong Prophetic Foundation';
+          levelUr = 'مضبوط نبوی بنیاد (بہترین باہمی اعتماد)';
+          adviceEn = 'High mutual trust established. Empower your teen with real leadership roles, Islamic mentorship, and life skill responsibilities.';
+          adviceUr = 'باہمی اعتماد قائم ہو چکا ہے۔ نوجوان کو خود مختاری، اسلامی رہنمائی اور خاندانی قیادت کے مواقع دیں۔';
+        }
+
+        if (planLevelDisplay) {
+          planLevelDisplay.textContent = currentLang === 'ur' ? levelUr : levelEn;
+        }
+
+        if (planSummaryAdvice) {
+          planSummaryAdvice.textContent = currentLang === 'ur' ? adviceUr : adviceEn;
+        }
+
+        // Selected reconnect checks
+        const activeChecks = [];
+        document.querySelectorAll('.recon-check:checked').forEach((c) => {
+          const txt = c.closest('label')?.querySelector('span')?.textContent.trim();
+          if (txt) activeChecks.push(txt);
+        });
+        if (displayReconnect) {
+          displayReconnect.textContent = activeChecks.length > 0 
+            ? activeChecks.slice(0, 2).join(' + ') + (activeChecks.length > 2 ? ` (+${activeChecks.length - 2} more)` : '')
+            : (currentLang === 'ur' ? '15 منٹ روزانہ دوستانہ بات چیت' : '15 min daily non-judgmental talk');
+        }
+
+        // Family Rule
+        const ruleVal = familyRuleInput?.value.trim();
+        if (displayRule) {
+          displayRule.textContent = ruleVal || (currentLang === 'ur' ? '[ایک دوٹوک اور سادہ اصول طے کریں]' : '[Set one simple family rule]');
+        }
+
+        // Responsibility
+        const respVal = weeklyRespInput?.value.trim();
+        if (displayResp) {
+          displayResp.textContent = respVal || (currentLang === 'ur' ? '[ایک چھوٹی عملی ذمہ داری سونپیں]' : '[Assign one small weekly responsibility]');
+        }
+
+        // Positive Activity
+        const actVal = positiveActivityInput?.value.trim();
+        if (displayAct) {
+          displayAct.textContent = actVal || (currentLang === 'ur' ? '[ایک صحت مند متبادل سرگرمی]' : '[Choose one positive replacement activity]');
+        }
+
+        // Cadence
+        const accOption = accountabilitySelect?.options[accountabilitySelect.selectedIndex]?.text || '';
+        if (displayCadence) {
+          displayCadence.textContent = accOption 
+            ? accOption.replace(/^\d+\s*-\s*/, '')
+            : (currentLang === 'ur' ? 'ہفتہ وار اتوار کو پرسکون جائزہ' : 'Weekly calm Sunday review');
+        }
+      }
+
+      // Next / Prev Button Listeners
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          if (currentStep < totalSteps) {
+            currentStep++;
+            updateStepView();
+            saveToStorage();
+            document.getElementById('wizard-stepper')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          } else {
+            document.getElementById('printable-teen-plan')?.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          if (currentStep > 1) {
+            currentStep--;
+            updateStepView();
+          }
+        });
+      }
+
+      // Stepper dot click
+      document.querySelectorAll('.step-dot').forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const s = parseInt(dot.getAttribute('data-step') || '1');
+          currentStep = s;
+          updateStepView();
+        });
+      });
+
+      // Presets Handler
+      document.querySelectorAll('.preset-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          const isUr = currentLang === 'ur';
+          const conn = card.getAttribute('data-connection');
+          const bound = card.getAttribute('data-boundaries');
+          const resp = card.getAttribute('data-responsibility');
+          const hab = card.getAttribute('data-habits');
+          const acc = card.getAttribute('data-accountability');
+          const rule = isUr ? card.getAttribute('data-rule-ur') : card.getAttribute('data-rule-en');
+          const weeklyResp = isUr ? card.getAttribute('data-resp-ur') : card.getAttribute('data-resp-en');
+          const act = isUr ? card.getAttribute('data-act-ur') : card.getAttribute('data-act-en');
+
+          if (connectionSelect && conn) connectionSelect.value = conn;
+          if (boundariesSelect && bound) boundariesSelect.value = bound;
+          if (responsibilitySelect && resp) responsibilitySelect.value = resp;
+          if (habitsSelect && hab) habitsSelect.value = hab;
+          if (accountabilitySelect && acc) accountabilitySelect.value = acc;
+          if (familyRuleInput && rule) familyRuleInput.value = rule;
+          if (weeklyRespInput && weeklyResp) weeklyRespInput.value = weeklyResp;
+          if (positiveActivityInput && act) positiveActivityInput.value = act;
+
+          updatePlanCalculations();
+          saveToStorage();
+
+          currentStep = 2;
+          updateStepView();
+          document.getElementById('wizard-stepper')?.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      // Realtime input listeners
+      [
+        parentNameInput, teenNameInput, connectionSelect, boundariesSelect,
+        familyRuleInput, responsibilitySelect, weeklyRespInput, habitsSelect,
+        positiveActivityInput, accountabilitySelect, notesTextarea
+      ].forEach((el) => {
+        if (el) {
+          el.addEventListener('input', () => {
+            updatePlanCalculations();
+            saveToStorage();
+          });
+        }
+      });
+
+      document.querySelectorAll('.recon-check').forEach((cb) => {
+        cb.addEventListener('change', () => {
+          updatePlanCalculations();
+          saveToStorage();
+        });
+      });
+
+      // Storage Save/Load
+      function saveToStorage() {
+        try {
+          const checks = [];
+          document.querySelectorAll('.recon-check').forEach((c) => checks.push(c.checked));
+
+          const data = {
+            parentName: parentNameInput?.value || '',
+            teenName: teenNameInput?.value || '',
+            connection: connectionSelect?.value || '3',
+            boundaries: boundariesSelect?.value || '3',
+            familyRule: familyRuleInput?.value || '',
+            responsibility: responsibilitySelect?.value || '3',
+            weeklyResponsibility: weeklyRespInput?.value || '',
+            habits: habitsSelect?.value || '3',
+            positiveActivity: positiveActivityInput?.value || '',
+            accountability: accountabilitySelect?.value || '3',
+            notes: notesTextarea?.value || '',
+            checks,
+            currentStep,
+            currentLang
+          };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        } catch (e) {}
+      }
+
+      function loadFromStorage() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          const data = JSON.parse(raw);
+
+          if (parentNameInput && data.parentName) parentNameInput.value = data.parentName;
+          if (teenNameInput && data.teenName) teenNameInput.value = data.teenName;
+          if (connectionSelect && data.connection) connectionSelect.value = data.connection;
+          if (boundariesSelect && data.boundaries) boundariesSelect.value = data.boundaries;
+          if (familyRuleInput && data.familyRule) familyRuleInput.value = data.familyRule;
+          if (responsibilitySelect && data.responsibility) responsibilitySelect.value = data.responsibility;
+          if (weeklyRespInput && data.weeklyResponsibility) weeklyRespInput.value = data.weeklyResponsibility;
+          if (habitsSelect && data.habits) habitsSelect.value = data.habits;
+          if (positiveActivityInput && data.positiveActivity) positiveActivityInput.value = data.positiveActivity;
+          if (accountabilitySelect && data.accountability) accountabilitySelect.value = data.accountability;
+          if (notesTextarea && data.notes) notesTextarea.value = data.notes;
+
+          if (Array.isArray(data.checks)) {
+            const boxes = document.querySelectorAll('.recon-check');
+            data.checks.forEach((val, i) => {
+              if (boxes[i]) boxes[i].checked = !!val;
+            });
+          }
+
+          if (data.currentLang) {
+            setLanguage(data.currentLang);
+          }
+
+          if (data.currentStep && data.currentStep >= 1 && data.currentStep <= totalSteps) {
+            currentStep = data.currentStep;
+          }
+
+          updateStepView();
+        } catch (e) {}
+      }
+
+      // Manual Save Button
+      const saveBtn = document.getElementById('save-local-btn');
+      if (saveBtn) {
+        saveBtn.addEventListener('click', () => {
+          saveToStorage();
+          const orig = saveBtn.innerHTML;
+          saveBtn.innerHTML = `✓ <span class="font-bold">${currentLang === 'ur' ? 'محفوظ ہو گیا!' : 'Saved!'}</span>`;
+          setTimeout(() => {
+            saveBtn.innerHTML = orig;
+          }, 2000);
+        });
+      }
+
+      // Reset Form Button
+      const clearBtn = document.getElementById('clear-form-btn');
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          if (confirm(currentLang === 'ur' ? 'کیا آپ تمام ڈیٹا صاف کرنا چاہتے ہیں؟' : 'Are you sure you want to reset this teen plan?')) {
+            localStorage.removeItem(STORAGE_KEY);
+            location.reload();
+          }
+        });
+      }
+
+      // Print Button
+      const printBtn = document.getElementById('print-plan-btn');
+      if (printBtn) {
+        printBtn.addEventListener('click', () => {
+          window.print();
+        });
+      }
+
+      // WhatsApp Button
+      const waBtn = document.getElementById('whatsapp-plan-btn');
+      if (waBtn) {
+        waBtn.addEventListener('click', () => {
+          const pName = parentNameInput?.value.trim() || 'Parent';
+          const tName = teenNameInput?.value.trim() || 'My Teen';
+          const rule = familyRuleInput?.value.trim() || 'Clear rule';
+          const resp = weeklyRespInput?.value.trim() || 'Assigned responsibility';
+          const act = positiveActivityInput?.value.trim() || 'Healthy activity';
+          const score = planScoreBadge?.textContent || '0%';
+          const level = planLevelDisplay?.textContent || '';
+          const notes = notesTextarea?.value.trim() || 'None';
+
+          const text = 
+`Assalam u Alaikum EduTarbiyah Team! 🌿
+I have completed the *Reconnect & Guide Teen Plan*:
+
+👤 *Parent:* ${pName}
+👦/👧 *Teen:* ${tName}
+📊 *Diagnostic Score:* ${score} (${level})
+
+🛡️ *Core Family Rule:* ${rule}
+🎯 *Weekly Responsibility:* ${resp}
+⚡ *Positive Replacement Activity:* ${act}
+📝 *Notes / Friction Areas:* ${notes}
+
+I am looking for expert coaching feedback on how to de-escalate tension and successfully implement this protocol with my teen. JazakAllah Khair!`;
+
+          const cleanPhone = (WHATSAPP_NUMBER || '923122370720').replace(/[^0-9]/g, '');
+          const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`;
+          window.open(waUrl, '_blank');
+        });
+      }
+
+      // Copy Button
+      const copyBtn = document.getElementById('copy-plan-btn');
+      const copyTextEl = document.getElementById('copy-btn-text');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+          const pName = parentNameInput?.value.trim() || 'Parent';
+          const tName = teenNameInput?.value.trim() || 'Teen';
+          const rule = familyRuleInput?.value.trim() || '[Rule]';
+          const resp = weeklyRespInput?.value.trim() || '[Responsibility]';
+          const act = positiveActivityInput?.value.trim() || '[Activity]';
+
+          const text = `🌱 Teen Reconnect & Growth Protocol
+Parent: ${pName} | Teen: ${tName}
+1. Reconnect: Daily 15 min non-judgmental quality time
+2. Family Rule: ${rule}
+3. Responsibility: ${resp}
+4. Replacement: ${act}
+(Generated at EduTarbiyah.com)`;
+
+          navigator.clipboard.writeText(text).then(() => {
+            if (copyTextEl) copyTextEl.textContent = currentLang === 'ur' ? 'کاپی ہو گیا!' : 'Copied!';
+            setTimeout(() => {
+              if (copyTextEl) copyTextEl.textContent = currentLang === 'ur' ? 'کاپی' : 'Copy';
+            }, 2000);
+          });
+        });
+      }
+
+      // Bilingual Switching Logic
+      function setLanguage(lang) {
+        currentLang = lang;
+        const isUr = lang === 'ur';
+
+        if (langToggleText) {
+          langToggleText.textContent = isUr ? 'View in English' : 'اردو میں دیکھیں';
+        }
+
+        document.documentElement.dir = isUr ? 'rtl' : 'ltr';
+        document.documentElement.lang = isUr ? 'ur' : 'en';
+
+        // Translate data-en and data-ur text nodes
+        document.querySelectorAll('[data-en][data-ur]').forEach((el) => {
+          const txt = isUr ? el.getAttribute('data-ur') : el.getAttribute('data-en');
+          if (txt) el.textContent = txt;
+        });
+
+        // Translate Placeholders
+        if (parentNameInput) parentNameInput.placeholder = isUr ? 'مثلاً عائشہ / فاروق' : 'e.g. Ayesha / Farooq';
+        if (teenNameInput) teenNameInput.placeholder = isUr ? 'مثلاً زید (15 سال)' : 'e.g. Zayd (15 years)';
+        if (familyRuleInput) familyRuleInput.placeholder = isUr ? 'مثلاً ہوم ورک اور مغرب کے بعد صرف 1 گھنٹہ اسکرین' : 'Example: Mobile will be used for 1 hour after homework only.';
+        if (weeklyRespInput) weeklyRespInput.placeholder = isUr ? 'مثلاً کمرہ صاف رکھنا، گروسری میں مدد' : 'Example: Keep room clean / help in kitchen & groceries';
+        if (positiveActivityInput) positiveActivityInput.placeholder = isUr ? 'مثلاً مارشل آرٹس، کوئی ہنر سیکھنا، فیملی پروجیکٹ' : 'Example: Sports / gym, skill learning, Quran circle';
+        if (notesTextarea) notesTextarea.placeholder = isUr ? 'اس ہفتے کیا بہتری آئی؟ کہاں مشکل پیش آئی؟' : 'What improved this week? What caused friction?';
+
+        updateStepView();
+        saveToStorage();
+      }
+
+      if (langToggleBtn) {
+        langToggleBtn.addEventListener('click', () => {
+          const next = currentLang === 'en' ? 'ur' : 'en';
+          setLanguage(next);
+        });
+      }
+
+      // Initial Setup
+      loadFromStorage();
+      updateStepView();
+    })();
+  </script>
+
+</Layout>
