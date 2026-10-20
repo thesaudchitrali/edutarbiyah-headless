@@ -72,7 +72,7 @@ import {
               type="text"
               id="input-family-name"
               placeholder="e.g. The Usmani Family"
-              class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+              class="w-full px-4 py-3 text-base sm:text-sm rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0F766E]/20 focus:border-[#0F766E] transition-all"
             />
           </div>
 
@@ -85,7 +85,7 @@ import {
               type="text"
               id="input-identity"
               placeholder="e.g. We are a sanctuary of peace, Taqwa, and mutual compassion."
-              class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+              class="w-full px-4 py-3 text-base sm:text-sm rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0F766E]/20 focus:border-[#0F766E] transition-all"
             />
           </div>
 
@@ -105,7 +105,7 @@ import {
               type="text"
               id="input-values"
               placeholder="e.g. Taqwa, Honesty, Emotional Safety, Gratitude"
-              class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+              class="w-full px-4 py-3 text-base sm:text-sm rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0F766E]/20 focus:border-[#0F766E] transition-all"
             />
           </div>
 
@@ -118,7 +118,7 @@ import {
               id="input-mission"
               rows="2"
               placeholder="e.g. To please Allah by serving the community, developing righteous character, and supporting each other through every life season."
-              class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+              class="w-full px-4 py-3 text-base sm:text-sm rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0F766E]/20 focus:border-[#0F766E] transition-all"
             ></textarea>
           </div>
 
@@ -131,7 +131,7 @@ import {
               type="text"
               id="input-culture"
               placeholder="e.g. In our home: we listen before shouting, we forgive quickly, and we pray together."
-              class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+              class="w-full px-4 py-3 text-base sm:text-sm rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0F766E]/20 focus:border-[#0F766E] transition-all"
             />
           </div>
 
@@ -144,7 +144,7 @@ import {
               type="text"
               id="input-habits"
               placeholder="e.g. Daily morning Adhkar, family dinner without screens, bedtime gratitude."
-              class="w-full px-4 py-2.5 text-sm rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+              class="w-full px-4 py-3 text-base sm:text-sm rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0F766E]/20 focus:border-[#0F766E] transition-all"
             />
           </div>
 
@@ -360,7 +360,7 @@ import {
     navigator.clipboard.writeText(text).then(() => {
       const copyTextEl = document.getElementById('copy-btn-text');
       if (copyTextEl) {
-        copyTextEl.textContent = 'Copied! ✓';
+        copyTextEl.textContent = 'Copied!';
         setTimeout(() => { copyTextEl.textContent = 'Copy Text'; }, 2000);
       }
     });

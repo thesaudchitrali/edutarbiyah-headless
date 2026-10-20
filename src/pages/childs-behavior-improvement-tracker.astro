@@ -11,7 +11,8 @@ import {
   Award,
   Star,
   Check,
-  AlertCircle
+  AlertCircle,
+  Clock
 } from 'lucide-astro';
 
 const behaviors = [
@@ -102,14 +103,17 @@ const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
       <div class="flex flex-wrap items-center justify-between text-xs text-gray-600 mb-4 px-2">
         <div class="flex items-center gap-4">
           <span class="font-semibold text-gray-900">Click cell to change status:</span>
-          <span class="inline-flex items-center gap-1 text-emerald-800 font-bold bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-            ⭐ Star (+2 pts)
+          <span class="inline-flex items-center gap-1 text-amber-800 font-bold bg-amber-50 px-2.5 py-0.5 rounded-full border border-amber-200">
+            <Star class="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
+            <span>Star (+2 pts)</span>
           </span>
           <span class="inline-flex items-center gap-1 text-teal-800 font-bold bg-teal-50 px-2.5 py-0.5 rounded-full border border-teal-200">
-            👍 Good (+1 pt)
+            <Check class="w-3.5 h-3.5 text-teal-600" />
+            <span>Good (+1 pt)</span>
           </span>
           <span class="inline-flex items-center gap-1 text-gray-500 font-bold bg-gray-100 px-2.5 py-0.5 rounded-full border border-gray-200">
-            ⏳ In Progress (0 pts)
+            <Clock class="w-3.5 h-3.5 text-gray-400" />
+            <span>In Progress (0 pts)</span>
           </span>
         </div>
         <button
@@ -226,15 +230,15 @@ const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     if (state === 2) {
       // Star / Excellent
       btn.className = 'tracker-cell w-10 h-10 rounded-xl flex items-center justify-center font-bold text-base transition-all mx-auto border cursor-pointer border-amber-300 bg-amber-50 shadow-sm';
-      iconSpan.textContent = '⭐';
+      iconSpan.innerHTML = '<svg class="w-4 h-4 text-amber-500 fill-amber-400" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
     } else if (state === 1) {
       // Good / Progress
       btn.className = 'tracker-cell w-10 h-10 rounded-xl flex items-center justify-center font-bold text-base transition-all mx-auto border cursor-pointer border-teal-300 bg-teal-50 shadow-sm';
-      iconSpan.textContent = '👍';
+      iconSpan.innerHTML = '<svg class="w-4 h-4 text-teal-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>';
     } else {
       // In progress
       btn.className = 'tracker-cell w-10 h-10 rounded-xl flex items-center justify-center font-bold text-base transition-all mx-auto border cursor-pointer border-gray-200 bg-gray-50 hover:border-gray-400';
-      iconSpan.textContent = '•';
+      iconSpan.innerHTML = '<span class="text-gray-300 font-bold">•</span>';
     }
   }
 

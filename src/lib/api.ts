@@ -731,14 +731,14 @@ export function buildWhatsAppOrderLink(
   variationSummary?: string
 ): string {
   const cleanTitle = productName.replace(/<[^>]*>?/gm, '').trim();
-  let message = `السلام علیکم EduTarbiyah!\n\nI would like to place an order for:\n📚 *${cleanTitle}*\n💰 Price: ${price}`;
+  let message = `السلام علیکم EduTarbiyah!\n\nI would like to place an order for:\nBook: *${cleanTitle}*\nPrice: ${price}`;
   
   if (variationSummary) {
-    message += `\n⚙️ Options: ${variationSummary}`;
+    message += `\nOptions: ${variationSummary}`;
   }
   
   if (productUrl) {
-    message += `\n🔗 Link: ${productUrl}`;
+    message += `\nLink: ${productUrl}`;
   }
 
   message += `\n\nPlease let me know the payment details and estimated delivery time. JazakAllah Khair!`;

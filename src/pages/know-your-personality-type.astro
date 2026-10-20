@@ -10,7 +10,9 @@ import {
   MessageCircle, 
   RotateCcw,
   Compass,
-  ArrowRight
+  ArrowRight,
+  Star,
+  AlertCircle
 } from 'lucide-astro';
 
 const questions = [
@@ -169,7 +171,8 @@ const questions = [
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
           <div class="bg-[#F8FFFC] rounded-2xl p-6 border border-[#0F766E]/20 space-y-2">
             <h4 class="text-xs font-bold uppercase tracking-wider text-[#064E3B] flex items-center gap-1.5">
-              <span>🌟 Your Parenting Superpowers</span>
+              <Star class="w-4 h-4 text-[#F59E0B]" />
+              <span>Your Parenting Superpowers</span>
             </h4>
             <p id="mbti-superpowers" class="text-xs text-gray-700 leading-relaxed">
               Exceptional ability to listen beneath words, cultivating emotional safety and moral character naturally.
@@ -178,7 +181,8 @@ const questions = [
 
           <div class="bg-[#FFFDF9] rounded-2xl p-6 border border-[#F59E0B]/30 space-y-2">
             <h4 class="text-xs font-bold uppercase tracking-wider text-[#92400E] flex items-center gap-1.5">
-              <span>⚠️ Watch out for Burnout</span>
+              <AlertCircle class="w-4 h-4 text-[#F59E0B]" />
+              <span>Watch out for Burnout</span>
             </h4>
             <p id="mbti-blindspots" class="text-xs text-gray-700 leading-relaxed">
               Can absorb children’s stress too deeply; tendency toward parental perfectionism and guilt.

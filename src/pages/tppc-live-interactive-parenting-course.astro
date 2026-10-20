@@ -24,7 +24,8 @@ import {
   Star,
   Zap,
   HelpCircle,
-  Laptop
+  Laptop,
+  X
 } from 'lucide-astro';
 
 const COURSE_FEE = "PKR 15,000";
@@ -466,7 +467,7 @@ const faqs = [
                 {row.feature}
               </div>
               <div class="md:col-span-4 text-gray-500 flex items-start gap-2">
-                <span class="text-rose-500 font-bold shrink-0">✕</span>
+                <X class="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />
                 <span class="text-xs sm:text-sm">{row.youtube}</span>
               </div>
               <div class="md:col-span-4 text-gray-800 font-medium flex items-start gap-2 bg-emerald-50/50 p-2 rounded-xl">

@@ -454,7 +454,7 @@ const categories = [
     // WhatsApp counseling button
     const waShareBtn = document.getElementById('result-whatsapp-share');
     if (waShareBtn) {
-      const waMsg = `السلام علیکم EduTarbiyah!\n\nI just completed the Parenting Audit on your website.\n👤 Name: ${parentName}\n📊 Total Score: ${totalScore}/100 (${resultTitle})\n\nI would like more guidance on your recommended program: *${courseTitle}*.`;
+      const waMsg = `السلام علیکم EduTarbiyah!\n\nI just completed the Parenting Audit on your website.\nName: ${parentName}\nTotal Score: ${totalScore}/100 (${resultTitle})\n\nI would like more guidance on your recommended program: *${courseTitle}*.`;
       waShareBtn.setAttribute('href', `https://wa.me/${waNumber}?text=${encodeURIComponent(waMsg)}`);
     }
 

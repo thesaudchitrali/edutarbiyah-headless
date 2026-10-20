@@ -206,7 +206,7 @@ const dimensions = [
     if (summaryDescEl) summaryDescEl.textContent = desc;
 
     if (waBtn) {
-      const msg = `السلام علیکم EduTarbiyah!\n\nI completed the Marriage & Co-Parenting Audit on your platform.\n📊 Score: ${sum}/100 (${tierText})\n\nI would like more information on marital counseling and parenting alignment sessions.`;
+      const msg = `السلام علیکم EduTarbiyah!\n\nI completed the Marriage & Co-Parenting Audit on your platform.\nScore: ${sum}/100 (${tierText})\n\nI would like more information on marital counseling and parenting alignment sessions.`;
       waBtn.setAttribute('href', `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`);
     }
   }

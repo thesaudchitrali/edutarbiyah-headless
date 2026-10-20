@@ -31,7 +31,8 @@ import {
   Zap, 
   Award, 
   ExternalLink, 
-  Globe 
+  Globe,
+  Smartphone
 } from 'lucide-astro';
 ---
 
@@ -103,8 +104,8 @@ import {
       <!-- Top Badge -->
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-[#F59E0B] text-xs font-bold tracking-wide uppercase backdrop-blur-md border border-white/15">
         <Heart class="w-4 h-4 text-rose-400" />
-        <span data-en="🌱 Adolescent Tarbiyah & Relationship Healing" data-ur="🌱 نوجوانوں کی اسلامی تربیت اور باہمی تعلق کی بحالی">
-          🌱 Adolescent Tarbiyah & Relationship Healing
+        <span data-en="Adolescent Tarbiyah & Relationship Healing" data-ur="نوجوانوں کی اسلامی تربیت اور باہمی تعلق کی بحالی">
+          Adolescent Tarbiyah & Relationship Healing
         </span>
       </div>
 
@@ -207,7 +208,7 @@ import {
           data-act-ur="مارشل آرٹس یا فٹ بال اکیڈمی جوائن کرنا اور شام کو 15 منٹ چہل قدمی۔"
         >
           <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
-            <span class="text-lg">📱</span>
+            <Smartphone class="w-4 h-4 text-[#0F766E]" />
             <span data-en="Screen & Gaming" data-ur="اسکرین اور گیمنگ">Screen & Gaming</span>
           </div>
           <p class="text-xs text-gray-500 mt-1 line-clamp-2">
@@ -232,7 +233,7 @@ import {
           data-act-ur="ہفتے میں ایک بار والدین کے ساتھ اکیلے ڈرائیو یا چائے، بنا کسی نصیحت کے سننا۔"
         >
           <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
-            <span class="text-lg">😠</span>
+            <AlertCircle class="w-4 h-4 text-amber-600" />
             <span data-en="Anger & Backtalk" data-ur="غصہ اور بدتمیزی">Anger & Backtalk</span>
           </div>
           <p class="text-xs text-gray-500 mt-1 line-clamp-2">
@@ -257,7 +258,7 @@ import {
           data-act-ur="نوجوانوں کے لیے سیرت پوڈکاسٹ سننا اور دوستانہ سوال و جواب۔"
         >
           <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
-            <span class="text-lg">📿</span>
+            <Compass class="w-4 h-4 text-teal-600" />
             <span data-en="Prayer Resistance" data-ur="نماز میں سستی">Prayer Resistance</span>
           </div>
           <p class="text-xs text-gray-500 mt-1 line-clamp-2">
@@ -282,7 +283,7 @@ import {
           data-act-ur="ویک اینڈ پر کوئی ہنر یا اسکل سیکھنا، والد کے ساتھ واک یا ورزش۔"
         >
           <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
-            <span class="text-lg">🛋️</span>
+            <BookOpen class="w-4 h-4 text-emerald-600" />
             <span data-en="Study Avoidance" data-ur="پڑھائی سے فرار">Study Avoidance</span>
           </div>
           <p class="text-xs text-gray-500 mt-1 line-clamp-2">
@@ -1394,7 +1395,7 @@ import {
         saveBtn.addEventListener('click', () => {
           saveToStorage();
           const orig = saveBtn.innerHTML;
-          saveBtn.innerHTML = `✓ <span class="font-bold">${currentLang === 'ur' ? 'محفوظ ہو گیا!' : 'Saved!'}</span>`;
+          saveBtn.innerHTML = `<span class="font-bold">${currentLang === 'ur' ? 'محفوظ ہو گیا!' : 'Saved!'}</span>`;
           setTimeout(() => {
             saveBtn.innerHTML = orig;
           }, 2000);
@@ -1434,17 +1435,17 @@ import {
           const notes = notesTextarea?.value.trim() || 'None';
 
           const text = 
-`Assalam u Alaikum EduTarbiyah Team! 🌿
-I have completed the *Reconnect & Guide Teen Plan*:
+`Assalam u Alaikum EduTarbiyah Team,
+I have completed the Reconnect & Guide Teen Plan:
 
-👤 *Parent:* ${pName}
-👦/👧 *Teen:* ${tName}
-📊 *Diagnostic Score:* ${score} (${level})
+• Parent: ${pName}
+• Teen: ${tName}
+• Diagnostic Score: ${score} (${level})
 
-🛡️ *Core Family Rule:* ${rule}
-🎯 *Weekly Responsibility:* ${resp}
-⚡ *Positive Replacement Activity:* ${act}
-📝 *Notes / Friction Areas:* ${notes}
+• Core Family Rule: ${rule}
+• Weekly Responsibility: ${resp}
+• Positive Replacement Activity: ${act}
+• Notes / Friction Areas: ${notes}
 
 I am looking for expert coaching feedback on how to de-escalate tension and successfully implement this protocol with my teen. JazakAllah Khair!`;
 
@@ -1465,7 +1466,7 @@ I am looking for expert coaching feedback on how to de-escalate tension and succ
           const resp = weeklyRespInput?.value.trim() || '[Responsibility]';
           const act = positiveActivityInput?.value.trim() || '[Activity]';
 
-          const text = `🌱 Teen Reconnect & Growth Protocol
+          const text = `Teen Reconnect & Growth Protocol
 Parent: ${pName} | Teen: ${tName}
 1. Reconnect: Daily 15 min non-judgmental quality time
 2. Family Rule: ${rule}

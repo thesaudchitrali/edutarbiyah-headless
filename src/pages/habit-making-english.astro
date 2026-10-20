@@ -31,7 +31,11 @@ import {
   User, 
   Award, 
   ExternalLink, 
-  Globe 
+  Globe,
+  Home,
+  Users,
+  X,
+  Smartphone
 } from 'lucide-astro';
 ---
 
@@ -103,8 +107,8 @@ import {
       <!-- Top Badge -->
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-[#F59E0B] text-xs font-bold tracking-wide uppercase backdrop-blur-md border border-white/15">
         <Sparkles class="w-4 h-4 text-[#F59E0B]" />
-        <span data-en="🌱 The Sunnah of Consistency (Istiqamah)" data-ur="🌱 سنتِ استقامت اور چھوٹے مسلسل اعمال">
-          🌱 The Sunnah of Consistency (Istiqamah)
+        <span data-en="The Sunnah of Consistency (Istiqamah)" data-ur="سنتِ استقامت اور چھوٹے مسلسل اعمال">
+          The Sunnah of Consistency (Istiqamah)
         </span>
       </div>
 
@@ -205,7 +209,7 @@ import {
           data-reward-ur="پرسکون چائے کا گھونٹ اور دل سے الحمدللہ کہنا"
         >
           <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
-            <span class="text-lg">🕌</span>
+            <Compass class="w-4 h-4 text-[#0F766E]" />
             <span data-en="Fajr / Salah on Time" data-ur="وقت پر نماز / فجر">Fajr / Salah on Time</span>
           </div>
           <p class="text-xs text-gray-500 mt-1 line-clamp-1">
@@ -230,7 +234,7 @@ import {
           data-reward-ur="بچوں کو پیار سے گلے لگانا اور خصوصی دعا"
         >
           <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
-            <span class="text-lg">📖</span>
+            <BookOpen class="w-4 h-4 text-[#0F766E]" />
             <span data-en="10-Min Family Quran" data-ur="10 منٹ فیملی قرآن">10-Min Family Quran</span>
           </div>
           <p class="text-xs text-gray-500 mt-1 line-clamp-1">
@@ -255,7 +259,7 @@ import {
           data-reward-ur="دلی سکون اور اللہ کے شکر کا احساس"
         >
           <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
-            <span class="text-lg">🧘</span>
+            <Heart class="w-4 h-4 text-teal-600" />
             <span data-en="Calm Reactions / No Shouting" data-ur="بغیر چیخے پرسکون رہنا">Calm Reactions / No Shouting</span>
           </div>
           <p class="text-xs text-gray-500 mt-1 line-clamp-1">
@@ -280,7 +284,7 @@ import {
           data-reward-ur="ماتھے پر بوسہ، آیت الکرسی اور دعائے خیر"
         >
           <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
-            <span class="text-lg">📚</span>
+            <BookOpen class="w-4 h-4 text-amber-600" />
             <span data-en="Bedtime Seerah Story" data-ur="سونے سے پہلے سیرت قصہ">Bedtime Seerah Story</span>
           </div>
           <p class="text-xs text-gray-500 mt-1 line-clamp-1">
@@ -305,7 +309,7 @@ import {
           data-reward-ur="والدین کی شاباش، ہائی فائیو اور چارٹ پر اسٹار"
         >
           <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
-            <span class="text-lg">🛏️</span>
+            <Home class="w-4 h-4 text-[#0F766E]" />
             <span data-en="Bed-Making & Tidy Room" data-ur="بستر اور کمرے کی صفائی">Bed-Making & Tidy Room</span>
           </div>
           <p class="text-xs text-gray-500 mt-1 line-clamp-1">
@@ -330,7 +334,7 @@ import {
           data-reward-ur="سب گھر والوں کا مل کر الحمدللہ کہنا"
         >
           <div class="flex items-center gap-2 font-bold text-sm text-[#064E3B] group-hover:text-[#0F766E]">
-            <span class="text-lg">🍽️</span>
+            <Sparkles class="w-4 h-4 text-[#0F766E]" />
             <span data-en="Daily Family Shukr / Gratitude" data-ur="روزانہ شکر گزاری">Daily Family Shukr</span>
           </div>
           <p class="text-xs text-gray-500 mt-1 line-clamp-1">
@@ -497,22 +501,22 @@ import {
             </p>
             <div class="flex flex-wrap gap-2 text-xs">
               <button type="button" class="quick-chip px-3 py-1.5 rounded-lg bg-emerald-50 text-[#064E3B] border border-emerald-200 hover:bg-emerald-100 transition-colors">
-                🕌 Salah on Time
+                Salah on Time
               </button>
               <button type="button" class="quick-chip px-3 py-1.5 rounded-lg bg-emerald-50 text-[#064E3B] border border-emerald-200 hover:bg-emerald-100 transition-colors">
-                📖 10-Min Daily Quran
+                10-Min Daily Quran
               </button>
               <button type="button" class="quick-chip px-3 py-1.5 rounded-lg bg-emerald-50 text-[#064E3B] border border-emerald-200 hover:bg-emerald-100 transition-colors">
-                📚 15-Min Book Reading
+                15-Min Book Reading
               </button>
               <button type="button" class="quick-chip px-3 py-1.5 rounded-lg bg-emerald-50 text-[#064E3B] border border-emerald-200 hover:bg-emerald-100 transition-colors">
-                🧘 Calm Voice / No Shouting
+                Calm Voice / No Shouting
               </button>
               <button type="button" class="quick-chip px-3 py-1.5 rounded-lg bg-emerald-50 text-[#064E3B] border border-emerald-200 hover:bg-emerald-100 transition-colors">
-                🛏️ Making Bed in Morning
+                Making Bed in Morning
               </button>
               <button type="button" class="quick-chip px-3 py-1.5 rounded-lg bg-emerald-50 text-[#064E3B] border border-emerald-200 hover:bg-emerald-100 transition-colors">
-                📱 Zero Screens at Dining Table
+                Zero Screens at Dining Table
               </button>
             </div>
           </div>
@@ -593,16 +597,18 @@ import {
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
             <div class="p-3.5 rounded-xl bg-red-50 border border-red-200/80 text-xs text-red-900">
-              <span class="font-bold block text-red-700 mb-1" data-en="❌ Overwhelming Habit (Fails easily):" data-ur="❌ بھاری ہدف (جو جلدی ٹوٹ جاتا ہے):">
-                ❌ Overwhelming Habit (Fails easily):
+              <span class="font-bold block text-red-700 mb-1" data-en="Overwhelming Habit (Fails easily):" data-ur="بھاری ہدف (جو جلدی ٹوٹ جاتا ہے):">
+                <X class="w-3.5 h-3.5 inline-block mr-1 text-red-600" />
+                Overwhelming Habit (Fails easily):
               </span>
               <span data-en="“Read 45 minutes of book daily” or “Clean the entire room”" data-ur="”روزانہ 45 منٹ مطالعہ“ یا ”پورا کمرہ چمکانا“">
                 “Read 45 minutes of book daily” or “Clean the entire room”
               </span>
             </div>
             <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200/80 text-xs text-emerald-900">
-              <span class="font-bold block text-[#064E3B] mb-1" data-en="✅ Tiny Micro Habit (Wins consistently):" data-ur="✅ چھوٹا مائیکرو عمل (جو کبھی نہیں چھوٹتا):">
-                ✅ Tiny Micro Habit (Wins consistently):
+              <span class="font-bold block text-[#064E3B] mb-1" data-en="Tiny Micro Habit (Wins consistently):" data-ur="چھوٹا مائیکرو عمل (جو کبھی نہیں چھوٹتا):">
+                <Check class="w-3.5 h-3.5 inline-block mr-1 text-emerald-600" />
+                Tiny Micro Habit (Wins consistently):
               </span>
               <span data-en="“Read just 1 page” or “Put away 2 shoes in rack”" data-ur="”روزانہ صرف 1 صفحہ پڑھنا“ یا ”جوتے ریک میں رکھنا“">
                 “Read just 1 page” or “Put away 2 shoes in rack”
@@ -700,16 +706,18 @@ import {
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
             <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200/80 text-xs text-emerald-900">
-              <span class="font-bold block text-[#064E3B] mb-1" data-en="🌟 For Children:" data-ur="🌟 بچوں کے لیے:">
-                🌟 For Children:
+              <span class="font-bold block text-[#064E3B] mb-1" data-en="For Children:" data-ur="بچوں کے لیے:">
+                <Star class="w-3.5 h-3.5 inline-block mr-1 text-amber-500" />
+                For Children:
               </span>
               <span data-en="Warm parental verbal praise, gold star on the chart, forehead kiss, 10 mins bedtime story." data-ur="والدین کی محبت بھری شاباش، ماتھے پر پیار، چارٹ پر گولڈ اسٹار، یا پسندیدہ کھیل کے 10 منٹ۔">
                 Warm parental verbal praise, gold star on the chart, forehead kiss, 10 mins bedtime story.
               </span>
             </div>
             <div class="p-3.5 rounded-xl bg-teal-50 border border-teal-200/80 text-xs text-teal-900">
-              <span class="font-bold block text-[#0F766E] mb-1" data-en="☕ For Parents:" data-ur="☕ والدین کے لیے:">
-                ☕ For Parents:
+              <span class="font-bold block text-[#0F766E] mb-1" data-en="For Parents:" data-ur="والدین کے لیے:">
+                <Users class="w-3.5 h-3.5 inline-block mr-1 text-[#0F766E]" />
+                For Parents:
               </span>
               <span data-en="Sincere Du'a of gratitude, a mindful cup of tea, ticking the box with pride, peaceful deep breath." data-ur="اللہ کے شکر کی دلی دعا، پرسکون چائے کا گھونٹ، کامیابی سے باکس پر ٹک لگانا۔">
                 Sincere Du'a of gratitude, a mindful cup of tea, ticking the box with pride, peaceful deep breath.
@@ -837,8 +845,8 @@ import {
                   </span>
                 </div>
                 <div id="score-feedback-text" class="text-sm font-medium text-gray-700">
-                  <span data-en="🌱 Keep going! Complete each day to build your Tarbiyah momentum." data-ur="🌱 آگے بڑھیں! ہر دن مکمل کر کے اپنی عادت کو مضبوط بنائیں۔">
-                    🌱 Keep going! Complete each day to build your Tarbiyah momentum.
+                  <span data-en="Keep going! Complete each day to build your Tarbiyah momentum." data-ur="آگے بڑھیں! ہر دن مکمل کر کے اپنی عادت کو مضبوط بنائیں۔">
+                    Keep going! Complete each day to build your Tarbiyah momentum.
                   </span>
                 </div>
               </div>
@@ -1045,7 +1053,7 @@ import {
               </div>
             </div>
             <div class="p-2 sm:p-3 rounded-xl border-2 border-[#0F766E]/40 bg-[#F8FFFC]">
-              <span class="text-[11px] font-bold text-[#064E3B] block">Day 7 🌟</span>
+              <span class="text-[11px] font-bold text-[#064E3B] block">Day 7 (Goal)</span>
               <div id="chart-check-7" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-[#0F766E] flex items-center justify-center text-xs font-bold text-[#064E3B]">
                 7
               </div>
@@ -1411,12 +1419,12 @@ import {
           if (cb.checked) {
             completed++;
             if (chartCircle) {
-              chartCircle.innerHTML = '✓';
+              chartCircle.innerHTML = `<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>`;
               chartCircle.classList.remove('border-dashed', 'border-gray-300', 'border-[#0F766E]');
               chartCircle.classList.add('bg-[#064E3B]', 'text-white', 'border-solid', 'border-[#064E3B]');
             }
             if (badge) {
-              badge.textContent = currentLang === 'ur' ? 'مکمل! 🎉' : 'Done! 🎉';
+              badge.textContent = currentLang === 'ur' ? 'مکمل!' : 'Done!';
               badge.classList.remove('bg-gray-100', 'text-gray-500');
               badge.classList.add('bg-emerald-100', 'text-[#064E3B]');
             }
@@ -1441,16 +1449,16 @@ import {
         if (scoreFeedback) {
           if (score >= 80) {
             scoreFeedback.innerHTML = currentLang === 'ur'
-              ? '🌟 <strong class="text-[#064E3B]">ماشاءاللہ شاندار استقامت!</strong> عادت مضبوط ہو چکی ہے۔ اگلے ہفتے بھی یہی تسلسل رکھیں۔'
-              : '🌟 <strong class="text-[#064E3B]">Outstanding Istiqamah!</strong> You have built real momentum. Keep this daily chain going!';
+              ? '<strong class="text-[#064E3B]">ماشاءاللہ شاندار استقامت!</strong> عادت مضبوط ہو چکی ہے۔ اگلے ہفتے بھی یہی تسلسل رکھیں۔'
+              : '<strong class="text-[#064E3B]">Outstanding Istiqamah!</strong> You have built real momentum. Keep this daily chain going!';
           } else if (score >= 50) {
             scoreFeedback.innerHTML = currentLang === 'ur'
-              ? '👍 <strong class="text-[#0F766E]">بہترین آغاز!</strong> آدھے سے زیادہ دن مکمل ہو گئے۔ اپنے اینکر ٹرگر کو مضبوط بنائیں۔'
-              : '👍 <strong class="text-[#0F766E]">Great Progress!</strong> Consistency is a muscle. Reinforce your anchor trigger.';
+              ? '<strong class="text-[#0F766E]">بہترین آغاز!</strong> آدھے سے زیادہ دن مکمل ہو گئے۔ اپنے اینکر ٹرگر کو مضبوط بنائیں۔'
+              : '<strong class="text-[#0F766E]">Great Progress!</strong> Consistency is a muscle. Reinforce your anchor trigger.';
           } else {
             scoreFeedback.innerHTML = currentLang === 'ur'
-              ? '🌱 <strong class="text-gray-700">چھوٹا بیج بو دیا گیا ہے۔</strong> اگر ناغہ ہوا ہو تو عادت کو مزید چھوٹا کریں اور دوبارہ بسم اللہ کریں۔'
-              : '🌱 <strong class="text-gray-700">Keep going!</strong> Consistency beats intensity. Shrink the habit size if needed and restart with Bismillah.';
+              ? '<strong class="text-gray-700">چھوٹا بیج بو دیا گیا ہے۔</strong> اگر ناغہ ہوا ہو تو عادت کو مزید چھوٹا کریں اور دوبارہ بسم اللہ کریں۔'
+              : '<strong class="text-gray-700">Keep going!</strong> Consistency beats intensity. Shrink the habit size if needed and restart with Bismillah.';
           }
         }
       }
@@ -1639,7 +1647,7 @@ import {
         saveBtn.addEventListener('click', () => {
           saveToStorage();
           const orig = saveBtn.innerHTML;
-          saveBtn.innerHTML = `✓ <span class="font-bold">${currentLang === 'ur' ? 'محفوظ ہو گیا!' : 'Saved!'}</span>`;
+          saveBtn.innerHTML = `<span class="font-bold">${currentLang === 'ur' ? 'محفوظ ہو گیا!' : 'Saved!'}</span>`;
           setTimeout(() => {
             saveBtn.innerHTML = orig;
           }, 2000);
@@ -1683,18 +1691,18 @@ import {
           checkboxes.forEach((cb) => { if (cb.checked) completed++; });
 
           const text = 
-`Assalam u Alaikum EduTarbiyah Team! 🌿
+`Assalam u Alaikum EduTarbiyah Team,
 Here is my 7-Day Tarbiyah Habit Commitment:
 
-👤 *Name:* ${name}
-🎯 *Habit For:* ${habitFor}${child ? ` (${child})` : ''}
-📌 *Target Habit:* ${habit}
-⚡ *2-Min Micro Habit:* ${tiny}
-⏰ *Anchor Trigger:* ${trigger}
-🎁 *Reward:* ${reward}
-💡 *Purpose (Why):* ${why}
+• Name: ${name}
+• Habit For: ${habitFor}${child ? ` (${child})` : ''}
+• Target Habit: ${habit}
+• 2-Min Micro Habit: ${tiny}
+• Anchor Trigger: ${trigger}
+• Reward: ${reward}
+• Purpose (Why): ${why}
 
-📊 *Current Progress:* ${completed} / 7 Days completed (${Math.round((completed/7)*100)}%)
+• Current Progress: ${completed} / 7 Days completed (${Math.round((completed/7)*100)}%)
 
 I am submitting this for parental accountability and guidance. JazakAllah Khair!`;
 
@@ -1715,7 +1723,7 @@ I am submitting this for parental accountability and guidance. JazakAllah Khair!
           const reward = inputReward?.value.trim() || '[Reward]';
           const why = inputWhy?.value.trim() || '';
 
-          const text = `🌱 Tarbiyah Family Habit Pledge:
+          const text = `Tarbiyah Family Habit Pledge:
 I, ${name}, commit that:
 Whenever: ${trigger}
 I will: ${tiny}

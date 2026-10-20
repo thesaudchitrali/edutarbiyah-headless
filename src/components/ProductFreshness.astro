@@ -204,7 +204,7 @@ const isVariable = product.type === 'variable' && product.attributes && product.
       const slug = island?.getAttribute('data-product-slug') || '';
       const summary = Object.entries(selectedAttributes).map(([k, v]) => `${k}: ${v}`).join(', ');
       const curPrice = priceEl?.textContent || '';
-      const message = `السلام علیکم EduTarbiyah!\n\nI would like to order:\n📚 *${product.name}*\n💰 Price: ${curPrice}\n⚙️ Selected: ${summary}\n🔗 Link: https://edutarbiyah.com/product/${slug}/\n\nPlease let me know available payment and delivery details. JazakAllah Khair!`;
+      const message = `السلام علیکم EduTarbiyah!\n\nI would like to order:\nBook: *${product.name}*\nPrice: ${curPrice}\nSelected: ${summary}\nLink: https://edutarbiyah.com/product/${slug}/\n\nPlease let me know available payment and delivery details. JazakAllah Khair!`;
       if (waBtn) {
         waBtn.setAttribute('href', `https://wa.me/${waPhone}?text=${encodeURIComponent(message)}`);
       }
@@ -242,7 +242,7 @@ const isVariable = product.type === 'variable' && product.attributes && product.
             : 'Out of Stock / Backorder Only';
         }
 
-        freshnessBadge.innerHTML = '<span>Live Verified ✓</span>';
+        freshnessBadge.innerHTML = '<span>Live Verified</span>';
         setTimeout(() => {
           freshnessBadge.classList.add('hidden');
         }, 2500);

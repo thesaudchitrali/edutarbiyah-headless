@@ -107,19 +107,19 @@ const defaultBlocks = [
             type="text"
             id="new-block-time"
             placeholder="Time (e.g. 5:30 PM)"
-            class="px-3.5 py-2 text-xs rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+            class="px-4 py-2.5 text-base sm:text-xs rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0F766E]/20 focus:border-[#0F766E]"
           />
           <input
             type="text"
             id="new-block-title"
             placeholder="Activity Title (e.g. Quran Memorization)"
-            class="px-3.5 py-2 text-xs rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+            class="px-4 py-2.5 text-base sm:text-xs rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0F766E]/20 focus:border-[#0F766E]"
           />
           <input
             type="text"
             id="new-block-role"
             placeholder="Description or Guidance"
-            class="px-3.5 py-2 text-xs rounded-xl border border-gray-200 focus:outline-none focus:border-[#0F766E]"
+            class="px-4 py-2.5 text-base sm:text-xs rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#0F766E]/20 focus:border-[#0F766E]"
           />
         </div>
         <button
@@ -181,8 +181,9 @@ const defaultBlocks = [
             class="text-gray-300 hover:text-rose-500 p-2 rounded-lg transition-colors cursor-pointer"
             onclick="removeBlock(${idx})"
             title="Remove block"
+            aria-label="Remove block"
           >
-            ✕
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
         </div>
       `;
