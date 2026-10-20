@@ -1,0 +1,896 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { WHATSAPP_NUMBER } from '../lib/api';
+import { 
+  PlayCircle, 
+  Clock, 
+  Sparkles, 
+  CheckCircle2, 
+  AlertCircle, 
+  ArrowRight, 
+  MessageCircle, 
+  BookOpen, 
+  Users, 
+  GraduationCap, 
+  ChevronRight, 
+  ChevronDown, 
+  ShieldCheck, 
+  FileText, 
+  Award,
+  Video,
+  HeartHandshake,
+  Compass,
+  Check,
+  Star
+} from 'lucide-astro';
+
+const ENROLL_FORM_URL = "https://docs.google.com/forms/d/1dWymFNgaYdfcQG0PgR4lFGKotShWg9--smre7ofPeUI/viewform";
+const COURSE_PRICE = "PKR 3,000";
+
+const defaultWhatsappMessage = encodeURIComponent(
+  "السلام علیکم EduTarbiyah! I want to enroll in the TPPC Self-Paced Recorded Course (PKR 3,000). Please share payment and access details."
+);
+const whatsappEnrollUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${defaultWhatsappMessage}`;
+
+// 6 Core Modules
+const modules = [
+  {
+    number: "01",
+    title: "Foundations of Tarbiyah",
+    tagline: "Parenting, Tarbiyah, Education & Islamic Parenting Goals",
+    description: "Understanding the true prophetic mission of Tarbiyah. Discover why education alone is not enough, how to establish intentional spiritual and moral goals, and shift from reactive survival parenting to conscious purpose.",
+    topics: [
+      "Defining authentic Tarbiyah vs modern schooling",
+      "The 3 pillars of Islamic parenting goals",
+      "Shifting from emergency reaction to proactive vision",
+      "Creating home culture grounded in Rahmah & Adab"
+    ],
+    duration: "Module 1 • Approx 75 mins"
+  },
+  {
+    number: "02",
+    title: "Becoming a Better Parent",
+    tagline: "Parenting Mindset, Self-Development & Parenting Styles",
+    description: "Children learn from who we are, not what we preach. Discover your unconscious parenting style, break generational trauma cycles, master emotional regulation when triggered, and build authority without authoritarianism.",
+    topics: [
+      "Identifying your default parenting style & blindspots",
+      "Parental emotional self-regulation & anger mastery",
+      "Healing generational cycles of guilt and shouting",
+      "The authoritative prophetic middle ground"
+    ],
+    duration: "Module 2 • Approx 80 mins"
+  },
+  {
+    number: "03",
+    title: "Understanding Your Child",
+    tagline: "Holistic Child Development Needs & a Strong Parent-Child Bond",
+    description: "Decoding what drives your child's behavior at every age. Learn cognitive, emotional, social, and spiritual developmental stages, build secure attachment, and ensure your child feels unconditionally accepted.",
+    topics: [
+      "The 4 developmental developmental planes (0-7, 7-14, 14-21)",
+      "Uncovering the hidden emotional needs behind defiance",
+      "Building the unbreakable connection before correction",
+      "Active empathic listening that makes children open up"
+    ],
+    duration: "Module 3 • Approx 85 mins"
+  },
+  {
+    number: "04",
+    title: "Building Personality & Character",
+    tagline: "Confidence, Creativity, Character, Leadership & Responsibility",
+    description: "Cultivating internal self-worth and genuine Islamic resilience. Practical steps to build personal responsibility, critical thinking, moral conscience, and age-appropriate contribution to family life.",
+    topics: [
+      "Fostering true self-confidence vs arrogant entitlement",
+      "Instilling internal conscience (Taqwa) and Akhlaq",
+      "Age-by-age responsibility matrix & family chores",
+      "Raising leaders who stand firm against negative peer pressure"
+    ],
+    duration: "Module 4 • Approx 80 mins"
+  },
+  {
+    number: "05",
+    title: "Solving Modern Parenting Challenges",
+    tagline: "Habits, Digital-Age Challenges, Teenagers & Family Dynamics",
+    description: "Proven tactics to manage smartphones, gaming, screen battles, and sibling rivalry. Practical strategies for guiding teenagers through hormonal changes, mood swings, and emotional independence.",
+    topics: [
+      "Setting non-confrontational screen time & device boundaries",
+      "Navigating teenage emotional storms with dignity",
+      "Resolving sibling jealousy, rivalry, and daily disputes",
+      "Daily habit loops: Salah, reading, and healthy sleep routines"
+    ],
+    duration: "Module 5 • Approx 90 mins"
+  },
+  {
+    number: "06",
+    title: "Positive Discipline & Action Plan",
+    tagline: "Rewards, Consequences, Positive Discipline & Your Practical Tarbiyah Framework",
+    description: "Eliminating constant shouting, nagging, and punitive measures. Replace punishment with respectful natural consequences, effective reward systems, and walk away with your personalized family action charter.",
+    topics: [
+      "Why punishment damages character & what replaces it",
+      "Natural and logical consequences that actually teach",
+      "Effective motivational reward systems that don't spoil",
+      "Final Blueprint: Creating your home Tarbiyah Action Charter"
+    ],
+    duration: "Module 6 • Approx 80 mins"
+  }
+];
+
+// Modern Challenges
+const challenges = [
+  {
+    icon: AlertCircle,
+    title: "Children Not Listening or Cooperating?",
+    detail: "Repeated instructions turn into arguments, bedtime resistance, and daily power struggles that drain household peace."
+  },
+  {
+    icon: AlertCircle,
+    title: "Anger, Stubbornness & Discipline Issues?",
+    detail: "Reacting in anger or shouting, followed by guilt and confusion about how to discipline firmly yet kindly."
+  },
+  {
+    icon: AlertCircle,
+    title: "Screen Addiction & Digital Distractions?",
+    detail: "Constant battles over smartphones, video games, social media, and worrying about toxic online influences."
+  },
+  {
+    icon: AlertCircle,
+    title: "Lack of Responsibility or Good Habits?",
+    detail: "Struggling to build consistent Salah habits, morning routines, homework focus, and personal hygiene."
+  },
+  {
+    icon: AlertCircle,
+    title: "Communication Gaps with Teenagers?",
+    detail: "Children withdrawing, becoming secretive, defensive, or emotionally distant during crucial adolescence years."
+  },
+  {
+    icon: AlertCircle,
+    title: "Balancing Modern Life with Islamic Tarbiyah?",
+    detail: "Wanting authentic Islamic spiritual roots without harsh rigidity, while preparing children for a fast-changing world."
+  }
+];
+
+// Outcomes
+const outcomes = [
+  {
+    num: "01",
+    title: "Understand Child Needs & Behavior",
+    desc: "Decode the psychology behind why your child acts out, resists, or seeks attention, resolving causes instead of symptoms."
+  },
+  {
+    num: "02",
+    title: "Build a Stronger, Warmer Bond",
+    desc: "Master connection before correction. Learn how to speak so your child genuinely wants to listen and cooperate."
+  },
+  {
+    num: "03",
+    title: "Discipline Without Anger & Conflict",
+    desc: "Replace shouting, threats, and guilt with positive, respectful discipline and calm, consistent boundaries."
+  },
+  {
+    num: "04",
+    title: "Develop Confidence & Character",
+    desc: "Instill noble Islamic values, emotional resilience, personal responsibility, and healthy independence."
+  },
+  {
+    num: "05",
+    title: "Manage Screens & Healthy Habits",
+    desc: "Establish balanced digital agreements, daily routines, and spiritual habits that stick naturally without daily fights."
+  },
+  {
+    num: "06",
+    title: "Create a Positive Home Atmosphere",
+    desc: "Build an emotionally safe, peaceful home environment where both parents and children thrive together."
+  }
+];
+
+// Testimonials
+const videoTestimonials = [
+  {
+    id: "dyh-6rAzDA0",
+    title: "Parent Video Feedback 01",
+    label: "Mother of Two • Karachi"
+  },
+  {
+    id: "D3G_N_55n38",
+    title: "Parent Video Feedback 02",
+    label: "Parent Review • Lahore"
+  },
+  {
+    id: "cgHLKndbqSQ",
+    title: "Parent Video Feedback 03",
+    label: "Family Transformation • Islamabad"
+  }
+];
+
+const writtenReviews = [
+  {
+    quote: "This course completely changed the way I communicate with my children. Our home is now calmer, happier, and much more connected.",
+    author: "Ayesha Khan",
+    role: "Mother of 2",
+    location: "Lahore"
+  },
+  {
+    quote: "Every parent should take this course. The practical strategies are simple, effective, and immediately applicable to daily life.",
+    author: "Muhammad Ali",
+    role: "Father of Three",
+    location: "Karachi"
+  },
+  {
+    quote: "As a teacher, I learned how to build relationships before correction. It completely transformed my classroom management and empathy.",
+    author: "Sarah Ahmed",
+    role: "School Teacher & Educator",
+    location: "Islamabad"
+  }
+];
+
+// FAQs
+const faqs = [
+  {
+    q: "How does the self-paced online format work?",
+    a: "Once you complete the enrollment form and payment verification, you receive lifetime access to all 8 hours of high-definition recorded lessons. You can watch anytime at your own speed on your phone, tablet, or laptop."
+  },
+  {
+    q: "What language is the course delivered in?",
+    a: "The course is taught in clear, fluent Urdu with standard English parenting concepts and Islamic terminology, making it easily accessible and practical for Pakistani and overseas families."
+  },
+  {
+    q: "Do I receive a certificate upon completion?",
+    a: "Yes! Every participant who completes the course modules receives an official digital Certificate of Completion from EduTarbiyah Institute signed by Dr. Muhammad Younus Khalid."
+  },
+  {
+    q: "What payment methods are supported for the PKR 3,000 fee?",
+    a: "We support easy, instant local payment via EasyPaisa, JazzCash, Nayapay, Sadapay, and Direct Bank Transfer. Overseas parents can also pay via international transfer. WhatsApp our admissions team for immediate account numbers."
+  },
+  {
+    q: "Can both mother and father watch together?",
+    a: "Yes, absolutely! We highly encourage spouses to watch together so both parents are completely aligned on discipline, habits, and parenting goals."
+  }
+];
+---
+
+<Layout
+  title="TPPC • Tarbiyah Parenting Practitioner Course | EduTarbiyah"
+  description="Transform your parenting with the self-paced Tarbiyah Parenting Practitioner Course (TPPC) by Dr. Muhammad Younus Khalid. 8 hours of video modules, lifetime access, practical Islamic frameworks for PKR 3,000."
+>
+
+  <!-- Sticky Top Breadcrumbs & Utility -->
+  <div class="bg-[#F8FFFC] border-b border-[#0F766E]/10 py-3 px-4 sm:px-6 text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <a href="/" class="hover:text-[#0F766E] transition-colors">Home</a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <a href="/shop/" class="hover:text-[#0F766E] transition-colors">Courses & Programs</a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <span class="text-[#064E3B] font-semibold">TPPC Self-Paced Course</span>
+      </div>
+      <div class="hidden sm:flex items-center gap-2 text-[#064E3B] font-medium">
+        <span class="inline-block w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+        <span>Enrollment Open • Self-Paced Access</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-b from-[#064E3B] via-[#095944] to-[#064E3B] text-white py-14 lg:py-20 overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#F59E0B_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Column: Copy & Value Proposition -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 text-[#F59E0B] text-xs font-bold tracking-wide uppercase backdrop-blur-md border border-white/15">
+            <Sparkles class="w-4 h-4 text-[#F59E0B]" />
+            <span>TPPC • Tarbiyah Parenting Practitioner Course</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-extrabold text-white tracking-tight leading-[1.15]">
+            Transform Your Parenting. <br />
+            <span class="text-[#F59E0B] italic font-normal">Transform Your Child’s Future.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-[#D1FAE5] max-w-2xl leading-relaxed font-normal">
+            A practical, Islamically grounded and psychology-based parenting course designed to help you raise confident, responsible and well-rounded children in today’s challenging world.
+          </p>
+
+          <!-- Highlights Pills -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 pt-2 text-xs sm:text-sm font-medium text-white/90">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/10">
+              <Clock class="w-4 h-4 text-[#F59E0B]" />
+              <span>8 Hours Recorded</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/10">
+              <PlayCircle class="w-4 h-4 text-[#F59E0B]" />
+              <span>Learn Anytime</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/10">
+              <BookOpen class="w-4 h-4 text-[#F59E0B]" />
+              <span>Practical Frameworks</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/10">
+              <ShieldCheck class="w-4 h-4 text-[#F59E0B]" />
+              <span>Lifetime Access</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 border border-white/10">
+              <Award class="w-4 h-4 text-[#F59E0B]" />
+              <span>E-Certificate</span>
+            </span>
+          </div>
+
+          <!-- Price & Primary CTA Group -->
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+            <a
+              href={ENROLL_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-[#F59E0B] hover:bg-[#d97706] text-[#064E3B] text-base font-extrabold shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200"
+            >
+              <span>Enroll Now — Only {COURSE_PRICE}</span>
+              <ArrowRight class="w-5 h-5" />
+            </a>
+
+            <a
+              href={whatsappEnrollUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-base font-bold shadow-xl hover:scale-105 active:scale-95 transition-all"
+            >
+              <MessageCircle class="w-5 h-5 fill-current" />
+              <span>Enroll on WhatsApp</span>
+            </a>
+          </div>
+
+          <div class="pt-2 text-xs text-[#D1FAE5]/80 flex items-center justify-center lg:justify-start gap-4">
+            <span>• Online Self-Paced</span>
+            <span>• Start learning today</span>
+            <span>• One-time payment</span>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Course Card Visual -->
+        <div class="lg:col-span-5">
+          <div class="relative bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-7 shadow-2xl border border-white/20 text-gray-800 space-y-6">
+            
+            <!-- Badge & Media Header -->
+            <div class="relative rounded-2xl overflow-hidden shadow-md group">
+              <img
+                src="https://edutarbiyah.com/wp-content/uploads/2026/08/Course-image-tppc-4.png"
+                alt="Tarbiyah Parenting Practitioner Course by Dr. Muhammad Younus Khalid"
+                class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="eager"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-4">
+                <div class="text-white space-y-1">
+                  <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[#0F766E] text-xs font-bold uppercase tracking-wider">
+                    <Video class="w-3.5 h-3.5" />
+                    <span>Recorded Masterclass</span>
+                  </div>
+                  <p class="text-sm font-semibold text-white drop-shadow">
+                    Dr. Muhammad Younus Khalid
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pricing Box -->
+            <div class="bg-[#FFFDF9] rounded-2xl p-5 border border-[#0F766E]/20 space-y-3">
+              <div class="flex items-center justify-between">
+                <div>
+                  <span class="text-xs uppercase font-bold text-gray-400 tracking-wider">Special Course Fee</span>
+                  <div class="text-3xl font-extrabold text-[#064E3B]">{COURSE_PRICE}</div>
+                </div>
+                <div class="text-right">
+                  <span class="inline-flex items-center gap-1 text-xs font-bold text-[#0F766E] bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                    <ShieldCheck class="w-3.5 h-3.5" />
+                    <span>Lifetime Access</span>
+                  </span>
+                  <div class="text-xs text-gray-500 mt-1">No monthly renewal</div>
+                </div>
+              </div>
+
+              <div class="border-t border-gray-100 pt-3 space-y-2 text-xs text-gray-600">
+                <div class="flex items-center justify-between">
+                  <span>Course Format</span>
+                  <span class="font-bold text-gray-900">Recorded Video Modules</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Total Duration</span>
+                  <span class="font-bold text-gray-900">8 Hours In-Depth</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Access Mode</span>
+                  <span class="font-bold text-gray-900">Mobile, Tablet & Laptop</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span>Certificate</span>
+                  <span class="font-bold text-[#0F766E]">Official E-Certificate</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Enrollment Action Button -->
+            <a
+              href={ENROLL_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-2xl bg-[#064E3B] hover:bg-[#0F766E] text-white text-sm font-bold shadow-lg transition-colors"
+            >
+              <span>Get Enrollment Form ↗</span>
+            </a>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem & Challenges Section ("Parenting Is Getting Harder Today") -->
+  <section class="py-20 bg-[#FFFDF9] border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-[#0F766E] bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+          The Challenge
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#064E3B]">
+          Parenting Is Getting Harder Today.
+        </h2>
+        <p class="text-gray-600 text-base sm:text-lg">
+          Do you sometimes struggle with any of these daily challenges?
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {challenges.map((item) => (
+          <div class="bg-white rounded-2xl p-6 sm:p-7 shadow-sm hover:shadow-xl border border-gray-200/70 hover:border-[#0F766E]/40 transition-all duration-200 flex flex-col justify-between space-y-4 group">
+            <div class="space-y-3">
+              <div class="w-10 h-10 rounded-xl bg-amber-50 text-[#F59E0B] flex items-center justify-center group-hover:scale-110 transition-transform">
+                <item.icon class="w-5 h-5 text-[#F59E0B]" />
+              </div>
+              <h3 class="text-lg font-bold text-[#064E3B]">
+                {item.title}
+              </h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                {item.detail}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Solution Callout Bridge -->
+      <div class="mt-14 max-w-3xl mx-auto bg-gradient-to-r from-[#064E3B] to-[#0F766E] rounded-3xl p-8 sm:p-10 text-white text-center shadow-xl space-y-6">
+        <h3 class="text-2xl sm:text-3xl font-serif font-bold text-white">
+          Stop relying on random parenting tips.
+        </h3>
+        <p class="text-base text-[#D1FAE5] max-w-2xl mx-auto leading-relaxed">
+          Social media offers scattered hacks that rarely work long-term. TPPC gives you a clear, structured, practical framework you can follow at home every single day.
+        </p>
+        <div class="pt-2">
+          <a
+            href={ENROLL_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-[#F59E0B] hover:bg-[#d97706] text-[#064E3B] text-sm font-extrabold shadow-lg hover:scale-105 active:scale-95 transition-all"
+          >
+            <span>Want Improvement? Enroll Now →</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Core Outcomes Section ("Turn Knowledge Into Practical Change") -->
+  <section class="py-20 bg-[#F8FFFC] border-b border-emerald-900/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-[#0F766E]">
+          Why TPPC?
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#064E3B]">
+          Turn Parenting Knowledge Into Practical Change.
+        </h2>
+        <p class="text-gray-600 text-base sm:text-lg">
+          By the end of this course, you’ll be better equipped to:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {outcomes.map((item) => (
+          <div class="bg-white rounded-2xl p-6 sm:p-7 shadow-sm hover:shadow-lg border border-emerald-900/10 hover:border-[#0F766E]/40 transition-all flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-mono font-bold text-[#0F766E] bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-100">
+                  Step {item.num}
+                </span>
+                <CheckCircle2 class="w-5 h-5 text-[#10B981]" />
+              </div>
+              <h3 class="text-lg font-bold text-[#064E3B]">
+                {item.title}
+              </h3>
+              <p class="text-sm text-gray-600 leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-12 text-center">
+        <a
+          href={ENROLL_FORM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-sm font-bold shadow-md hover:shadow-xl transition-all"
+        >
+          <span>Start Improving Your Parenting →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Complete Curriculum Section ("What Will You Learn?") -->
+  <section class="py-20 bg-[#FFFDF9] border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-[#0F766E]">
+          Course Curriculum
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#064E3B]">
+          What Will You Learn?
+        </h2>
+        <p class="text-gray-600 text-base sm:text-lg">
+          Six focused modules take you from foundational understanding to an actionable Tarbiyah plan.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {modules.map((m) => (
+          <div class="bg-white rounded-3xl p-7 sm:p-8 shadow-sm hover:shadow-xl border border-gray-200/80 hover:border-[#0F766E]/40 transition-all duration-300 flex flex-col justify-between space-y-6">
+            
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-mono font-bold text-[#064E3B] bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+                  Module {m.number}
+                </span>
+                <span class="text-xs font-semibold text-gray-500">
+                  {m.duration}
+                </span>
+              </div>
+
+              <div>
+                <h3 class="text-2xl font-serif font-bold text-[#064E3B]">
+                  {m.title}
+                </h3>
+                <p class="text-xs font-bold uppercase tracking-wider text-[#0F766E] mt-1">
+                  {m.tagline}
+                </p>
+              </div>
+
+              <p class="text-sm text-gray-600 leading-relaxed">
+                {m.description}
+              </p>
+
+              <!-- Topic Bullets -->
+              <div class="pt-2 space-y-2 border-t border-gray-100">
+                {m.topics.map((t) => (
+                  <div class="flex items-start gap-2 text-xs sm:text-sm text-gray-700">
+                    <Check class="w-4 h-4 text-[#10B981] shrink-0 mt-0.5" />
+                    <span>{t}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Real Learning Experiences & Testimonials -->
+  <section class="py-20 bg-[#F4F8F6] border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-14">
+        <span class="text-xs font-bold uppercase tracking-widest text-[#0F766E]">
+          Real Learning Experiences
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#064E3B]">
+          What Our Learners Say
+        </h2>
+        <p class="text-gray-600 text-base">
+          Listen to parents and educators who completed TPPC and experienced transformation in their homes.
+        </p>
+      </div>
+
+      <!-- Video Testimonials Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {videoTestimonials.map((v) => (
+          <div class="bg-white rounded-2xl p-4 shadow-sm hover:shadow-md border border-gray-200/80 space-y-3">
+            <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-gray-900 shadow">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${v.id}`}
+                title={v.title}
+                class="absolute inset-0 w-full h-full border-0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+                loading="lazy"
+              ></iframe>
+            </div>
+            <div class="px-1 flex items-center justify-between">
+              <span class="text-xs font-bold text-[#064E3B]">{v.title}</span>
+              <span class="text-[11px] text-gray-500">{v.label}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Written Reviews Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {writtenReviews.map((r) => (
+          <div class="bg-white rounded-2xl p-6 sm:p-7 shadow-sm border border-emerald-900/10 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center gap-1 text-[#F59E0B]">
+                {[...Array(5)].map(() => (
+                  <Star class="w-4 h-4 fill-current" />
+                ))}
+              </div>
+              <p class="text-sm text-gray-700 italic leading-relaxed">
+                "{r.quote}"
+              </p>
+            </div>
+            <div class="pt-4 border-t border-gray-100">
+              <div class="text-sm font-bold text-[#064E3B]">{r.author}</div>
+              <div class="text-xs text-gray-500">{r.role} • {r.location}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Who Should Join? Section -->
+  <section class="py-20 bg-[#FFFDF9] border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-[#0F766E]">
+          Who Should Join?
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#064E3B]">
+          Designed for People Who Shape Children’s Lives.
+        </h2>
+        <p class="text-gray-600 text-base">
+          No previous parenting training is required. Whether your children are toddlers or teenagers:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="bg-white rounded-2xl p-8 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all space-y-4 text-center">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-50 text-[#0F766E] flex items-center justify-center">
+            <Users class="w-7 h-7" />
+          </div>
+          <span class="text-xs font-mono font-bold text-gray-400">01</span>
+          <h3 class="text-xl font-serif font-bold text-[#064E3B]">Parents</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Who want to raise children with strong faith, noble character, emotional resilience, and deep mutual trust.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all space-y-4 text-center">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-50 text-[#0F766E] flex items-center justify-center">
+            <GraduationCap class="w-7 h-7" />
+          </div>
+          <span class="text-xs font-mono font-bold text-gray-400">02</span>
+          <h3 class="text-xl font-serif font-bold text-[#064E3B]">Teachers & Educators</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Who want to understand, connect with, and mentor students beyond mere academic curriculum delivery.
+          </p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-8 border border-gray-200/80 shadow-sm hover:shadow-lg transition-all space-y-4 text-center">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-50 text-[#0F766E] flex items-center justify-center">
+            <HeartHandshake class="w-7 h-7" />
+          </div>
+          <span class="text-xs font-mono font-bold text-gray-400">03</span>
+          <h3 class="text-xl font-serif font-bold text-[#064E3B]">Coaches, Mentors & Trainers</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Who professionally work with children, youth, teenagers, and families seeking structured diagnostic frameworks.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="mt-12 text-center">
+        <a
+          href={ENROLL_FORM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-[#0F766E] hover:bg-[#064E3B] text-white text-sm font-bold shadow transition-all"
+        >
+          <span>Want Improvement? Enroll Now →</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- About The Trainer Section -->
+  <section class="py-20 bg-[#F8FFFC] border-b border-emerald-900/10">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-emerald-900/10 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+        
+        <!-- Trainer Avatar / Seal -->
+        <div class="md:col-span-4 text-center">
+          <div class="w-36 h-36 mx-auto rounded-full bg-gradient-to-tr from-[#064E3B] to-[#0F766E] p-1 shadow-2xl flex items-center justify-center">
+            <div class="w-full h-full rounded-full bg-[#064E3B] flex items-center justify-center text-white text-3xl font-serif font-bold tracking-wider">
+              MYK
+            </div>
+          </div>
+          <div class="mt-4">
+            <span class="inline-block text-xs font-bold text-[#0F766E] bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+              Trainer & Author
+            </span>
+          </div>
+        </div>
+
+        <!-- Trainer Bio -->
+        <div class="md:col-span-8 space-y-4 text-center md:text-left">
+          <span class="text-xs font-bold uppercase tracking-widest text-gray-400">
+            About the Trainer
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-serif font-bold text-[#064E3B]">
+            Dr. Muhammad Younus Khalid
+          </h3>
+          <p class="text-xs sm:text-sm font-semibold text-[#0F766E]">
+            Ph.D. • Parenting & Tarbiyah Trainer • Islamic Scholar • Life Coach • NLP & MBTI Practitioner
+          </p>
+          <p class="text-sm sm:text-base text-gray-700 leading-relaxed">
+            Dr. Muhammad Younus Khalid combines authentic Islamic Tarbiyah principles with modern child psychology and human-development approaches to help parents deeply understand children, strengthen relationships, dissolve behavioral struggles, and build enduring character.
+          </p>
+          <div class="pt-2 flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs font-medium text-gray-500">
+            <span>• 15+ Years Experience</span>
+            <span>• 10,000+ Parents Guided</span>
+            <span>• Author of 10+ Tarbiyah Books</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Final Value Offer & Enrollment Card -->
+  <section class="py-20 bg-gradient-to-b from-[#064E3B] via-[#095944] to-[#064E3B] text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+      
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-[#F59E0B] bg-white/10 px-4 py-1.5 rounded-full border border-white/15">
+        One Decision Can Change the Atmosphere at Home
+      </span>
+
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-bold text-white leading-tight">
+        Your Child Doesn’t Need a Perfect Parent. <br class="hidden sm:inline" />
+        <span class="text-[#F59E0B] italic font-normal">They Need a More Conscious, Connected & Skilled Parent.</span>
+      </h2>
+
+      <p class="text-base sm:text-lg text-[#D1FAE5] max-w-2xl mx-auto leading-relaxed">
+        Learn proactive Tarbiyah parenting instead of reactive parenting—a structured approach to connection, character building and positive discipline—and start applying it in your home today.
+      </p>
+
+      <!-- The Offer Box -->
+      <div class="bg-white/95 backdrop-blur-md rounded-3xl p-8 sm:p-10 shadow-2xl border border-white/20 text-gray-800 space-y-6 max-w-2xl mx-auto">
+        <div class="space-y-2">
+          <div class="text-xs uppercase font-bold tracking-wider text-gray-400">Total All-Inclusive Course Fee</div>
+          <div class="text-4xl sm:text-5xl font-extrabold text-[#064E3B]">{COURSE_PRICE}</div>
+          <div class="text-xs text-[#0F766E] font-medium">One-Time Payment • Immediate Access • No Hidden Charges</div>
+        </div>
+
+        <ul class="text-left text-sm text-gray-700 space-y-2.5 max-w-md mx-auto pt-2">
+          <li class="flex items-center gap-2">
+            <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+            <span>Complete 8-hour recorded video masterclass</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+            <span>Downloadable parenting frameworks & worksheets</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+            <span>Official verified Certificate of Completion</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <CheckCircle2 class="w-4 h-4 text-[#10B981] shrink-0" />
+            <span>Lifetime access on mobile, tablet & computer</span>
+          </li>
+        </ul>
+
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href={ENROLL_FORM_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-[#064E3B] hover:bg-[#0F766E] text-white text-base font-extrabold shadow-lg hover:scale-105 active:scale-95 transition-all"
+          >
+            <span>Get TPPC Now — {COURSE_PRICE} →</span>
+          </a>
+
+          <a
+            href={whatsappEnrollUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-base font-bold shadow hover:scale-105 active:scale-95 transition-all"
+          >
+            <MessageCircle class="w-5 h-5 fill-current" />
+            <span>WhatsApp Enrollment</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="text-xs text-[#D1FAE5]/80">
+        8 Hours • Lifetime Access • E-Certificate • Learn Anytime
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-20 bg-[#FFFDF9]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      
+      <div class="text-center space-y-3">
+        <span class="text-xs font-bold uppercase tracking-widest text-[#0F766E]">
+          Got Questions?
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#064E3B]">
+          Frequently Asked Questions
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group bg-white rounded-2xl border border-gray-200/80 p-5 shadow-sm [&_summary::-webkit-details-marker]:hidden cursor-pointer transition-all">
+            <summary class="flex items-center justify-between text-base font-bold text-[#064E3B] group-open:text-[#0F766E]">
+              <span>{faq.q}</span>
+              <ChevronDown class="w-5 h-5 text-gray-400 group-open:rotate-180 transition-transform duration-200 shrink-0" />
+            </summary>
+            <p class="mt-4 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Sticky Bottom Bar for Mobile & Desktop Enrollment -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 py-3 px-4 shadow-2xl sm:hidden">
+    <div class="flex items-center justify-between gap-3 max-w-7xl mx-auto">
+      <div>
+        <div class="text-xs font-bold text-gray-500 uppercase">TPPC Course</div>
+        <div class="text-lg font-black text-[#064E3B]">{COURSE_PRICE}</div>
+      </div>
+      <a
+        href={ENROLL_FORM_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-1.5 px-6 py-2.5 rounded-xl bg-[#0F766E] text-white text-sm font-bold shadow hover:bg-[#064E3B] transition-colors"
+      >
+        <span>Enroll Now</span>
+        <ArrowRight class="w-4 h-4" />
+      </a>
+    </div>
+  </div>
+
+</Layout>
