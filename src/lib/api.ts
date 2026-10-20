@@ -2,7 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
 
-export const WP_BASE_URL = (import.meta.env.PUBLIC_WP_URL || 'https://edutarbiyah.com').replace(/\/+$/, '');
+export const WP_BASE_URL = ((typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_WP_URL) || process.env?.PUBLIC_WP_URL || 'https://edutarbiyah.com').replace(/\/+$/, '');
 export const WHATSAPP_NUMBER = '923122370720';
 
 const CACHE_DIR = path.resolve(process.cwd(), '.cache', 'api');
@@ -132,6 +132,91 @@ export async function cachedFetch<T>(
   throw lastError || new Error(`Failed to fetch from ${url}`);
 }
 
+/**
+ * Cached text/HTML fetch with retries and exponential backoff
+ */
+export async function cachedFetchText(
+  endpoint: string,
+  options: {
+    ttlSeconds?: number;
+    retries?: number;
+    fallbackData?: string;
+  } = {}
+): Promise<string> {
+  const { ttlSeconds = 86400, retries = 3, fallbackData } = options;
+  const url = endpoint.startsWith('http') ? endpoint : `${WP_BASE_URL}${endpoint}`;
+
+  const hash = crypto.createHash('sha1').update(url).digest('hex');
+  const cacheFilePath = path.join(CACHE_DIR, `${hash}.txt`);
+
+  // 1. Try reading from disk cache
+  try {
+    const fileStat = await fs.stat(cacheFilePath);
+    const ageSeconds = (Date.now() - fileStat.mtimeMs) / 1000;
+    if (ageSeconds < ttlSeconds) {
+      return await fs.readFile(cacheFilePath, 'utf-8');
+    }
+  } catch {
+    // Cache miss or error reading cache, proceed to fetch
+  }
+
+  // 2. Fetch with retries
+  let lastError: any = null;
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+      const res = await fetch(url, {
+        signal: controller.signal,
+        headers: {
+          'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+          'User-Agent': 'EduTarbiyah-Headless-Static-Builder/1.0',
+        },
+      });
+      clearTimeout(timeoutId);
+
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status} ${res.statusText} on ${url}`);
+      }
+
+      const text = await res.text();
+
+      // Save to cache
+      try {
+        await fs.mkdir(CACHE_DIR, { recursive: true });
+        await fs.writeFile(cacheFilePath, text, 'utf-8');
+      } catch (cacheErr) {
+        console.warn(`[Cache Warning] Could not write cache file: ${(cacheErr as Error).message}`);
+      }
+
+      return text;
+    } catch (err) {
+      lastError = err;
+      console.warn(`[Fetch Retry ${attempt}/${retries}] for ${url} - ${(err as Error).message}`);
+      if (attempt < retries) {
+        await new Promise((resolve) => setTimeout(resolve, attempt * 1200));
+      }
+    }
+  }
+
+  // 3. Fallback to stale cache
+  try {
+    const staleData = await fs.readFile(cacheFilePath, 'utf-8');
+    console.warn(`[Cache Warning] Using stale cache for ${url} after fetch failure.`);
+    return staleData;
+  } catch {
+    // No stale cache
+  }
+
+  if (fallbackData !== undefined) {
+    console.warn(`[Fallback] Using provided fallback data for ${url}`);
+    return fallbackData;
+  }
+
+  throw lastError || new Error(`Failed to fetch text from ${url}`);
+}
+
 /* -------------------------------------------------------------
  * Data Interfaces
  * ------------------------------------------------------------- */
@@ -241,6 +326,171 @@ export interface MenuItem {
  * API Query Methods
  * ------------------------------------------------------------- */
 
+function decodeHtmlEntities(str: string): string {
+  return str
+    .replace(/&#038;/g, '&')
+    .replace(/&amp;/g, '&')
+    .replace(/&#8217;/g, "'")
+    .replace(/&#8216;/g, "'")
+    .replace(/&quot;/g, '"')
+    .replace(/&#039;/g, "'")
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .trim();
+}
+
+/**
+ * Robustly parses WordPress nav menu from rendered HTML
+ */
+export function parseWordPressNavHtml(html: string, baseUrl: string = WP_BASE_URL): MenuItem[] {
+  const match = html.match(/<ul[^>]*class="[^"]*elementor-nav-menu[^"]*"[^>]*>/i);
+  if (!match || match.index === undefined) return [];
+
+  const startIdx = match.index + match[0].length;
+
+  let ulDepth = 1;
+  let pos = startIdx;
+  let endIdx = -1;
+
+  while (pos < html.length && ulDepth > 0) {
+    const nextOpen = html.indexOf('<ul', pos);
+    const nextClose = html.indexOf('</ul>', pos);
+
+    if (nextClose === -1) break;
+
+    if (nextOpen !== -1 && nextOpen < nextClose) {
+      ulDepth++;
+      pos = nextOpen + 3;
+    } else {
+      ulDepth--;
+      if (ulDepth === 0) {
+        endIdx = nextClose;
+        break;
+      }
+      pos = nextClose + 5;
+    }
+  }
+
+  if (endIdx === -1) endIdx = html.lastIndexOf('</ul>');
+  const innerMenuHtml = html.substring(startIdx, endIdx);
+
+  function parseItems(fragment: string): MenuItem[] {
+    const items: MenuItem[] = [];
+    let i = 0;
+
+    while (i < fragment.length) {
+      const liOpenIdx = fragment.indexOf('<li', i);
+      if (liOpenIdx === -1) break;
+
+      const liTagClose = fragment.indexOf('>', liOpenIdx);
+      if (liTagClose === -1) break;
+
+      const openTag = fragment.substring(liOpenIdx, liTagClose + 1);
+      const idMatch = openTag.match(/menu-item-(\d+)/);
+      const id = idMatch ? parseInt(idMatch[1], 10) : Math.floor(Math.random() * 100000);
+
+      let liDepth = 1;
+      let cur = liTagClose + 1;
+      let liCloseIdx = -1;
+
+      while (cur < fragment.length && liDepth > 0) {
+        const nextLi = fragment.indexOf('<li', cur);
+        const nextLiEnd = fragment.indexOf('</li>', cur);
+
+        if (nextLiEnd === -1) break;
+
+        if (nextLi !== -1 && nextLi < nextLiEnd) {
+          liDepth++;
+          cur = nextLi + 3;
+        } else {
+          liDepth--;
+          if (liDepth === 0) {
+            liCloseIdx = nextLiEnd;
+            break;
+          }
+          cur = nextLiEnd + 5;
+        }
+      }
+
+      if (liCloseIdx === -1) break;
+
+      const liInner = fragment.substring(liTagClose + 1, liCloseIdx);
+
+      const subUlStart = liInner.search(/<ul[^>]*>/i);
+      const aHtml = subUlStart !== -1 ? liInner.substring(0, subUlStart) : liInner;
+
+      const aMatch = aHtml.match(/<a\s+[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/i);
+      let href = '#';
+      let title = '';
+
+      if (aMatch) {
+        href = aMatch[1].trim();
+        const rawText = aMatch[2]
+          .replace(/<svg[\s\S]*?<\/svg>/gi, '')
+          .replace(/<[^>]*>/g, '')
+          .trim();
+        title = decodeHtmlEntities(rawText);
+      }
+
+      let cleanUrl = href;
+      let target: string | undefined = undefined;
+
+      if (href.startsWith(baseUrl)) {
+        cleanUrl = href.replace(baseUrl, '');
+        if (!cleanUrl || cleanUrl === '') cleanUrl = '/';
+      } else if (href.startsWith('http://') || href.startsWith('https://')) {
+        target = '_blank';
+      }
+
+      // Check if file asset link
+      if (/\.(png|jpe?g|gif|webp|svg|pdf|docx?|xlsx?)$/i.test(cleanUrl)) {
+        if (cleanUrl.startsWith('/wp-content')) {
+          cleanUrl = `${baseUrl}${cleanUrl}`;
+        }
+        target = '_blank';
+      }
+
+      // Ensure trailing slash for internal non-anchor directory routes
+      if (
+        cleanUrl.startsWith('/') &&
+        cleanUrl !== '/' &&
+        !cleanUrl.includes('#') &&
+        !cleanUrl.includes('?') &&
+        !/\.[a-z0-9]+$/i.test(cleanUrl)
+      ) {
+        cleanUrl = cleanUrl.replace(/\/+$/, '') + '/';
+      }
+
+      let children: MenuItem[] = [];
+      if (subUlStart !== -1) {
+        const subUlTagEnd = liInner.indexOf('>', subUlStart);
+        const subUlEndIdx = liInner.lastIndexOf('</ul>');
+        if (subUlTagEnd !== -1 && subUlEndIdx > subUlTagEnd) {
+          const subInner = liInner.substring(subUlTagEnd + 1, subUlEndIdx);
+          children = parseItems(subInner);
+        }
+      }
+
+      if (title) {
+        const item: MenuItem = {
+          id,
+          title,
+          url: cleanUrl,
+        };
+        if (target) item.target = target;
+        if (children.length > 0) item.children = children;
+        items.push(item);
+      }
+
+      i = liCloseIdx + 5;
+    }
+
+    return items;
+  }
+
+  return parseItems(innerMenuHtml);
+}
+
 let memoryMenuCache: MenuItem[] | null = null;
 
 export async function getPrimaryMenu(): Promise<MenuItem[]> {
@@ -298,19 +548,33 @@ export async function getPrimaryMenu(): Promise<MenuItem[]> {
     { id: 6, title: 'WhatsApp Community', url: '/parents-whatsapp-community/' },
   ];
 
+  // Strategy 1: Try REST API endpoint (MU-plugin)
   try {
     const data = await cachedFetch<{ success: boolean; items: MenuItem[] }>(
       '/wp-json/edutarbiyah/v1/menu/primary-menu',
       { retries: 1, fallbackData: { success: false, items: [] } }
     );
-    if (data?.success && data?.items?.length > 0) {
+    if (data?.success && Array.isArray(data?.items) && data.items.length > 0) {
       memoryMenuCache = data.items;
       return memoryMenuCache;
     }
-  } catch {
-    // Expected before MU-plugin is installed on WP server
+  } catch (err) {
+    // Continue to strategy 2
   }
 
+  // Strategy 2: Fetch and dynamically parse live WordPress navigation from homepage HTML
+  try {
+    const html = await cachedFetchText('/', { retries: 2, ttlSeconds: 3600 });
+    const parsedItems = parseWordPressNavHtml(html, WP_BASE_URL);
+    if (parsedItems && parsedItems.length > 0) {
+      memoryMenuCache = parsedItems;
+      return memoryMenuCache;
+    }
+  } catch (err) {
+    console.warn(`[Menu Dynamic] Could not parse live menu HTML: ${(err as Error).message}`);
+  }
+
+  // Strategy 3: Built-in reliable static fallback
   memoryMenuCache = fallbackMenu;
   return memoryMenuCache;
 }
