@@ -1,39 +1,15 @@
 # ----------------------------------------------------------------------
-# EduTarbiyah Static Headless Hosting Configuration (Apache / cPanel)
+# EduTarbiyah Hybrid Headless Hosting Configuration (Astro + WordPress)
 # ----------------------------------------------------------------------
 
 # Ensure UTF-8 default encoding
 AddDefaultCharset UTF-8
 
-# Directory Index
-DirectoryIndex index.html
+# Prioritize Astro Static HTML over WordPress PHP for root and subdirectories
+DirectoryIndex index.html index.php
 
 # Prevent Directory Browsing
 Options -Indexes +FollowSymLinks
-
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /
-
-    # Pass through dedicated WordPress subdirectories (e.g. English blog)
-    RewriteRule ^english(/.*)?$ - [L]
-
-    # Enforce Trailing Slash on directories/pages to prevent Apache 500 & SEO duplication
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_URI} !(.[a-zA-Z0-9]{1,5})$
-    RewriteCond %{REQUEST_URI} !(.*)/$
-    RewriteRule ^(.*)$ /$1/ [L,R=301]
-
-    # Serve index.html inside subdirectories cleanly
-    RewriteCond %{REQUEST_FILENAME} -d
-    RewriteCond %{REQUEST_FILENAME}/index.html -f
-    RewriteRule ^(.*)$ $1/index.html [L]
-
-    # Fallback to index.html if route not found
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule ^([^\.]+)$ $1/index.html [L]
-</IfModule>
 
 # Security Headers
 <IfModule mod_headers.c>
@@ -42,7 +18,7 @@ Options -Indexes +FollowSymLinks
     Header always set Referrer-Policy "strict-origin-when-cross-origin"
 </IfModule>
 
-# Compression
+# Static Asset Compression
 <IfModule mod_deflate.c>
     AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json image/svg+xml
 </IfModule>
@@ -59,3 +35,47 @@ Options -Indexes +FollowSymLinks
     ExpiresByType image/svg+xml "access plus 1 year"
     ExpiresByType font/woff2 "access plus 1 year"
 </IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # 1. Passthrough for WordPress admin, login, cron, API, and AJAX
+    RewriteRule ^(wp-admin|wp-login\.php|wp-json|wp-cron\.php|xmlrpc\.php)(/.*)?$ - [L]
+
+    # 2. Passthrough for WordPress media & theme uploads
+    RewriteRule ^(wp-content|wp-includes)(/.*)?$ - [L]
+
+    # 3. Passthrough for dedicated subdirectories (e.g. English blog)
+    RewriteRule ^english(/.*)?$ - [L]
+
+    # 4. Passthrough for WooCommerce native cart, checkout, account
+    RewriteRule ^(cart|checkout|my-account)(/.*)?$ /index.php [L]
+
+    # 5. Enforce Trailing Slash on directories/pages to prevent Apache 500 & SEO duplication
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_URI} !(.[a-zA-Z0-9]{1,5})$
+    RewriteCond %{REQUEST_URI} !(.*)/$
+    RewriteRule ^(.*)$ /$1/ [L,R=301]
+
+    # 6. Serve static Astro HTML for subdirectories (e.g. /shop/, /blog/, /tppc-.../)
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteCond %{REQUEST_FILENAME}/index.html -f
+    RewriteRule ^(.*)$ $1/index.html [L]
+
+    # 7. Serve existing physical static files directly
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
+    # 8. WordPress fallback for any other dynamic WordPress routes
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /index.php [L]
+</IfModule>
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php83” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php83___lsphp .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
