@@ -3,6 +3,8 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 
 export const WP_BASE_URL = ((typeof import.meta !== 'undefined' && import.meta.env?.PUBLIC_WP_URL) || process.env?.PUBLIC_WP_URL || 'https://edutarbiyah.com').replace(/\/+$/, '');
+export const ENGLISH_BLOG_URL = 'https://edutarbiyah.com/english';
+export const URDU_BLOG_URL = 'https://blog.edutarbiyah.com';
 export const WHATSAPP_NUMBER = '923122370720';
 
 const CACHE_DIR = path.resolve(process.cwd(), '.cache', 'api');
@@ -303,6 +305,7 @@ export interface WPPost {
   slug: string;
   date: string;
   modified: string;
+  link?: string;
   title: { rendered: string };
   content: { rendered: string };
   excerpt: { rendered: string };
@@ -539,10 +542,11 @@ export async function getPrimaryMenu(): Promise<MenuItem[]> {
     {
       id: 5,
       title: 'Blog',
-      url: '/english/',
+      url: '/blog/',
       children: [
-        { id: 51, title: 'English Blog', url: '/english/' },
-        { id: 52, title: 'Urdu Blog (اردو)', url: 'https://blog.edutarbiyah.com', target: '_blank' },
+        { id: 51, title: 'All Blog Articles', url: '/blog/' },
+        { id: 52, title: 'English Blog', url: 'https://edutarbiyah.com/english/', target: '_blank' },
+        { id: 53, title: 'Urdu Blog (اردو)', url: 'https://blog.edutarbiyah.com', target: '_blank' },
       ],
     },
     { id: 6, title: 'WhatsApp Community', url: '/parents-whatsapp-community/' },
@@ -678,17 +682,33 @@ export async function getPageBySlug(slug: string): Promise<WPPage | null> {
 }
 
 /**
- * Fetch English blog posts (Category ID 11 = 'english-blog')
+ * Fetch English blog posts directly from the dedicated English WordPress site
  */
 export async function getEnglishPosts(perPage = 20): Promise<WPPost[]> {
   try {
     const posts = await cachedFetch<WPPost[]>(
-      `/wp-json/wp/v2/posts?categories=11&per_page=${perPage}&_embed=1`,
+      `${ENGLISH_BLOG_URL}/wp-json/wp/v2/posts?per_page=${perPage}&_embed=1`,
       { retries: 3 }
     );
     return Array.isArray(posts) ? posts : [];
   } catch (err) {
     console.error('Error fetching English posts:', err);
+    return [];
+  }
+}
+
+/**
+ * Fetch Urdu blog posts directly from the dedicated Urdu WordPress site (blog.edutarbiyah.com)
+ */
+export async function getUrduPosts(perPage = 20): Promise<WPPost[]> {
+  try {
+    const posts = await cachedFetch<WPPost[]>(
+      `${URDU_BLOG_URL}/wp-json/wp/v2/posts?per_page=${perPage}&_embed=1`,
+      { retries: 3 }
+    );
+    return Array.isArray(posts) ? posts : [];
+  } catch (err) {
+    console.error('Error fetching Urdu posts:', err);
     return [];
   }
 }

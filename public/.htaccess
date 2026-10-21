@@ -15,6 +15,9 @@ Options -Indexes +FollowSymLinks
     RewriteEngine On
     RewriteBase /
 
+    # Pass through dedicated WordPress subdirectories (e.g. English blog)
+    RewriteRule ^english(/.*)?$ - [L]
+
     # Enforce Trailing Slash on directories/pages to prevent Apache 500 & SEO duplication
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_URI} !(.[a-zA-Z0-9]{1,5})$

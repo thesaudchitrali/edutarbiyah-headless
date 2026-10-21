@@ -1,0 +1,360 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getEnglishPosts, getUrduPosts, ENGLISH_BLOG_URL, URDU_BLOG_URL, type WPPost } from '../lib/api';
+import {
+  BookOpen,
+  Calendar,
+  Clock,
+  ArrowRight,
+  ArrowUpRight,
+  Search,
+  Globe,
+  Sparkles,
+  ChevronRight,
+  Home,
+  FileText,
+  Filter,
+} from 'lucide-astro';
+
+// Fetch latest posts from both independent WordPress installations at build-time
+const englishPosts = await getEnglishPosts(24);
+const urduPosts = await getUrduPosts(24);
+
+// Combine and tag posts for unified archive
+interface UnifiedPost extends WPPost {
+  lang: 'en' | 'ur';
+  targetUrl: string;
+}
+
+const allPosts: UnifiedPost[] = [
+  ...englishPosts.map((p) => ({
+    ...p,
+    lang: 'en' as const,
+    targetUrl: p.link || `${ENGLISH_BLOG_URL}/${p.slug}/`,
+  })),
+  ...urduPosts.map((p) => ({
+    ...p,
+    lang: 'ur' as const,
+    targetUrl: p.link || `${URDU_BLOG_URL}/${p.slug}/`,
+  })),
+].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+
+<Layout
+  title="Knowledge & Blog Portal | EduTarbiyah"
+  description="Read insightful articles and practical advice on Islamic parenting, children's emotional development, habits, and education in English and Urdu."
+  canonical="https://edutarbiyah.com/blog/"
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-[#F4F8F6] via-[#FFFDF9] to-[#FFFDF9] py-12 lg:py-16 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Breadcrumb -->
+      <nav class="flex items-center gap-2 text-xs text-gray-500 font-medium mb-6" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#0F766E] transition-colors flex items-center gap-1">
+          <Home class="w-3.5 h-3.5" />
+          <span>Home</span>
+        </a>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <span class="text-[#064E3B] font-semibold">Blog & Articles</span>
+      </nav>
+
+      <div class="text-center space-y-4 max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0F766E]/10 border border-[#0F766E]/20 text-[#0F766E] text-xs font-semibold">
+          <Sparkles class="w-3.5 h-3.5 text-[#F59E0B]" />
+          <span>EduTarbiyah Dual-Language Knowledge Portal</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-[#064E3B] tracking-tight">
+          Parenting Articles & Reflections
+        </h1>
+
+        <p class="text-base sm:text-lg text-gray-600 leading-relaxed">
+          Actionable Islamic tarbiyah principles, child psychology research, and mindful family roadmaps published in both English and Urdu.
+        </p>
+      </div>
+
+      <!-- Quick Access Portals Banner -->
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+        <!-- English Blog Gateway -->
+        <a
+          href={ENGLISH_BLOG_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between p-5 rounded-2xl bg-white border border-gray-200/80 hover:border-[#0F766E] shadow-sm hover:shadow-md transition-all group"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center text-[#0F766E] shrink-0">
+              <Globe class="w-6 h-6" />
+            </div>
+            <div>
+              <span class="text-xs uppercase font-bold tracking-wider text-[#0F766E]">English Portal</span>
+              <h2 class="text-base font-serif font-bold text-[#064E3B] group-hover:text-[#0F766E] transition-colors">
+                EduTarbiyah English Blog
+              </h2>
+              <p class="text-xs text-gray-500">edutarbiyah.com/english</p>
+            </div>
+          </div>
+          <ArrowUpRight class="w-5 h-5 text-gray-400 group-hover:text-[#0F766E] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+        </a>
+
+        <!-- Urdu Blog Gateway -->
+        <a
+          href={URDU_BLOG_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between p-5 rounded-2xl bg-[#064E3B] text-white hover:bg-[#043327] shadow-sm hover:shadow-md transition-all group"
+        >
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-xl bg-emerald-800/80 border border-emerald-700 flex items-center justify-center text-amber-300 shrink-0">
+              <FileText class="w-6 h-6" />
+            </div>
+            <div>
+              <span class="text-xs uppercase font-bold tracking-wider text-amber-300">اردو بلاگ پورٹل</span>
+              <h2 class="text-base font-serif font-bold text-white font-urdu">
+                ایجوتربیت اردو بلاگ
+              </h2>
+              <p class="text-xs text-emerald-200">blog.edutarbiyah.com</p>
+            </div>
+          </div>
+          <ArrowUpRight class="w-5 h-5 text-amber-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Filter & Live Search Toolbar -->
+  <section class="bg-white border-b border-gray-100 sticky top-16 z-30 shadow-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+        
+        <!-- Filter Tabs -->
+        <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-1 md:pb-0" id="filter-tabs">
+          <button
+            type="button"
+            data-filter="all"
+            class="tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#064E3B] text-white shadow-xs"
+          >
+            All Articles ({allPosts.length})
+          </button>
+          <button
+            type="button"
+            data-filter="en"
+            class="tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-gray-100 text-gray-700 hover:bg-gray-200"
+          >
+            English Blog ({englishPosts.length})
+          </button>
+          <button
+            type="button"
+            data-filter="ur"
+            class="tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-gray-100 text-gray-700 hover:bg-gray-200 font-urdu"
+          >
+            اردو بلاگ ({urduPosts.length})
+          </button>
+        </div>
+
+        <!-- Live Search Box -->
+        <div class="relative w-full md:w-72">
+          <Search class="w-4 h-4 text-gray-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <input
+            type="text"
+            id="article-search"
+            placeholder="Search articles by title..."
+            class="w-full pl-10 pr-4 py-2 text-xs rounded-xl border border-gray-200 focus:border-[#0F766E] focus:ring-1 focus:ring-[#0F766E] outline-hidden transition-all bg-gray-50 focus:bg-white"
+          />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Dynamic Articles Grid -->
+  <section class="py-16 bg-[#FFFDF9] min-h-[50vh]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div id="posts-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {allPosts.map((post) => {
+          const isUrdu = post.lang === 'ur';
+          const cleanTitle = post.title.rendered.replace(/&#8211;/g, '–').replace(/&#038;/g, '&');
+          const cleanExcerpt = post.excerpt.rendered.replace(/<[^>]*>?/gm, '').trim().slice(0, 150) + '...';
+          const postDate = new Date(post.date).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric',
+          });
+          const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+
+          return (
+            <article
+              data-lang={post.lang}
+              data-title={cleanTitle.toLowerCase()}
+              class="post-card bg-white rounded-2xl border border-gray-100 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col overflow-hidden group"
+            >
+              <!-- Featured Media Thumbnail -->
+              <a
+                href={post.targetUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block aspect-video overflow-hidden bg-gray-50 relative"
+              >
+                {featuredImage ? (
+                  <img
+                    src={featuredImage}
+                    alt={cleanTitle}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div class="w-full h-full bg-gradient-to-br from-teal-50 to-emerald-100 flex items-center justify-center text-teal-700">
+                    <BookOpen class="w-12 h-12 opacity-40" />
+                  </div>
+                )}
+                
+                <!-- Language Badge -->
+                <div class="absolute top-3 left-3">
+                  {isUrdu ? (
+                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#064E3B] text-amber-300 text-[11px] font-bold font-urdu shadow-sm">
+                      <FileText class="w-3 h-3 text-amber-300" />
+                      <span>اردو مضمون</span>
+                    </span>
+                  ) : (
+                    <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-[#0F766E] text-white text-[11px] font-bold shadow-sm">
+                      <Globe class="w-3 h-3" />
+                      <span>English Article</span>
+                    </span>
+                  )}
+                </div>
+              </a>
+
+              <!-- Card Content -->
+              <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+                <div class="space-y-3">
+                  
+                  <div class="flex items-center gap-2 text-xs text-gray-500">
+                    <Calendar class="w-3.5 h-3.5 text-[#0F766E]" />
+                    <span>{postDate}</span>
+                  </div>
+
+                  <h3
+                    class={`font-bold text-gray-900 group-hover:text-[#0F766E] transition-colors leading-snug ${
+                      isUrdu
+                        ? 'font-urdu text-right text-lg sm:text-xl'
+                        : 'font-serif text-lg sm:text-xl'
+                    }`}
+                  >
+                    <a
+                      href={post.targetUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {cleanTitle}
+                    </a>
+                  </h3>
+
+                  <p
+                    class={`text-xs text-gray-600 leading-relaxed ${
+                      isUrdu ? 'font-urdu text-right text-sm' : ''
+                    }`}
+                  >
+                    {cleanExcerpt}
+                  </p>
+                </div>
+
+                <!-- Footer Action -->
+                <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                  <span class="text-[11px] font-medium text-gray-400">
+                    {isUrdu ? 'blog.edutarbiyah.com' : 'edutarbiyah.com/english'}
+                  </span>
+                  
+                  <a
+                    href={post.targetUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F766E] hover:text-[#064E3B] group-hover:translate-x-0.5 transition-transform"
+                  >
+                    <span>{isUrdu ? 'مکمل پڑھیں' : 'Read Article'}</span>
+                    <ArrowUpRight class="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+              </div>
+            </article>
+          );
+        })}
+      </div>
+
+      <!-- No Results State -->
+      <div id="no-results" class="hidden text-center py-16 space-y-3">
+        <div class="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mx-auto text-gray-400">
+          <Search class="w-6 h-6" />
+        </div>
+        <h3 class="text-lg font-serif font-bold text-gray-700">No matching articles found</h3>
+        <p class="text-xs text-gray-500">Try adjusting your search terms or selecting another category.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Client-side Interactive Filter & Real-time Hydration Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabButtons = document.querySelectorAll('#filter-tabs .tab-btn');
+      const searchInput = document.getElementById('article-search');
+      const cards = document.querySelectorAll('.post-card');
+      const noResults = document.getElementById('no-results');
+
+      let currentFilter = 'all';
+      let searchQuery = '';
+
+      function filterCards() {
+        let visibleCount = 0;
+        cards.forEach((card) => {
+          const cardLang = card.getAttribute('data-lang');
+          const cardTitle = card.getAttribute('data-title') || '';
+          
+          const matchesLang = currentFilter === 'all' || cardLang === currentFilter;
+          const matchesSearch = !searchQuery || cardTitle.includes(searchQuery);
+
+          if (matchesLang && matchesSearch) {
+            card.classList.remove('hidden');
+            visibleCount++;
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+
+        if (noResults) {
+          if (visibleCount === 0) {
+            noResults.classList.remove('hidden');
+          } else {
+            noResults.classList.add('hidden');
+          }
+        }
+      }
+
+      tabButtons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const filter = btn.getAttribute('data-filter');
+          if (!filter) return;
+          currentFilter = filter;
+
+          tabButtons.forEach((b) => {
+            b.className = 'tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-gray-100 text-gray-700 hover:bg-gray-200' + (b.getAttribute('data-filter') === 'ur' ? ' font-urdu' : '');
+          });
+
+          btn.className = 'tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#064E3B] text-white shadow-xs' + (btn.getAttribute('data-filter') === 'ur' ? ' font-urdu' : '');
+
+          filterCards();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = (e.target.value || '').toLowerCase().trim();
+          filterCards();
+        });
+      }
+    });
+  </script>
+</Layout>

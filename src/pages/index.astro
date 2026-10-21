@@ -1,7 +1,14 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ProductCard from '../components/ProductCard.astro';
-import { getAllProducts, getEnglishPosts, WHATSAPP_NUMBER } from '../lib/api';
+import { 
+  getAllProducts, 
+  getEnglishPosts, 
+  getUrduPosts, 
+  ENGLISH_BLOG_URL, 
+  URDU_BLOG_URL, 
+  WHATSAPP_NUMBER 
+} from '../lib/api';
 import { 
   Sparkles, 
   BookOpen, 
@@ -13,6 +20,7 @@ import {
   ShieldCheck, 
   MessageCircle, 
   Clock, 
+  Calendar, 
   GraduationCap, 
   Award,
   ArrowUpRight,
@@ -39,6 +47,7 @@ const allProducts = await getAllProducts();
 const featuredProducts = allProducts.slice(0, 4);
 
 const englishPosts = await getEnglishPosts(3);
+const urduPosts = await getUrduPosts(3);
 ---
 
 <Layout
@@ -1096,33 +1105,58 @@ const englishPosts = await getEnglishPosts(3);
     </div>
   </section>
 
-  <!-- 11. RECENT INSIGHTS FROM THE ENGLISH BLOG -->
-  {englishPosts.length > 0 && (
+  <!-- 11. RECENT INSIGHTS FROM DUAL-LANGUAGE BLOGS -->
+  {(englishPosts.length > 0 || urduPosts.length > 0) && (
     <section class="py-20 bg-white border-b border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        
+        <!-- Header & Tab Switcher Controls -->
+        <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 pb-2 border-b border-gray-100">
           <div class="space-y-2 max-w-2xl">
             <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#064E3B] text-xs font-bold uppercase tracking-wider">
               <BookOpen class="w-3.5 h-3.5" />
-              <span>Articles & Guides</span>
+              <span>Knowledge & Reflections</span>
             </div>
             <h2 class="text-3xl sm:text-4xl font-serif font-bold text-[#064E3B]">
-              Latest from the English Blog
+              Latest from EduTarbiyah Blogs
             </h2>
             <p class="text-gray-600 text-sm sm:text-base">
-              Thoughtful reflections on child development, emotional well-being, and parenting power-ups.
+              Thoughtful reflections on child development, emotional well-being, and parenting power-ups in English and Urdu.
             </p>
           </div>
-          <a
-            href="/english/"
-            class="inline-flex items-center gap-2 px-6 py-3 text-xs sm:text-sm font-bold text-[#0F766E] bg-[#F4F8F6] hover:bg-[#0F766E] hover:text-white rounded-xl transition-all"
-          >
-            <span>View All Articles</span>
-            <ArrowRight class="w-4 h-4" />
-          </a>
+
+          <div class="flex flex-wrap items-center gap-3">
+            <!-- Language Tab Buttons -->
+            <div class="inline-flex p-1 rounded-xl bg-gray-100 border border-gray-200/80" id="home-blog-tabs">
+              <button
+                type="button"
+                id="btn-tab-en"
+                class="px-4 py-2 rounded-lg text-xs font-bold transition-all bg-[#064E3B] text-white shadow-xs"
+              >
+                English Articles
+              </button>
+              <button
+                type="button"
+                id="btn-tab-ur"
+                class="px-4 py-2 rounded-lg text-xs font-bold transition-all text-gray-700 hover:text-gray-900 font-urdu"
+              >
+                اردو مضامین
+              </button>
+            </div>
+
+            <!-- View All Link -->
+            <a
+              href="/blog/"
+              class="inline-flex items-center gap-2 px-5 py-2 text-xs sm:text-sm font-bold text-[#0F766E] bg-[#F4F8F6] hover:bg-[#0F766E] hover:text-white rounded-xl transition-all"
+            >
+              <span>View All</span>
+              <ArrowRight class="w-4 h-4" />
+            </a>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- English Articles Tab Panel -->
+        <div id="panel-english-posts" class="grid grid-cols-1 md:grid-cols-3 gap-8">
           {englishPosts.map((post) => {
             const cleanTitle = post.title.rendered.replace(/&#8211;/g, '–').replace(/&#038;/g, '&');
             const cleanExcerpt = post.excerpt.rendered.replace(/<[^>]*>?/gm, '').trim().slice(0, 140) + '...';
@@ -1131,38 +1165,169 @@ const englishPosts = await getEnglishPosts(3);
               day: 'numeric',
               year: 'numeric',
             });
+            const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+            const targetUrl = post.link || `${ENGLISH_BLOG_URL}/${post.slug}/`;
+
             return (
-              <article class="bg-[#FFFDF9] rounded-2xl border border-gray-100 p-6 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
-                <div class="space-y-3">
-                  <div class="flex items-center gap-2 text-xs text-gray-500">
-                    <Clock class="w-3.5 h-3.5 text-[#0F766E]" />
-                    <span>{postDate}</span>
-                  </div>
-                  <h3 class="text-lg font-serif font-bold text-gray-900 group-hover:text-[#0F766E] transition-colors leading-snug">
-                    <a href={`/english/${post.slug}/`}>
-                      {cleanTitle}
-                    </a>
-                  </h3>
-                  <p class="text-xs text-gray-600 leading-relaxed">
-                    {cleanExcerpt}
-                  </p>
-                </div>
-                <div class="pt-4 border-t border-gray-100 mt-6">
+              <article class="bg-[#FFFDF9] rounded-2xl border border-gray-100 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between overflow-hidden group">
+                {featuredImage && (
                   <a
-                    href={`/english/${post.slug}/`}
-                    class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F766E] group-hover:underline"
+                    href={targetUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="block aspect-video overflow-hidden bg-gray-100"
                   >
-                    <span>Read Article</span>
-                    <ArrowRight class="w-3.5 h-3.5" />
+                    <img
+                      src={featuredImage}
+                      alt={cleanTitle}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
                   </a>
+                )}
+                
+                <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+                  <div class="space-y-3">
+                    <div class="flex items-center justify-between text-xs text-gray-500">
+                      <div class="flex items-center gap-1.5">
+                        <Clock class="w-3.5 h-3.5 text-[#0F766E]" />
+                        <span>{postDate}</span>
+                      </div>
+                      <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md bg-teal-50 text-teal-700">
+                        English Blog
+                      </span>
+                    </div>
+
+                    <h3 class="text-lg font-serif font-bold text-gray-900 group-hover:text-[#0F766E] transition-colors leading-snug">
+                      <a href={targetUrl} target="_blank" rel="noopener noreferrer">
+                        {cleanTitle}
+                      </a>
+                    </h3>
+
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                      {cleanExcerpt}
+                    </p>
+                  </div>
+
+                  <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                    <span class="text-[11px] text-gray-400">edutarbiyah.com/english</span>
+                    <a
+                      href={targetUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F766E] group-hover:translate-x-0.5 transition-transform"
+                    >
+                      <span>Read Article</span>
+                      <ArrowUpRight class="w-3.5 h-3.5" />
+                    </a>
+                  </div>
                 </div>
               </article>
             );
           })}
         </div>
+
+        <!-- Urdu Articles Tab Panel (Initially Hidden) -->
+        <div id="panel-urdu-posts" class="hidden grid grid-cols-1 md:grid-cols-3 gap-8">
+          {urduPosts.map((post) => {
+            const cleanTitle = post.title.rendered.replace(/&#8211;/g, '–').replace(/&#038;/g, '&');
+            const cleanExcerpt = post.excerpt.rendered.replace(/<[^>]*>?/gm, '').trim().slice(0, 140) + '...';
+            const postDate = new Date(post.date).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+            });
+            const featuredImage = post._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+            const targetUrl = post.link || `${URDU_BLOG_URL}/${post.slug}/`;
+
+            return (
+              <article class="bg-[#FFFDF9] rounded-2xl border border-gray-100 shadow-xs hover:shadow-lg transition-all flex flex-col justify-between overflow-hidden group">
+                {featuredImage && (
+                  <a
+                    href={targetUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="block aspect-video overflow-hidden bg-gray-100"
+                  >
+                    <img
+                      src={featuredImage}
+                      alt={cleanTitle}
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                  </a>
+                )}
+                
+                <div class="p-6 flex flex-col flex-grow justify-between space-y-4">
+                  <div class="space-y-3">
+                    <div class="flex items-center justify-between text-xs text-gray-500">
+                      <span class="text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 font-urdu">
+                        اردو بلاگ
+                      </span>
+                      <div class="flex items-center gap-1.5">
+                        <Calendar class="w-3.5 h-3.5 text-[#0F766E]" />
+                        <span>{postDate}</span>
+                      </div>
+                    </div>
+
+                    <h3 class="text-right font-urdu text-lg sm:text-xl font-bold text-gray-900 group-hover:text-[#0F766E] transition-colors leading-relaxed">
+                      <a href={targetUrl} target="_blank" rel="noopener noreferrer">
+                        {cleanTitle}
+                      </a>
+                    </h3>
+
+                    <p class="text-right font-urdu text-xs sm:text-sm text-gray-600 leading-relaxed">
+                      {cleanExcerpt}
+                    </p>
+                  </div>
+
+                  <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                    <a
+                      href={targetUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F766E] group-hover:translate-x-0.5 transition-transform"
+                    >
+                      <span class="font-urdu">مکمل مضمون پڑھیں</span>
+                      <ArrowUpRight class="w-3.5 h-3.5" />
+                    </a>
+                    <span class="text-[11px] text-gray-400">blog.edutarbiyah.com</span>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
       </div>
     </section>
   )}
+
+  <!-- Client-side Tab Switcher Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const btnEn = document.getElementById('btn-tab-en');
+      const btnUr = document.getElementById('btn-tab-ur');
+      const panelEn = document.getElementById('panel-english-posts');
+      const panelUr = document.getElementById('panel-urdu-posts');
+
+      if (btnEn && btnUr && panelEn && panelUr) {
+        btnEn.addEventListener('click', () => {
+          btnEn.className = 'px-4 py-2 rounded-lg text-xs font-bold transition-all bg-[#064E3B] text-white shadow-xs';
+          btnUr.className = 'px-4 py-2 rounded-lg text-xs font-bold transition-all text-gray-700 hover:text-gray-900 font-urdu';
+          panelEn.classList.remove('hidden');
+          panelUr.classList.add('hidden');
+        });
+
+        btnUr.addEventListener('click', () => {
+          btnUr.className = 'px-4 py-2 rounded-lg text-xs font-bold transition-all bg-[#064E3B] text-white shadow-xs font-urdu';
+          btnEn.className = 'px-4 py-2 rounded-lg text-xs font-bold transition-all text-gray-700 hover:text-gray-900';
+          panelUr.classList.remove('hidden');
+          panelEn.classList.add('hidden');
+        });
+      }
+    });
+  </script>
 
   <!-- 12. FINAL CALL TO ACTION BANNER (Exact Copy from edutarbiyah.com) -->
   <section class="py-20 bg-gradient-to-br from-[#064E3B] to-[#0A4D3C] text-white relative overflow-hidden shadow-2xl">
