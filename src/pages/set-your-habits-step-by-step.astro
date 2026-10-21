@@ -1698,6 +1698,32 @@ import {
 
 میں یہ معلومات رہنمائی اور بہتری کے لیے شیئر کر رہا/رہی ہوں۔ جزاکم اللہ خیراً!`;
 
+          // Save to WordPress Central Submissions Database
+          try {
+            fetch('/wp-json/edutarbiyah/v1/submit-form', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                form_type: 'habit-maker-urdu',
+                form_title: '7-Day Tarbiyah Habit Plan (Urdu)',
+                user_name: name,
+                score_summary: `عادت: ${habit} (${completed}/7 days)`,
+                answers: {
+                  name,
+                  habitFor: `${habitFor}${child ? ` (${child})` : ''}`,
+                  targetHabit: habit,
+                  microHabit: tiny,
+                  anchorTrigger: trigger,
+                  reward,
+                  purposeWhy: why,
+                  completedDays: `${completed} / 7`,
+                },
+              }),
+            });
+          } catch (saveErr) {
+            console.warn('Urdu habit save error:', saveErr);
+          }
+
           const cleanPhone = (WHATSAPP_NUMBER || '923122370720').replace(/[^0-9]/g, '');
           const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`;
           window.open(waUrl, '_blank');

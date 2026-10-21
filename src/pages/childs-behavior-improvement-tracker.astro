@@ -278,6 +278,26 @@ const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 
   // Print
   document.getElementById('btn-print-tracker')?.addEventListener('click', () => {
+    // Save to WordPress Central Submissions Database
+    try {
+      fetch('/wp-json/edutarbiyah/v1/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          form_type: 'behavior-tracker',
+          form_title: 'Child Behavior Improvement Tracker',
+          user_name: nameInput?.value || '',
+          score_summary: `Child: ${nameInput?.value || 'Child'} (${currentPraiseCount} praise points)`,
+          answers: {
+            childName: nameInput?.value || '',
+            praiseCount: currentPraiseCount,
+            matrix: stateMatrix,
+          },
+        }),
+      });
+    } catch (saveErr) {
+      console.warn('Tracker save error:', saveErr);
+    }
     window.print();
   });
 </script>

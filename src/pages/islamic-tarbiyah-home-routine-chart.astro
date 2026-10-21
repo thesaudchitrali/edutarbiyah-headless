@@ -241,6 +241,25 @@ const defaultBlocks = [
   });
 
   document.getElementById('btn-print-routine')?.addEventListener('click', () => {
+    // Save to WordPress Central Submissions Database
+    try {
+      fetch('/wp-json/edutarbiyah/v1/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          form_type: 'routine-chart',
+          form_title: 'Islamic Tarbiyah Home Routine Chart',
+          user_name: titleInput?.value || '',
+          score_summary: `${blocks.length} Routine Blocks`,
+          answers: {
+            chartTitle: titleInput?.value || '',
+            blocks: blocks,
+          },
+        }),
+      });
+    } catch (saveErr) {
+      console.warn('Routine save error:', saveErr);
+    }
     window.print();
   });
 

@@ -342,5 +342,29 @@ const questions = [
       resultsBox.classList.remove('hidden');
       resultsBox.scrollIntoView({ behavior: 'smooth' });
     }
+
+    // Save to WordPress Central Submissions Database
+    try {
+      fetch('/wp-json/edutarbiyah/v1/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          form_type: 'personality-type',
+          form_title: '16-Parenting Personality Type Diagnostic (MBTI)',
+          score_summary: `${type} — ${info.title}`,
+          answers: {
+            mbti_type: type,
+            title: info.title,
+            energy: type[0] === 'E' ? 'Extravert (E)' : 'Introvert (I)',
+            perception: type[1] === 'S' ? 'Sensing (S)' : 'Intuitive (N)',
+            decisions: type[2] === 'T' ? 'Thinking (T)' : 'Feeling (F)',
+            lifestyle: type[3] === 'J' ? 'Judging (J)' : 'Perceiving (P)',
+            counts: counts,
+          },
+        }),
+      });
+    } catch (saveErr) {
+      console.warn('MBTI save error:', saveErr);
+    }
   });
 </script>

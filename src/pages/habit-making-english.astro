@@ -1706,6 +1706,32 @@ Here is my 7-Day Tarbiyah Habit Commitment:
 
 I am submitting this for parental accountability and guidance. JazakAllah Khair!`;
 
+          // Save to WordPress Central Submissions Database
+          try {
+            fetch('/wp-json/edutarbiyah/v1/submit-form', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                form_type: 'habit-maker',
+                form_title: '7-Day Tarbiyah Habit Plan (English)',
+                user_name: name,
+                score_summary: `Target: ${habit} (${completed}/7 days completed)`,
+                answers: {
+                  name,
+                  habitFor: `${habitFor}${child ? ` (${child})` : ''}`,
+                  targetHabit: habit,
+                  microHabit: tiny,
+                  anchorTrigger: trigger,
+                  reward,
+                  purposeWhy: why,
+                  completedDays: `${completed} / 7`,
+                },
+              }),
+            });
+          } catch (saveErr) {
+            console.warn('Habit save error:', saveErr);
+          }
+
           const cleanPhone = (WHATSAPP_NUMBER || '923122370720').replace(/[^0-9]/g, '');
           const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`;
           window.open(waUrl, '_blank');

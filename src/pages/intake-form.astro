@@ -1170,8 +1170,8 @@ import {
 *[9. Notes]*: ${getVal('additional_information')}`;
       }
 
-      // Handle Submit -> WhatsApp
-      form.addEventListener('submit', (e) => {
+      // Handle Submit -> Save to Database + WhatsApp
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         // Check required fields
@@ -1190,6 +1190,46 @@ import {
           firstInvalid.focus();
           alert(currentLang === 'ur' ? 'براہِ کرم تمام لازمی فیلڈز مکمل کریں۔' : 'Please fill in all required fields marked with * before submitting.');
           return;
+        }
+
+        // Collect all form answers for permanent database storage
+        const formData = new FormData(form);
+        const answers = {};
+        formData.forEach((value, key) => {
+          if (answers[key]) {
+            if (Array.isArray(answers[key])) {
+              answers[key].push(value);
+            } else {
+              answers[key] = [answers[key], value];
+            }
+          } else {
+            answers[key] = value;
+          }
+        });
+
+        const parentName = getVal('parent_name') || '';
+        const phone = getVal('whatsapp_number') || '';
+        const email = getVal('email_address') || '';
+        const childName = getVal('child_name') || '';
+        const childAge = getVal('child_age') || '';
+
+        // Save to WordPress Central Submissions Database
+        try {
+          await fetch('/wp-json/edutarbiyah/v1/submit-form', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              form_type: 'intake-form',
+              form_title: 'Parent-Child Counseling Intake Form',
+              user_name: parentName,
+              user_phone: phone,
+              user_email: email,
+              score_summary: `Child: ${childName} (${childAge} yrs)`,
+              answers: answers,
+            }),
+          });
+        } catch (saveErr) {
+          console.warn('Backend save notice:', saveErr);
         }
 
         const summary = generateSummaryText();

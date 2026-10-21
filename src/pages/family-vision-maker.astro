@@ -349,6 +349,30 @@ import {
   });
 
   document.getElementById('btn-copy-charter')?.addEventListener('click', () => {
+    // Save to WordPress Central Submissions Database
+    try {
+      fetch('/wp-json/edutarbiyah/v1/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          form_type: 'family-vision',
+          form_title: 'Family Vision Charter',
+          user_name: familyNameInput?.value || '',
+          score_summary: `Charter for: ${familyNameInput?.value || 'Family'}`,
+          answers: {
+            familyName: familyNameInput?.value || '',
+            identity: identityInput?.value || '',
+            coreValues: valuesInput?.value || '',
+            mission: missionInput?.value || '',
+            culture: cultureInput?.value || '',
+            dailyHabits: habitsInput?.value || '',
+          },
+        }),
+      });
+    } catch (saveErr) {
+      console.warn('Vision save error:', saveErr);
+    }
+
     const text = `=== ${familyNameInput?.value || 'Family'} Vision Charter ===\n\n` +
       `Identity: ${identityInput?.value || ''}\n` +
       `Core Values: ${valuesInput?.value || ''}\n` +

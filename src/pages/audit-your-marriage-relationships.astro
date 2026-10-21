@@ -219,5 +219,27 @@ const dimensions = [
     window.print();
   });
 
+  waBtn?.addEventListener('click', () => {
+    const answers = {};
+    sliders.forEach((s) => {
+      const dimId = s.getAttribute('data-dim') || 'dim';
+      answers[`dimension_${dimId}`] = `${s.value} / 10`;
+    });
+    try {
+      fetch('/wp-json/edutarbiyah/v1/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          form_type: 'marriage-audit',
+          form_title: 'Marriage & Relationship Health Audit',
+          score_summary: `Score: ${liveScoreEl?.textContent || '0'}/100 (${liveTierEl?.textContent || ''})`,
+          answers: answers,
+        }),
+      });
+    } catch (saveErr) {
+      console.warn('Marriage audit save error:', saveErr);
+    }
+  });
+
   calculateScore();
 </script>

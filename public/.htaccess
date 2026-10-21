@@ -40,8 +40,11 @@ Options -Indexes +FollowSymLinks
     RewriteEngine On
     RewriteBase /
 
-    # 1. Passthrough for WordPress admin, login, cron, API, and AJAX
-    RewriteRule ^(wp-admin|wp-login\.php|wp-json|wp-cron\.php|xmlrpc\.php)(/.*)?$ - [L]
+    # 1. Passthrough for WordPress REST API
+    RewriteRule ^wp-json(/.*)?$ /index.php [L]
+
+    # 2. Passthrough for WordPress physical admin, login, cron, and XML-RPC
+    RewriteRule ^(wp-admin|wp-login\.php|wp-cron\.php|xmlrpc\.php)(/.*)?$ - [L]
 
     # 2. Passthrough for WordPress media & theme uploads
     RewriteRule ^(wp-content|wp-includes)(/.*)?$ - [L]

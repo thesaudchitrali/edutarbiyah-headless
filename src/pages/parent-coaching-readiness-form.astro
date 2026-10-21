@@ -1043,6 +1043,34 @@ import {
           const resultCategory = document.getElementById("etpcBadgeCategory")?.textContent || "";
           const percent = document.getElementById("etpcPercent")?.textContent || "0%";
 
+          // Save to WordPress Central Submissions Database
+          try {
+            fetch('/wp-json/edutarbiyah/v1/submit-form', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                form_type: 'coaching-readiness',
+                form_title: 'Parent Coaching Readiness Assessment',
+                user_name: parentName,
+                user_phone: whatsapp,
+                score_summary: `Score: ${ans.total}/54 (${percent}) - ${resultCategory}`,
+                answers: {
+                  parentName,
+                  childName,
+                  childAge,
+                  whatsapp,
+                  challenge,
+                  score: ans.total,
+                  percent,
+                  status: resultCategory,
+                  answers: ans.answers,
+                },
+              }),
+            });
+          } catch (saveErr) {
+            console.warn('Readiness save error:', saveErr);
+          }
+
           const message = 
 `Assalam u Alaikum EduTarbiyah Coaching Team,
 Here is my Parent Coaching Readiness Self-Assessment:

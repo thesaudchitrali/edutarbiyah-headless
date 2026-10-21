@@ -367,6 +367,7 @@ const categories = [
     }
 
     const parentName = document.getElementById('parent-name')?.value || 'Parent';
+    const parentPhone = document.getElementById('parent-whatsapp')?.value || '';
 
     let resultTitle = '';
     let resultDesc = '';
@@ -449,6 +450,33 @@ const categories = [
           </div>
         `;
       });
+    }
+
+    // Save to WordPress Central Submissions Database
+    const auditAnswers = {};
+    for (let i = 0; i < 20; i++) {
+      const checked = form.querySelector(`input[name="q${i}"]:checked`);
+      auditAnswers[`q${i + 1}`] = checked ? checked.value : 'unanswered';
+    }
+    categories.forEach((cat, idx) => {
+      auditAnswers[`category_${cat.title}`] = `${categoryScores[idx]}/20`;
+    });
+
+    try {
+      fetch('/wp-json/edutarbiyah/v1/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          form_type: 'parenting-audit',
+          form_title: 'Parenting Self-Audit Diagnostic',
+          user_name: parentName,
+          user_phone: parentPhone,
+          score_summary: `Score: ${totalScore}/100 (${resultTitle})`,
+          answers: auditAnswers,
+        }),
+      });
+    } catch (saveErr) {
+      console.warn('Audit save error:', saveErr);
     }
 
     // WhatsApp counseling button

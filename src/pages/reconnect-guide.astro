@@ -1449,6 +1449,32 @@ I have completed the Reconnect & Guide Teen Plan:
 
 I am looking for expert coaching feedback on how to de-escalate tension and successfully implement this protocol with my teen. JazakAllah Khair!`;
 
+          // Save to WordPress Central Submissions Database
+          try {
+            fetch('/wp-json/edutarbiyah/v1/submit-form', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                form_type: 'reconnect-guide',
+                form_title: 'Parent-Teen Reconnection Plan',
+                user_name: pName,
+                score_summary: `Teen: ${tName} | Diagnostic: ${score} (${level})`,
+                answers: {
+                  parentName: pName,
+                  teenName: tName,
+                  diagnosticScore: score,
+                  level: level,
+                  coreFamilyRule: rule,
+                  weeklyResponsibility: resp,
+                  positiveActivity: act,
+                  notesFrictionAreas: notes,
+                },
+              }),
+            });
+          } catch (saveErr) {
+            console.warn('Reconnect plan save error:', saveErr);
+          }
+
           const cleanPhone = (WHATSAPP_NUMBER || '923122370720').replace(/[^0-9]/g, '');
           const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(text)}`;
           window.open(waUrl, '_blank');
