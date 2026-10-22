@@ -250,6 +250,7 @@ const faqs = [
 <Layout
   title="TPPC • Tarbiyah Parenting Practitioner Course | EduTarbiyah"
   description="Transform your parenting with the self-paced Tarbiyah Parenting Practitioner Course (TPPC) by Dr. Muhammad Younus Khalid. 8 hours of video modules, lifetime access, practical Islamic frameworks for PKR 3,000."
+  hasMobileBottomBar={true}
 >
 
   <!-- Sticky Top Breadcrumbs & Utility -->
@@ -879,8 +880,8 @@ const faqs = [
     </div>
   </section>
 
-  <!-- Sticky Bottom Bar for Mobile & Desktop Enrollment -->
-  <div class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 py-3 px-4 shadow-2xl sm:hidden">
+  <!-- Mobile Sticky Bottom Bar (Zero Overlap Guaranteed) -->
+  <div class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-gray-200 py-3 pb-[calc(0.75rem+env(safe-area-inset-bottom,0px))] px-4 shadow-2xl sm:hidden">
     <div class="flex items-center justify-between gap-3 max-w-7xl mx-auto">
       <div>
         <div class="text-xs font-bold text-gray-500 uppercase">TPPC Course</div>
