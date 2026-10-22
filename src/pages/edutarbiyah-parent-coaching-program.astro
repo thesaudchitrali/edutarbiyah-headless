@@ -1,0 +1,1000 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { WHATSAPP_NUMBER } from '../lib/api';
+import { 
+  Sparkles, 
+  CheckCircle2, 
+  Heart, 
+  ShieldCheck, 
+  Compass, 
+  Clock, 
+  MessageCircle, 
+  Phone, 
+  Mail, 
+  Calendar, 
+  Award, 
+  Users, 
+  ArrowRight, 
+  ChevronRight, 
+  HelpCircle, 
+  Laptop, 
+  Smartphone, 
+  Zap, 
+  Check, 
+  Star, 
+  FileText, 
+  Target, 
+  Send,
+  ExternalLink,
+  Home,
+  AlertCircle
+} from 'lucide-astro';
+
+const defaultWhatsappMessage = encodeURIComponent(
+  "Assalam o Alaikum, I want to book a free parent coaching call with Dr. Muhammad Younas Khalid."
+);
+const whatsappConsultUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${defaultWhatsappMessage}`;
+
+// 4 Trust Pillars
+const trustPillars = [
+  {
+    title: "Faith-Based",
+    subtitle: "Islamic Tarbiyah approach grounded in Quran & Sunnah",
+    icon: Compass,
+  },
+  {
+    title: "Practical",
+    subtitle: "Real-world home solutions tailored to modern daily life",
+    icon: Target,
+  },
+  {
+    title: "Personalized",
+    subtitle: "Child-specific temperament & age-appropriate guidance",
+    icon: Users,
+  },
+  {
+    title: "Supportive",
+    subtitle: "Structured follow-up to build lasting family consistency",
+    icon: Heart,
+  },
+];
+
+// 3 Core Problem Areas
+const problemAreas = [
+  {
+    icon: Smartphone,
+    title: "Screen Time Battles",
+    desc: "Mobiles, online gaming, and YouTube become daily battlegrounds, triggering exhaustion, tension, and communication breakdown.",
+    tag: "Digital Wellbeing"
+  },
+  {
+    icon: Zap,
+    title: "Anger & Stubbornness",
+    desc: "Persistent defiance, tantrums, talking back, and emotional outbursts leave parents feeling drained, frustrated, or guilty.",
+    tag: "Emotional Regulation"
+  },
+  {
+    icon: Compass,
+    title: "Islamic Tarbiyah Concerns",
+    desc: "Parents worry deeply about their children's morals, adab, prayer habits, exposure to harmful values, and secular school pressures.",
+    tag: "Values & Adab"
+  }
+];
+
+// 6 Core Program Benefits
+const programBenefits = [
+  {
+    num: "01",
+    title: "Positive Behavioral Change",
+    desc: "Understand the hidden emotional root causes of your child's behavior and replace shouting with calm, respectful, firm boundaries."
+  },
+  {
+    num: "02",
+    title: "Screen Time & Digital Discipline",
+    desc: "Establish healthy tech agreements, realistic media limits, and substitute dopamine-heavy screen habits without destroying your relationship."
+  },
+  {
+    num: "03",
+    title: "Deeper Emotional Connection",
+    desc: "Rebuild trust, psychological safety, and open communication so your child turns to you rather than peers or the internet for guidance."
+  },
+  {
+    num: "04",
+    title: "Islamic Tarbiyah + Modern Psychology",
+    desc: "Integrate prophetic character-building methods with evidence-based developmental psychology, NLP, and MBTI personality insights."
+  },
+  {
+    num: "05",
+    title: "Personalized Action Plan",
+    desc: "Receive customized parenting routines, daily charts, and communication scripts engineered specifically for your child's unique nature."
+  },
+  {
+    num: "06",
+    title: "Parental Calm & Leadership",
+    desc: "Shift from reactive emotional exhaustion to confident, patient parental leadership that brings peace and barakah into your household."
+  }
+];
+
+// 5 Process Steps
+const processSteps = [
+  {
+    step: "1",
+    title: "Free Clarity Call",
+    desc: "Discuss your primary parenting concern with our team to understand if personalized coaching is the right fit."
+  },
+  {
+    step: "2",
+    title: "Diagnostic Assessment",
+    desc: "Analyze your child's age, temperament, family dynamics, daily routines, and behavioral triggers."
+  },
+  {
+    step: "3",
+    title: "Custom Action Plan",
+    desc: "Receive clear, step-by-step strategies, communication rubrics, and home routine frameworks."
+  },
+  {
+    step: "4",
+    title: "1-on-1 Coaching",
+    desc: "Attend focused private sessions via Zoom or WhatsApp with Dr. Muhammad Younas Khalid."
+  },
+  {
+    step: "5",
+    title: "Progress & Follow-Up",
+    desc: "Review behavioral changes, fine-tune strategies, and reinforce long-term consistency at home."
+  }
+];
+
+// FAQs
+const faqs = [
+  {
+    q: "Is this coaching conducted online or in person?",
+    a: "All sessions are conducted 100% online via WhatsApp or Zoom, making it convenient for parents across Pakistan, the Middle East, UK, USA, Canada, and worldwide from the comfort of their home."
+  },
+  {
+    q: "Which specific parenting challenges can be addressed?",
+    a: "We address screen addiction, aggression, defiance, sibling rivalry, bedtime and morning chaos, salah and Quran reluctance, academic unmotivation, teenage moodiness, and lack of adab or respect."
+  },
+  {
+    q: "Is this guidance suitable for children of all ages?",
+    a: "Yes. Our frameworks are tailored for toddlers (ages 2–5), middle childhood (ages 6–12), and adolescents/teens (ages 13–19). Every age bracket receives age-specific psychological and Islamic strategies."
+  },
+  {
+    q: "Is this medical or psychological therapy?",
+    a: "No. This is a personalized educational coaching and mentoring service based on Islamic Tarbiyah and parenting psychology. It is not a clinical psychiatric, medical, or psychiatric diagnosis service."
+  },
+  {
+    q: "Can both mother and father attend the coaching sessions?",
+    a: "Absolutely. In fact, we strongly encourage both parents to attend together whenever possible so that both mother and father are synchronized on expectations, discipline, and daily routines."
+  }
+];
+---
+
+<Layout
+  title="EduTarbiyah Parent Coaching Program | 1-on-1 Guidance with Dr. Muhammad Younas Khalid"
+  description="Practical, faith-based and personalized 1-on-1 parent coaching. Overcome screen addiction, defiance, anger, and build lifelong Islamic character with clarity and confidence."
+  image="/images/dr-younus-khalid.webp"
+  canonical="https://edutarbiyah.com/edutarbiyah-parent-coaching-program/"
+>
+
+  <!-- Top Breadcrumb & Quick Contact Bar -->
+  <section class="bg-[#F4F8F6] py-3.5 border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+        <nav class="flex items-center gap-2 text-gray-500 font-medium" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-[#0F766E] transition-colors flex items-center gap-1">
+            <Home class="w-3.5 h-3.5" />
+            <span>Home</span>
+          </a>
+          <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+          <a href="/tarbiyah-parenting-mastery-program/" class="hover:text-[#0F766E] transition-colors">
+            Programs & Courses
+          </a>
+          <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+          <span class="text-[#064E3B] font-semibold truncate max-w-xs sm:max-w-md">Parent Coaching Program</span>
+        </nav>
+        <div class="flex items-center gap-4 text-gray-600">
+          <a 
+            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${defaultWhatsappMessage}`} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="inline-flex items-center gap-1.5 text-[#0F766E] font-semibold hover:text-[#064E3B]"
+          >
+            <Phone class="w-3.5 h-3.5" />
+            <span>0312-2370720</span>
+          </a>
+          <span class="text-gray-300">•</span>
+          <a 
+            href="/parent-coaching-readiness-form/" 
+            class="text-[#D97706] font-semibold hover:underline flex items-center gap-1"
+          >
+            <Target class="w-3.5 h-3.5" />
+            <span>Check Readiness</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero Section -->
+  <section class="relative py-12 lg:py-20 bg-gradient-to-b from-[#FFFDF9] via-[#FAF6EE] to-[#FFFDF9] overflow-hidden">
+    <!-- Subtle Background Pattern -->
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#064E3B_1px,transparent_1px)] [background-size:24px_24px]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-center">
+        
+        <!-- Left: Headline, Lead & Key Actions (7 cols) -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <!-- Pill Badge -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#0F766E]/10 border border-[#0F766E]/20 text-[#064E3B] text-xs sm:text-sm font-bold shadow-xs">
+            <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+            <span>🌱 One-on-One Parent Coaching | Online / WhatsApp / Zoom</span>
+          </div>
+
+          <!-- Main Title -->
+          <div class="space-y-2">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif font-extrabold text-[#064E3B] tracking-tight leading-tight">
+              EduTarbiyah Parent <br class="hidden sm:inline" />
+              <span class="text-[#D97706]">Coaching Program</span>
+            </h1>
+            <p class="text-lg sm:text-xl font-medium text-[#047857]">
+              From Confusion to Clarity in Parenting.
+            </p>
+          </div>
+
+          <!-- Lead Paragraph -->
+          <p class="text-base sm:text-lg text-slate-700 leading-relaxed max-w-2xl">
+            Practical, faith-based and personalized coaching for parents who want to handle screen time, stubbornness, anger, discipline and Islamic Tarbiyah with confidence.
+          </p>
+
+          <!-- Core Callout Box -->
+          <div class="bg-white/80 backdrop-blur-xs rounded-2xl p-4 sm:p-5 border-l-4 border-[#D97706] shadow-sm border border-amber-100">
+            <p class="text-sm sm:text-base font-semibold text-[#064E3B]">
+              Better parenting starts when parents receive the right guidance, a clear action plan, and consistent support.
+            </p>
+          </div>
+
+          <!-- 4 Core Pillars Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+            <div class="bg-white rounded-xl p-3.5 border border-emerald-100/80 shadow-xs flex items-start gap-3">
+              <div class="p-2 rounded-lg bg-emerald-50 text-[#0F766E] shrink-0">
+                <Smartphone class="w-4 h-4" />
+              </div>
+              <div>
+                <h2 class="text-sm font-bold text-[#064E3B]">Screen Time Solutions</h2>
+                <p class="text-xs text-slate-600 mt-0.5">Healthy digital boundaries without daily fights.</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-3.5 border border-emerald-100/80 shadow-xs flex items-start gap-3">
+              <div class="p-2 rounded-lg bg-emerald-50 text-[#0F766E] shrink-0">
+                <Heart class="w-4 h-4" />
+              </div>
+              <div>
+                <h2 class="text-sm font-bold text-[#064E3B]">Discipline with Love</h2>
+                <p class="text-xs text-slate-600 mt-0.5">Firm but respectful parenting without shouting.</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-3.5 border border-emerald-100/80 shadow-xs flex items-start gap-3">
+              <div class="p-2 rounded-lg bg-emerald-50 text-[#0F766E] shrink-0">
+                <Compass class="w-4 h-4" />
+              </div>
+              <div>
+                <h2 class="text-sm font-bold text-[#064E3B]">Islamic Tarbiyah</h2>
+                <p class="text-xs text-slate-600 mt-0.5">Faith, adab, values and character building at home.</p>
+              </div>
+            </div>
+
+            <div class="bg-white rounded-xl p-3.5 border border-emerald-100/80 shadow-xs flex items-start gap-3">
+              <div class="p-2 rounded-lg bg-emerald-50 text-[#0F766E] shrink-0">
+                <Users class="w-4 h-4" />
+              </div>
+              <div>
+                <h2 class="text-sm font-bold text-[#064E3B]">Stronger Bond</h2>
+                <p class="text-xs text-slate-600 mt-0.5">Better parent-child communication & connection.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Primary CTA Buttons -->
+          <div class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+            <a
+              href={whatsappConsultUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#D97706] to-[#F59E0B] text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
+            >
+              <Phone class="w-4 h-4" />
+              <span>Book Free Call</span>
+            </a>
+
+            <a
+              href="#contact-form"
+              class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-white text-[#064E3B] border border-[#064E3B]/20 font-bold text-sm sm:text-base shadow-xs hover:bg-[#F4F8F6] hover:-translate-y-0.5 transition-all"
+            >
+              <FileText class="w-4 h-4 text-[#0F766E]" />
+              <span>Share My Parenting Challenge</span>
+            </a>
+
+            <a
+              href="/parent-coaching-readiness-form/"
+              class="inline-flex items-center justify-center gap-1.5 px-4 py-3.5 text-xs text-[#0F766E] font-semibold hover:underline"
+            >
+              <span>Take Self-Assessment</span>
+              <ArrowRight class="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+          <!-- Trust Subtext -->
+          <p class="text-xs text-slate-500 pt-1">
+            Direct Helpline: <span class="font-semibold text-slate-700">0312-2370720</span> | Email: <span class="font-semibold text-slate-700">edutarbiyah@gmail.com</span> | Website: <span class="font-semibold text-slate-700">edutarbiyah.com</span>
+          </p>
+
+        </div>
+
+        <!-- Right: Coach Profile Showcase Card (5 cols) -->
+        <div class="lg:col-span-5">
+          <div class="bg-gradient-to-br from-[#064E3B] via-[#0B5A4A] to-[#042F24] rounded-3xl p-6 sm:p-8 text-white shadow-2xl border border-amber-300/30 relative overflow-hidden group">
+            
+            <!-- Background Glow -->
+            <div class="absolute -right-16 -bottom-16 w-64 h-64 rounded-full bg-[#D97706]/15 blur-2xl pointer-events-none"></div>
+
+            <div class="relative z-10 text-center space-y-4">
+              
+              <!-- Coach Portrait -->
+              <div class="relative mx-auto w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden border-4 border-[#F59E0B] shadow-xl bg-emerald-900/40">
+                <img
+                  src="/images/dr-younus-khalid.webp"
+                  alt="Dr. Muhammad Younas Khalid - Parenting and Tarbiyah Coach"
+                  class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  onerror="this.src='https://edutarbiyah.com/wp-content/uploads/2026/05/Younus-1.png'"
+                  width="192"
+                  height="192"
+                  loading="eager"
+                />
+              </div>
+
+              <!-- Badge -->
+              <div class="inline-block px-4 py-1.5 rounded-full bg-gradient-to-r from-[#D97706] to-[#F59E0B] text-slate-950 font-extrabold text-xs tracking-wide uppercase shadow-sm">
+                Parenting &amp; Tarbiyah Coach
+              </div>
+
+              <!-- Name & Title -->
+              <div>
+                <h2 class="text-2xl sm:text-3xl font-serif font-extrabold text-amber-200">
+                  Dr. Muhammad Younas Khalid
+                </h2>
+                <p class="text-xs sm:text-sm text-emerald-100/90 font-medium mt-1">
+                  Ph.D | Islamic Scholar | Parenting &amp; Tarbiyah Specialist
+                </p>
+                <p class="text-xs text-amber-300/90 font-semibold mt-0.5">
+                  NLP &amp; MBTI Master Practitioner
+                </p>
+              </div>
+
+              <!-- 3 Mini Stats Grid -->
+              <div class="grid grid-cols-3 gap-2.5 pt-3 border-t border-emerald-700/60">
+                <div class="bg-white/10 rounded-xl p-2.5 border border-white/10">
+                  <div class="text-lg sm:text-xl font-black text-amber-300">1:1</div>
+                  <div class="text-[11px] text-emerald-100 font-medium">Personal Coaching</div>
+                </div>
+                <div class="bg-white/10 rounded-xl p-2.5 border border-white/10">
+                  <div class="text-lg sm:text-xl font-black text-amber-300">45–60</div>
+                  <div class="text-[11px] text-emerald-100 font-medium">Min Sessions</div>
+                </div>
+                <div class="bg-white/10 rounded-xl p-2.5 border border-white/10">
+                  <div class="text-lg sm:text-xl font-black text-amber-300">Practical</div>
+                  <div class="text-[11px] text-emerald-100 font-medium">Action Plan</div>
+                </div>
+              </div>
+
+              <!-- Direct WhatsApp button inside card -->
+              <a
+                href={whatsappConsultUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-white text-[#064E3B] font-bold text-xs hover:bg-emerald-50 transition-colors shadow-sm"
+              >
+                <MessageCircle class="w-4 h-4 text-[#0F766E]" />
+                <span>Message Dr. Younus Directly on WhatsApp</span>
+              </a>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Highlights Floating Bar -->
+  <section class="relative z-20 -mt-6 sm:-mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="bg-white rounded-2xl p-4 sm:p-6 shadow-xl border border-amber-200/50 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        {trustPillars.map((pillar) => {
+          const IconComponent = pillar.icon;
+          return (
+            <div class="flex items-start gap-3 p-2 sm:p-3 rounded-xl hover:bg-[#F4F8F6]/60 transition-colors">
+              <div class="p-2.5 rounded-xl bg-[#0F766E]/10 text-[#0F766E] shrink-0">
+                <IconComponent class="w-5 h-5" />
+              </div>
+              <div>
+                <div class="font-extrabold text-sm sm:text-base text-[#064E3B]">{pillar.title}</div>
+                <p class="text-xs text-slate-500 mt-0.5 leading-snug">{pillar.subtitle}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem Statement / Empathy Section -->
+  <section class="py-16 sm:py-24 bg-[#FFFDF9]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-4">
+      
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-wider">
+        <AlertCircle class="w-3.5 h-3.5 text-amber-600" />
+        <span>Is this happening in your home?</span>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-extrabold text-[#064E3B] tracking-tight">
+        Parenting should not feel like a daily battle.
+      </h2>
+
+      <p class="text-base sm:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        Many parents deeply love their children but still feel confused, angry, guilty or helpless. You do not lack love; you simply need the right tools, psychological clarity, and practical guidance.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 text-left">
+        {problemAreas.map((item) => {
+          const Icon = item.icon;
+          return (
+            <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <div class="w-12 h-12 rounded-xl bg-amber-50 text-[#D97706] flex items-center justify-center">
+                    <Icon class="w-6 h-6" />
+                  </div>
+                  <span class="text-[11px] font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">
+                    {item.tag}
+                  </span>
+                </div>
+                <h3 class="text-lg font-bold text-[#064E3B] mb-2">{item.title}</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">{item.desc}</p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-gray-50 flex items-center gap-1.5 text-xs text-[#0F766E] font-semibold">
+                <Check class="w-3.5 h-3.5" />
+                <span>Solved through personalized coaching</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Readiness CTA Callout -->
+      <div class="mt-10 p-5 rounded-2xl bg-[#F4F8F6] border border-emerald-100 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-3xl mx-auto text-left">
+        <div>
+          <h3 class="text-sm font-bold text-[#064E3B]">Not sure where your family stands?</h3>
+          <p class="text-xs text-slate-600 mt-0.5">Take our free 3-minute Parent Coaching Readiness Self-Assessment.</p>
+        </div>
+        <a
+          href="/parent-coaching-readiness-form/"
+          class="shrink-0 px-4 py-2 rounded-xl bg-[#064E3B] text-white text-xs font-bold hover:bg-[#0F766E] transition-colors"
+        >
+          Check My Readiness Score →
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Benefits Section (Dark Forest Green Theme) -->
+  <section class="py-16 sm:py-24 bg-gradient-to-br from-[#064E3B] via-[#085441] to-[#042F24] text-white relative overflow-hidden">
+    <!-- Subtle Golden Glow -->
+    <div class="absolute -top-32 right-0 w-96 h-96 rounded-full bg-[#F59E0B]/10 blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+      
+      <div class="text-center space-y-4 max-w-3xl mx-auto mb-14">
+        <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/10 border border-white/20 text-amber-300 text-xs font-bold uppercase tracking-wider">
+          <Sparkles class="w-3.5 h-3.5" />
+          <span>What You Will Gain</span>
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-extrabold text-white tracking-tight">
+          A clear parenting roadmap for your family.
+        </h2>
+
+        <p class="text-sm sm:text-base text-emerald-100/90 leading-relaxed">
+          This is not generic, one-size-fits-all advice. You receive focused guidance according to your child’s age, personality, behavioral triggers, and family environment.
+        </p>
+      </div>
+
+      <!-- 6 Benefits Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+        {programBenefits.map((b) => (
+          <div class="bg-white/10 hover:bg-white/15 backdrop-blur-xs rounded-2xl p-6 border border-white/15 transition-all duration-300 flex items-start gap-4">
+            <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#D97706] to-[#F59E0B] text-slate-950 font-black text-sm flex items-center justify-center shrink-0 shadow-sm">
+              {b.num}
+            </span>
+            <div class="space-y-1.5">
+              <h3 class="text-lg font-bold text-amber-200">{b.title}</h3>
+              <p class="text-xs sm:text-sm text-emerald-100/80 leading-relaxed">{b.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- WhatsApp Quick Consultation Banner Inside Dark Section -->
+      <div class="mt-12 text-center pt-8 border-t border-emerald-700/60">
+        <a
+          href={whatsappConsultUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2.5 px-8 py-4 rounded-xl bg-gradient-to-r from-[#D97706] to-[#F59E0B] text-white font-extrabold text-sm sm:text-base shadow-xl hover:shadow-2xl hover:-translate-y-0.5 transition-all"
+        >
+          <Phone class="w-4 h-4" />
+          <span>Book Your Free Clarity Call on WhatsApp</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- How It Works / 5-Step Process -->
+  <section class="py-16 sm:py-24 bg-[#FFFDF9]">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="text-center space-y-4 max-w-2xl mx-auto mb-14">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#064E3B] text-xs font-bold uppercase tracking-wider">
+          <Clock class="w-3.5 h-3.5" />
+          <span>How It Works</span>
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-extrabold text-[#064E3B] tracking-tight">
+          Simple process. Practical action. Real support.
+        </h2>
+
+        <p class="text-sm sm:text-base text-slate-600">
+          A predictable, transparent pathway designed to deliver quick breakthroughs and long-term peace.
+        </p>
+      </div>
+
+      <!-- Steps Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        {processSteps.map((s, idx) => (
+          <div class="bg-white rounded-2xl p-5 border border-gray-100 shadow-sm text-center relative group hover:border-[#0F766E]/40 hover:-translate-y-1 transition-all">
+            <div class="w-12 h-12 rounded-full bg-[#064E3B] text-white border-2 border-amber-300 font-black text-lg flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+              {s.step}
+            </div>
+            <h3 class="text-base font-bold text-[#064E3B] mb-2">{s.title}</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Coaching Offer & Fee Details Section -->
+  <section class="py-16 sm:py-20 bg-gradient-to-b from-[#FAF6EE] to-[#FFFDF9]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      
+      <div class="bg-white rounded-3xl p-6 sm:p-10 lg:p-12 border border-amber-200/60 shadow-xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <!-- Left: Offer Checklist (7 cols) -->
+        <div class="lg:col-span-7 space-y-5">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold uppercase tracking-wider">
+            <Award class="w-3.5 h-3.5 text-amber-600" />
+            <span>Coaching Offer</span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-serif font-extrabold text-[#064E3B]">
+            Start with a free clarity call.
+          </h2>
+
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Share your parenting challenge and understand whether personalized coaching is the right fit for your child and family dynamics.
+          </p>
+
+          <ul class="space-y-3 pt-2 text-xs sm:text-sm text-slate-700">
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-4 h-4 text-[#D97706] shrink-0 mt-0.5" />
+              <span><strong>One-on-one parent coaching</strong> dedicated exclusively to your family</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-4 h-4 text-[#D97706] shrink-0 mt-0.5" />
+              <span><strong>45–60 minutes per session</strong> with deep individualized focus</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-4 h-4 text-[#D97706] shrink-0 mt-0.5" />
+              <span><strong>Flexible mode:</strong> Online via WhatsApp Call, Voice Notes, or Zoom Video</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-4 h-4 text-[#D97706] shrink-0 mt-0.5" />
+              <span><strong>Practical action plan:</strong> Tailored home routines and follow-up guidance</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <CheckCircle2 class="w-4 h-4 text-[#D97706] shrink-0 mt-0.5" />
+              <span><strong>100% Confidential</strong> and empathetic coaching environment</span>
+            </li>
+          </ul>
+
+          <div class="pt-4">
+            <a
+              href="https://wa.me/923122370720?text=Assalam%20o%20Alaikum%2C%20I%20want%20to%20start%20EduTarbiyah%20Parent%20Coaching.%20Please%20guide%20me."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-gradient-to-r from-[#D97706] to-[#F59E0B] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all"
+            >
+              <MessageCircle class="w-4 h-4" />
+              <span>Start Parent Coaching Now</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Pricing Card (5 cols) -->
+        <div class="lg:col-span-5">
+          <div class="bg-gradient-to-br from-[#064E3B] to-[#042F24] rounded-2xl p-6 sm:p-8 text-white text-center shadow-lg border border-amber-300/30">
+            <span class="text-xs text-emerald-200 font-semibold uppercase tracking-wider">Session Fee</span>
+            <div class="text-3xl sm:text-4xl font-serif font-black text-amber-300 my-2">
+              Rs. 5,000
+            </div>
+            <p class="text-xs text-emerald-100/90">per 45–60 minute private session</p>
+
+            <div class="my-5 border-t border-emerald-700/60 pt-4">
+              <span class="text-xs text-emerald-200 font-semibold uppercase tracking-wider">Recommended for Complete Guidance</span>
+              <div class="text-xl sm:text-2xl font-bold text-amber-200 mt-1">
+                Case-Based Packages
+              </div>
+              <p class="text-xs text-emerald-100/80 mt-1">
+                Sessions arranged progressively according to your child's specific milestones and family requirements.
+              </p>
+            </div>
+
+            <div class="pt-2">
+              <a
+                href={whatsappConsultUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-white text-[#064E3B] font-bold text-xs hover:bg-emerald-50 transition-colors"
+              >
+                <Phone class="w-3.5 h-3.5 text-[#0F766E]" />
+                <span>Inquire About Package Deals</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Interactive Form & FAQs Section (2 Columns) -->
+  <section id="contact-form" class="py-16 sm:py-24 bg-[#FFFDF9] scroll-mt-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left: Frequently Asked Questions (6 cols) -->
+        <div class="lg:col-span-6 space-y-6">
+          <div>
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#064E3B] text-xs font-bold uppercase tracking-wider mb-2">
+              <HelpCircle class="w-3.5 h-3.5" />
+              <span>Got Questions?</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-serif font-extrabold text-[#064E3B]">
+              Frequently Asked Questions
+            </h2>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1">
+              Find quick answers regarding our 1-on-1 coaching methodology and format.
+            </p>
+          </div>
+
+          <div class="space-y-3">
+            {faqs.map((faq, idx) => (
+              <details class="group bg-white rounded-xl border border-gray-100 shadow-xs overflow-hidden transition-all duration-200" open={idx === 0}>
+                <summary class="flex items-center justify-between gap-3 p-4 sm:p-5 font-bold text-sm sm:text-base text-[#064E3B] cursor-pointer hover:bg-emerald-50/50 transition-colors select-none">
+                  <span>{faq.q}</span>
+                  <ChevronRight class="w-4 h-4 text-gray-400 group-open:rotate-90 transition-transform shrink-0" />
+                </summary>
+                <div class="px-4 pb-4 sm:px-5 sm:pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-gray-50 pt-3">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+
+          <!-- Secondary Links to Related Tools -->
+          <div class="p-5 rounded-2xl bg-[#F4F8F6] border border-emerald-100 space-y-2.5">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-[#064E3B]">
+              Explore Other Diagnostic Tools:
+            </h3>
+            <div class="flex flex-wrap gap-2 text-xs">
+              <a href="/parent-coaching-readiness-form/" class="px-3 py-1.5 rounded-lg bg-white border border-emerald-200 text-[#064E3B] font-semibold hover:bg-emerald-50 transition-colors">
+                Parent Coaching Readiness Form →
+              </a>
+              <a href="/childs-behavior-improvement-tracker/" class="px-3 py-1.5 rounded-lg bg-white border border-emerald-200 text-[#064E3B] font-semibold hover:bg-emerald-50 transition-colors">
+                Behavior Tracker →
+              </a>
+              <a href="/audit-your-parenting/" class="px-3 py-1.5 rounded-lg bg-white border border-emerald-200 text-[#064E3B] font-semibold hover:bg-emerald-50 transition-colors">
+                Audit Your Parenting →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Lead Form (6 cols) -->
+        <div class="lg:col-span-6">
+          <div class="bg-gradient-to-br from-[#064E3B] via-[#0B5A4A] to-[#042F24] rounded-3xl p-6 sm:p-8 text-white shadow-2xl border border-amber-300/30">
+            
+            <div class="space-y-2 mb-6">
+              <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold">
+                <Send class="w-3.5 h-3.5" />
+                <span>Confidential Consultation Form</span>
+              </div>
+              <h3 class="text-2xl font-serif font-extrabold text-white">
+                Share Your Parenting Challenge
+              </h3>
+              <p class="text-xs sm:text-sm text-emerald-100/90 leading-relaxed">
+                Fill this brief diagnostic form. Your submission is safely recorded and will open WhatsApp directly with Dr. Muhammad Younas Khalid.
+              </p>
+            </div>
+
+            <!-- Form -->
+            <form id="coachingChallengeForm" class="space-y-4 text-left">
+              
+              <div>
+                <label for="coachingName" class="block text-xs font-bold text-amber-200 mb-1.5">
+                  Your Full Name <span class="text-red-400">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="coachingName"
+                  name="fullName"
+                  required
+                  placeholder="e.g. Brother Ahmad / Sister Maryam"
+                  class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-emerald-200/50 text-sm focus:outline-none focus:ring-2 focus:ring-[#F59E0B] focus:border-transparent transition-all"
+                />
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                <div>
+                  <label for="coachingPhone" class="block text-xs font-bold text-amber-200 mb-1.5">
+                    WhatsApp Number <span class="text-red-400">*</span>
+                  </label>
+                  <input
+                    type="tel"
+                    id="coachingPhone"
+                    name="phone"
+                    required
+                    placeholder="03xx-xxxxxxx"
+                    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-emerald-200/50 text-sm focus:outline-none focus:ring-2 focus:ring-[#F59E0B] focus:border-transparent transition-all"
+                  />
+                </div>
+
+                <div>
+                  <label for="childInfo" class="block text-xs font-bold text-amber-200 mb-1.5">
+                    Child's Age &amp; Gender
+                  </label>
+                  <input
+                    type="text"
+                    id="childInfo"
+                    name="childInfo"
+                    placeholder="e.g. 8 yr old boy"
+                    class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-emerald-200/50 text-sm focus:outline-none focus:ring-2 focus:ring-[#F59E0B] focus:border-transparent transition-all"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="coachingMode" class="block text-xs font-bold text-amber-200 mb-1.5">
+                  Preferred Consultation Mode <span class="text-red-400">*</span>
+                </label>
+                <select
+                  id="coachingMode"
+                  name="mode"
+                  required
+                  class="w-full px-4 py-3 rounded-xl bg-emerald-900 border border-white/20 text-white text-sm focus:outline-none focus:ring-2 focus:ring-[#F59E0B] transition-all"
+                >
+                  <option value="WhatsApp Call">WhatsApp Voice Call</option>
+                  <option value="Zoom Session">Zoom Video Session</option>
+                  <option value="WhatsApp Messaging Guidance">WhatsApp Messaging Guidance</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="coachingChallenge" class="block text-xs font-bold text-amber-200 mb-1.5">
+                  Main Parenting Challenge <span class="text-red-400">*</span>
+                </label>
+                <textarea
+                  id="coachingChallenge"
+                  name="challenge"
+                  rows="3"
+                  required
+                  placeholder="Tell us briefly about the primary challenge (e.g., screen addiction, stubbornness, anger, prayer routine, defiance)..."
+                  class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-emerald-200/50 text-sm focus:outline-none focus:ring-2 focus:ring-[#F59E0B] focus:border-transparent transition-all resize-none"
+                ></textarea>
+              </div>
+
+              <!-- Submit Button -->
+              <button
+                type="submit"
+                id="submitBtn"
+                class="w-full py-4 rounded-xl bg-gradient-to-r from-[#D97706] to-[#F59E0B] text-slate-950 font-black text-sm sm:text-base shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <MessageCircle class="w-5 h-5" />
+                <span id="btnText">Send to Dr. Younus on WhatsApp</span>
+              </button>
+
+              <div id="formStatus" class="hidden text-xs text-center py-2 px-3 rounded-lg bg-emerald-800/80 text-amber-200 font-medium"></div>
+
+              <p class="text-[11px] text-emerald-200/80 text-center pt-1 leading-normal">
+                🔒 Privacy Guarantee: Your personal information is strictly confidential and used solely for coaching follow-up.
+              </p>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Final Reassurance & Contact CTA Section -->
+  <section class="py-16 sm:py-20 bg-gradient-to-b from-[#FFFDF9] to-[#FAF6EE] border-t border-amber-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center space-y-6">
+      
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-[#064E3B] text-xs font-bold uppercase tracking-wider">
+        <Sparkles class="w-3.5 h-3.5 text-[#D97706]" />
+        <span>Take the next step</span>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif font-extrabold text-[#064E3B] tracking-tight">
+        Better parenting starts with the right guidance.
+      </h2>
+
+      <p class="text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
+        Your parenting shapes future generations. Don’t leave it to guesswork, exhaustion, or daily frustration. Start your journey with clarity, patience, and practical Tarbiyah guidance today.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <a
+          href={whatsappConsultUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#D97706] to-[#F59E0B] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all"
+        >
+          <MessageCircle class="w-4 h-4" />
+          <span>WhatsApp Consultation</span>
+        </a>
+
+        <a
+          href="tel:+923122370720"
+          class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-[#064E3B] border border-emerald-200 font-bold text-sm shadow-xs hover:bg-[#F4F8F6] transition-all"
+        >
+          <Phone class="w-4 h-4 text-[#0F766E]" />
+          <span>Call: 0312-2370720</span>
+        </a>
+
+        <a
+          href="mailto:edutarbiyah@gmail.com?subject=Parent%20Coaching%20Inquiry"
+          class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white text-[#064E3B] border border-emerald-200 font-bold text-sm shadow-xs hover:bg-[#F4F8F6] transition-all"
+        >
+          <Mail class="w-4 h-4 text-[#0F766E]" />
+          <span>Email Us</span>
+        </a>
+      </div>
+
+      <!-- Contact Ribbon -->
+      <div class="mt-8 pt-6 border-t border-amber-200/60 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-600">
+        <span>Helpline: <a href="tel:+923122370720" class="font-bold text-[#064E3B] hover:underline">0312-2370720</a></span>
+        <span class="text-gray-300">•</span>
+        <span>Email: <a href="mailto:edutarbiyah@gmail.com" class="font-bold text-[#064E3B] hover:underline">edutarbiyah@gmail.com</a></span>
+        <span class="text-gray-300">•</span>
+        <span>Website: <a href="https://edutarbiyah.com" class="font-bold text-[#064E3B] hover:underline">edutarbiyah.com</a></span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Sticky Bottom Quick-Action Bar for Mobile & Desktop -->
+  <div class="fixed bottom-4 left-1/2 -translate-x-1/2 w-[min(700px,94%)] bg-[#064E3B]/95 backdrop-blur-md text-white rounded-full p-2.5 px-4 shadow-2xl border border-amber-300/40 z-40 flex items-center justify-between gap-3">
+    <div class="hidden sm:flex items-center gap-2 pl-2">
+      <span class="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-ping"></span>
+      <span class="text-xs font-bold text-amber-200">Need personal parenting clarity?</span>
+    </div>
+    <div class="text-xs text-slate-200 font-medium sm:hidden truncate">
+      Dr. Younus Khalid • 1:1 Coaching
+    </div>
+    <a
+      href={whatsappConsultUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#D97706] to-[#F59E0B] text-slate-950 font-black text-xs shadow-md hover:scale-105 transition-all shrink-0"
+    >
+      <MessageCircle class="w-3.5 h-3.5" />
+      <span>Book Free Call</span>
+    </a>
+  </div>
+
+  <!-- Interactive Form Handling Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('coachingChallengeForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const btnText = document.getElementById('btnText');
+      const formStatus = document.getElementById('formStatus');
+
+      if (!form) return;
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('coachingName')?.value.trim() || '';
+        const phone = document.getElementById('coachingPhone')?.value.trim() || '';
+        const childInfo = document.getElementById('childInfo')?.value.trim() || '';
+        const mode = document.getElementById('coachingMode')?.value.trim() || 'WhatsApp Call';
+        const challenge = document.getElementById('coachingChallenge')?.value.trim() || '';
+
+        if (!name || !phone || !challenge) {
+          alert('Please fill out all required fields.');
+          return;
+        }
+
+        // Show loading state
+        submitBtn.disabled = true;
+        btnText.textContent = 'Saving Consultation Request...';
+
+        // Prepare submission payload for central DB capture
+        const submissionPayload = {
+          tool_type: 'parent_coaching_intake',
+          tool_name: 'Parent Coaching Program Consultation',
+          respondent_name: name,
+          respondent_contact: phone,
+          responses: {
+            preferred_mode: mode,
+            child_info: childInfo,
+            main_challenge: challenge,
+            source_url: window.location.href,
+            timestamp: new Date().toISOString()
+          }
+        };
+
+        // Attempt to record lead in WordPress DB
+        try {
+          await fetch('/wp-json/edutarbiyah/v1/submit-assessment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(submissionPayload)
+          });
+        } catch (err) {
+          console.warn('[EduTarbiyah Lead Save Non-blocking]', err);
+        }
+
+        // Construct pre-filled WhatsApp message
+        let waMessage = `Assalam o Alaikum Dr. Muhammad Younas Khalid,\n\nI want to consult you regarding the EduTarbiyah Parent Coaching Program.\n\n👤 Name: ${name}\n📱 WhatsApp: ${phone}\n👶 Child Info: ${childInfo || 'Not specified'}\n📞 Preferred Mode: ${mode}\n🎯 Main Challenge: ${challenge}\n\nPlease guide me regarding the next step and available consultation slots.`;
+
+        const waUrl = `https://wa.me/923122370720?text=${encodeURIComponent(waMessage)}`;
+
+        // Provide visual feedback
+        formStatus.classList.remove('hidden');
+        formStatus.textContent = 'Opening WhatsApp to send your inquiry...';
+
+        setTimeout(() => {
+          window.open(waUrl, '_blank');
+          btnText.textContent = 'Send to Dr. Younus on WhatsApp';
+          submitBtn.disabled = false;
+        }, 600);
+      });
+    });
+  </script>
+
+</Layout>
