@@ -7,8 +7,10 @@
   },
   "scripts": {
     "dev": "astro dev",
+    "clean:cache": "node -e \"const fs=require('fs');fs.rmSync('.cache/api',{recursive:true,force:true});console.log('API cache purged.');\"",
     "build": "astro build",
-    "deploy": "astro build && node scripts/deploy-ftp.js",
+    "build:fresh": "npm run clean:cache && astro build",
+    "deploy": "npm run clean:cache && astro build && node scripts/deploy-ftp.js",
     "deploy:quick": "node scripts/deploy-ftp.js",
     "preview": "astro preview",
     "astro": "astro"
