@@ -1,0 +1,813 @@
+/**
+ * ==============================================================================
+ * EduTarbiyah Institute - Unified Design System for WordPress, Tutor LMS & WooCommerce
+ * ==============================================================================
+ * Matches the Astro static website: Playfair Display + Plus Jakarta Sans,
+ * Forest Green (#064E3B), Deep Teal (#0F766E), Amber (#F59E0B), Warm Paper (#FFFDF9).
+ */
+
+/* -------------------------------------------------------------
+   1. Brand Variables & Core Overrides
+   ------------------------------------------------------------- */
+:root {
+  --color-primary: #0F766E;
+  --color-primary-dark: #064E3B;
+  --color-primary-light: #14B8A6;
+  --color-accent: #F59E0B;
+  --color-accent-dark: #D97706;
+  --color-bg-paper: #FFFDF9;
+  --color-bg-soft: #F4F8F6;
+  --color-text-main: #1F2937;
+  --color-text-muted: #4B5563;
+  --color-border: #E5E7EB;
+
+  /* Tutor LMS System Variable Overrides */
+  --tutor-primary-color: #0F766E !important;
+  --tutor-primary-hover-color: #064E3B !important;
+  --tutor-color-primary: #0F766E !important;
+  --tutor-color-primary-hover: #064E3B !important;
+  --tutor-color-primary-60: rgba(15, 118, 110, 0.6) !important;
+  --tutor-color-primary-10: rgba(15, 118, 110, 0.1) !important;
+  --tutor-color-black: #1F2937 !important;
+  --tutor-color-body: #4B5563 !important;
+  --tutor-color-gray: #E5E7EB !important;
+  --tutor-color-gray-20: #F4F8F6 !important;
+  --tutor-color-gray-10: #F8FAFC !important;
+  --tutor-body-color: #1F2937 !important;
+  --tutor-heading-color: #064E3B !important;
+  --tutor-font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  --tutor-radius-default: 14px !important;
+  --tutor-radius-sm: 10px !important;
+  --tutor-radius-md: 14px !important;
+  --tutor-radius-lg: 20px !important;
+  --tutor-radius-xl: 24px !important;
+
+  /* WooCommerce Accent Colors */
+  --wc-primary: #0F766E;
+  --wc-primary-dark: #064E3B;
+  --wc-highlight: #F59E0B;
+}
+
+/* -------------------------------------------------------------
+   2. Typography & Global Page Scaffolding
+   ------------------------------------------------------------- */
+body.tutor-lms,
+body.woocommerce-page,
+body.woocommerce-account,
+body.woocommerce-checkout,
+body.woocommerce-cart {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+  color: #1F2937 !important;
+  background-color: #FFFDF9 !important;
+  line-height: 1.65;
+}
+
+/* Serif Headings matching the EduTarbiyah brand */
+h1, h2, h3, h4,
+.tutor-h1, .tutor-h2, .tutor-h3, .tutor-h4,
+.tutor-fs-4, .tutor-fs-5,
+.woocommerce-billing-fields h3,
+.woocommerce-additional-fields h3,
+#order_review_heading,
+.woocommerce-order-details__title,
+.woocommerce-customer-details h2,
+.woocommerce-column__title,
+.woocommerce-MyAccount-content h2,
+.woocommerce-MyAccount-content h3 {
+  font-family: 'Playfair Display', Georgia, Cambria, serif !important;
+  color: #064E3B !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.015em;
+}
+
+/* Smooth selection */
+::selection {
+  background-color: #0F766E;
+  color: #FFFFFF;
+}
+
+/* -------------------------------------------------------------
+   3. Tutor LMS Login & Registration Wrapper
+   ------------------------------------------------------------- */
+.tutor-template-segment.tutor-login-wrap,
+.tutor-registration-wrap {
+  background: #FFFFFF !important;
+  border-radius: 28px !important;
+  border: 1px solid #E5E7EB !important;
+  box-shadow: 0 20px 45px -15px rgba(15, 118, 110, 0.12) !important;
+  padding: 2.5rem 2rem !important;
+  margin: 40px auto 60px !important;
+}
+
+.tutor-login-form-wrapper .tutor-h3,
+.tutor-login-form-wrapper .tutor-fs-5 {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-size: 1.75rem !important;
+  font-weight: 800 !important;
+  color: #064E3B !important;
+  text-align: center;
+  margin-bottom: 1.5rem !important;
+}
+
+/* Form inputs */
+.tutor-form-control,
+.tutor-input,
+.tutor-login-form-wrapper input[type="text"],
+.tutor-login-form-wrapper input[type="password"],
+.tutor-login-form-wrapper input[type="email"] {
+  border-radius: 12px !important;
+  border: 1px solid #CBD5E1 !important;
+  padding: 12px 16px !important;
+  font-size: 14.5px !important;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  color: #1F2937 !important;
+  background-color: #FFFFFF !important;
+  transition: all 0.2s ease !important;
+}
+
+.tutor-form-control:focus,
+.tutor-input:focus,
+.tutor-login-form-wrapper input:focus {
+  border-color: #0F766E !important;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.18) !important;
+  outline: none !important;
+}
+
+/* Form Buttons */
+.tutor-btn-primary,
+.tutor-button-primary,
+button#tutor-login-btn,
+.tutor-login-form-wrapper button[type="submit"] {
+  background-color: #0F766E !important;
+  border-color: #0F766E !important;
+  color: #FFFFFF !important;
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  padding: 13px 24px !important;
+  box-shadow: 0 4px 14px rgba(15, 118, 110, 0.25) !important;
+  transition: all 0.2s ease !important;
+  width: 100%;
+  cursor: pointer;
+}
+
+.tutor-btn-primary:hover,
+.tutor-button-primary:hover,
+button#tutor-login-btn:hover,
+.tutor-login-form-wrapper button[type="submit"]:hover {
+  background-color: #064E3B !important;
+  border-color: #064E3B !important;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(6, 78, 59, 0.3) !important;
+}
+
+/* SSO Button (HostGator / WordPress login) */
+.nfd-sso-hosting-login__button {
+  border-radius: 14px !important;
+  border: 1px solid #E5E7EB !important;
+  padding: 11px 20px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  transition: all 0.2s ease !important;
+}
+.nfd-sso-hosting-login__button:hover {
+  border-color: #0F766E !important;
+  background-color: #F4F8F6 !important;
+  color: #064E3B !important;
+}
+
+/* -------------------------------------------------------------
+   4. Tutor LMS Student & Instructor Dashboard
+   ------------------------------------------------------------- */
+.tutor-wrap.tutor-dashboard {
+  max-width: 1240px !important;
+  margin: 30px auto 60px !important;
+  padding: 0 16px !important;
+}
+
+/* Dashboard Sidebar Permalinks */
+.tutor-dashboard-permalinks {
+  background: #FFFFFF !important;
+  border-radius: 24px !important;
+  border: 1px solid #E5E7EB !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05) !important;
+  padding: 1.25rem 0.85rem !important;
+}
+
+.tutor-dashboard-permalinks li a {
+  border-radius: 12px !important;
+  padding: 11px 16px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  color: #374151 !important;
+  transition: all 0.15s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.tutor-dashboard-permalinks li a:hover {
+  background-color: #F4F8F6 !important;
+  color: #0F766E !important;
+}
+
+.tutor-dashboard-permalinks li.active a,
+.tutor-dashboard-permalinks li.tutor-dashboard-menu-item-active a {
+  background-color: #F4F8F6 !important;
+  color: #064E3B !important;
+  font-weight: 700 !important;
+  border-left: 4px solid #0F766E !important;
+}
+
+.tutor-dashboard-permalinks li a span[class^="tutor-icon-"] {
+  color: #0F766E !important;
+  font-size: 18px !important;
+}
+
+/* Dashboard Profile Header Box */
+.tutor-dashboard-header {
+  background: #FFFFFF !important;
+  border-radius: 24px !important;
+  border: 1px solid #E5E7EB !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05) !important;
+  padding: 1.75rem 2rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.tutor-dashboard-header .tutor-dashboard-header-display-name h4 {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  font-weight: 700 !important;
+  color: #064E3B !important;
+  font-size: 1.5rem !important;
+}
+
+/* Dashboard Stats Cards */
+.tutor-dashboard-info-card,
+.tutor-card {
+  background: #FFFFFF !important;
+  border-radius: 20px !important;
+  border: 1px solid #E5E7EB !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+  transition: all 0.2s ease !important;
+}
+
+.tutor-dashboard-info-card:hover,
+.tutor-card:hover {
+  border-color: #0F766E !important;
+  box-shadow: 0 12px 25px -5px rgba(15, 118, 110, 0.1) !important;
+}
+
+.tutor-dashboard-info-card .tutor-card-body h3 {
+  font-family: 'Playfair Display', Georgia, serif !important;
+  color: #064E3B !important;
+  font-weight: 800 !important;
+}
+
+/* Course Progress Bar */
+.tutor-progress-bar,
+.tutor-progress-bar-fill {
+  border-radius: 9999px !important;
+}
+.tutor-progress-bar-fill {
+  background: linear-gradient(90deg, #0F766E 0%, #10B981 100%) !important;
+}
+
+/* -------------------------------------------------------------
+   5. Tutor LMS Single Course & Lesson Player
+   ------------------------------------------------------------- */
+.tutor-course-details-page {
+  background: #FFFDF9 !important;
+  padding-bottom: 60px;
+}
+
+.tutor-single-course-sidebar .tutor-card {
+  border-radius: 24px !important;
+  border: 1px solid rgba(15, 118, 110, 0.2) !important;
+  box-shadow: 0 15px 35px -10px rgba(15, 118, 110, 0.08) !important;
+  overflow: hidden !important;
+}
+
+.tutor-single-course-meta li {
+  font-size: 13.5px !important;
+  color: #4B5563 !important;
+}
+
+.tutor-single-course-meta li span[class^="tutor-icon-"] {
+  color: #0F766E !important;
+}
+
+/* -------------------------------------------------------------
+   6. WooCommerce My Account Unification
+   ------------------------------------------------------------- */
+.woocommerce-account .woocommerce {
+  max-width: 1200px;
+  margin: 40px auto 70px;
+  padding: 0 16px;
+}
+
+/* My Account Navigation Menu */
+.woocommerce-MyAccount-navigation {
+  float: left;
+  width: 28%;
+}
+
+.woocommerce-MyAccount-navigation ul {
+  list-style: none !important;
+  padding: 1.25rem 0.75rem !important;
+  margin: 0 !important;
+  background: #FFFFFF !important;
+  border-radius: 24px !important;
+  border: 1px solid #E5E7EB !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04) !important;
+}
+
+.woocommerce-MyAccount-navigation li {
+  margin-bottom: 4px;
+}
+
+.woocommerce-MyAccount-navigation li a {
+  display: block !important;
+  padding: 11px 16px !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  color: #374151 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease !important;
+}
+
+.woocommerce-MyAccount-navigation li a:hover {
+  background-color: #F4F8F6 !important;
+  color: #0F766E !important;
+}
+
+.woocommerce-MyAccount-navigation li.is-active a {
+  background-color: #F4F8F6 !important;
+  color: #064E3B !important;
+  font-weight: 700 !important;
+  border-left: 4px solid #0F766E !important;
+}
+
+/* My Account Content Panel */
+.woocommerce-MyAccount-content {
+  float: right;
+  width: 68%;
+  background: #FFFFFF !important;
+  border-radius: 28px !important;
+  border: 1px solid #E5E7EB !important;
+  padding: 2.25rem 2.5rem !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04) !important;
+}
+
+@media (max-width: 768px) {
+  .woocommerce-MyAccount-navigation,
+  .woocommerce-MyAccount-content {
+    float: none;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+}
+
+/* Tables in My Account (Orders, Downloads) */
+.woocommerce-orders-table,
+.woocommerce-table {
+  border-radius: 18px !important;
+  overflow: hidden !important;
+  border: 1px solid #E5E7EB !important;
+  width: 100% !important;
+}
+
+.woocommerce-orders-table th,
+.woocommerce-table th {
+  background-color: #F4F8F6 !important;
+  color: #064E3B !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  padding: 14px 18px !important;
+  border-bottom: 1px solid #E5E7EB !important;
+}
+
+.woocommerce-orders-table td,
+.woocommerce-table td {
+  padding: 14px 18px !important;
+  font-size: 14px !important;
+  border-bottom: 1px solid #F1F5F9 !important;
+  color: #374151 !important;
+}
+
+/* Status Badges */
+.woocommerce-orders-table__cell-order-status {
+  font-weight: 700 !important;
+  font-size: 12px !important;
+}
+
+/* Buttons in WooCommerce */
+.woocommerce .button,
+.woocommerce a.button,
+.woocommerce button.button,
+.woocommerce input.button {
+  background-color: #0F766E !important;
+  color: #FFFFFF !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  padding: 10px 20px !important;
+  border: none !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.2) !important;
+}
+
+.woocommerce .button:hover,
+.woocommerce a.button:hover,
+.woocommerce button.button:hover,
+.woocommerce input.button:hover {
+  background-color: #064E3B !important;
+  color: #FFFFFF !important;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(6, 78, 59, 0.25) !important;
+}
+
+/* -------------------------------------------------------------
+   7. WooCommerce Checkout & Cart Unification
+   ------------------------------------------------------------- */
+.woocommerce-checkout .woocommerce,
+.woocommerce-cart .woocommerce {
+  max-width: 1200px;
+  margin: 40px auto 70px;
+  padding: 0 16px;
+}
+
+/* Checkout Form Layout */
+form.checkout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+@media (min-width: 992px) {
+  form.checkout {
+    grid-template-columns: 1.15fr 0.85fr;
+  }
+}
+
+/* Customer details card */
+#customer_details {
+  background: #FFFFFF !important;
+  border-radius: 28px !important;
+  border: 1px solid #E5E7EB !important;
+  padding: 2.25rem !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Input Fields */
+.woocommerce-billing-fields input[type="text"],
+.woocommerce-billing-fields input[type="tel"],
+.woocommerce-billing-fields input[type="email"],
+.woocommerce-billing-fields textarea,
+.woocommerce-billing-fields select,
+.woocommerce-form-coupon input[type="text"],
+.woocommerce-shipping-fields input[type="text"] {
+  border-radius: 12px !important;
+  border: 1px solid #CBD5E1 !important;
+  padding: 12px 16px !important;
+  font-size: 14.5px !important;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  width: 100% !important;
+  background-color: #FFFFFF !important;
+  transition: all 0.2s ease !important;
+}
+
+.woocommerce-billing-fields input:focus,
+.woocommerce-billing-fields textarea:focus,
+.woocommerce-billing-fields select:focus {
+  border-color: #0F766E !important;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.18) !important;
+  outline: none !important;
+}
+
+/* Order Review Container (Right Column) */
+#order_review {
+  background: #F4F8F6 !important;
+  border: 1px solid rgba(15, 118, 110, 0.25) !important;
+  border-radius: 28px !important;
+  padding: 2.25rem !important;
+  box-shadow: 0 15px 35px -10px rgba(15, 118, 110, 0.08) !important;
+}
+
+#order_review table.shop_table {
+  background: transparent !important;
+  border: none !important;
+  width: 100% !important;
+}
+
+#order_review table.shop_table th {
+  border-top: none !important;
+  border-bottom: 2px solid #E2E8F0 !important;
+  color: #064E3B !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  text-transform: uppercase !important;
+  padding: 12px 0 !important;
+}
+
+#order_review table.shop_table td {
+  border-bottom: 1px solid #E2E8F0 !important;
+  padding: 14px 0 !important;
+  font-size: 14px !important;
+  color: #374151 !important;
+}
+
+#order_review table.shop_table tr.order-total th,
+#order_review table.shop_table tr.order-total td {
+  border-top: 2px solid #0F766E !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  color: #064E3B !important;
+}
+
+/* Payment Methods Area */
+#payment {
+  background: #FFFFFF !important;
+  border-radius: 20px !important;
+  border: 1px solid #E5E7EB !important;
+  padding: 1.5rem !important;
+  margin-top: 20px !important;
+}
+
+#payment ul.payment_methods {
+  border-bottom: 1px solid #E5E7EB !important;
+  padding-bottom: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+#payment div.payment_box {
+  background: #F4F8F6 !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+  color: #4B5563 !important;
+  font-size: 13.5px !important;
+  border-left: 3px solid #0F766E !important;
+}
+
+/* Place Order Button */
+#place_order {
+  width: 100% !important;
+  background-color: #0F766E !important;
+  color: #FFFFFF !important;
+  border-radius: 16px !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  padding: 16px 24px !important;
+  box-shadow: 0 10px 25px -5px rgba(15, 118, 110, 0.4) !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+#place_order:hover {
+  background-color: #064E3B !important;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(6, 78, 59, 0.45) !important;
+}
+
+/* -------------------------------------------------------------
+   8. WooCommerce Notifications & Banners
+   ------------------------------------------------------------- */
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error {
+  border-radius: 18px !important;
+  padding: 16px 24px 16px 54px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05) !important;
+  margin-bottom: 2rem !important;
+  position: relative !important;
+  font-weight: 500 !important;
+  font-size: 14.5px !important;
+}
+
+.woocommerce-message {
+  border-left: 5px solid #0F766E !important;
+  background-color: #F0FDF4 !important;
+  color: #064E3B !important;
+}
+
+.woocommerce-info {
+  border-left: 5px solid #F59E0B !important;
+  background-color: #FFFBEB !important;
+  color: #92400E !important;
+}
+
+.woocommerce-error {
+  border-left: 5px solid #E11D48 !important;
+  background-color: #FFF1F2 !important;
+  color: #9F1239 !important;
+}
+
+/* -------------------------------------------------------------
+   9. EduTarbiyah Global Footer Styles for WordPress
+   ------------------------------------------------------------- */
+.edutarbiyah-global-footer {
+  background-color: #064E3B !important;
+  color: #F8FFFC !important;
+  padding-top: 4rem !important;
+  padding-bottom: 3rem !important;
+  border-top: 1px solid rgba(15, 118, 110, 0.3) !important;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+}
+
+.edutarbiyah-footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.edutarbiyah-footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(15, 118, 110, 0.4);
+}
+
+@media (min-width: 768px) {
+  .edutarbiyah-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .edutarbiyah-footer-grid {
+    grid-template-columns: 2fr 1fr 1fr 1.25fr;
+  }
+}
+
+.edutarbiyah-footer-brand-box img {
+  height: 40px;
+  width: auto;
+  background: #FFFFFF;
+  padding: 6px 12px;
+  border-radius: 14px;
+}
+
+.edutarbiyah-footer-brand-desc {
+  color: rgba(209, 250, 229, 0.8);
+  font-size: 14px;
+  line-height: 1.65;
+  margin: 16px 0;
+  max-width: 360px;
+}
+
+.edutarbiyah-footer-contact a {
+  color: rgba(209, 250, 229, 0.9);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  margin-bottom: 8px;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.edutarbiyah-footer-contact a:hover {
+  color: #F59E0B !important;
+}
+
+.edutarbiyah-footer-col h3 {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: #F59E0B !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  margin-bottom: 1.25rem !important;
+}
+
+.edutarbiyah-footer-col ul {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.edutarbiyah-footer-col li {
+  margin-bottom: 10px !important;
+}
+
+.edutarbiyah-footer-col a {
+  color: rgba(209, 250, 229, 0.8) !important;
+  font-size: 14px !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease !important;
+}
+
+.edutarbiyah-footer-col a:hover {
+  color: #FFFFFF !important;
+}
+
+.edutarbiyah-footer-bottom {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 12px;
+  color: rgba(209, 250, 229, 0.6);
+}
+
+@media (min-width: 768px) {
+  .edutarbiyah-footer-bottom {
+    flex-direction: row;
+  }
+}
+
+.edutarbiyah-footer-bottom a {
+  color: inherit;
+  margin: 0 12px;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.edutarbiyah-footer-bottom a:hover {
+  color: #FFFFFF;
+}
+
+/* -------------------------------------------------------------
+   10. Floating WhatsApp Assistance Widget
+   ------------------------------------------------------------- */
+#floating-whatsapp {
+  position: fixed;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+  right: 1.25rem;
+  pointer-events: auto;
+}
+
+@media (min-width: 640px) {
+  #floating-whatsapp {
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+#floating-whatsapp .whatsapp-pill {
+  display: none;
+  background: #FFFFFF;
+  color: #1F2937;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+  border: 1px solid #E5E7EB;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+  animation: bouncePill 2s infinite;
+}
+
+@media (min-width: 640px) {
+  #floating-whatsapp .whatsapp-pill {
+    display: flex;
+  }
+}
+
+#floating-whatsapp .pulsing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background-color: #10B981;
+}
+
+#floating-whatsapp a.whatsapp-btn {
+  width: 52px;
+  height: 52px;
+  background-color: #25D366;
+  color: #FFFFFF;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px -5px rgba(37, 211, 102, 0.4);
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+@media (min-width: 640px) {
+  #floating-whatsapp a.whatsapp-btn {
+    width: 58px;
+    height: 58px;
+  }
+}
+
+#floating-whatsapp a.whatsapp-btn:hover {
+  background-color: #20BD5A;
+  transform: scale(1.08);
+  box-shadow: 0 15px 30px -5px rgba(37, 211, 102, 0.5);
+}
+
+@keyframes bouncePill {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
