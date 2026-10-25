@@ -1010,59 +1010,61 @@ import {
 
         <!-- 7-Day Printable Tracker Grid -->
         <div class="space-y-3 pt-2">
-          <div class="flex items-center justify-between text-xs font-bold text-gray-600 uppercase tracking-wider">
+          <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-bold text-gray-600 uppercase tracking-wider">
             <span data-en="7-Day Check-in Record" data-ur="7 دن کا روزانہ ٹریکنگ ریکارڈ">7-Day Check-in Record</span>
             <span class="text-[#0F766E]" data-en="Tick off each completed day" data-ur="مکمل ہونے پر نشان لگائیں">Tick off each completed day</span>
           </div>
 
-          <div class="grid grid-cols-7 gap-2 sm:gap-3 text-center">
-            <div class="p-2 sm:p-3 rounded-xl border border-gray-200 bg-white">
-              <span class="text-[11px] font-bold text-gray-500 block">Day 1</span>
-              <div id="chart-check-1" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-xs font-bold text-[#064E3B]">
-                1
+          <div class="overflow-x-auto pb-2 -mx-2 px-2">
+            <div class="grid grid-cols-7 gap-2 sm:gap-3 text-center min-w-[440px] sm:min-w-0">
+              <div class="p-2 sm:p-3 rounded-xl border border-gray-200 bg-white">
+                <span class="text-[11px] font-bold text-gray-500 block">Day 1</span>
+                <div id="chart-check-1" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-xs font-bold text-[#064E3B]">
+                  1
+                </div>
               </div>
-            </div>
-            <div class="p-2 sm:p-3 rounded-xl border border-gray-200 bg-white">
-              <span class="text-[11px] font-bold text-gray-500 block">Day 2</span>
-              <div id="chart-check-2" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-xs font-bold text-[#064E3B]">
-                2
+              <div class="p-2 sm:p-3 rounded-xl border border-gray-200 bg-white">
+                <span class="text-[11px] font-bold text-gray-500 block">Day 2</span>
+                <div id="chart-check-2" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-xs font-bold text-[#064E3B]">
+                  2
+                </div>
               </div>
-            </div>
-            <div class="p-2 sm:p-3 rounded-xl border border-gray-200 bg-white">
-              <span class="text-[11px] font-bold text-gray-500 block">Day 3</span>
-              <div id="chart-check-3" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-xs font-bold text-[#064E3B]">
-                3
+              <div class="p-2 sm:p-3 rounded-xl border border-gray-200 bg-white">
+                <span class="text-[11px] font-bold text-gray-500 block">Day 3</span>
+                <div id="chart-check-3" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-xs font-bold text-[#064E3B]">
+                  3
+                </div>
               </div>
-            </div>
-            <div class="p-2 sm:p-3 rounded-xl border border-gray-200 bg-white">
-              <span class="text-[11px] font-bold text-gray-500 block">Day 4</span>
-              <div id="chart-check-4" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-xs font-bold text-[#064E3B]">
-                4
+              <div class="p-2 sm:p-3 rounded-xl border border-gray-200 bg-white">
+                <span class="text-[11px] font-bold text-gray-500 block">Day 4</span>
+                <div id="chart-check-4" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-xs font-bold text-[#064E3B]">
+                  4
+                </div>
               </div>
-            </div>
-            <div class="p-2 sm:p-3 rounded-xl border border-gray-200 bg-white">
-              <span class="text-[11px] font-bold text-gray-500 block">Day 5</span>
-              <div id="chart-check-5" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-xs font-bold text-[#064E3B]">
-                5
+              <div class="p-2 sm:p-3 rounded-xl border border-gray-200 bg-white">
+                <span class="text-[11px] font-bold text-gray-500 block">Day 5</span>
+                <div id="chart-check-5" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-xs font-bold text-[#064E3B]">
+                  5
+                </div>
               </div>
-            </div>
-            <div class="p-2 sm:p-3 rounded-xl border border-gray-200 bg-white">
-              <span class="text-[11px] font-bold text-gray-500 block">Day 6</span>
-              <div id="chart-check-6" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-xs font-bold text-[#064E3B]">
-                6
+              <div class="p-2 sm:p-3 rounded-xl border border-gray-200 bg-white">
+                <span class="text-[11px] font-bold text-gray-500 block">Day 6</span>
+                <div id="chart-check-6" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-gray-300 flex items-center justify-center text-xs font-bold text-[#064E3B]">
+                  6
+                </div>
               </div>
-            </div>
-            <div class="p-2 sm:p-3 rounded-xl border-2 border-[#0F766E]/40 bg-[#F8FFFC]">
-              <span class="text-[11px] font-bold text-[#064E3B] block">Day 7 (Goal)</span>
-              <div id="chart-check-7" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-[#0F766E] flex items-center justify-center text-xs font-bold text-[#064E3B]">
-                7
+              <div class="p-2 sm:p-3 rounded-xl border-2 border-[#0F766E]/40 bg-[#F8FFFC]">
+                <span class="text-[11px] font-bold text-[#064E3B] block">Day 7 (Goal)</span>
+                <div id="chart-check-7" class="w-6 h-6 sm:w-8 sm:h-8 mx-auto mt-2 rounded-full border-2 border-dashed border-[#0F766E] flex items-center justify-center text-xs font-bold text-[#064E3B]">
+                  7
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         <!-- Printable Footer Signatures -->
-        <div class="pt-6 border-t border-gray-200 grid grid-cols-2 gap-8 text-xs text-gray-500">
+        <div class="pt-6 border-t border-gray-200 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 text-xs text-gray-500">
           <div>
             <p class="font-semibold text-gray-700" data-en="Commitment Signature:" data-ur="دستخط برائے عہد:">Commitment Signature:</p>
             <div class="border-b border-gray-400 mt-6 w-3/4"></div>

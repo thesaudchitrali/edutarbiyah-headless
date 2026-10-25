@@ -19,10 +19,18 @@
     color: var(--color-text-main);
     background-color: var(--color-bg-paper);
     scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+    overflow-wrap: break-word;
+    word-break: normal;
   }
 
   h1, h2, h3, h4, h5, h6, .font-serif {
     font-family: 'Playfair Display', Georgia, Cambria, 'Times New Roman', serif;
+    overflow-wrap: break-word;
   }
 
   /* Urdu and Arabic typography support */
@@ -120,8 +128,12 @@
 
 .wp-content table {
   width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .wp-content th,
@@ -195,4 +207,22 @@
 .wp-content input[type="button"]:hover {
   background-color: #064e3b;
   transform: translateY(-1px);
+}
+
+/* Responsive UI Architecture Utilities */
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+/* Ensure images, svgs, and videos never overflow their containers */
+img, svg, video, canvas, audio, iframe, embed, object {
+  max-width: 100%;
+}
+
+/* Prevent flex child blowouts */
+.min-w-zero {
+  min-width: 0;
 }

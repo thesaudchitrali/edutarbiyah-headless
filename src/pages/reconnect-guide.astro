@@ -72,15 +72,15 @@ import {
 
   <!-- Top Breadcrumbs & Bilingual Toggle -->
   <div id="top-breadcrumbs" class="bg-[#F8FFFC] border-b border-[#0F766E]/10 py-3 px-4 sm:px-6 text-xs text-gray-500">
-    <div class="max-w-5xl mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-2">
+    <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex flex-wrap items-center gap-2 min-w-0">
         <a href="/" class="hover:text-[#0F766E] transition-colors">Home</a>
-        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400 shrink-0" />
         <span class="text-gray-400">Parenting Tools</span>
-        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
-        <span class="text-[#064E3B] font-semibold" data-en="Reconnect & Guide Your Teen" data-ur="نوجوان اولاد سے تعلق کی بحالی">Reconnect & Guide Your Teen</span>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400 shrink-0" />
+        <span class="text-[#064E3B] font-semibold truncate" data-en="Reconnect & Guide Your Teen" data-ur="نوجوان اولاد سے تعلق کی بحالی">Reconnect & Guide Your Teen</span>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 shrink-0">
         <!-- Language Switcher -->
         <button
           type="button"
@@ -641,17 +641,17 @@ import {
         </div>
 
         <!-- Wizard Navigation Controls -->
-        <div id="wizard-controls" class="flex items-center justify-between gap-4 pt-6 border-t border-gray-100">
+        <div id="wizard-controls" class="flex flex-wrap items-center justify-between gap-3 sm:gap-4 pt-6 border-t border-gray-100">
           <button
             type="button"
             id="prev-step-btn"
-            class="hidden px-5 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-bold text-sm hover:bg-gray-50 transition-colors inline-flex items-center gap-2 cursor-pointer"
+            class="hidden px-5 py-2.5 rounded-xl border border-gray-300 text-gray-700 font-bold text-sm hover:bg-gray-50 transition-colors inline-flex items-center gap-2 cursor-pointer shrink-0"
           >
             <ArrowLeft class="w-4 h-4" />
             <span data-en="Back" data-ur="واپس">Back</span>
           </button>
 
-          <div class="flex items-center gap-3 ml-auto">
+          <div class="flex flex-wrap items-center gap-2 sm:gap-3 ml-auto shrink-0">
             <button
               type="button"
               id="save-local-btn"
@@ -835,7 +835,7 @@ import {
         </div>
 
         <!-- Signatures for Family Agreement -->
-        <div class="pt-6 border-t border-gray-200 grid grid-cols-2 gap-8 text-xs text-gray-500">
+        <div class="pt-6 border-t border-gray-200 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 text-xs text-gray-500">
           <div>
             <p class="font-semibold text-gray-700" data-en="Parent Commitment Signature:" data-ur="والدین کے دستخط:">Parent Commitment Signature:</p>
             <div class="border-b border-gray-400 mt-6 w-3/4"></div>

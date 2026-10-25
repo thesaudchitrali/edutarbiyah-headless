@@ -78,6 +78,35 @@ FTP_REMOTE_DIR=public_html/
       console.log(`📦 Uploading all static files from "dist/" to root "/"...`);
     }
 
+    // Ensure dynamic LMS & WooCommerce routes are not shadowed by legacy static folders
+    const dynamicPassthroughDirs = [
+      'dashboard',
+      'tutor-login',
+      'student-registration',
+      'instructor-registration',
+      'single-course-page',
+      'thankyou-page',
+      'registration',
+      'wishsuite',
+      'evercompare',
+      'course',
+      'courses',
+      'cart',
+      'checkout',
+      'my-account'
+    ];
+
+    console.log('🧹 Purging any static folders matching dynamic LMS/WooCommerce routes...');
+    for (const dirName of dynamicPassthroughDirs) {
+      try {
+        const checkPath = (targetDir && targetDir !== '/' && targetDir !== '.') ? `${targetDir.replace(/\/+$/, '')}/${dirName}` : dirName;
+        await client.removeDir(checkPath);
+        console.log(`   ✓ Cleaned obsolete static folder: ${dirName}`);
+      } catch (err) {
+        // Folder does not exist, which is expected
+      }
+    }
+
     const startTime = Date.now();
 
     // Track upload progress

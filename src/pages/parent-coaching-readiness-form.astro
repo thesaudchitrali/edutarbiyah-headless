@@ -75,15 +75,15 @@ import {
 
   <!-- Top Breadcrumbs & Bilingual Toggle -->
   <div id="top-breadcrumbs" class="bg-[#F8FFFC] border-b border-[#0F766E]/10 py-3 px-4 sm:px-6 text-xs text-gray-500">
-    <div class="max-w-5xl mx-auto flex items-center justify-between">
-      <div class="flex items-center gap-2">
+    <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex flex-wrap items-center gap-2 min-w-0">
         <a href="/" class="hover:text-[#0F766E] transition-colors">Home</a>
-        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400 shrink-0" />
         <a href="/edutarbiyah-parent-coaching-program/" class="hover:text-[#0F766E] transition-colors">Coaching</a>
-        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
-        <span class="text-[#064E3B] font-semibold" data-en="Readiness Form" data-ur="ریڈینس فارم">Readiness Form</span>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400 shrink-0" />
+        <span class="text-[#064E3B] font-semibold truncate" data-en="Readiness Form" data-ur="ریڈینس فارم">Readiness Form</span>
       </div>
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 shrink-0">
         <!-- Language Switcher -->
         <button
           type="button"
@@ -225,22 +225,22 @@ import {
 
     <!-- PARENT & FAMILY BASIC DETAILS CARD -->
     <section class="bg-white rounded-3xl border border-gray-200/80 shadow-md p-6 sm:p-8 space-y-6">
-      <div class="flex items-center justify-between border-b border-gray-100 pb-4">
-        <div>
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-gray-100 pb-4">
+        <div class="min-w-0">
           <div class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0F766E] uppercase tracking-wider mb-1">
-            <User class="w-4 h-4" />
+            <User class="w-4 h-4 shrink-0" />
             <span data-en="Part 1: Family Context" data-ur="حصہ اول: بنیادی معلومات">Part 1: Family Context</span>
           </div>
-          <h2 class="text-xl sm:text-2xl font-serif font-extrabold text-[#064E3B]">
+          <h2 class="text-xl sm:text-2xl font-serif font-extrabold text-[#064E3B] break-words">
             <span data-en="Family & Child Information" data-ur="بنیادی معلومات">Family & Child Information</span>
           </h2>
         </div>
         <button
           type="button"
           id="clear-form-btn"
-          class="text-xs text-gray-400 hover:text-red-600 transition-colors inline-flex items-center gap-1 cursor-pointer"
+          class="text-xs text-gray-400 hover:text-red-600 transition-colors inline-flex items-center gap-1 cursor-pointer shrink-0"
         >
-          <RotateCcw class="w-3.5 h-3.5" />
+          <RotateCcw class="w-3.5 h-3.5 shrink-0" />
           <span data-en="Reset Form" data-ur="فارم صاف کریں">Reset Form</span>
         </button>
       </div>
@@ -922,9 +922,9 @@ import {
             const card = document.createElement("div");
             card.className = "p-3 rounded-xl bg-white border border-gray-200 text-xs space-y-1 shadow-sm";
             card.innerHTML = `
-              <div class="flex items-center justify-between font-bold text-gray-800">
-                <span class="truncate">${pTitle}</span>
-                <span class="${sc >= 7 ? 'text-rose-600' : sc >= 5 ? 'text-amber-600' : 'text-emerald-700'}">${sc}/9</span>
+              <div class="flex items-center justify-between gap-2 font-bold text-gray-800">
+                <span class="truncate min-w-0">${pTitle}</span>
+                <span class="shrink-0 ${sc >= 7 ? 'text-rose-600' : sc >= 5 ? 'text-amber-600' : 'text-emerald-700'}">${sc}/9</span>
               </div>
               <div class="w-full bg-gray-100 h-1.5 rounded-full overflow-hidden">
                 <div class="${sc >= 7 ? 'bg-rose-500' : sc >= 5 ? 'bg-amber-500' : 'bg-emerald-500'} h-full" style="width: ${Math.round((sc/9)*100)}%;"></div>

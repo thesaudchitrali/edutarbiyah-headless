@@ -51,18 +51,18 @@ const menuItems = await getPrimaryMenu();
       </a>
 
       <!-- Desktop Navigation Menu -->
-      <nav class="hidden lg:flex items-center gap-1 xl:gap-2">
+      <nav class="hidden lg:flex items-center gap-0.5 xl:gap-2">
         {menuItems.map((item) => (
           <div class="relative group">
             {item.children && item.children.length > 0 ? (
               <div>
                 <button
                   type="button"
-                  class="flex items-center gap-1.5 px-3.5 py-2 text-sm font-semibold text-[#374151] hover:text-[#0F766E] rounded-lg hover:bg-[#F4F8F6] transition-colors focus:outline-none"
+                  class="flex items-center gap-1 px-2.5 xl:px-3.5 py-2 text-xs xl:text-sm font-semibold text-[#374151] hover:text-[#0F766E] rounded-lg hover:bg-[#F4F8F6] transition-colors focus:outline-none"
                   aria-expanded="false"
                 >
                   <span>{item.title}</span>
-                  <ChevronDown class="w-4 h-4 text-[#9CA3AF] group-hover:text-[#0F766E] group-hover:rotate-180 transition-transform duration-200" />
+                  <ChevronDown class="w-3.5 h-3.5 xl:w-4 xl:h-4 text-[#9CA3AF] group-hover:text-[#0F766E] group-hover:rotate-180 transition-transform duration-200" />
                 </button>
                 <div class="absolute left-0 top-full pt-2 w-64 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 z-50">
                   <div class="bg-white rounded-xl shadow-xl border border-gray-100 p-2.5 space-y-1">
@@ -110,7 +110,7 @@ const menuItems = await getPrimaryMenu();
               <a
                 href={item.url}
                 target={item.target || '_self'}
-                class="px-3.5 py-2 text-sm font-semibold text-[#374151] hover:text-[#0F766E] rounded-lg hover:bg-[#F4F8F6] transition-colors"
+                class="px-2.5 xl:px-3.5 py-2 text-xs xl:text-sm font-semibold text-[#374151] hover:text-[#0F766E] rounded-lg hover:bg-[#F4F8F6] transition-colors"
               >
                 {item.title}
               </a>

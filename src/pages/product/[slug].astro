@@ -50,24 +50,24 @@ const plainDescription = product.short_description
   <!-- Breadcrumb Section -->
   <section class="bg-[#F4F8F6] py-4 border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <nav class="flex items-center gap-2 text-xs text-gray-500 font-medium" aria-label="Breadcrumb">
-        <a href="/" class="hover:text-[#0F766E] transition-colors flex items-center gap-1">
+      <nav class="flex flex-wrap items-center gap-2 text-xs text-gray-500 font-medium" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#0F766E] transition-colors flex items-center gap-1 shrink-0">
           <Home class="w-3.5 h-3.5" />
           <span>Home</span>
         </a>
-        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
-        <a href="/shop/" class="hover:text-[#0F766E] transition-colors">
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400 shrink-0" />
+        <a href="/shop/" class="hover:text-[#0F766E] transition-colors shrink-0">
           Bookstore
         </a>
         {category && (
           <>
-            <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
-            <a href={`/product-category/${category.slug}/`} class="hover:text-[#0F766E] transition-colors">
+            <ChevronRight class="w-3.5 h-3.5 text-gray-400 shrink-0" />
+            <a href={`/product-category/${category.slug}/`} class="hover:text-[#0F766E] transition-colors shrink-0">
               {category.name}
             </a>
           </>
         )}
-        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400 shrink-0" />
         <span class="text-[#064E3B] font-semibold truncate max-w-xs">{title}</span>
       </nav>
     </div>
@@ -164,7 +164,7 @@ const plainDescription = product.short_description
               About this Publication
             </h2>
             <div
-              class="wp-content bg-white rounded-3xl p-6 sm:p-10 border border-gray-100 shadow-sm"
+              class="wp-content bg-white rounded-3xl p-5 sm:p-8 md:p-10 border border-gray-100 shadow-sm"
               set:html={product.description}
             />
           </div>
@@ -174,11 +174,11 @@ const plainDescription = product.short_description
       <!-- Related Books Section -->
       {relatedProducts.length > 0 && (
         <div class="mt-20 pt-16 border-t border-gray-200">
-          <div class="flex items-center justify-between mb-8">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-8">
             <h2 class="text-2xl font-serif font-bold text-[#064E3B]">
               You May Also Be Interested In
             </h2>
-            <a href="/shop/" class="text-xs font-bold text-[#0F766E] hover:underline">
+            <a href="/shop/" class="text-xs font-bold text-[#0F766E] hover:underline shrink-0">
               View All Books →
             </a>
           </div>

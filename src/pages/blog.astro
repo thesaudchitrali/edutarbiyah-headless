@@ -81,21 +81,21 @@ const allPosts: UnifiedPost[] = [
           href={ENGLISH_BLOG_URL}
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center justify-between p-5 rounded-2xl bg-white border border-gray-200/80 hover:border-[#0F766E] shadow-sm hover:shadow-md transition-all group"
+          class="flex items-center justify-between gap-3 p-4 sm:p-5 rounded-2xl bg-white border border-gray-200/80 hover:border-[#0F766E] shadow-sm hover:shadow-md transition-all group"
         >
-          <div class="flex items-center gap-3.5">
+          <div class="flex items-center gap-3.5 min-w-0 flex-1">
             <div class="w-12 h-12 rounded-xl bg-teal-50 border border-teal-100 flex items-center justify-center text-[#0F766E] shrink-0">
               <Globe class="w-6 h-6" />
             </div>
-            <div>
-              <span class="text-xs uppercase font-bold tracking-wider text-[#0F766E]">English Portal</span>
-              <h2 class="text-base font-serif font-bold text-[#064E3B] group-hover:text-[#0F766E] transition-colors">
+            <div class="min-w-0 flex-1">
+              <span class="text-xs uppercase font-bold tracking-wider text-[#0F766E] block truncate">English Portal</span>
+              <h2 class="text-base font-serif font-bold text-[#064E3B] group-hover:text-[#0F766E] transition-colors truncate">
                 EduTarbiyah English Blog
               </h2>
-              <p class="text-xs text-gray-500">edutarbiyah.com/english</p>
+              <p class="text-xs text-gray-500 truncate">edutarbiyah.com/english</p>
             </div>
           </div>
-          <ArrowUpRight class="w-5 h-5 text-gray-400 group-hover:text-[#0F766E] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+          <ArrowUpRight class="w-5 h-5 text-gray-400 group-hover:text-[#0F766E] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
         </a>
 
         <!-- Urdu Blog Gateway -->
@@ -103,21 +103,21 @@ const allPosts: UnifiedPost[] = [
           href={URDU_BLOG_URL}
           target="_blank"
           rel="noopener noreferrer"
-          class="flex items-center justify-between p-5 rounded-2xl bg-[#064E3B] text-white hover:bg-[#043327] shadow-sm hover:shadow-md transition-all group"
+          class="flex items-center justify-between gap-3 p-4 sm:p-5 rounded-2xl bg-[#064E3B] text-white hover:bg-[#043327] shadow-sm hover:shadow-md transition-all group"
         >
-          <div class="flex items-center gap-3.5">
+          <div class="flex items-center gap-3.5 min-w-0 flex-1">
             <div class="w-12 h-12 rounded-xl bg-emerald-800/80 border border-emerald-700 flex items-center justify-center text-amber-300 shrink-0">
               <FileText class="w-6 h-6" />
             </div>
-            <div>
-              <span class="text-xs uppercase font-bold tracking-wider text-amber-300">اردو بلاگ پورٹل</span>
-              <h2 class="text-base font-serif font-bold text-white font-urdu">
+            <div class="min-w-0 flex-1">
+              <span class="text-xs uppercase font-bold tracking-wider text-amber-300 block truncate">اردو بلاگ پورٹل</span>
+              <h2 class="text-base font-serif font-bold text-white font-urdu truncate">
                 ایجوتربیت اردو بلاگ
               </h2>
-              <p class="text-xs text-emerald-200">blog.edutarbiyah.com</p>
+              <p class="text-xs text-emerald-200 truncate">blog.edutarbiyah.com</p>
             </div>
           </div>
-          <ArrowUpRight class="w-5 h-5 text-amber-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+          <ArrowUpRight class="w-5 h-5 text-amber-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all shrink-0" />
         </a>
       </div>
 
@@ -262,7 +262,7 @@ const allPosts: UnifiedPost[] = [
                 </div>
 
                 <!-- Footer Action -->
-                <div class="pt-4 border-t border-gray-100 flex items-center justify-between">
+                <div class="pt-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-2">
                   <span class="text-[11px] font-medium text-gray-400">
                     {isUrdu ? 'blog.edutarbiyah.com' : 'edutarbiyah.com/english'}
                   </span>

@@ -38,17 +38,17 @@ const { category, products, allCategories } = Astro.props;
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Breadcrumb -->
-      <nav class="flex items-center gap-2 text-xs text-gray-500 font-medium mb-4" aria-label="Breadcrumb">
-        <a href="/" class="hover:text-[#0F766E] transition-colors flex items-center gap-1">
+      <nav class="flex flex-wrap items-center gap-2 text-xs text-gray-500 font-medium mb-4" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-[#0F766E] transition-colors flex items-center gap-1 shrink-0">
           <Home class="w-3.5 h-3.5" />
           <span>Home</span>
         </a>
-        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
-        <a href="/shop/" class="hover:text-[#0F766E] transition-colors">
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400 shrink-0" />
+        <a href="/shop/" class="hover:text-[#0F766E] transition-colors shrink-0">
           Bookstore
         </a>
-        <ChevronRight class="w-3.5 h-3.5 text-gray-400" />
-        <span class="text-[#064E3B] font-semibold">{category.name}</span>
+        <ChevronRight class="w-3.5 h-3.5 text-gray-400 shrink-0" />
+        <span class="text-[#064E3B] font-semibold truncate max-w-xs">{category.name}</span>
       </nav>
 
       <div class="max-w-3xl space-y-3">

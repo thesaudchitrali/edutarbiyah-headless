@@ -446,13 +446,13 @@ import {
 
             <!-- Intensity Scale (1-10) -->
             <div class="space-y-2 pt-2">
-              <div class="flex items-center justify-between text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
                 <span class="font-bold text-gray-700 uppercase tracking-wider" data-en="How intense is this challenge? (1 = Mild, 10 = Severe Crisis)" data-ur="اس مسئلے کی شدت کتنی ہے؟ (1 = ہلکا، 10 = شدید بحران)">
                   How intense is this challenge? (1 = Mild, 10 = Severe Crisis)
                 </span>
-                <span id="intensity-val-badge" class="font-bold text-[#0F766E] font-mono">Not selected</span>
+                <span id="intensity-val-badge" class="font-bold text-[#0F766E] font-mono shrink-0">Not selected</span>
               </div>
-              <div class="grid grid-cols-10 gap-1.5 sm:gap-2">
+              <div class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 sm:gap-2">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
                   <label class="flex flex-col items-center justify-center py-2.5 sm:py-3 rounded-xl border border-gray-200 text-xs sm:text-sm font-bold text-gray-700 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-[#0F766E] has-[:checked]:text-white has-[:checked]:border-[#0F766E] text-center">
                     <input type="radio" name="intensity" value={num} class="sr-only" />
@@ -569,13 +569,13 @@ import {
             
             <!-- Relationship Rating 1-10 -->
             <div class="space-y-2">
-              <div class="flex items-center justify-between text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
                 <span class="font-bold text-gray-700 uppercase tracking-wider" data-en="How would you rate your relationship with your child? (1 = Distant/Strained, 10 = Very Close & Loving)" data-ur="بچے سے اپنے مجموعی تعلق کو 1 سے 10 تک کتنے نمبر دیں گے؟">
                   How would you rate your relationship with your child? (1 = Distant, 10 = Very Close)
                 </span>
-                <span id="rel-val-badge" class="font-bold text-[#0F766E] font-mono">Not selected</span>
+                <span id="rel-val-badge" class="font-bold text-[#0F766E] font-mono shrink-0">Not selected</span>
               </div>
-              <div class="grid grid-cols-10 gap-1.5 sm:gap-2">
+              <div class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 sm:gap-2">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
                   <label class="flex flex-col items-center justify-center py-2.5 sm:py-3 rounded-xl border border-gray-200 text-xs sm:text-sm font-bold text-gray-700 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-[#0F766E] has-[:checked]:text-white has-[:checked]:border-[#0F766E] text-center">
                     <input type="radio" name="relationship_rating" value={num} class="sr-only" />
@@ -587,13 +587,13 @@ import {
 
             <!-- Communication Ease 1-10 -->
             <div class="space-y-2">
-              <div class="flex items-center justify-between text-xs">
+              <div class="flex flex-wrap items-center justify-between gap-2 text-xs">
                 <span class="font-bold text-gray-700 uppercase tracking-wider" data-en="How easily does your child share feelings & problems with you? (1 = Completely Closed, 10 = Completely Open)" data-ur="آپ کا بچہ اپنے مسائل و احساسات آپ سے کتنی آسانی سے شیئر کرتا ہے؟">
                   How easily does your child share feelings & problems with you?
                 </span>
-                <span id="comm-val-badge" class="font-bold text-[#0F766E] font-mono">Not selected</span>
+                <span id="comm-val-badge" class="font-bold text-[#0F766E] font-mono shrink-0">Not selected</span>
               </div>
-              <div class="grid grid-cols-10 gap-1.5 sm:gap-2">
+              <div class="grid grid-cols-5 sm:grid-cols-10 gap-1.5 sm:gap-2">
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
                   <label class="flex flex-col items-center justify-center py-2.5 sm:py-3 rounded-xl border border-gray-200 text-xs sm:text-sm font-bold text-gray-700 cursor-pointer hover:border-[#0F766E] transition-all has-[:checked]:bg-[#0F766E] has-[:checked]:text-white has-[:checked]:border-[#0F766E] text-center">
                     <input type="radio" name="communication_rating" value={num} class="sr-only" />

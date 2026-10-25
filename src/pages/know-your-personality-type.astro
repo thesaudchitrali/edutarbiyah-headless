@@ -86,9 +86,9 @@ const questions = [
       
       <!-- Progress Bar -->
       <div class="sticky top-20 z-30 bg-[#FFFDF9]/95 backdrop-blur-md py-3 mb-8 border-b border-gray-100">
-        <div class="flex items-center justify-between text-xs font-semibold text-gray-700 mb-1.5">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-semibold text-gray-700 mb-1.5">
           <span>Question Progress</span>
-          <span id="mbti-progress-text" class="text-[#0F766E]">0 / 20 Completed</span>
+          <span id="mbti-progress-text" class="text-[#0F766E] shrink-0">0 / 20 Completed</span>
         </div>
         <div class="w-full h-2.5 bg-gray-200 rounded-full overflow-hidden">
           <div id="mbti-progress-fill" class="h-full bg-[#0F766E] rounded-full transition-all duration-300 w-0"></div>
@@ -163,7 +163,7 @@ const questions = [
         </div>
 
         <!-- 4 Spectrum Gauges -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4" id="spectrum-container">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-4" id="spectrum-container">
           <!-- Populated by JS -->
         </div>
 
@@ -319,21 +319,21 @@ const questions = [
     const specContainer = document.getElementById('spectrum-container');
     if (specContainer) {
       specContainer.innerHTML = `
-        <div class="bg-gray-50 rounded-xl p-3 text-center border border-gray-100">
-          <div class="text-[10px] text-gray-500 font-bold uppercase">Energy</div>
-          <div class="font-bold text-sm text-[#064E3B]">${type[0] === 'E' ? 'Extravert (E)' : 'Introvert (I)'}</div>
+        <div class="bg-gray-50 rounded-xl p-2.5 sm:p-3 text-center border border-gray-100 min-w-0">
+          <div class="text-[10px] text-gray-500 font-bold uppercase truncate">Energy</div>
+          <div class="font-bold text-xs sm:text-sm text-[#064E3B] truncate">${type[0] === 'E' ? 'Extravert (E)' : 'Introvert (I)'}</div>
         </div>
-        <div class="bg-gray-50 rounded-xl p-3 text-center border border-gray-100">
-          <div class="text-[10px] text-gray-500 font-bold uppercase">Perception</div>
-          <div class="font-bold text-sm text-[#064E3B]">${type[1] === 'S' ? 'Sensing (S)' : 'Intuitive (N)'}</div>
+        <div class="bg-gray-50 rounded-xl p-2.5 sm:p-3 text-center border border-gray-100 min-w-0">
+          <div class="text-[10px] text-gray-500 font-bold uppercase truncate">Perception</div>
+          <div class="font-bold text-xs sm:text-sm text-[#064E3B] truncate">${type[1] === 'S' ? 'Sensing (S)' : 'Intuitive (N)'}</div>
         </div>
-        <div class="bg-gray-50 rounded-xl p-3 text-center border border-gray-100">
-          <div class="text-[10px] text-gray-500 font-bold uppercase">Decisions</div>
-          <div class="font-bold text-sm text-[#064E3B]">${type[2] === 'T' ? 'Thinking (T)' : 'Feeling (F)'}</div>
+        <div class="bg-gray-50 rounded-xl p-2.5 sm:p-3 text-center border border-gray-100 min-w-0">
+          <div class="text-[10px] text-gray-500 font-bold uppercase truncate">Decisions</div>
+          <div class="font-bold text-xs sm:text-sm text-[#064E3B] truncate">${type[2] === 'T' ? 'Thinking (T)' : 'Feeling (F)'}</div>
         </div>
-        <div class="bg-gray-50 rounded-xl p-3 text-center border border-gray-100">
-          <div class="text-[10px] text-gray-500 font-bold uppercase">Lifestyle</div>
-          <div class="font-bold text-sm text-[#064E3B]">${type[3] === 'J' ? 'Judging (J)' : 'Perceiving (P)'}</div>
+        <div class="bg-gray-50 rounded-xl p-2.5 sm:p-3 text-center border border-gray-100 min-w-0">
+          <div class="text-[10px] text-gray-500 font-bold uppercase truncate">Lifestyle</div>
+          <div class="font-bold text-xs sm:text-sm text-[#064E3B] truncate">${type[3] === 'J' ? 'Judging (J)' : 'Perceiving (P)'}</div>
         </div>
       `;
     }

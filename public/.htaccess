@@ -52,8 +52,8 @@ Options -Indexes +FollowSymLinks
     # 3. Passthrough for dedicated subdirectories (e.g. English blog)
     RewriteRule ^english(/.*)?$ - [L]
 
-    # 4. Passthrough for WooCommerce native cart, checkout, account
-    RewriteRule ^(cart|checkout|my-account)(/.*)?$ /index.php [L]
+    # 4. Passthrough for WooCommerce & Tutor LMS dynamic routes (LMS dashboard, login, registration, courses, account)
+    RewriteRule ^(cart|checkout|my-account|dashboard|tutor-login|student-registration|instructor-registration|single-course-page|thankyou-page|registration|wishsuite|evercompare|courses?|lessons?)(/.*)?$ /index.php [L]
 
     # 5. Enforce Trailing Slash on directories/pages to prevent Apache 500 & SEO duplication
     RewriteCond %{REQUEST_FILENAME} !-f

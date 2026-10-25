@@ -60,14 +60,14 @@ const waOrderLink = buildWhatsAppOrderLink(
     )}
 
     <!-- Title -->
-    <h3 class="text-base font-bold text-gray-900 group-hover:text-[#0F766E] transition-colors line-clamp-2 mb-2 leading-snug">
+    <h3 class="text-base font-bold text-gray-900 group-hover:text-[#0F766E] transition-colors line-clamp-2 mb-2 leading-snug break-words">
       <a href={productUrl}>
         {title}
       </a>
     </h3>
 
     <!-- Price Section -->
-    <div class="mt-auto pt-3 flex items-baseline gap-2">
+    <div class="mt-auto pt-3 flex flex-wrap items-baseline gap-2">
       <span class="text-xl font-bold text-[#064E3B]">
         {formattedPrice}
       </span>
@@ -80,8 +80,8 @@ const waOrderLink = buildWhatsAppOrderLink(
 
     <!-- Stock indicator -->
     <div class="mt-2 flex items-center gap-1.5 text-xs text-emerald-700 font-medium">
-      <CheckCircle2 class="w-3.5 h-3.5 text-emerald-600" />
-      <span>{product.is_in_stock ? 'In Stock • Ready to dispatch' : 'Backorder Available'}</span>
+      <CheckCircle2 class="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+      <span class="truncate">{product.is_in_stock ? 'In Stock • Ready to dispatch' : 'Backorder Available'}</span>
     </div>
 
     <!-- Actions -->
@@ -90,19 +90,19 @@ const waOrderLink = buildWhatsAppOrderLink(
         href={waOrderLink}
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl transition-colors"
+        class="inline-flex items-center justify-center gap-1.5 py-2 px-2 sm:px-3 text-xs font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-xl transition-colors min-w-0"
         title="Order directly on WhatsApp"
       >
-        <MessageCircle class="w-3.5 h-3.5 text-emerald-600 fill-emerald-600" />
-        <span>WhatsApp</span>
+        <MessageCircle class="w-3.5 h-3.5 text-emerald-600 fill-emerald-600 shrink-0" />
+        <span class="truncate">WhatsApp</span>
       </a>
 
       <a
         href={productUrl}
-        class="inline-flex items-center justify-center gap-1 py-2 px-3 text-xs font-bold text-white bg-[#0F766E] hover:bg-[#064E3B] rounded-xl shadow-sm hover:shadow transition-all"
+        class="inline-flex items-center justify-center gap-1 py-2 px-2 sm:px-3 text-xs font-bold text-white bg-[#0F766E] hover:bg-[#064E3B] rounded-xl shadow-sm hover:shadow transition-all min-w-0"
       >
-        <span>Details</span>
-        <ArrowRight class="w-3.5 h-3.5" />
+        <span class="truncate">Details</span>
+        <ArrowRight class="w-3.5 h-3.5 shrink-0" />
       </a>
     </div>
   </div>
