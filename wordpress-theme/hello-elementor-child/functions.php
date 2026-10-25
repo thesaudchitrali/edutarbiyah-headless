@@ -34,6 +34,15 @@ function edutarbiyah_unified_enqueue_styles() {
 add_action( 'wp_enqueue_scripts', 'edutarbiyah_unified_enqueue_styles', 99 );
 
 /**
+ * Force Tutor LMS 4.x into Light Theme
+ * Ensures Tutor's client-side scripts do not switch the HTML element to dark mode.
+ */
+function edutarbiyah_force_tutor_light_theme() {
+    echo "<script>document.documentElement.setAttribute('data-tutor-theme', 'light'); if (typeof localStorage !== 'undefined') { try { localStorage.setItem('tutor_theme', 'light'); localStorage.setItem('tutor-theme', 'light'); } catch(e){} }</script>\n";
+}
+add_action( 'wp_head', 'edutarbiyah_force_tutor_light_theme', 1 );
+
+/**
  * Direct wp_head injection ensuring Google Fonts and Unified Critical CSS
  * apply instantly without waiting for or being stripped by LiteSpeed UCSS optimization.
  */
