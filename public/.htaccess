@@ -53,7 +53,7 @@ Options -Indexes +FollowSymLinks
     RewriteRule ^english(/.*)?$ - [L]
 
     # 4. Passthrough for WooCommerce & Tutor LMS dynamic routes (LMS dashboard, login, registration, courses, account)
-    RewriteRule ^(cart|checkout|my-account|dashboard|tutor-login|student-registration|instructor-registration|single-course-page|thankyou-page|registration|wishsuite|evercompare|courses?|lessons?)(/.*)?$ /index.php [L]
+    RewriteRule ^(cart|cart-2|checkout|checkout-2|my-account|dashboard|tutor-login|student-registration|instructor-registration|single-course-page|thankyou-page|registration|wishsuite|evercompare|courses?|lessons?)(/.*)?$ /index.php [L]
 
     # 5. Enforce Trailing Slash on directories/pages to prevent Apache 500 & SEO duplication
     RewriteCond %{REQUEST_FILENAME} !-f

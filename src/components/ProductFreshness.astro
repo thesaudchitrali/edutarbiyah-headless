@@ -196,7 +196,7 @@ const isVariable = product.type === 'variable' && product.attributes && product.
         params.set(`attribute_${k}`, v);
       }
       if (cartBtn) {
-        cartBtn.setAttribute('href', `${wpBase}/cart/?${params.toString()}`);
+        cartBtn.setAttribute('href', `${wpBase}/checkout-2/?${params.toString()}`);
       }
 
       // Update WhatsApp link

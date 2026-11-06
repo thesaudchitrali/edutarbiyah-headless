@@ -92,7 +92,9 @@ FTP_REMOTE_DIR=public_html/
       'course',
       'courses',
       'cart',
+      'cart-2',
       'checkout',
+      'checkout-2',
       'my-account'
     ];
 

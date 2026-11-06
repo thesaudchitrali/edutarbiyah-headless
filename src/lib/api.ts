@@ -767,14 +767,14 @@ export function buildWhatsAppOrderLink(
 }
 
 /**
- * Helper to build native WooCommerce add-to-cart link
+ * Helper to build native WooCommerce add-to-cart link (direct to WooCommerce Checkout)
  */
 export function buildWooCommerceCartLink(
   productId: number,
   variationId?: number,
   attributes?: Record<string, string>
 ): string {
-  const base = `${WP_BASE_URL}/cart/?add-to-cart=${productId}`;
+  const base = `${WP_BASE_URL}/checkout-2/?add-to-cart=${productId}`;
   if (!variationId) {
     return base;
   }
@@ -790,5 +790,5 @@ export function buildWooCommerceCartLink(
     }
   }
 
-  return `${WP_BASE_URL}/cart/?${params.toString()}`;
+  return `${WP_BASE_URL}/checkout-2/?${params.toString()}`;
 }
